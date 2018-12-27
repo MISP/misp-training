@@ -22,7 +22,7 @@ The MISP project training materials are co-financed and resource supported by CI
 ![](https://www.misp-project.org/assets/images/en_cef.png)
 ![](https://www.circl.lu/assets/images/logo.png)
 
-All the source code are available at [https://www.github.org/MISP/misp-training](https://www.github.org/MISP/misp-training).
+All the source code are available at [https://www.github.com/MISP/misp-training](https://www.github.com/MISP/misp-training).
 
 If you reuse the training materials, don't forget to put the above attribution.
  
