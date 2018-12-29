@@ -1,0 +1,10 @@
+\begin{itemize}
+    \item (10:00 - 11:30) Introduction to Information Sharing with MISP
+    \item (11:30 - 11:40) Coffee break
+    \item (11:40 - 13:00) User perspective - diving into MISP functionalities and integration
+    \item (13:00 - 14:00) {\bf Lunch Break}
+    \item (14:00 - 15:30) Administrating your MISP instance
+    \item (15:30 - 15:40) Coffee break
+    \item (15:40 - 16:45) Building your information sharing communities - CSIRT and financial sectors
+    \item (16:45 - 17:15) Future - Sharing Ideas
+\end{itemize}
