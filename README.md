@@ -36,6 +36,7 @@ If you reuse the training materials, don't forget to put the above attribution.
 - Alexandre Dulaunoy [:house:](https://github.com/adulau)
 - Andras Iklody [:house:](https://github.com/iglocska)
 - Sami Mokaddem [:house:](https://github.com/mokaddem)
+- Sascha Rommelfangen [:house:](https://github.com/rommelfs)
 - Christian Studer [:house:](https://github.com/chrisr3d)
 - Raphaël Vinot [:house:](https://github.com/rafiot)
 - Gerard Wagener [:house:](https://github.com/haegardev)
