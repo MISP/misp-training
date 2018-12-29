@@ -20,6 +20,15 @@ cd complementary/ack
 pdflatex ack.tex
 rm *.aux *.log *.out
 cp ack.pdf ../../output
+rm ack.pdf
+cd ../..
+
+echo "Generating cheatsheet..."
+cd training-support/compact-cheatsheet/
+pdflatex cheatsheet.tex
+rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
+cp cheatsheet.pdf ../../output
+rm cheatsheet.pdf
 cd ../..
 
 echo "Generating handout..."
@@ -29,7 +38,7 @@ for pdf in ${slidedecks[@]}; do
 done
 echo ${listofpdf}
 
-pdfunite ${listofpdf} ack.pdf ../misp-training.pdf
+pdfunite ${listofpdf} cheatsheet.pdf ack.pdf ../misp-training.pdf
 cd ..
 
 exiftool -overwrite_original_in_place -Title="MISP Training and Slide Decks" -Author="CIRCL Computer Incident Response Center Luxembourg" -Subject="MISP Threat Intelligence Platform Training Materials" -Keywords="MISP Threat Intelligence CTI STIX information sharing yara sigma suricata snort bro openioc threat-actor TIP threat intelligence platform circl.lu training cybersecurity MISPProject" misp-training.pdf
