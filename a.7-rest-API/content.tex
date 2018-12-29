@@ -1,0 +1,137 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{MISP API reworked}
+    \begin{itemize}
+        \item The MISP API has grown gradually with a UI first design in many cases
+        \item Endpoints all solved specific issues with their own rulesets
+	\item Growth was organic - whenever the need to add a new functionality / filter popped up we've added it
+	\item Lead to frankenmonsters such as this:
+		\begin{adjustbox}{width=\textwidth,height=.5cm,keepaspectratio}
+		    http://localhost:5000/events/csv/download/false/false/tag1\&\&tag2\&\&\!tag3/Network\%20activity/domain
+		\end{adjustbox}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Goals we've set for ourselves}
+    \begin{itemize}
+        \item Open up every functionality in MISP available via the UI to the API
+	\item Including ones related to {\bf instance management}
+	\item APIs that expect input objects for data creation should be {\bf self-describing}
+	\item {\bf URL parameters should be discouraged}, but still usable by legacy tools (deprecation)
+	\item APIs should be heavily {\bf tested} (Raphael Vinot's exhaustive test suite in PyMISP)
+	\item Largest focus on Export APIs
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Export API's reimagined}
+    \begin{itemize}
+        \item Scrapped all existing type specific APIs ({\bf deprecated}, documentation moved to legacy, still available)
+	\item {\bf Single entry point} - all export APIs baked into restSearch
+	\item Queries consist of a combination of:
+	\begin{itemize}
+		\item {\bf Scope} (Event, Attribute, Sighting, more coming in the future)
+		\item {\bf Filter parameters} - passed via JSON objects, url parameters (key value or ordered list)
+		\item A {\bf return format}
+	\end{itemize}
+	\item Everything that we could do before the rework we should be able to accomplish after the rework
+	\item Under the hood now also used by the UI search and exports
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Export API's reimagined}
+    \begin{itemize}
+	\item One of our largest issues solved: {\bf pagination}
+	\begin{itemize}
+		\item {\bf Scope specific} pagination (number of events, attributes, etc)
+		\item Simply control it via the framework friendly {\bf page / limit} parameters
+		\item Alternatively, use the improved {\bf time based controls} (timestamp, publish\_timestamp windows)
+	\end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Performance tuning}
+    \begin{itemize}
+	\item Single execution with subqueries
+	\item Internal pagination {\bf aligned with memory limits}
+	\begin{itemize}
+		\item Probing of available memory for the current process
+		\item {\bf Chunking of the query results} to fit in object specific memory envelopes
+		\item Constructing export set on disk in chunks has slashed memory usage considerably
+	\end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Designing tools that use the APIs can be complex, but there's help}
+    \begin{itemize}
+	\item The result of our own frustration
+	\item Built in {\bf ReST client} with templating
+	\item Build queries in a simple interface, automatically set URLs, headers, etc
+	\item Uses the self documentation of APIs
+	\item Export your queries as {\bf cURL or Python scripts}
+	\item Built in testing tools (performance measurements, result parsers)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Why is the search API receiving so much focus?}
+    \begin{itemize}
+	\item The {\bf maturity} of the communities and threat intel sharing at large has improved
+	\item We are sharing more
+	\item Most importantly: we are sharing {\bf more context} along with technical indicators
+	\item This allows us to {\bf manage our data more accuractely} before feeding them to our protective tools
+	\item Different contexts (APT targeting me? Persisting techniques?) - lifecycle management
+	\item Use several queries / boolean operators to select the slice of data most relevant for the task
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{CLI tools for the CLI God, automation for the automation throne}
+    \begin{itemize}
+	\item Open up commonly used system management tasks to the CLI
+        \begin{itemize}
+            \item sync servers/feeds
+            \item caching feeds
+            \item Password resets
+            \item Server settings
+            \item Bruteforce protection resets
+            \item Enrichment
+        \end{itemize}
+        \item Goal was also to move away from the often malfunctioning scheduler and have cron friendly CLI scripts
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{So what does all of this look like in practice?}
+        \begin{center}
+        	\item Demo time!
+        \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Plans for the future}
+    \begin{itemize}
+	\item Add export modules to the restSearch API
+        \item Improve the query language to support some missing features (such as AND boolean operators)
+        \item Support for extended events via the restSearch API
+	\begin{itemize}
+	    \item We're missing a framing structure in the export module system (how are a list of conversions encapsulated and delimited?)
+            \item Proof of concept of the system implemented by Christian Studer already works using the STIX / STIX2 export subsystems
+	    \item Would open us up to simple customiseable search APIs
+	\end{itemize}
+	\item Open up search APIs to other scopes (objects, users, organisations, proposals, feeds, galaxies, taxonomies)
+	\item Sami Mokaddem designing an extensive GUI overlay for easy query construction
+    \end{itemize}
+\end{frame}
+
