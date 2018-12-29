@@ -24,7 +24,13 @@ cd ../..
 
 echo "Generating handout..."
 cd output
-pdfunite *.pdf ../misp-training.pdf
+for pdf in ${slidedecks[@]}; do
+        listofpdf+="${pdf}.pdf "
+done
+echo ${listofpdf}
+
+pdfunite ${listofpdf} ack.pdf ../misp-training.pdf
 cd ..
+
 exiftool -overwrite_original_in_place -Title="MISP Training and Slide Decks" -Author="CIRCL Computer Incident Response Center Luxembourg" -Subject="MISP Threat Intelligence Platform Training Materials" -Keywords="MISP Threat Intelligence CTI STIX information sharing yara sigma suricata snort bro openioc threat-actor TIP threat intelligence platform circl.lu training cybersecurity MISPProject" misp-training.pdf
 
