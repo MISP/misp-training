@@ -55,8 +55,8 @@ rm table.md
 
 echo "| Slides (PDF) | Source Code |">>table.md
 echo "| ------------ | ----------- |">>table.md
+
 for t in ${slidedecks[@]}; do
         echo "| [${t}](https://www.misp-project.org/misp-training/${t}.pdf) | [source](https://github.com/MISP/misp-training/tree/master/${t}) |" >>table.md
 done
-
 
