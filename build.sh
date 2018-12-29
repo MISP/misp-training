@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage" "1.2-misp-integration" "1.1-misp-viper-integration" "1.2.1-misp-integration-mail2misp" "2-misp-administration" "3-misp-taxonomy-tagging" "3.1-misp-modules" "3.2-misp-galaxy" "3.3-misp-object-template" "6.0-misp-dashboard" "a.0-contributing" "a.1-devintro" "a.2-pymisp" "a.3-misp-feed")
+slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage" "1.2-misp-integration" "1.1-misp-viper-integration" "1.2.1-misp-integration-mail2misp" "2-misp-administration" "3-misp-taxonomy-tagging" "3.1-misp-modules" "3.2-misp-galaxy" "3.3-misp-object-template" "6.0-misp-dashboard" "a.0-contributing" "a.1-devintro" "a.2-pymisp" "a.3-misp-feed" "a.4-best-practices")
 mkdir output
 export TEXINPUTS=::`pwd`/themes/
 echo ${TEXINPUTS}
