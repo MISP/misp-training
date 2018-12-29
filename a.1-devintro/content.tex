@@ -1,0 +1,220 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Some things to know in advance...}
+  \begin{itemize}
+    \item MISP is based on PHP 5.6+
+    \item Using the MVC framework CakePHP 2.x
+    \item What we'll look at now will be a quick glance at the structuring / layout of the code
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{MVC frameworks in general}
+  \begin{itemize}
+    \item separation of business logic and views, interconnected by controllers
+    \item main advantage is clear separation of the various components
+    \item lean controllers, fat models (kinda...)
+    \item domain based code reuse
+    \item No interaction between Model and Views, ever
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Structure of MISP Core app directories}
+  \begin{itemize}
+    \item Config: general configuration files
+    \item Console: command line tools
+    \item Controller: Code dealing with requests/responses, generating data for views based on interactions with the models
+    \item Lib: Generic reusable code / libraries
+    \item Model: Business logic, data gathering and modification
+    \item Plugin: Alternative location for plugin specific codes, ordered into controller, model, view files
+    \item View: UI views, populated by the controller
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Controllers - scope}
+  \begin{itemize}
+    \item Each public function in a controller is exposed as an API action
+    \item request routing (admin routing)
+    \item multi-use functions (POST/GET)
+    \item request/response objects
+    \item contains the action code, telling the application what data fetching/modifying calls to make, preparing the resulting data for the resulting view
+    \item grouped into controller files based on model actions
+    \item Accessed via UI, API, AJAX calls directly by users
+    \item For code reuse: behaviours
+    \item Each controller bound to a model
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Controllers - functionalities of controllers}
+  \begin{itemize}
+    \item pagination functionality
+    \item logging functionality
+    \item Controllers actions can access functionality / variables of Models
+    \item Controllers cannot access code of other controller actions (kind of...)
+    \item Access to the authenticated user's data
+    \item beforeFilter(), afterFilter() methods
+    \item Inherited code in AppController
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Controllers - components}
+  \begin{itemize}
+    \item Components = reusable code for Controllers
+    \begin{itemize}
+      \item Authentication components
+      \item RestResponse component
+      \item ACL component
+      \item Cidr component
+      \item IOCImport component (should be moved)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Controllers - additional functionalities}
+  \begin{itemize}
+    \item code handling API requests
+    \item auth/session management
+    \item ACL management
+    \item API management
+    \item Security component
+    \item important: quertString/PyMISP versions, MISP version handler
+    \item future improvements to the export mechanisms
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Models - scope}
+\begin{itemize}
+  \item Controls anything that has to do with:
+    \begin{itemize}
+    \item finding subsets of data
+    \item altering existing data
+    \item inherited model: AppModel
+    \item reusable code for models: Behaviours
+    \item regex, trim
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Models - hooking system}
+  \begin{itemize}
+    \item Versatile hooking system
+    \begin{itemize}
+      \item manipulate the data at certain stages of execution
+      \item code can be located in 3 places: Model hook, AppModel hook, behaviour
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Model - hooking pipeline (add/edit)}
+  \begin{itemize}
+  \item Hooks / model pipeline for data creation / edits
+    \begin{itemize}
+      \item beforeValidate() (lowercase all hashes)
+      \item validate() (check hash format)
+      \item afterValidate() (we never use it   \item could be interesting if we ever validated without saving)
+      \item beforeSave() (purge existing correlations for an attribute)
+      \item afterSave() (create new correlations for an attribute / zmq)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Models - hooking pipeline (delete/read)}
+  \begin{itemize}
+    \item Hooks for deletions
+    \begin{itemize}
+      \item beforeDelete() (purge correlations for an attribute)
+      \item afterDelete() (zmq)
+    \end{itemize}
+    \item Hooks for retrieving data
+    \begin{itemize}
+      \item beforeFind() (modify the find parameters before execution, we don't use it)
+      \item afterFind() (json decode json fields)
+      \end{itemize}
+    \end{itemize}
+  \end{frame}
+
+\begin{frame}
+  \frametitle{Models - misc}
+  \begin{itemize}
+    \item code to handle version upgrades contained in AppModel
+    \item generic cleanup/data migration tools
+    \item centralised redis/pubsub handlers
+    \item (Show example of adding an attribute with trace)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Views - scope and structure}
+  \begin{itemize}
+    \item templates for views
+    \item layouts
+    \item reusable template code: elements
+    \begin{itemize}
+      \item attribute list, rows (if reused)
+    \end{itemize}
+    \item reusable code: helpers
+    \begin{itemize}
+      \item commandhelper (for discussion boards), highlighter for searches, tag colour helper
+    \end{itemize}
+    \item views per controller
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Views - Types of views and helpers}
+  \begin{itemize}
+    \item ajax views vs normal views
+    \item data views vs normal views vs serialisation in the controller
+    \item sanitisation h()
+    \item creating forms
+    \begin{itemize}
+      \item sanitisation
+      \item CSRF
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Distribution}
+  \begin{itemize}
+    \item algorithm for checking if a user has access to an attribute
+    \item creator vs owner organisation
+    \item distribution levels and inheritance (events -> objects -> attributes)
+    \item shorthand inherit level
+    \item sharing groups (org list, instance list)
+    \item correlation distribution
+    \item algorithms for safe data fetching (fetchEvents(), fetchAttributes(),...)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Testing your code}
+  \begin{itemize}
+    \item funtional testing
+    \item impact scope
+    \begin{itemize}
+      \item view code changes: only impacts request type based views
+      \item controller code changes: Should only affect given action
+      \item model code changes: can have impact on entire application
+      \item lib changes: can have affect on the entire application
+    \end{itemize}
+    \item Don't forget: queryACL, change querystring
+  \end{itemize}
+\end{frame}
+
+
