@@ -1,0 +1,77 @@
+\documentclass[nofootinbib, a4paper]{revtex4}
+%\documentclass{memoir}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[x11names,svgnames,dvipsnames]{xcolor}
+\usepackage{progressbar}
+\usepackage{lastpage}
+\usepackage{pageslts}
+\usepackage{booktabs}
+\usepackage{scalerel,amssymb}
+\usepackage[perpage]{footmisc}
+\usepackage[most]{tcolorbox}
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0.1 0.1 0.1},backref=false,colorlinks=false,linktoc=all]
+ {hyperref}
+\hypersetup{pdftitle={Status report 2017},
+ pdfauthor={CIRCL}}
+\renewcommand{\arraystretch}{1.2}
+\makeatletter
+%\renewcommand{\bf}{\textbf}
+%\renewcommand{\it}{\textit}
+\usepackage{fancyhdr}
+\newcommand{\ourOrganizationName}{CIRCL - Computer Incident Response Center Luxembourg - TLP:GREEN}
+\newcommand{\ourOrganizationNameTitle}{CIRCL - Computer Incident Response Center Luxembourg}
+\newcommand{\ourAuthors}{Team CIRCL}
+\newcommand{\ourOrganizationAddress}{(+352) 247 88444 - info@circl.lu – www.circl.lu}
+
+\begin{document}
+\section*{List of features to explain (MISP trainer support)}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\hline
+Check & Description&Length\\
+\hline
+        $\Box$ & {\bf Add attributes} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - via Freetext & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - via Standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - via Template & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - via ReST API (including freetext API?) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - via EventGraph & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Object} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - add Object & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - add References & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - show via EventGraph & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - add additional elements via the EventGraph & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Warninglists}  & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - show warnings raised in steps above & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Correlations} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - show correlations that were added & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - pivot to events via correlations & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - show correlations graph & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Tags and Galaxies} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - add Tag from Taxonomy & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - add GalaxyCluster & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - add ATT\&CK pattern & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Sighting} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - via UI + custom via UI (new source or expiration sighting) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - via API & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Delegation} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Proposal} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Delete (including soft versus hard delete) } & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Event blacklist when deleting & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Extending event} (how and when to use it) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Extracting the data} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - download from & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - download from via modules & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - .json routing & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - mass export & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - RestSearch & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Searching for data} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Attribute search & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Event index filter search & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+\hline
+\end{tabular}
+\end{center}
+\end{document}
+
