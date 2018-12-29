@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage")
+slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage" "1.1-misp-viper-integration")
 mkdir output
 export TEXINPUTS=::`pwd`/themes/
 echo ${TEXINPUTS}
@@ -26,5 +26,5 @@ echo "Generating handout..."
 cd output
 pdfunite *.pdf ../misp-training.pdf
 cd ..
-exiftool -Title="MISP Training and Slide Decks" -Author="CIRCL Computer Incident Response Center Luxembourg" -Subject="MISP Threat Intelligence Platform Training Materials" -Keywords="MISP Threat Intelligence CTI STIX information sharing yara sigma suricata snort bro openioc threat-actor TIP threat intelligence platform circl.lu training cybersecurity MISPProject" misp-training.pdf
+exiftool -overwrite_original_in_place -Title="MISP Training and Slide Decks" -Author="CIRCL Computer Incident Response Center Luxembourg" -Subject="MISP Threat Intelligence Platform Training Materials" -Keywords="MISP Threat Intelligence CTI STIX information sharing yara sigma suricata snort bro openioc threat-actor TIP threat intelligence platform circl.lu training cybersecurity MISPProject" misp-training.pdf
 

@@ -1,0 +1,9 @@
+\frametitle{Q\&A}
+\includegraphics[scale=0.5]{misplogo.pdf}
+\begin{itemize}
+        \item \url{https://github.com/MISP/PyMISP}
+        \item \url{https://github.com/MISP/}
+        \item \url{https://github.com/viper-framework/viper}
+        \item We welcome new functionalities and pull requests.
+\end{itemize}
+
