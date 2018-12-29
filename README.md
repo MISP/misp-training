@@ -1,6 +1,10 @@
 # MISP Training Materials
 
-The repository includes all the training materials used for the MISP trainings along with the specific threat intelligence and OSINT training or the building information sharing communities workshops.
+The repository includes all the training materials used such as
+
+- Core MISP (software and standard) trainings
+- Specific threat intelligence and OSINT training
+- Building information sharing communities workshops
 
 All the materials are available with the complete LaTeX source code in order to contribute or extend the training materials. A special attention is given to the open source licensing
 given to the materials. We welcome contributions in order to improve the training set for threat intelligence, intelligence gathering and analysis along with specific aspect of information sharing/exchange in information and national security.
