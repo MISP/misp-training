@@ -1,15 +1,4 @@
 \documentclass{beamer}
-%\usetheme[pageofpages=of,% String used between the current page and the
-%                         % total page count.
-%          bullet=circle,% Use circles instead of squares for bullets.
-%          titleline=true,% Show a line below the frame title.
-%          alternativetitlepage=true,% Use the fancy title page.
-%          titlepagelogo=logo-circl.pdf,% Logo for the first page.
-%          watermark=watermark-polito,% Watermark used in every page.
-%          watermarkheight=100px,% Height of the watermark.
-%          watermarkheightmult=4,% The watermark image is 4 times bigger
-                                % than watermarkheight.
-%          ]{Torino}
 \usetheme[numbering=progressbar]{focus}
 \definecolor{main}{RGB}{47, 161, 219}
 \definecolor{textcolor}{RGB}{128, 128, 128}
@@ -20,15 +9,15 @@
 \usepackage{listings}
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes,arrows}
-%\usepackage[T1]{fontenc}
-%\usepackage[scaled]{beramono}
 
-\author{\small{\input{../includes/authors.txt}}}
 
 \title{An Introduction to Cybersecurity Information Sharing}
-\subtitle{MISP - Malware Information Sharing Platform \& Threat Sharing}
-\institute{\href{http://www.misp-project.org/}{http://www.misp-project.org/} \\ Twitter: \emph{\href{https://twitter.com/mispproject}{@MISPProject}}}
+\subtitle{MISP - Threat Sharing}
+\author{\small{\input{../includes/authors.txt}}}
 \date{\input{../includes/location.txt}}
+\titlegraphic{\includegraphics[scale=0.85]{misp.pdf}}
+\institute{MISP Project \\ \url{https://www.misp-project.org/}}
+
 
 \begin{document}
 \include{content}
