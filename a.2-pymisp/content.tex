@@ -1,0 +1,365 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\ttfamily\footnotesize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Context}
+    \begin{itemize}
+        \item MISP is a large project
+        \item Your production environment is even more complex
+        \item 3rd party services are even worse
+        \item Querying MISP via CURL is doable, but get's painful fast
+        \item Talking to MySQL directly can be dangerous
+        \item POST a JSON blob, receive a JSON blob. You can do it manually(-ish)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Big picture}
+    \begin{itemize}
+        \item Core goal: providing stable access to APIs, respect access control
+        \item Simplifying handling \& automation of indicators in 3rd party tools
+        \item Hiding complexity of the JSON blobs
+        \item Providing pre-cooked examples for commonly used operations
+        \item Helping integration with existing infrastructure
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Common queries: Recent changes on a timeframe}
+	There are 4 main cases here:
+    \begin{itemize}
+		\item Metadata of the events that have been modified
+		\begin{itemize}
+            \item {\bf search\_index} $\Rightarrow$ timestamp (1h, 1d, 7d, ...), returns list of all the modified events
+		\end{itemize}
+		\item Full events (metadata + attributes)
+		\begin{itemize}
+    		\item {\bf search} $\Rightarrow$ timestamp (1h, 1d, 7d, ...)
+		\end{itemize}
+		\item Modified attributes
+		\begin{itemize}
+    		\item {\bf search} $\Rightarrow$ controller = attributes and timestamp (1h, 1d, 7d, ...)
+		\end{itemize}
+		\item Other use case: get last {\bf published} events by using the last parameter in the {\bf search} method.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Common queries: Search things}
+	There are 3 main cases here:
+	\begin{itemize}
+		\item Easy, but slow: full text search with {\bf search\_all}
+		\item Faster: use the {\bf search} method and search by tag, type, enforce the warning lists, with(-out) attachments, dates interval, ...
+		\item Get malware samples (if available on the instance).
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Common queries: create things}
+	There are 3 main cases here:
+	\begin{itemize}
+		\item Add Event, edit its metadata
+		\item Add attributes or objects to event
+		\item (un)Tag event or attribute (soon object)
+		\item Edit Attributes medatada
+		\item Upload malware sample (and automatically expand it)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Administrative tasks}
+	Assyming you have the right to do it on the instance.
+	\begin{itemize}
+		\item Managing users
+		\item Managing organisations
+		\item Managing sync servers
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Other Capabilities}
+    \begin{itemize}
+        \item Upload/download samples
+        \item {\bf Proposals}: add, edit, accept, discard
+        \item {\bf Sightings}: Get, set, update
+		\item Export {\bf statistics}
+        \item Manage {\bf feeds}
+        \item Get MISP server version, recommended PyMISP version
+        \item And more, look at the api file
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{MISPEvent - Usecase}
+	\begin{adjustbox}{width=\textwidth,height=3cm,keepaspectratio}
+		\begin{lstlisting}[language=Python,firstnumber=1]
+from pymisp import MISPEvent, EncodeUpdate
+
+# Create a new event with default values
+event = MISPEvent()
+
+# Load an existing JSON dump (optional)
+event.load_file('Path/to/event.json')
+event.info = 'My cool event'  # Duh.
+
+# Add an attribute of type ip-dst
+event.add_attribute('ip-dst', '8.8.8.8')
+
+# Mark an attribute as deleted (From 2.4.60)
+event.delete_attribute('<Attribute UUID>')
+
+# Dump as json
+event_as_jsondump = json.dumps(event, cls=EncodeUpdate)
+		\end{lstlisting}
+	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Basics}
+	\begin{itemize}
+		\item Python 3.5+ is recommended
+		\item PyMISP is always inline with current version (pip3 install pymisp)
+		\item Dev version: pip3 install git+https://github.com/MISP/PyMISP.git
+		\item Get your auth key from: \url{https://misppriv.circl.lu/events/automation}
+		\begin{itemize}
+			\item Not available: you don't have "Auth key access" role. Contact your instance admin.
+		\end{itemize}
+		\item Source available here: git clone \url{https://github.com/MISP/PyMISP.git}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Examples}
+	\begin{itemize}
+		\item {\bf PyMISP needs to be installed (duh)}
+		\item Usage:
+		\begin{itemize}
+			\item Create examples/keys.py with the following content
+			\begin{adjustbox}{width=\textwidth,height=.9cm,keepaspectratio}
+				\begin{lstlisting}[language=python,firstnumber=1]
+
+misp_url = "https://url-to-your-misp"
+misp_key = "<API_KEY>"
+misp_verifycert = True
+
+				\end{lstlisting}
+			\end{adjustbox}
+		\end{itemize}
+		\item Proxy support:
+		\begin{adjustbox}{width=\textwidth,height=.9cm,keepaspectratio}
+			\begin{lstlisting}[language=python,firstnumber=1]
+
+proxies = {
+	'http': 'http://127.0.0.1:8123',
+	'https': 'http://127.0.0.1:8123',
+}
+PyMISP(misp_url, misp_key, misp_verifycert, proxies=proxies)
+			\end{lstlisting}
+		\end{adjustbox}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Examples}
+	\begin{itemize}
+		\item Lots of ideas on how to use the API
+		\item You may also want to look at the tests directory
+		\item All the examples use argparse. Help usage is available: {\bf script.py -h}
+		\begin{itemize}
+			\item {\bf add\_file\_object.py}: Attach a file (PE/ELF/Mach-O) object to an event
+			\item {\bf upload.py}: Upload a malware sample (use advanced expansion is available on the server)
+			\item {\bf last.py}: Returns all the most recent events (on a timeframe)
+			\item {\bf add\_named\_attribute.py}: Add attribute to an event
+			\item {\bf sighting.py}: Update sightings on an attribute
+			\item {\bf stats.py}: Returns the stats of a MISP instance
+			\item {\bf \{add,edit,create\}\_user.py} : Add, Edit, Create a user on MISP
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Usage}
+	\begin{itemize}
+		\item Basic example
+	\end{itemize}
+		\begin{adjustbox}{width=\textwidth,height=2cm,keepaspectratio}
+			\begin{lstlisting}[language=python,firstnumber=1]
+	from pymisp import PyMISP
+	api = PyMISP(url, apikey, verifycert=True, debug=False, proxies=None)
+	response = api.<function>
+	if response['error']:
+		# <something went wrong>
+	else:
+		# <do something with the output>
+			\end{lstlisting}
+		\end{adjustbox}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Concept behind AbstractMISP}
+    \begin{itemize}
+        \item JSON blobs are python dictionaries
+        \item ... Accessing content can be a pain
+        \item {\bf AbstractMISP inherits collections.MutableMapping}, they are all dictionaries!
+        \item ... Has helpers to load, dump, and edit JSON blobs
+        \item {\bf Important}: All the public attributes (not starting with a \_) defined in a class are dumped to JSON
+        \item {\bf Tags}: Events and Attributes have tags, soon Objects. Tag handling is defined in this class.
+        \item {\bf edited}: When pushing a full MISPEvent, only the objects without a timestamp,
+            or with a newer timestamp will be updated. This method recursively finds updated events,
+            and removes the timestamp key from the object.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{MISPEvent, MISPAttribute, MISPObject, MISPSighting...}
+    \begin{itemize}
+        \item {\bf Pythonic} representation of MISP elements
+        \item {\bf Easy manipulation}
+        \begin{itemize}
+            \item Load an existing event
+            \item Update te metadata, add attributes, objects, tags, mark an attribute as deleted, ...
+            \item Set relations between objects
+            \item Load and add attachments or malware samples as pseudo files
+        \end{itemize}
+        \item {\bf Dump} to JSON
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{MISPEvent - Main entrypoints}
+    \begin{itemize}
+        \item load\_file(event\_path)
+        \item load(json\_event)
+        \item add\_attribute(type, value, **kwargs)
+        \item add\_object(obj=None, **kwargs)
+        \item add\_attribute\_tag(tag, attribute\_identifier)
+        \item get\_attribute\_tag(attribute\_identifier)
+        \item add\_tag(tag=None, **kwargs)
+        \item objects[], attributes[], tags[]
+        \item edited, all other paramaters of the MISPEvent element (info, date, ...)
+        \item to\_json()
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{MISPObject - Main entrypoints}
+    \begin{itemize}
+        \item add\_attribute(object\_relation, **value)
+        \item add\_reference(referenced\_uuid, relationship\_type, comment=None, **kwargs)
+        \item has\_attributes\_by\_relation(list\_of\_relations)
+        \item get\_attributes\_by\_relation(object\_relation)
+        \item attributes[], relations[]
+        \item edited, all other paramaters of the MISPObject element (name, comment, ...)
+        \item to\_json()
+        \item Can be validated against their template
+        \item Can have default parameters applied to all attributes (i.e. distribution, category, ...)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{MISPAttribute - Main entrypoints}
+    \begin{itemize}
+        \item add\_tag(tag=None, **kwargs)
+        \item delete()
+        \item malware\_binary (if relevant)
+        \item tags[]
+        \item edited, all other paramaters of the MISPObject element (value, comment, ...)
+        \item to\_json()
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{PyMISP - Tools}
+    \begin{itemize}
+        \item Libraries requiring specfic 3rd party dependencies
+        \item Callable via PyMISP for specific usecases
+        \item Curently implemented:
+        \begin{itemize}
+            \item {\bf OpenIOC} to MISP Event
+            \item MISP to {\bf Neo4J}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{PyMISP - Default objects generators }
+    \begin{itemize}
+        \item File - PE/ELF/MachO - Sections
+        \item VirusTotal
+        \item Generic object generator
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{PyMISP - Logging / Debugging}
+    \begin{itemize}
+        \item debug=True passed to the constructor enable debug to stdout
+        \item Configurable using the standard logging module
+        \item Show everything send to the server and received by the client
+    \end{itemize}
+\begin{adjustbox}{width=\textwidth,height=3cm,keepaspectratio}
+    \begin{lstlisting}[language=Python,firstnumber=1]
+import pymisp
+import logging
+
+logger = logging.getLogger('pymisp')
+logger.setLevel(logging.DEBUG)  # enable debug to stdout
+
+logging.basicConfig(level=logging.DEBUG,   # Enable debug to file
+                    filename="debug.log",
+                    filemode='w',
+                    format=pymisp.FORMAT)
+    \end{lstlisting}
+\end{adjustbox}
+\end{frame}
+
+\begin{frame}[t,fragile] {Q\&A}
+\includegraphics[scale=0.5]{misplogo.pdf}
+\begin{itemize}
+        \item \url{https://github.com/MISP/PyMISP}
+        \item \url{https://github.com/MISP/}
+        \item \url{https://pymisp.readthedocs.io/}
+        \item We welcome new functionalities and pull requests.
+\end{itemize}
+
+\end{frame}
+
