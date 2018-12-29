@@ -23,7 +23,7 @@ To build the complete set of training materials:
 bash build.sh
 ~~~~
 
-The output directory will contain all the generated PDF files and the PDF file called `misp-training.pdf` is the complete handout of all the slides.
+The output directory will contain all the generated PDF files and the PDF file called `misp-training.pdf` which is the complete handout of all the slides.
 
 ## License, Attribution and Funding
 
