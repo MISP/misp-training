@@ -1,0 +1,87 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}[t,plain]
+\frametitle{Code of Conduct}
+\begin{itemize}
+\item The MISP project has a Contributor Covenant Code of Conduct\footnote{\url{https://github.com/MISP/MISP/code_of_conduct.md}}.
+\item The goal of the code of conduct is to foster an {\bf open, fun and welcoming environment}.
+\item Another important aspect of the MISP projects is to welcome different areas of expertise in information sharing and analysis. The {\bf diversity of the MISP community} is important to make the project useful for everyone.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,plain]
+\frametitle{Reporting a bug, an issue or suggesting features}
+\begin{itemize}
+\item The most common way to contribute to the MISP project is to report a bug, issues or suggesting features.
+\item Each project (MISP core, misp-modules, misp-book, misp-taxonomies, misp-galaxy, misp-object or PyMISP) has their {\bf own issue management}.
+\item Don't forget that you can {\bf cross-reference issues} from other sub-projects.
+\item If you know an answer or could help on a specific issue, we welcome all contributions including {\bf useful comments to reach a resolution}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,plain]
+\frametitle{Reporting security vulnerabilities}
+\begin{itemize}
+\item {\bf If you find security vulnerabilities (even minor ones) in MISP project, send an encrypted email} (info@circl.lu) with the details and especially how to reproduce the issues. Avoid to share publicly the vulnerability before a fix is available in MISP. PGP key fingerprint: CA57 2205 C002 4E06 BA70 BE89 EAAD CFFC 22BD 4CD5.
+\item We usually fix reported and confirmed security vulnerabilities in less than 48 hours.
+\item {\bf We will request a CVE number} if the reporters didn't ask for one (don't forget to mention how you want to be credited).
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t,plain]
+\frametitle{Automatic integration and testing}
+\begin{itemize}
+\item The majority of the repositories within the MISP GitHub organisation includes automatic integration with TravisCI.
+\item If you contribute and make a pull-request, {\bf verify if your changes affect the result of the tests}.
+\item Automatic integration is not perfect including Travis but it's a quick win to catch new bugs or major issues in contribution.
+\item When you do a pull-request, TravisCI is automatically called\footnote{\url{https://travis-ci.org/MISP}}.
+\begin{itemize}
+\item If this fails, no worries, {\bf review the output at Travis} (it's not always you).
+\end{itemize}
+\item We are working on additional automatic tests including unit testing for the MISP core software (contributors are welcome).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,plain]
+\frametitle{JSON validation for MISP libraries}
+\begin{itemize}
+\item All JSON format ({\bf galaxy, taxonomies, objects or warning-lists}) are described in a JSON Schema\footnote{schema\_name.json}.
+\item The TravisCI tests are including JSON validation (via \emph{jq}) and validated with the associated JSON schema.
+\item How to contribute a JSON library (objects, taxonomies, galaxy or warning-list):
+\begin{itemize}
+\item If you update a JSON library, don't forget to run \emph{jq\_all\_the\_things.sh}. It's fast and easy. If it fails, review your JSON.
+\item Commit your code and make a pull-request.
+\end{itemize}
+\item Documentations (in PDF and HTML format) for the librairies are automatically generated from the JSON via asciidoctor\footnote{example \url{https://github.com/MISP/misp-galaxy/blob/master/tools/adoc_galaxy.py}}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,plain]
+\frametitle{Documentation}
+\begin{itemize}
+\item In addition to the automatic generation of documentations from JSON files, we maintain {\bf misp-book}\footnote{\url{https://github.com/MISP/misp-book}} which is a generic documentation for MISP including usage, API documentation, best practices and specific configuration settings.
+\item The book is generated in HTML, PDF, epub and mobi using GitBook\footnote{\url{https://github.com/GitbookIO}} which is a framework to write documentation in MarkDown format.
+\item TravisCI is included in misp-book and {\bf the book generation is tested at each commit}.
+\item The MISP book is regularly published on misp-project.org and circl.lu website.
+\item Contributors are welcome especially for new topics\footnote{Topics of interest are analysts best-practices, } and also fixing our broken english.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,plain]
+\frametitle{Internet-Draft - IETF for MISP formats}
+\begin{itemize}
+\item If you want to contribute to our IETF Internet-Draft for the MISP standard, misp-rfc\footnote{\url{https://github.com/MISP/misp-rfc}} is the repository where to contribute.
+\item {\bf Update only the markdown file}, the XML and ASCII for the IETF I-D are automatically generated.
+\item If a major release or updates happen in the format, we will publish the I-D to the IETF\footnote{\url{https://datatracker.ietf.org/doc/search/?name=misp&activedrafts=on&rfcs=on}}.
+\item The process is always MISP implementation $\rightarrow$ IETF I-D updates.
+\end{itemize}
+
+\end{frame}
+
+
