@@ -1,0 +1,33 @@
+\documentclass{beamer}
+\usetheme[numbering=progressbar]{focus}
+\definecolor{main}{RGB}{47, 161, 219}
+\definecolor{textcolor}{RGB}{128, 128, 128}
+\definecolor{background}{RGB}{240, 247, 255}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{punct}{red!60!black}
+\colorlet{numb}{magenta!60!black}
+
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,arrows}
+%\usepackage[T1]{fontenc}
+%\usepackage[scaled]{beramono}
+
+\author{\small{\input{../includes/authors.txt}}}
+
+\title{Extending MISP with Python modules}
+\subtitle{MISP - Threat Sharing}
+\institute{\href{http://www.misp-project.org/}{http://www.misp-project.org/} \\ Twitter: \emph{\href{https://twitter.com/mispproject}{@MISPProject}}}
+\date{\input{../includes/location.txt}}
+\titlegraphic{\includegraphics[scale=0.85]{misp.pdf}}
+
+
+\begin{document}
+\include{content}
+\end{document}
+
