@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage" "1.1-misp-viper-integration")
+slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage" "1.1-misp-viper-integration" "1.2.1-misp-integration-mail2misp")
 mkdir output
 export TEXINPUTS=::`pwd`/themes/
 echo ${TEXINPUTS}
@@ -9,7 +9,7 @@ for slide in ${slidedecks[@]}; do
         cd ${slide}
         pdflatex slide.tex
         pdflatex slide.tex
-        rm *.aux *.toc *.snm *.log *.out *.nav
+        rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
         cp slide.pdf ../output/${slide}.pdf
         rm slide.pdf
         cd ..

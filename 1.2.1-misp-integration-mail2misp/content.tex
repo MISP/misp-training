@@ -1,0 +1,153 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\ttfamily\footnotesize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Context}
+    \begin{itemize}
+        \item You receive emails with IoC's inside
+        \item How to create an event out of it?
+        \item Create event manually and copy paste
+        \item $\to$ This works once or twice
+        \item Forwarding the email would be nice
+        \item $\to$ mail\_to\_misp
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Features: Email handling}
+    \begin{itemize}
+        \item Extraction of URLs and IP addresses and port numbers
+        \item Extraction of hostnames from URLs
+        \item Extraction of hashes (MD5, SHA1, SHA256)
+        \item DNS expansion
+        \item Subject filters
+        \item Refanging of URLs ('hxxp://...')
+        \item ... and more
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Features: Support MISP features}
+    \begin{itemize}
+        \item Add tags automatically
+        \item Ignore 'whitelisted' domains
+        \item Configurable list of attributes not to enable the IDS flag
+        \item DNS expansion
+        \item Automatically create 'external analysis' links based on filter list (e.g. VirusTotal, malwr.com)
+        \item Automatically filter out attributes that are on a server side warning list
+        \item Support for value sighting
+        \item ... and more
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Implementation}
+    \begin{itemize}
+        \item Legacy
+        \begin{itemize}
+            \item Email $\to$ Apple Mail $\to$ Mail rule $\to$ AppleScript
+            \item[] $\to$ AppleScript $\to$ mail\_to\_misp $\to$ PyMISP $\to$ MISP
+            \item[]
+            \item Email $\to$ Thunderbird $\to$ Mail rule $\to$ filterscript $\to$
+            \item[]thunderbird\_wrapper $\to$ mail\_to\_misp $\to$ PyMISP $\to$ MISP
+        \end{itemize}
+        \item[]
+        \item Postfix and others
+        \begin{itemize}
+            \item Email $\to$ mail\_to\_misp
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Installation}
+    \begin{itemize}
+        \item mail\_to\_misp
+        \begin{enumerate}
+            \item \texttt{git clone git://github.com/MISP/mail\_to\_misp.git}
+            \item Install dependencies - See Github site
+        \end{enumerate}
+        \item[]
+        \item MTA (Postfix or alike)
+        \begin{enumerate}
+            \item Setup a new email address in the aliases file (e.g. /etc/aliases)
+            \item[] \texttt{misp\_handler: "|/path/to/mail\_to\_misp.py -"}
+            \item Rebuild the DB
+            \item[] \texttt{sudo newaliases}
+            \item Configure mail\_to\_misp\_config.py
+\begin{lstlisting}[basicstyle=\tiny]
+misp_url = 'http://127.0.0.1/'
+misp_key = 's5jPWCIud36Z8XHgsiCVI7SaL1XsMTyfEsN45tTe'
+misp_verifycert = True
+body_config_prefix = 'm2m'
+...
+...
+\end{lstlisting}
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Exercise: mail\_2\_misp.py}
+    \begin{itemize}
+        \item Bonus: \texttt{https://github.com/MISP/mail\_to\_misp\_test}
+\begin{lstlisting}[basicstyle=\tiny]
+./mail_to_misp.py -r mail_to_misp_test/simple_forward.eml
+\end{lstlisting}
+        \item Bonus: Fake-SMTPD spamtrap
+\begin{lstlisting}[basicstyle=\tiny]
+./fake_smtp.py
+
+telnet 127.0.0.1 2526
+    Trying 127.0.0.1...
+    Connected to 127.0.0.1.
+    Escape character is '^]'.
+    220 misp Python SMTP 1.1
+    helo misp
+    250 misp
+    mail from: mikel
+    250 OK
+    rcpt to: m2m
+    250 OK
+    data
+    354 End data with <CR><LF>.<CR><LF>
+
+\end{lstlisting}
+    \end{itemize}
+\end{frame}
+
+
+
