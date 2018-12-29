@@ -12,6 +12,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 ## Materials
 
 | Slides (PDF) | Source Code |
+| ------------ | ----------- |
 | [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tre
 e/master/0-misp-introduction-to-information-sharing) |
 | [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1-misp-usage) |
