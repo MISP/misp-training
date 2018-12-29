@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage" "1.1-misp-viper-integration" "1.2.1-misp-integration-mail2misp")
+slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage" "1.1-misp-viper-integration" "1.2.1-misp-integration-mail2misp" "2-misp-administration")
 mkdir output
 export TEXINPUTS=::`pwd`/themes/
 echo ${TEXINPUTS}

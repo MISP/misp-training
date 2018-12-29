@@ -1,0 +1,319 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\ttfamily\footnotesize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - VM}
+    \begin{itemize}
+    \item VM can be downloaded at \url{https://www.circl.lu/misp-training/}
+    \item Credentials
+        \begin{itemize}
+            \item MISP admin: admin@admin.test/admin
+            \item SSH: misp/Password1234
+
+        \end{itemize}
+    \item 2 network interfaces
+        \begin{itemize}
+            \item NAT
+            \item Host only adapter
+        \end{itemize}
+    \item Start the enrichment system by typing:
+        \begin{itemize}
+            \item cd /home/misp/misp-modules/bin
+            \item python3 misp-modules.py
+        \end{itemize}
+   \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Administration}
+    \begin{itemize}
+    \item Plan for this part of the training
+        \begin{itemize}
+            \item User and Organisaton administration
+            \item Sharing group creation
+            \item Templates
+            \item Tags and Taxonomy
+            \item Whitelisting and Regexp entries
+            \item Setting up the synchronisation
+            \item Scheduled tasks
+            \item Feeds
+            \item Settings and diagnostics
+            \item Logging
+            \item Troubleshooting and updating
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Creating Users}
+        \begin{itemize}
+            \item Add new user (andras.iklody@circl.lu)
+            \item NIDS SID, Organisation, disable user
+            \item Fetch the PGP key
+            \item Roles
+            \begin{itemize}
+                \item Re-using standard roles
+                \item Creating a new custom role
+            \end{itemize}
+            \item Send out credentials
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Creating Organisations}
+        \begin{itemize}
+            \item Adding a new organisation
+            \item UUID
+            \item Local vs External organisation
+            \item Making an organisation self sustaining with Org Admins
+            \item Creating a sync user
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Sharing groups}
+        \begin{itemize}
+            \item The concept of a sharing group
+            \item Creating a sharing group
+            \item Adding extending rights to an organisation
+            \item Include all organisations of an instance
+            \item Not specifying an instance
+            \item Making a sharing group active
+            \item Reviewing the sharing group
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Templates}
+        \begin{itemize}
+            \item Why templating?
+            \item Create a basic template
+            \item Text fields
+            \item Attribute fields
+            \item Attachment fields
+            \item Automatic tagging
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Tags and Taxonomies}
+        \begin{itemize}
+            \item git submodule init \&\& git submodule update
+            \item Loading taxonomies
+            \item Enabling taxonomies and associated tags
+            \item Tag management
+            \item Exportable tags
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Object Templates}
+        \begin{itemize}
+            \item git submodule init \&\& git submodule update
+            \item Enabling objects (and what about versioning)
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Whitelisting, Regexp entries, Warninglists}
+        \begin{itemize}
+            \item Block from exports - whitelisting
+            \item Block from imports - blacklisting via regexp
+            \item Modify on import - modification via regexp
+            \item Maintaining the warninglists
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Setting up the synchronisation}
+        \begin{itemize}
+            \item Requirements - versions
+            \item Pull/Push
+            \item One way vs Two way synchronisation
+            \item Exchanging sync users
+            \item Certificates
+            \item Filtering
+            \item Connection test tool
+            \item Previewing an instance
+            \item Cherry picking and keeping the list updated
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Scheduled tasks}
+        \begin{itemize}
+            \item How to schedule the next execution
+            \item Frequency, next execution
+            \item What happens if a job fails?
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Setting up the synchronisation}
+        \begin{itemize}
+            \item MISP Feeds and their generation
+            \item PyMISP
+            \item Default free feeds
+            \item Enabling a feed
+            \item Previewing a feed and cherry picking
+            \item Feed filters
+            \item Auto tagging
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Settings and diagnostics}
+    \begin{itemize}
+        \item Settings
+        \begin{itemize}
+            \item Settings interface
+            \item The tabs explained at a glance
+            \item Issues and their severity
+            \item Setting guidance and how to best use it
+        \end{itemize}
+     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Settings and diagnostics continued}
+        \begin{itemize}
+            \item Basic instance setup
+            \item Additional features released as hotfixes
+            \item Customise the look and feel of your MISP
+            \item Default behaviour (encryption, e-mailing, default distributions)
+            \item Maintenance mode
+            \item Disabling the e-mail alerts for an initial sync
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Settings and diagnostics continued}
+        \begin{itemize}
+        \item Plugins
+        \begin{itemize}
+            \item Enrichment Modules
+            \item RPZ
+            \item ZeroMQ
+        \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Settings and diagnostics continued}
+    \begin{itemize}
+        \item Diagnostics
+        \begin{itemize}
+            \item Updating MISP
+            \item Writeable Directories
+            \item PHP settings
+            \item Dependency diagnostics
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Settings and diagnostics continued}
+        \begin{itemize}
+        \item Workers
+        \begin{itemize}
+            \item What do the background workers do?
+            \item Queues
+            \item Restarting workers, adding workers, removing workers
+            \item Worker diagnostics (queue size, jobs page)
+            \item Clearing worker queues
+            \item Worker and background job debugging
+        \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Settings and diagnostics continued}
+    \begin{itemize}
+        \item Seeking help
+        \begin{itemize}
+            \item Dump your settings to a file!
+            \item Make sure to sanitise it
+            \item Send it to us together with your issue to make our lives easier
+            \item Ask Github (https://github.com/MISP/MISP)
+            \item Have a chat with us on gitter (https://gitter.im/MISP/MISP)
+            \item Ask the MISP mailing list
+            \item If this is security related, drop us a PGP encrypted email to \url{mailto:info@circl.lu}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Logging}
+        \begin{itemize}
+            \item Audit logs in MISP
+            \item Enable IP logging / API logging
+            \item Search the logs, the fields explained
+            \item External logs
+            \begin{itemize}
+                \item /var/www/MISP/app/tmp/logs/error.log
+                \item /var/www/MISP/app/tmp/logs/resque-worker-error.log
+                \item /var/www/MISP/app/tmp/logs/resque-scheduler-error.log
+                \item /var/www/MISP/app/tmp/logs/resque-[date].log
+                \item /var/www/MISP/app/tmp/logs/error.log
+                \item apache access logs
+            \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Updating MISP}
+        \begin{itemize}
+            \item git pull
+            \item git submodule init \&\& git submodule update
+            \item reset the permissions if it goes wrong according to the INSTALL.txt
+            \item when MISP complains about missing fields, make sure to clear the caches
+            \begin{itemize}
+                \item in /var/www/MISP/app/tmp/cache/models remove myapp*
+                \item in /var/www/MISP/app/tmp/cache/persistent remove myapp*
+            \end{itemize}
+            \item No additional action required on hotfix level
+            \item Read the migration guide for major and minor version changes
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP - Administrative tools}
+        \begin{itemize}
+            \item Upgrade scripts for minor / major versions
+            \item Maintenance scripts
+        \end{itemize}
+\end{frame}
+
