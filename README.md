@@ -13,14 +13,11 @@ given to the materials. We welcome contributions in order to improve the trainin
 
 | Slides (PDF) | Source Code |
 | ------------ | ----------- |
-| [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tre
-e/master/0-misp-introduction-to-information-sharing) |
+| [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tree/master/0-misp-introduction-to-information-sharing) |
 | [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1-misp-usage) |
 | [1.2-misp-integration](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1.2-misp-integration) |
-| [1.1-misp-viper-integration](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1.1-misp-viper-integrat
-ion) |
-| [1.2.1-misp-integration-mail2misp](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1.2.1-misp-
-integration-mail2misp) |
+| [1.1-misp-viper-integration](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1.1-misp-viper-integration) |
+| [1.2.1-misp-integration-mail2misp](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1.2.1-misp-integration-mail2misp) |
 | [2-misp-administration](https://www.misp-project.org/misp-training/2-misp-administration.pdf) | [source](https://github.com/MISP/misp-training/tree/master/2-misp-administration) |
 | [3-misp-taxonomy-tagging](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [source](https://github.com/MISP/misp-training/tree/master/3-misp-taxonomy-tagging) |
 | [3.1-misp-modules](https://www.misp-project.org/misp-training/3.1-misp-modules.pdf) | [source](https://github.com/MISP/misp-training/tree/master/3.1-misp-modules) |
