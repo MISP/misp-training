@@ -7,7 +7,7 @@ This repository includes all the training materials in use such as
 - Building information sharing communities workshop
 
 All the materials are available with the complete LaTeX source code meant to assist in contributing or extending the training materials. A special attention is given to the open source licensing
-given to the materials. We welcome contributions in order to improve the training set for threat intelligence, intelligence gathering and analysis along with specific aspect of information sharing/exchange in information and national security.
+given to the materials. We welcome contributions in order to improve the training set for threat intelligence, intelligence gathering and analysis along with specific aspects of information sharing/exchange in information and national security.
 
 ## Materials
 
@@ -43,7 +43,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 
 ## Source Code
 
-All the source of the trainings are available. You'll need to have an operating system with a recent installation of LaTeX including latex-beamer.
+The full source code of the training slide decks are available. You'll need to have an operating system with a recent installation of LaTeX including latex-beamer to work with them.
 
 To build the complete set of training materials:
 
@@ -56,17 +56,17 @@ The output directory will contain all the generated PDF files and the PDF file c
 ## License, Attribution and Funding
 
 All the materials are dual-licensed under GNU Affero General Public License version 3 or later and
-the Creative Commons Attribution-ShareAlike 4.0 International. You can use one of the license depending
+the Creative Commons Attribution-ShareAlike 4.0 International. You can use either one of the licenses depending
 of your use case of the training materials.
 
-The MISP project training materials are co-financed and resource supported by CIRCL Computer Incident Response Center Luxembourg[](https://www.circl.lu/) and co-financed by a CEF (Connecting Europe Facility) funding under CEF-TC-2016-3 - Cyber Security as *Improving MISP as building blocks for next-generation information sharing*.
+The MISP project training materials are co-financed and supported by CIRCL Computer Incident Response Center Luxembourg[](https://www.circl.lu/) and co-financed by a CEF (Connecting Europe Facility) funding under CEF-TC-2016-3 - Cyber Security as *Improving MISP as building blocks for next-generation information sharing*.
 
 ![](https://www.misp-project.org/assets/images/en_cef.png)
 ![](https://www.circl.lu/assets/images/logo.png)
 
-All the source code are available at [https://www.github.com/MISP/misp-training](https://www.github.com/MISP/misp-training).
+All the source code is available at [https://www.github.com/MISP/misp-training](https://www.github.com/MISP/misp-training).
 
-If you reuse the training materials, don't forget to put the above attribution.
+If you reuse the training materials, don't forget to include the above for attribution.
  
 ## Contributors in alphabetical order
 
