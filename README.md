@@ -41,6 +41,14 @@ given to the materials. We welcome contributions in order to improve the trainin
 | [MISP training cheat-sheet](https://www.misp-project.org/misp-training/cheatsheet.pdf) | [source](https://github.com/MISP/misp-training/tree/master/training-support/compact-cheatsheet) |
 | [MISP feature list (for the trainers)](https://www.misp-project.org/misp-training/usage.pdf) | [source](https://github.com/MISP/misp-training/tree/master/training-support/checklist) |
 
+### Additional documentation
+
+- [MISP Book](https://github.com/MISP/misp-book/) - [PDF](https://www.circl.lu/doc/misp/book.pdf) [ePub](https://www.circl.lu/doc/misp/book.epub) [Kindle mobi](https://www.circl.lu/doc/misp/book.mobi) [HTML](https://www.circl.lu/doc/misp/)
+- [Best Practices in Threat Intelligence](https://github.com/MISP/best-practices-in-threat-intelligence) [PDF](https://www.misp-project.org/best-practices-in-threat-intelligence.pdf) [HTML](https://www.misp-project.org/best-practices-in-threat-intelligence.html)
+- [MISP Galaxy (HTML)](https://www.misp-project.org/galaxy.html) - [PDF](https://www.misp-project.org/galaxy.pdf)
+- [MISP Taxonomies (HTML)](https://www.misp-project.org/taxonomies.html) - [PDF](https://www.misp-project.org/taxonomies.pdf)
+- [MISP Objects template (HTML)](https://www.misp-project.org/objects.html) - [PDF](https://www.misp-project.org/objects.pdf)
+
 ## Source Code
 
 The full source code of the training slide decks are available. You'll need to have an operating system with a recent installation of LaTeX including latex-beamer to work with them.
