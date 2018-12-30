@@ -49,6 +49,13 @@ given to the materials. We welcome contributions in order to improve the trainin
 - [MISP Taxonomies (HTML)](https://www.misp-project.org/taxonomies.html) - [PDF](https://www.misp-project.org/taxonomies.pdf)
 - [MISP Objects template (HTML)](https://www.misp-project.org/objects.html) - [PDF](https://www.misp-project.org/objects.pdf)
 
+### MISP Training videos
+
+Sample videos which can be used to understand how the training materials are used in companion with a live MISP demo instance.
+
+- [MISP Training Module 1 - An Introduction to Cybersecurity Information Sharing](https://www.youtube.com/watch?v=aM7czPsQyaI)
+- [MISP Training Module 2 - General usage of MISP](https://www.youtube.com/watch?v=Jqp8CVHtNVk)
+
 ## Source Code
 
 The full source code of the training slide decks are available. You'll need to have an operating system with a recent installation of LaTeX including latex-beamer to work with them.
