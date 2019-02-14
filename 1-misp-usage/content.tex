@@ -55,6 +55,23 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{MISP - VM}
+    \begin{itemize}
+    \item It is a bit broken.
+        \begin{itemize}
+            \item sudo -s
+            \item cd /var/www/MISP/
+            \item sudo pear install INSTALL/dependencies/Console\_CommandLine/package.xml
+            \item sudo pear install INSTALL/dependencies/Crypt\_GPG/package.xml
+            \item cd /usr/local/src/misp-modules
+            \item pip3 install -r REQUIREMENTS
+            \item pip3 install .
+            \item reboot
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{MISP - General Usage}
     Plan for this part of the training
         \begin{itemize}
