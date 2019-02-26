@@ -56,6 +56,14 @@ Sample videos which can be used to understand how the training materials are use
 - [MISP Training Module 1 - An Introduction to Cybersecurity Information Sharing](https://www.youtube.com/watch?v=aM7czPsQyaI)
 - [MISP Training Module 2 - General usage of MISP](https://www.youtube.com/watch?v=Jqp8CVHtNVk)
 
+### MISP Training support videos
+
+Those are videos to support MISP trainings or demonstrations at large:
+
+- [MISP Event graph demo](https://www.youtube.com/watch?v=NYvKLwoBYwc&t=8s)
+- [MISP Tutorial - Enablings Feeds](https://www.youtube.com/watch?v=k3l-CtOgQro)
+
+
 ### MISP Training VMs
 
 Pre-built MISP training VMs are available at [https://www.circl.lu/misp-images/latest/](https://www.circl.lu/misp-images/latest/).
