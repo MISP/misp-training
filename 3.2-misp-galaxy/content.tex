@@ -197,7 +197,7 @@
 \begin{frame}[fragile]
         \frametitle{meta best practices}
         \begin{itemize}
-        \item Reusing existing values such as {\bf properties, complexity, effectiveness, country, possible\_issues, colour, motive, impact, refs, synonyms, derivated\_from, status, date, encryption, extensions, ransomnotes, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category}.
+        \item Reusing existing values such as {\bf complexity, effectiveness, country, possible\_issues, colour, motive, impact, refs, synonyms, derivated\_from, status, date, encryption, extensions, ransomnotes, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, kill\_chain}.
         \item Or adding your own meta fields.
         \end{itemize}
 \end{frame}
@@ -237,6 +237,56 @@
           \end{lstlisting}
           \end{adjustbox}
 \end{frame}
+
+\begin{frame}[fragile]
+        \frametitle{Galaxy JSON matrix-like}
+        \begin{adjustbox}{keepaspectratio}
+            \begin{lstlisting}[language=json,firstnumber=1]
+        {
+  "description": "Universal Development and Security Guidelines as Applicable to Election Technology.",
+  "icon": "map",
+  "kill_chain_order": {
+    "example-of-threats": [
+      "setup | party/candidate-registration",
+      "setup | electoral-rolls",
+      "campaign | campaign-IT",
+      "all-phases | governement-IT",
+      "voting | election-technology",
+      "campaign/public-communication | media/press"
+    ]
+  },
+  "name": "Election guidelines",
+  "namespace": "misp",
+  "type": "guidelines",
+  "uuid": "c1dc03b2-89b3-42a5-9d41-782ef726435a",
+  "version": 1
+}
+        \end{lstlisting}
+        \end{adjustbox}
+\end{frame}
+
+\begin{frame}[fragile]
+        \frametitle{Cluster JSON matrix-like}
+        \begin{adjustbox}{keepaspectratio}
+            \begin{lstlisting}[language=json,firstnumber=1]
+{
+      "description": "DoS or overload of party/campaign registration, causing them to miss the deadline",
+      "meta": {
+        "date": "March 2018.",
+        "kill_chain": [
+          "example-of-threats:setup | party/candidate-registration"
+        ],
+        "refs": [
+          "https://www.ria.ee/sites/default/files/content-editors/kuberturve/cyber_security_of_election_technology.pdf"
+        ]
+      },
+      "uuid": "154c6186-a007-4460-a029-ea23163448fe",
+      "value": "DoS or overload of party/campaign registration, causing them to miss the deadline"
+}
+        \end{lstlisting}
+        \end{adjustbox}
+\end{frame}
+
 
 \begin{frame}[fragile]
         \frametitle{Expressing relation between clusters}
