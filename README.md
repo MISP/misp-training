@@ -49,6 +49,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 - [MISP Taxonomies (HTML)](https://www.misp-project.org/taxonomies.html) - [PDF](https://www.misp-project.org/taxonomies.pdf)
 - [MISP Objects template (HTML)](https://www.misp-project.org/objects.html) - [PDF](https://www.misp-project.org/objects.pdf)
 - [Guidelines to setting up an information sharing community such as an ISAC or ISAO](https://github.com/MISP/misp-compliance/blob/master/setting-up-ISACs/guidelines_to_set-up_an_ISAC.md) - [PDF](https://www.x-isac.org/assets/images/guidelines_to_set-up_an_ISAC.pdf)
+- [Official MISP Install Guides](https://misp.github.io/MISP/)
 
 ### MISP Training videos
 
