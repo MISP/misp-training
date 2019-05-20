@@ -1,1 +1,1 @@
-MISP Training @ InterNews \\ \small{20190215}
+MISP Training @ CIRCL \\ \small{20190520}
