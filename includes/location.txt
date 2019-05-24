@@ -1,1 +1,1 @@
-MISP Training @ SUNET \\ \small{20190205}
+MISP Training @ CIRCL \\ \small{20190520}
