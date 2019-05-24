@@ -7,6 +7,9 @@ export TEXINPUTS=::`pwd`/themes/
 echo ${TEXINPUTS}
 for slide in ${slidedecks[@]}; do
         cd ${slide}
+        if test -f "slide_nl.tex"; then
+                pdflatex slide_nl.tex
+        fi
         pdflatex slide.tex
         pdflatex slide.tex
         rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
