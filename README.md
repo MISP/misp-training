@@ -82,6 +82,8 @@ bash build.sh
 
 The output directory will contain all the generated PDF files and the PDF file called `misp-training.pdf` which is the complete handout of all the slides.
 
+**Note**: In case the rendering is somewhat broken, it might be related to latex using the styles installed systemwide in `/usr/share/texlive/texmf-dist/tex/latex/beamertheme-focus`. Removing this directory will solve the problem.
+
 ## License, Attribution and Funding
 
 All the materials are dual-licensed under GNU Affero General Public License version 3 or later and
@@ -96,7 +98,7 @@ The MISP project training materials are co-financed and supported by CIRCL Compu
 All the source code is available at [https://www.github.com/MISP/misp-training](https://www.github.com/MISP/misp-training).
 
 If you reuse the training materials, don't forget to include the above for attribution.
- 
+
 ## Contributors in alphabetical order
 
 - Steve Clement [:house:](https://github.com/SteveClement)

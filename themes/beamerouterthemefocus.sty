@@ -1,5 +1,7 @@
-% Copyright (C) 2018 Pasquale Claudio Africa.
-%               2018 Sebastian Friedl.
+% Copyright (C) 2018-2019 Pasquale Claudio Africa and the LaTeX community.
+% A full list of contributors can be found at
+%
+%     https://github.com/elauksap/focus-beamertheme
 %
 % This file is part of beamerthemefocus.
 %
@@ -7,19 +9,32 @@
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
-% 
+%
 % beamerthemefocus is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with beamerthemefocus. If not, see <http://www.gnu.org/licenses/>.
 
 \mode<presentation>
 
-\RequirePackage{appendixnumberbeamer}% Don't number appendix frames.
-\RequirePackage{etoolbox}% \BeforeBeginEnvironment
+\RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
+% Fix hyperref warning caused by \appendix
+% (https://tex.stackexchange.com/questions/192686/hyperref-warning-caused-by-beamer-appendix).
+\newcommand*{\bkmtranslateto}{\languagename}
+\newcommand*{\bkmtranslate}[1]{%
+    \ifcsname tr@@@\bkmtranslateto @#1\endcsname
+    \csname tr@@@\bkmtranslateto @#1\endcsname
+    \else
+    #1%
+    \fi
+}
+\pdfstringdefDisableCommands{\let\translate\bkmtranslate}
+\RequirePackage{bookmark}
+
+\RequirePackage{etoolbox} % \BeforeBeginEnvironment.
 \RequirePackage{tikz}
 
 
@@ -68,13 +83,13 @@
                 \begin{tikzpicture}[inner xsep=0.5em, inner ysep=0.5ex]\usebeamerfont{footline}
                     \pgfmathsetmacro{\focus@pbar@progress}%
                         {(\paperwidth-\focus@pbar@leftoffset-\focus@pbar@rightoffset)*(\insertframenumber/\inserttotalframenumber)}
-                
+
                     \clip (0,0) rectangle ++(\paperwidth,\the\focus@pbar@height);
                     \fill[footline.bg] (0,0) rectangle ++(\the\focus@pbar@leftoffset,\the\focus@pbar@height);
-                    
+
                     \fill[footline.bg] (\the\focus@pbar@leftoffset,0) rectangle ++(\focus@pbar@progress pt,\the\focus@pbar@height)
                                        ++(0,{-0.5*\the\focus@pbar@height}) node[anchor=east, text=footline.fg] {\strut\insertframenumber};
-                    
+
                     \fill[footline.bg] (\paperwidth,0) rectangle ++(-\the\focus@pbar@rightoffset,\the\focus@pbar@height)
                                        ++(0,{-0.5*\the\focus@pbar@height}) node[anchor=west, text=footline.fg] {\strut\inserttotalframenumber};
                 \end{tikzpicture}%
@@ -82,7 +97,7 @@
                 \begin{tikzpicture}[inner xsep=0.5em, inner ysep=0.5ex]
                     \clip (0,0) rectangle ++(\paperwidth,\the\focus@pbar@height);
                     \fill[footline.bg] (0,0) rectangle ++(\paperwidth,\the\focus@pbar@height);
-                    
+
                     \node[anchor=east, footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\insertframenumber};
                     \node[footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut/};
                     \node[anchor=west, footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\inserttotalframenumber};
@@ -108,7 +123,7 @@
             \begin{tikzpicture}[inner xsep=0.5em, inner ysep=0.5ex]
                 \clip (0,0) rectangle ++(\paperwidth,\the\focus@pbar@height);
                 \fill[footline.bg] (0,0) rectangle ++(\paperwidth,\the\focus@pbar@height);
-                
+
                 \node[anchor=east, footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\insertframenumber};
                 \node[footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut/};
                 \node[anchor=west, footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\inserttotalframenumber};
@@ -147,7 +162,7 @@
 \defbeamertemplate{background canvas}{focusframe}{%
     \begin{tikzpicture}
         \clip (0,0) rectangle ++(\paperwidth,\paperheight);
-        \fill[frametitle.bg] (0,0) rectangle ++(\paperwidth,\paperheight);        
+        \fill[frametitle.bg] (0,0) rectangle ++(\paperwidth,\paperheight);
     \end{tikzpicture}%
 }
 
