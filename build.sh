@@ -16,6 +16,10 @@ for slide in ${slidedecks[@]}; do
         rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
         cp slide.pdf ../output/${slide}.pdf
         rm slide.pdf
+        if test -f "slide_nl.tex"; then
+                cp slide_nl.pdf ../output/${slide}_nl.pdf
+                rm slide_nl.pdf                
+        fi        
         cd ..
 done
 
