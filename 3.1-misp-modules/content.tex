@@ -626,7 +626,7 @@
 \begin{frame}[fragile]
     \frametitle{New expansion \& import modules format}
     \begin{itemize}
-        \item An additional field
+        \item Backward compatible - an additional field to extend the format
     \end{itemize}
     \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
         \begin{lstlisting}[language=python]
@@ -637,17 +637,17 @@
     \begin{itemize}
         \item Takes a standard MISP attribute as input
         \item Can return MISP attributes, objects \& tags
-        \item Supports references
-        \item First examples
+        \item Supports relationships
+        \item First modules supporting this new export format
             \begin{itemize}
                 \item urlhaus expansion module
-                \item Joe Sandbox import \& import module
+                \item Joe Sandbox import \& query module
             \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{New expansion \& import modules view}
+        \frametitle{New expansion \& import modules view (MISP 2.4.110}
     \includegraphics[scale=0.2]{new_format_view.png}
 \end{frame}
 
