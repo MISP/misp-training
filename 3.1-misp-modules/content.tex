@@ -413,14 +413,13 @@
             \item Similar to expansion modules
             \item Input is a file upload or a text paste
             \item Output is a list of parsed attributes to be editend and verified by the user
-            \item System is still new but some modules already exist
+            \item Some examples
             \begin{itemize}
                 \item Cuckoo JSON import
                 \item email import
                 \item OCR module
-                \item Simple STIX import module
+                \item Open IoC import
             \end{itemize}
-            \item Many ideas for future modules (OpenIOC import, connector to sandboxes, STIX 2.0, etc)
        \end{itemize}
 \end{frame}
 
@@ -624,6 +623,33 @@
     \end{adjustbox}
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{New expansion \& import modules format}
+    \begin{itemize}
+        \item Backward compatible - an additional field to extend the format
+    \end{itemize}
+    \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+        \begin{lstlisting}[language=python]
+            misp_attributes = {'input': [...], 'output': [...],
+                               'format': 'misp_standard'}
+        \end{lstlisting}
+    \end{adjustbox}
+    \begin{itemize}
+        \item Takes a standard MISP attribute as input
+        \item Can return MISP attributes, objects \& tags
+        \item Supports relationships
+        \item First modules supporting this new export format
+            \begin{itemize}
+                \item urlhaus expansion module
+                \item Joe Sandbox import \& query module
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+        \frametitle{New expansion \& import modules view (MISP 2.4.110}
+    \includegraphics[scale=0.2]{new_format_view.png}
+\end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Upcoming additions to the module system - General}
