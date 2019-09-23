@@ -1,1 +1,1 @@
-MISP Training @ SPCSS - Prague 2019 \\ \small{20190917}
+MISP Training @ CIRCL \\ \small{20190923}
