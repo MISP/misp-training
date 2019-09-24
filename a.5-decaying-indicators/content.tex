@@ -8,29 +8,34 @@
 \begin{frame}
 \frametitle{Indicators - Problem Statement}
     \begin{itemize}
-            \item Various users and organisations can share data via MISP, multiple parties can be involved
-            \begin{itemize}
-                \item \textbf{Trust}, \textbf{data quality} and \textbf{time-to-live} issues
-                \item Each user/organisation has \textbf{different use-cases} and interests
-            \end{itemize}
+        \item Various users and organisations can share data via MISP, multiple parties can be involved
+        \begin{itemize}
+            \item \textbf{Trust}, \textbf{data quality} and \textbf{time-to-live} issues
+            \item Each user/organisation has \textbf{different use-cases} and interests
+                \begin{itemize}
+                    \item Conflicting interests such as operational security, attribution,... (depends on the user)
+                \end{itemize}
+        \end{itemize}
+        \item[] $\rightarrow$ Can be partially solved with \textit{Taxonomies}
+        \pause
         \vspace{0.5cm}
         \item Attributes can be shared in large quantities (more than 7.3 million on \texttt{MISPPRIV})
         \begin{itemize}
-            \item Partial info about their validity (sightings)
-            \item Partial info about their freshness (last update)
-            \item Varius conflicting interests such as operational security, attribution, source reliability evaluation... (depends on the user)
+            \item Partial info about their \textbf{freshness} (\textit{sightings})
+            \item Partial info about their \textbf{validity} (last update)
         \end{itemize}
+        \item[] $\rightarrow$ Can be partially solved with our \textit{Decaying model}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Sightings - Refresher}
-    Sightings add temporal context to indicators.
+    \frametitle{\textit{Sightings} - Refresher}
+    \textit{Sightings} add temporal context to indicators.
     A user, script or an IDS can extend the information related to indicators by reporting back to MISP that
     an indicator has been \texttt{seen}, or that an indicator can be considered as a \texttt{false-positive}
     \vspace{0.5cm}
     \begin{itemize}
-        \item Sightings give more credibility/visibility to indicators
+        \item \textit{Sightings} give more credibility/visibility to indicators
         \item This information can be used to {\bf prioritise and decay indicators}
     \end{itemize}
     \begin{center}
@@ -42,7 +47,7 @@
 \frametitle{Organisations opt-in - setting a level of confidence}
     MISP is a peer-to-peer system, information passes through multiple instances.
     \begin{itemize}
-        \item Producers can add context (such as tags from taxonomies, galaxies) about their asserted confidence or the reliability of the data
+        \item Producers can add context (such as tags from \textit{taxonomies}, \textit{galaxies}) about their asserted confidence or the reliability of the data
         \item Consumers can have different levels of trust in the producers and/or analysts themselves
         \item Users might have other contextual needs
     \end{itemize}
@@ -80,7 +85,7 @@
             Fairly reliable & 50\\
             Not usually reliable & 25\\
             Unreliable & 0\\
-            Reliability cannot be judged & 50\\
+            Reliability cannot be judged & 50 \textbf{\color{red}?}\\
             Deliberatly deceptive & 0 \textbf{\color{red}?}\\
             \hline
         \end{tabular}
@@ -114,6 +119,48 @@
         \item \texttt{decay} is a function defined by model's parameters controlling decay speed
     \end{itemize}
     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Implementation in MISP: \texttt{Event/view}}
+    \includegraphics[width=1.00\linewidth]{pics/decaying-event.png}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Implementation in MISP: API result}
+    \texttt{/attributes/restSearch}
+    \begin{lstlisting}
+"Attribute": [
+  {
+    "category": "Network activity",
+    "type": "ip-src",
+    "to_ids": true,
+    "timestamp": "1565703507",
+    [...]
+    "value": "8.8.8.8",
+    "decay_score": [
+      {
+        "score": 54.475223849544456,
+        "decayed": false,
+        "DecayingModel": {
+          "id": "85",
+          "name": "NIDS Simple Decaying Model"
+        }
+      }
+    ],
+[...]
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementation in MISP: Playing with Models}
+    \begin{itemize}
+        \item \textbf{Automatic scoring} based on default values
+        \item \textbf{User-friendly UI} to manually set lifetime and decay parameters
+        \item \textbf{Simulation} tool
+        \item Interaction through the \textbf{API}
+        \item Opportunity to create your \textbf{own} formula or algorythm
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -156,24 +203,17 @@
 
 \begin{frame}
     \frametitle{Scoring Indicators: putting it all toghether}
-    $\rightarrow$ \texttt{decay rate} is \textbf{re-initialized upon sighting} addition, or said differently, the \texttt{score} is reset to its base score as new \texttt{sightings} are applied.
+    $\rightarrow$ \texttt{decay rate} is \textbf{re-initialized upon sighting} addition, or said differently, the \texttt{score} is reset to its base score as new \textit{sightings} are applied.
     $$score = base\_score \cdot \left( 1 - \left( \frac{t}{\tau_a} \right)^{\frac{1}{\delta_a}} \right) $$
-\end{frame}
-
-\begin{frame}
-\frametitle{Implementation in MISP: Playing with Models}
     \begin{itemize}
-        \item \textbf{Automatic scoring} based on default values
-        \item \textbf{User-friendly UI} to manually set lifetime and decay parameters
-        \item \textbf{Simulation} tool
-        \item Interaction through the \textbf{API}
-        \item Opportunity to create your \textbf{own} formula or algorythm
+        \item $\tau_a = $ \texttt{lifetime}
+        \item $\delta_a = $ \texttt{decay speed}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Implementation in MISP: Models definition}
-    Models are an instanciation of the formula where elements can be defined:
+    \textit{Models} are an instanciation of the formula where elements can be defined:
     \begin{itemize}
         \item Parameters: \texttt{lifetime, decay\_rate, threshold}
         \item \texttt{base\_score}
@@ -220,11 +260,6 @@
     \includegraphics[width=1.00\linewidth]{pics/decaying-simulation.png}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Implementation in MISP: \texttt{Event/view}}
-    \includegraphics[width=1.00\linewidth]{pics/decaying-event.png}
-\end{frame}
-
 \begin{frame}[fragile]
     \frametitle{Implementation in MISP: API query body}
     \texttt{/attributes/restSearch}
@@ -239,32 +274,6 @@
     }
     "score": 30,
 }
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Implementation in MISP: API result}
-    \texttt{/attributes/restSearch}
-    \begin{lstlisting}
-"Attribute": [
-  {
-    "category": "Network activity",
-    "type": "ip-src",
-    "to_ids": true,
-    "timestamp": "1565703507",
-    [...]
-    "value": "8.8.8.8",
-    "decay_score": [
-      {
-        "score": 54.475223849544456,
-        "decayed": false,
-        "DecayingModel": {
-          "id": "85",
-          "name": "NIDS Simple Decaying Model"
-        }
-      }
-    ],
-[...]
     \end{lstlisting}
 \end{frame}
 
