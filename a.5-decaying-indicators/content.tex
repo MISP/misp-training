@@ -281,12 +281,12 @@
     \frametitle{Creating a new decay algorithm (1)}
     The current architecture allows users to create their \textbf{own} formulae.
 
-    \begin{itemize}
+    \begin{enumerate}
         \item Create a new file \texttt{{\$}filename} in \texttt{app/Model/DecayingModelsFormulas/}
         \item Extend the Base class as defined in \texttt{DecayingModelBase}
         \item Implement the two mandatory functions \texttt{computeScore} and \texttt{isDecayed} using your own formula/algorithm
         \item Create a Model and set the formula field to \texttt{{\$}filename}
-    \end{itemize}
+    \end{enumerate}
 
     Use cases:
     \begin{itemize}
