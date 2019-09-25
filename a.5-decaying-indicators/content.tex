@@ -30,6 +30,16 @@
 \end{frame}
 
 \begin{frame}
+\frametitle{Decaying Features in MISP}
+        \begin{itemize}
+        \item Starting from MISP 2.4.116, the decaying feature is available
+        \item Don't forget to update the decay model and enable the ones you want
+        \item The decaying feature has no impact on the information in MISP, it's just an overlay to be used in ther user-interface and API
+        \item Decay strongly relies on taxonomies and sighting, don't forget to review their configuration
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{\textit{Sightings} - Refresher}
     \textit{Sightings} add temporal context to indicators.
     A user, script or an IDS can extend the information related to indicators by reporting back to MISP that
