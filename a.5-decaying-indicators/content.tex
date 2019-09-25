@@ -5,6 +5,7 @@
 \titlepage
 \end{frame}
 
+\section{Expiring IOCs: Why and How?}
 \begin{frame}
 \frametitle{Indicators - Problem Statement}
     \begin{itemize}
@@ -21,7 +22,7 @@
         \vspace{0.5cm}
         \item Attributes can be shared in large quantities (more than 7.3 million on \texttt{MISPPRIV})
         \begin{itemize}
-            \item Partial info about their \textbf{freshness} (\textit{sightings})
+            \item Partial info about their \textbf{freshness} (\textit{Sightings})
             \item Partial info about their \textbf{validity} (last update)
         \end{itemize}
         \item[] $\rightarrow$ Can be partially solved with our \textit{Decaying model}
@@ -47,20 +48,30 @@
 \frametitle{Organisations opt-in - setting a level of confidence}
     MISP is a peer-to-peer system, information passes through multiple instances.
     \begin{itemize}
-        \item Producers can add context (such as tags from \textit{taxonomies}, \textit{galaxies}) about their asserted confidence or the reliability of the data
-        \item Consumers can have different levels of trust in the producers and/or analysts themselves
+        \item \textbf{Producers can add context} (such as tags from \textit{Taxonomies}, \textit{Galaxies}) about their asserted confidence or the reliability of the data
+        \item Consumers can have \textbf{different levels of trust} in the producers and/or analysts themselves
         \item Users might have other contextual needs
     \end{itemize}
+    \begin{center}
+        $\rightarrow$ Achieved thanks to \textit{Taxonomies}
+    \end{center}
 \end{frame}
 
 \begin{frame}
     \frametitle{Taxonomies - Refresher (1)}
     \includegraphics[width=1.00\linewidth]{pics/taxonomies.png}
+    \begin{itemize}
+        \item Tagging is a simple way to attach a classification to an \textit{Event} or an \textit{Attribute}
+        \item Classification must be globally used to be efficient
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Taxonomies - Refresher (2)}
     \includegraphics[width=1.00\linewidth]{pics/taxonomy-admiralty-scale.png}
+    \begin{center}
+        $\rightarrow$ Cherry-pick allowed \textit{Tags}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -117,13 +128,22 @@
         \item \texttt{score} $ \in [0, +\infty $
         \item \texttt{base\_score} $ \in [0, 100] $
         \item \texttt{decay} is a function defined by model's parameters controlling decay speed
+        \item \texttt{Attribute} Contains \textit{Attribute}'s values and metadata {\scriptsize (\textit{Taxonomies}, \textit{Galaxies}, ...)}
+        \item \texttt{Model} Contains the \textit{Model}'s configuration
     \end{itemize}
     
 \end{frame}
 
+\section{Current implementation in MISP}
 \begin{frame}
     \frametitle{Implementation in MISP: \texttt{Event/view}}
     \includegraphics[width=1.00\linewidth]{pics/decaying-event.png}
+    \begin{itemize}
+        \item \texttt{Decay score} toggle button
+        \begin{itemize}
+            \item Shows Score for each \textit{Models} associated to the \textit{Attribute} type
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -156,13 +176,14 @@
 \frametitle{Implementation in MISP: Playing with Models}
     \begin{itemize}
         \item \textbf{Automatic scoring} based on default values
-        \item \textbf{User-friendly UI} to manually set lifetime and decay parameters
+        \item \textbf{User-friendly UI} to manually set \textit{Model} configuration (lifetime, decay, etc.)
         \item \textbf{Simulation} tool
         \item Interaction through the \textbf{API}
         \item Opportunity to create your \textbf{own} formula or algorythm
     \end{itemize}
 \end{frame}
 
+\section{Decaying Models in Depth}
 \begin{frame}
     \frametitle{Scoring Indicators: \texttt{base\_score} (1)}
     $$ \texttt{score}(\texttt{\tiny Attribute}) = \texttt{base\_score}(\texttt{\tiny Attribute, Model}) \;\;\bullet\;\; {\color{gray}\texttt{decay}(\texttt{\tiny Model, time})} $$
@@ -181,7 +202,7 @@
 
 \begin{frame}
     \frametitle{Scoring Indicators: \texttt{base\_score} (2)}
-    Current implentation ignore \texttt{source\_confidence}:
+    Current implentation ignores \texttt{source\_confidence}:
     $$\rightarrow \texttt{base\_score} = tags$$
     \includegraphics[width=1.0\linewidth]{pics/bs-computation-steps.png}
 \end{frame}
@@ -196,23 +217,25 @@
            \item May vary depending on the indicator type
            \item short for an IP, long for an hash
        \end{itemize}
-       \item The \texttt{decay rate}, or speed at which an attribute loses value over time
-       \item The time elapsed since the latest update or sighting
+       \item The \texttt{decay rate}, or speed at which an attribute loses score over time
+       \item The \texttt{time} elapsed since the latest update or sighting
    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Scoring Indicators: putting it all toghether}
     $\rightarrow$ \texttt{decay rate} is \textbf{re-initialized upon sighting} addition, or said differently, the \texttt{score} is reset to its base score as new \textit{sightings} are applied.
-    $$score = base\_score \cdot \left( 1 - \left( \frac{t}{\tau_a} \right)^{\frac{1}{\delta_a}} \right) $$
+    $$score = base\_score \cdot \left( 1 - \left( \frac{t}{\tau} \right)^{\frac{1}{\delta}} \right) $$
     \begin{itemize}
-        \item $\tau_a = $ \texttt{lifetime}
-        \item $\delta_a = $ \texttt{decay speed}
+        \item $\tau = $ \texttt{lifetime}
+        \item $\delta = $ \texttt{decay speed}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Implementation in MISP: Models definition}
+        \hspace{190pt}
+        \raisebox{-1.0ex}{\Large $\Rsh$} {\tiny $score = base\_score \cdot \left( 1 - \left( \frac{t}{\tau} \right)^{\frac{1}{\delta}} \right) $}
     \textit{Models} are an instanciation of the formula where elements can be defined:
     \begin{itemize}
         \item Parameters: \texttt{lifetime, decay\_rate, threshold}
@@ -228,11 +251,11 @@
     \frametitle{Implementation in MISP: Models Types}
     Multiple model types are available
     \begin{itemize}
-        \item Default models: Models created and shared by the community. Available from \texttt{misp-decaying-models} repository\footnote{\url{https://github.com/MISP/misp-decaying-models.git}}.
+        \item \textbf{Default Models}: Models created and shared by the community. Available from \texttt{misp-decaying-models} repository\footnote{\url{https://github.com/MISP/misp-decaying-models.git}}.
         \begin{itemize}
             \item $\rightarrow$ Not editable
         \end{itemize}
-        \item Organisation models: Models created by a user belonging to an organisation
+    \item \textbf{Organisation Models}: Models created by a user belonging to an organisation
         \begin{itemize}
             \item These models can be hidden or shared to other organisation 
             \item $\rightarrow$ Editable
@@ -243,21 +266,25 @@
 \begin{frame}
     \frametitle{Implementation in MISP: Index}
     \includegraphics[width=1.00\linewidth]{pics/decaying-index.png}
+    View, update, add, create, delete, enable, export, import
 \end{frame}
 
 \begin{frame}
     \frametitle{Implementation in MISP: Fine tuning tool}
     \includegraphics[width=1.00\linewidth]{pics/decaying-tool.png}
+    Create, modify, visualise, perform mapping
 \end{frame}
 
 \begin{frame}
     \frametitle{Implementation in MISP: \texttt{base\_score} tool}
     \includegraphics[width=1.00\linewidth]{pics/decaying-basescore.png}
+    Adjust Taxonomies relative weights
 \end{frame}
 
 \begin{frame}
     \frametitle{Implementation in MISP: simulation tool}
     \includegraphics[width=1.00\linewidth]{pics/decaying-simulation.png}
+    Simulate \textit{Attributes} with different \textit{Models}
 \end{frame}
 
 \begin{frame}[fragile]
