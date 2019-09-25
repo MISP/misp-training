@@ -27,6 +27,11 @@
 \end{frame}
 
 \begin{frame}
+        \frametitle{Overall process of collecting and analysing OSINT}
+        \includegraphics[scale=0.17]{OSINT_MISP_almostcomplete.png}
+\end{frame}
+
+\begin{frame}
 \frametitle{Meta information and contextualisation 1/2}
 \begin{itemize}
 \item Quality of indicators/attributes are important but {\bf tagging and classification are also critical to ensure actionable information}
@@ -59,9 +64,10 @@
 \end{frame}
 
 \begin{frame}
-        \frametitle{How to select the right object?}
+       \frametitle{How to select the right object?}
 
-
+        There are more than 150 MISP objects\footnote{\url{https://www.misp-project.org/objects.html}} templates.\\
+      As an example, at CIRCL, we regularly use the following object templates {\it file}, {\it microblog}, {\it domain-ip}, {\it ip-port}, {\it coin-address}, {\it virustotal-report}, {\it paste}, {\it person}, {\it ail-leak}, {\it pe}, {\it pe-section}, {\it registry-key}.\\
 \end{frame}
 
 \begin{frame}
@@ -92,5 +98,15 @@ and keep an history.\\
         The file object can be used to describe file. It's usual to have partial meta information such as a single hash and a filename.\\
         \includegraphics[scale=0.25]{fileobject.png}
 \end{columns}
+\end{frame}
+
+\begin{frame}
+        \frametitle{References}
+        \begin{itemize}
+        \item Graphical overview of OSINT collection using MISP \url{https://github.com/adulau/misp-osint-collection}
+        \item MISP objects documentation \url{https://www.misp-project.org/objects.html}
+        \item MISP taxonomies documentation \url{https://www.misp-project.org/taxonomies.html}
+        \item MISP galaxy documentation \url{https://www.misp-project.org/galaxy.html}
+        \end{itemize}
 \end{frame}
 

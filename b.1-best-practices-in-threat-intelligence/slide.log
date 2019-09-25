@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  24 SEP 2019 21:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  25 SEP 2019 09:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1639,19 +1639,61 @@ LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/sc' will be
 ] [3
 
 ]
-<emotet.png, id=52, 596.2275pt x 901.3675pt>
+<OSINT_MISP_almostcomplete.png, id=52, 1698.345pt x 1403.12206pt>
+File: OSINT_MISP_almostcomplete.png Graphic file (type png)
+<use OSINT_MISP_almostcomplete.png>
+Package pdftex.def Info: OSINT_MISP_almostcomplete.png  used on input line 32.
+(pdftex.def)             Requested size: 288.71483pt x 238.52759pt.
+
+Underfull \hbox (badness 1286) in paragraph at lines 32--32
+ []|\T1/FiraSans-OsF/m/sc/14.4 Overall pro-cess of col-lect-ing and analysing 
+ []
+
+
+Overfull \vbox (33.07137pt too high) detected at line 32
+ []
+
+[4
+
+ <./OSINT_MISP_almostcomplete.png>] [5
+
+] [6
+
+]
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
+(Font)              scaled to size 7.0pt on input line 64.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
+(Font)              scaled to size 10.0pt on input line 64.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
+(Font)              scaled to size 7.0pt on input line 64.
+ [7
+
+] [8
+
+]
+<emotet.png, id=86, 596.2275pt x 901.3675pt>
 File: emotet.png Graphic file (type png)
 <use emotet.png>
-Package pdftex.def Info: emotet.png  used on input line 41.
+Package pdftex.def Info: emotet.png  used on input line 85.
 (pdftex.def)             Requested size: 89.43027pt x 135.19928pt.
-<microblog.png, id=54, 705.63625pt x 254.9525pt>
+<microblog.png, id=87, 705.63625pt x 254.9525pt>
 File: microblog.png Graphic file (type png)
 <use microblog.png>
-Package pdftex.def Info: microblog.png  used on input line 41.
+Package pdftex.def Info: microblog.png  used on input line 85.
 (pdftex.def)             Requested size: 105.84087pt x 38.24121pt.
- [4
+ [9
 
- <./emotet.png> <./microblog.png>])
+ <./emotet.png> <./microblog.png>]
+<fileobject.png, id=95, 589.20125pt x 320.19624pt>
+File: fileobject.png Graphic file (type png)
+<use fileobject.png>
+Package pdftex.def Info: fileobject.png  used on input line 101.
+(pdftex.def)             Requested size: 147.29994pt x 80.04886pt.
+ [10
+
+ <./fileobject.png>] [11
+
+])
 \tf@nav=\write5
 \openout5 = `slide.nav'.
 
@@ -1663,17 +1705,16 @@ Package pdftex.def Info: microblog.png  used on input line 41.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 25.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 25.
- (./slide.aux
-(./content.aux))
+ (./slide.aux (./content.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 25.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 25.
  ) 
 Here is how much of TeX's memory you used:
- 25580 strings out of 492982
- 511286 string characters out of 6134895
- 594279 words of memory out of 5000000
- 28531 multiletter control sequences out of 15000+600000
- 249274 words of font info for 72 fonts, out of 8000000 for 9000
+ 25667 strings out of 492982
+ 513004 string characters out of 6134895
+ 594282 words of memory out of 5000000
+ 28602 multiletter control sequences out of 15000+600000
+ 294436 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,16n,83p,803b,830s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_7gpamp.enc}{/usr/shar
@@ -1682,11 +1723,12 @@ xmf-dist/fonts/enc/dvips/fira/fir_xbqiro.enc}</usr/share/texlive/texmf-dist/fon
 ts/type1/public/fira/FiraMono-Regular.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/fira/FiraSans-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/fira/FiraSans-Regular.pfb>
-Output written on slide.pdf (4 pages, 498506 bytes).
+ic/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/symbols/msam10.pfb>
+Output written on slide.pdf (11 pages, 1796009 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
- 9 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 141 PDF objects out of 1000 (max. 8388607)
+ 102 compressed objects within 2 object streams
+ 23 named destinations out of 1000 (max. 500000)
+ 68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
