@@ -1,0 +1,112 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Objectives}
+\begin{itemize}
+        \item Learning how to use MISP to support common OSINT gathering use-cases as often used by SOC, CSIRTs and CERTs
+        \item By using a list of practical exercise\footnote{\url{https://gist.github.com/adulau/8c1de48060e259799d3397b83b0eec4f}}
+        \item The exercises are {\bf practical recent cases to model and structure intelligence} using the MISP standard
+        \item Improving the data models available in MISP by exchanging live improvements and ideas
+        \item Being able to share the results to the community at the end of this session
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{(Threat) Intelligence}
+\begin{itemize}
+        \item {\bf Cyber threat intelligence (CTI) is a vast concept} which includes different fields such as intelligence as defined in the military community or in the financial sector or the intelligence community
+        \item {\bf MISP project doesn't want to lock an organisation or an user into a specific model}. Each model is useful depending of the objectives from an organisation
+        \item A set of pre-defined knowledge base or data-models are available and organisation can select (or create) what they need
+        \item During this session, an overview of the most used taxonomies, galaxies and objects will be described
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Overall process of collecting and analysing OSINT}
+        \includegraphics[scale=0.17]{OSINT_MISP_almostcomplete.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Meta information and contextualisation 1/2}
+\begin{itemize}
+\item Quality of indicators/attributes are important but {\bf tagging and classification are also critical to ensure actionable information}
+        \item Tagging intelligence is done by using tags in MISP which are often originating from MISP taxonomy libraries
+        \item The scope can be classification ({\it tlp, PAP}), type ({\it osint, type, veris}), state ({\it workflow}), collaboration ({\it collaborative-intelligence}) and many other fields
+        \item MISP taxonomies documentation is available\footnote{\url{https://www.misp-project.org/taxonomies.html}}
+        \item {\bf Review existing practices of tagging in your sharing community, reuse practices and improve context}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Meta information and contextualisation 2/2}
+\begin{itemize}
+        \item {\bf When information cannot be expressed in triple tags format} ({\it namespace:predicate=value}), MISP provides the galaxies
+        \item Galaxies contain a huge set of common libraries\footnote{\url{https://www.misp-project.org/galaxy.html}} such as threat actors, malicious tools, RAT, Ransomware, target information and many more
+        \item When tagging or adding a galaxy cluster, don't forget that tagging at event level is for the whole event (including attributes and objects). While tagging at attribute level, it's often a more specific context
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adding attributes/objects to an event}
+\begin{itemize}
+        \item If the information is a {\bf single atomic element}, using a single attribute is preferred
+                \begin{itemize}
+                        \item Choosing an attribute type is critical as this defines the automation/export rule (e.g. url versus link or ip-src/ip-dst?)
+                        \item Enabling the IDS (automation) flag is also important. When you are in doubt, don't set the IDS flag
+                \end{itemize}
+        \item If the information is {\bf composite} (ip/port, filename/hash, bank account/BIC), using a object is strongly recommended
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+       \frametitle{How to select the right object?}
+
+        There are more than 150 MISP objects\footnote{\url{https://www.misp-project.org/objects.html}} templates.\\
+      As an example, at CIRCL, we regularly use the following object templates {\it file}, {\it microblog}, {\it domain-ip}, {\it ip-port}, {\it coin-address}, {\it virustotal-report}, {\it paste}, {\it person}, {\it ail-leak}, {\it pe}, {\it pe-section}, {\it registry-key}.\\
+\end{frame}
+
+\begin{frame}
+\frametitle{microblog object}
+\begin{columns}[totalwidth=\textwidth]
+        \column{0.49\textwidth}\underline{Use case}\\
+A serie of OSINT tweets from a security researcher.
+To structure the thread, the information
+and keep an history.\\
+        \includegraphics[scale=0.15]{emotet.png}
+        \column{0.49\textwidth}\underline{Object to use}\\
+        The microblog object can be used for Tweet or any microblog post (e.g. Facebook). Then object can be linked using {\it followed-by} to describe a serie of post.\\
+        \includegraphics[scale=0.15]{microblog.png}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{file object}
+\begin{columns}[totalwidth=\textwidth]
+        \column{0.49\textwidth}\underline{Use case}\\
+        \begin{itemize}
+                \item A file sample was received by email or extracted from VirusTotal.
+                \item A list of file hashes were included in a report.
+                \item A hash value was mentioned in a blog post.
+        \end{itemize}
+        \column{0.49\textwidth}\underline{Object to use}\\
+        The file object can be used to describe file. It's usual to have partial meta information such as a single hash and a filename.\\
+        \includegraphics[scale=0.25]{fileobject.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+        \frametitle{References}
+        \begin{itemize}
+        \item Graphical overview of OSINT collection using MISP \url{https://github.com/adulau/misp-osint-collection}
+        \item MISP objects documentation \url{https://www.misp-project.org/objects.html}
+        \item MISP taxonomies documentation \url{https://www.misp-project.org/taxonomies.html}
+        \item MISP galaxy documentation \url{https://www.misp-project.org/galaxy.html}
+        \end{itemize}
+\end{frame}
+
