@@ -32,6 +32,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | [a.5-decaying-indicators](https://www.misp-project.org/misp-training/a.5-decaying-indicators.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.5-decaying-indicators) |
 | [a.6-forensic](https://www.misp-project.org/misp-training/a.6-forensic.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.6-forensic) |
 | [a.7-rest-API](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.7-rest-API) |
+| [b.1-best-practices-in-threat-intelligence](https://www.misp-project.org/misp-training/b.1-best-practices-in-threat-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/best-practices-in-threat-intelligence)
 
 ### Complementary materials
 
