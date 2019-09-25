@@ -351,3 +351,27 @@ class Polynomial extends DecayingModelBase
 ?>
     \end{lstlisting}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Decaying Models 2.0}
+    \begin{itemize}
+        \item Improved support of \textit{Sightings}
+        \begin{itemize}
+            \item \texttt{False positive} \textit{Sightings} should somehow reduce the score
+            \item \texttt{Expiration} \textit{Sightings} should mark the attribute as decayed
+        \end{itemize}
+        \item Potential \textit{Model} improvements
+        \begin{itemize}
+            \item Instead of resetting the score to \texttt{base\_score} once a \textit{Sighting} is set, the score should be increased additively (based on a defined coefficient); thus \textbf{prioritizing surges} rather than infrequent \textit{Sightings}
+            \item Take into account related \textit{Tags} or \textit{Correlations} when computing score
+        \end{itemize}
+        \item Increase \textit{Taxonomy} coverage
+        \begin{itemize}
+            \item Users should be able to manually override the \texttt{numerical\_value} of \textit{Tags}
+        \end{itemize}
+        \item For specific type, take into account data from other services
+        \begin{itemize}
+            \item Could fetch data from \textit{BGP ranking}, \textit{Virus Total}, \textit{Passive X} for IP/domain/... and adapt the score
+        \end{itemize}
+    \end{itemize}
+\end{frame}
