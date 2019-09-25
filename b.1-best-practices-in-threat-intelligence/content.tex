@@ -27,11 +27,41 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Meta information and Contextualisation}
+\frametitle{Meta information and contextualisation 1/2}
 \begin{itemize}
 \item Quality of indicators/attributes are important but {\bf tagging and classification are also critical to ensure actionable information}
         \item Tagging intelligence is done by using tags in MISP which are often originating from MISP taxonomy libraries
+        \item The scope can be classification ({\it tlp, PAP}), type ({\it osint, type, veris}), state ({\it workflow}), collaboration ({\it collaborative-intelligence}) and many other fields
+        \item MISP taxonomies documentation is available\footnote{\url{https://www.misp-project.org/taxonomies.html}}
+        \item {\bf Review existing practices of tagging in your sharing community, reuse practices and improve context}
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Meta information and contextualisation 2/2}
+\begin{itemize}
+        \item {\bf When information cannot be expressed in triple tags format} ({\it namespace:predicate=value}), MISP provides the galaxies
+        \item Galaxies contain a huge set of common libraries\footnote{\url{https://www.misp-project.org/galaxy.html}} such as threat actors, malicious tools, RAT, Ransomware, target information and many more
+        \item When tagging or adding a galaxy cluster, don't forget that tagging at event level is for the whole event (including attributes and objects). While tagging at attribute level, it's often a more specific context
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adding attributes/objects to an event}
+\begin{itemize}
+        \item If the information is a {\bf single atomic element}, using a single attribute is preferred
+                \begin{itemize}
+                        \item Choosing an attribute type is critical as this defines the automation/export rule (e.g. url versus link or ip-src/ip-dst?)
+                        \item Enabling the IDS (automation) flag is also important. When you are in doubt, don't set the IDS flag
+                \end{itemize}
+        \item If the information is {\bf composite} (ip/port, filename/hash, bank account/BIC), using a object is strongly recommended
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{How to select the right object?}
+
+
 \end{frame}
 
 \begin{frame}
