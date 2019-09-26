@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.21)  26 SEP 2019 09:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.21)  26 SEP 2019 09:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1649,41 +1649,41 @@ pdfTeX warning: pdflatex (file ./misplogo.pdf): PDF inclusion: multiple pdfs wi
 th page group included in a single page
 >]
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/sc' will be
-(Font)              scaled to size 14.4pt on input line 15.
+(Font)              scaled to size 14.4pt on input line 14.
  [2
 
+] [3
+
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 26.
+LaTeX Font Info:    Try loading font information for U+msa on input line 34.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 26.
+LaTeX Font Info:    Try loading font information for U+msb on input line 34.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 26.
+(Font)              scaled to size 7.0pt on input line 34.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
-(Font)              scaled to size 5.0pt on input line 26.
+(Font)              scaled to size 5.0pt on input line 34.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 26.
+(Font)              scaled to size 10.0pt on input line 34.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
-(Font)              scaled to size 7.0pt on input line 26.
+(Font)              scaled to size 7.0pt on input line 34.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
-(Font)              scaled to size 5.0pt on input line 26.
- [3
-
-] [4
+(Font)              scaled to size 5.0pt on input line 34.
+ [4
 
 ] [5
 
 ] [6
 
-]
-[7
+] [7
 
-] [8
+]
+[8
 
 ] [9
 
@@ -1709,6 +1709,8 @@ LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
 
 ] [20
 
+] [21
+
 ])
 \tf@nav=\write5
 \openout5 = `slide.nav'.
@@ -1727,10 +1729,10 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 26.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 26.
  ) 
 Here is how much of TeX's memory you used:
- 26124 strings out of 492982
- 520385 string characters out of 6134896
+ 26129 strings out of 492982
+ 520436 string characters out of 6134896
  603188 words of memory out of 5000000
- 29039 multiletter control sequences out of 15000+600000
+ 29042 multiletter control sequences out of 15000+600000
  198991 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,16n,83p,811b,830s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1739,10 +1741,10 @@ e/texlive/texmf-dist/fonts/enc/dvips/fira/fir_7gpamp.enc}</usr/share/texlive/te
 xmf-dist/fonts/type1/public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on slide.pdf (20 pages, 248525 bytes).
+Output written on slide.pdf (21 pages, 249597 bytes).
 PDF statistics:
- 172 PDF objects out of 1000 (max. 8388607)
- 131 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
+ 178 PDF objects out of 1000 (max. 8388607)
+ 136 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
