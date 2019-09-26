@@ -1,0 +1,261 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Let's try to develop a feature together}
+  \begin{itemize}
+    \item Idea: Users should have the option to set alert filters for the publish alert e-mails
+    \item By default receive all alerts as before
+    \item If a filter is set, check if the alert is interesting for us or not
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{How to ensure that the feature is useful for the community at large?}
+  \begin{itemize}
+    \item Always try to think in reusable systems instead of fixing a single issue
+    \begin{itemize}
+      \item Much higher chance of getting a PR merged if it doesn't just cover your specific use-case
+      \item Try to stay two steps ahead, see how your feature can be reused for other tasks
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{User settings - a long overdue feature}
+  \begin{itemize}
+    \item Allow users to set preferences for certain views
+    \item For high level users, all the technical details are sometimes wasted
+    \item Simply not being interested in certain types of data points
+    \item Non-standard MISP deployments (island only MISP instances, etc)
+    \item User pre-sets for certain settings  
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Objectives of the feature}
+  \begin{itemize}
+    \item User should be able to do the following with filter rules:
+    \begin{itemize}
+      \item set
+      \item get
+      \item remove
+      \item index
+    \end{itemize}
+    \item Filter rules should be flexible - we do not want to anticipate all possible settings in advance
+    \item Ensure that the system is easy to extend and reuse
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Before we start with anything...}
+  \begin{itemize}
+    \item Update our MISP instance (git pull origin 2.4)
+    \item Fork github.com/MISP/MISP (via the github interface)
+    \item Add a new remote to our fork:
+    \begin{itemize}
+      \item via username/password auth: git remote add my\_fork https://github.com/iglocska/MISP
+      \item via ssh: git remote add my\_fork git\@github.com:iglocska/MISP.git
+    \end{itemize}
+    \item Generally a good idea to work on a new branch: git checkout -b dev\_exercise
+    \item Enable debug in MISP
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Implementation}
+  \begin{itemize}
+    \item Storage:
+    \begin{itemize}
+      \item Single key/value table for all settings
+      \item Each user should be able to set a single instance of a key
+      \item Values could possible become complex, let's use JSON!
+      \item Add timestamping for traceability
+      \item Consider which fields we might want to look-up frequently for indexing
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The database changes we need}
+  \begin{itemize}
+    \item The table structure:
+    \begin{itemize}
+      \item id int(11) auto increment   //primary key
+      \item key varchar(100)   //add index!
+      \item value text   //json
+      \item user\_id int(11) //add index!
+      \item timestamp int(11) //add index!
+    \end{itemize}
+    \item Tie it to into the upgrade system (app/Model/AppModel.php)
+    \item Test our upgrade process! Check the output in the audit logs
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Checklist}
+\begin{itemize}
+  \item Outline of the changes needed:
+    \begin{itemize}
+    \item New Controller (UserSettingsController.php)
+    \item New Model (UserSetting.php)
+    \item New Views (setSetting, index)
+    \item Add new controller actions to ACL
+    \item Update the e-mail alert system to use the functionality
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Create the new Model skeleton}
+  \begin{itemize}
+    \item location: /var/www/MISP/app/Model/UserSetting.php
+    \item Create basic skeleton
+    \item Add model relationships (hasMany/BelongsTo)
+    \item Use the hooking functionality to deal with the JSON field (beforeSave(), beforeFind())
+    \item Add a function that can be used to check if a user should get an alert based on filters (checkPublishFilter())
+    \item Add a function to check if a user can access/modify a setting (checkAccess())
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Create the Controller skeleton}
+  \begin{itemize}
+    \item location: /var/www/MISP/app/Model/UserSetting.php
+    \item Create basic skeleton
+    \item Set pagination rules
+    \item Define CRUD functions (exceptionally, we diverge here from the norm)
+    \begin{itemize}
+      \item setSetting()
+      \item getSetting()
+      \item index()
+      \item delete()
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Start with an API only approach at first}
+  \begin{itemize}
+    \item setSetting():
+    \begin{itemize}
+      \item Accepted methods: ADD / POST
+      \item Separate handling of API / UI
+      \item POST should create/update an entry
+      \item GET should describe the API
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{getSetting / index}
+  \begin{itemize}
+    \item getSetting():
+    \begin{itemize}
+      \item Accepted methods: GET
+      \item Retrieves a single setting based on either ID or setting key and user\_id
+      \item Encode the data depending on API/UI
+    \end{itemize}
+    \begin{itemize}
+      \item Accepted methods: GET
+      \item List all settings
+      \item Filter user scope on demand
+      \item Filter available scopes based on role
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{delete}
+  \begin{itemize}
+    \item delete():
+    \begin{itemize}
+      \item Accepted methods: POST / DELETE
+      \item Deletes a single entry based on ID or setting key
+      \item Encode the data depending on API/UI
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Add the ACL functionalities}
+  \begin{itemize}
+    \item Tie functions into checkAccess():
+    \begin{itemize}
+      \item Check if user is allowed to execute actions and throw exceptions if not
+      \item Add it to: setSetting() / getSetting() / delete()
+    \end{itemize}
+    \item Consider that:
+    \begin{itemize}
+        \item Site admins have full reign
+        \item Org admins can manage their own users
+        \item Everyone else can self-manage
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Test the functionalities}
+  \begin{itemize}
+    \item Use the REST client
+    \item Expectations
+    \begin{itemize}
+      \item GET on /setSetting and /delete describing our endpoints
+      \item POST /setSetting with {"key": "publish\_filter", "value": {"Event.tags":"\%sofacy\%"}} should return newly added or modified filter
+      \item GET on /index should list our entries, GET on /getSetting should show an individual entry
+      \item DELETE on /delete should delete the entry
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Start adding the UI components}
+  \begin{itemize}
+    \item We now have a rudimentary CRUD, let's add some simple UI views
+    \begin{itemize}
+      \item setSetting as a simple form
+      \item index should use the parametrised generators (IndexTable)
+      \item Add both views to the menu systems (side-menu, global menu)
+      \item Don't forget about sanitisation and translations!
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Add the checkPublishFilter() function to the e-mailing}
+  \begin{itemize}
+    \item Trace the code path of the e-mail sending to understand the process
+    \item Decide on the best place to inject our check
+    \item Don't break the flow of the process!
+    \item What do we have access to at this point? What format are they in?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Test if our code works correctly}
+  \begin{itemize}
+    \item Do we see any notices / errors?
+    \item Is our code easily accessible?
+    \item Consider other roles! Can users/org admins do things we don't want them to do?
+    \item Is our code-base breaking the default behaviour?
+    \item Is our update script working as expected?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Push our code to our fork and create a pull request}
+  \begin{itemize}
+     \item git status to check what changed / got added
+     \item git add /path/to/file to add files we want to commit
+     \item git commit (format: is "new/fix/chg: [topic] My description"
+     \item git push my\_fork
+     \item Create pull request from the github interface
+     \item Wait for Travis to run, update the code if needed
+  \end{itemize}
+\end{frame}
