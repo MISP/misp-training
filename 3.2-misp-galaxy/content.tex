@@ -240,21 +240,27 @@
 
 \begin{frame}[fragile]
         \frametitle{Galaxy JSON matrix-like}
+        \includegraphics[width=0.9\linewidth]{screenshots/galaxy-matrix.png}
+\end{frame}
+
+\begin{frame}[fragile]
+        \frametitle{Galaxy JSON matrix-like}
         \begin{adjustbox}{keepaspectratio}
-            \begin{lstlisting}[language=json,firstnumber=1]
+            %\lstset{emph={kill_chain_order},emphstyle=\textbf}
+            \begin{lstlisting}[language=json,firstnumber=1,escapechar=@]
         {
   "description": "Universal Development and Security Guidelines as Applicable to Election Technology.",
   "icon": "map",
-  "kill_chain_order": {
-    "example-of-threats": [
-      "setup | party/candidate-registration",
-      "setup | electoral-rolls",
-      "campaign | campaign-IT",
-      "all-phases | governement-IT",
-      "voting | election-technology",
-      "campaign/public-communication | media/press"
-    ]
-  },
+  @\textbf{\color{red}"kill\_chain\_order": \{}@             @\textbf{\color{black}\textbackslash\textbackslash Tab in the matrix}@
+      @\textbf{\color{red}"example-of-threats": [}@       @\textbf{\color{black}\textbackslash\textbackslash Column in the matrix}@
+      @\textbf{\color{red}"setup | party/candidate-registration",}@
+      @\textbf{\color{red}"setup | electoral-rolls",}@
+      @\textbf{\color{red}"campaign | campaign-IT",}@
+      @\textbf{\color{red}"all-phases | governement-IT",}@
+      @\textbf{\color{red}"voting | election-technology",}@
+      @\textbf{\color{red}"campaign/public-communication | media/press"}@
+    @\textbf{\color{red}]}@
+  @\textbf{\color{red}\},}@
   "name": "Election guidelines",
   "namespace": "misp",
   "type": "guidelines",
@@ -268,14 +274,14 @@
 \begin{frame}[fragile]
         \frametitle{Cluster JSON matrix-like}
         \begin{adjustbox}{keepaspectratio}
-            \begin{lstlisting}[language=json,firstnumber=1]
+            \begin{lstlisting}[language=json,firstnumber=1, escapechar=@]
 {
       "description": "DoS or overload of party/campaign registration, causing them to miss the deadline",
       "meta": {
         "date": "March 2018.",
-        "kill_chain": [
-          "example-of-threats:setup | party/candidate-registration"
-        ],
+         @\textbf{\color{red}"kill\_chain": [}@ @\textbf{\color{black}\textbackslash\textbackslash Define in which column the cluster should be placed}@
+           @\textbf{\color{red}  "example-of-threats:setup | party/candidate-registration"}@
+         @\textbf{\color{red}],}@
         "refs": [
           "https://www.ria.ee/sites/default/files/content-editors/kuberturve/cyber_security_of_election_technology.pdf"
         ]
