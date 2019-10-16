@@ -34,6 +34,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | [a.7-rest-API](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.7-rest-API) |
 | [a.8-dev-hands-on.pdf](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.8-dev-hands-on) |
 | [b.1-best-practices-in-threat-intelligence](https://www.misp-project.org/misp-training/b.1-best-practices-in-threat-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/best-practices-in-threat-intelligence)
+| [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/b.2-turning-data-into-actionable-intelligence)
 
 ### Complementary materials
 
