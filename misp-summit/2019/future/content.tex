@@ -1,0 +1,122 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{We have a massive rework of the MISP internals planned}
+  \begin{itemize}
+    \item Upgrade to a more {\bf modern version of the framework} (CakePHP 3.x paving the way to 4.x)
+    \item Move to a more {\bf modern UI} (Bootstrap 4 based)
+    \item Good moment to rid ourselves of a LOT of {\bf legacy} baggage
+    \item Some of the work has already started behind the scenes
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Some things that will change}
+  \begin{itemize}
+    \item First time we'll have a {\bf manual upgrade} to a new version of MISP since ~2015
+    \begin{itemize}
+      \item This means you'll get an upgrade script that needs to be executed, MISP made unavailable during the upgrade
+      \item {\bf All sync / modern APIs will be compatible between the old/new versions}
+    \end{itemize}
+    \item Raising the requirements of the supported language versions ({\bf PHP 7.2+, Python 3.6+})
+    \item CakePHP 3.x's backend is quite different, so we'll use the opportunity for a refactor
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What this will mean for users}
+  \begin{itemize}
+    \item Leaner and {\bf more performant} MISP 
+    \item Cuttig down on a lot of long {\bf deprecated} baggage
+    \item Sleeker UI
+    \item One of our planned improvements is to be able to run MISP in two separate modes of operation ({\bf endpoint vs sharing hub})
+    \begin{itemize}
+      \item MISP is built as a shared use system from the ground up
+      \item We see many use cases where it's used as an endpoint/internal tool
+      \item We want to reduce the burden on these installations
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The current plan for the whole process}
+  \begin{itemize}
+    \item Tying off loose ends
+    \item Preparation phase
+    \item Transition phase
+    \item Post release support
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tying off loose ends}
+  \begin{itemize}
+    \item We are currently busy with finishing off a set of features that are high priority first
+    \begin{itemize}
+      \item {\bf "Zoidberg"} \item first/last seen with time based correlation
+      \item Modular {\bf feed parsing}
+      \item Markdown based {\bf reports} attached to events
+      \item Working through a stockpile of {\bf pull requests}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Preparation phase}
+  \begin{itemize}
+    \item This phase can be handled in {\bf parallel to other tasks}, so generally business as usual
+    \item We welcome community members to join us for this effort
+    \item Simplify a lot of the backend code, switch to a light-weight middleware that interfaces with both cake 2.x/3.x and that makes building new functionalities simpler with MISP in mind
+    \item get rid of the inconsistent current view system and move to generated views (we have already migrated parts of the UI over the past few months)
+    \item A good moment to re-evaluate some decisions we've made and improve the consistency / simplicity of the code-base
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transition phase}
+  \begin{itemize}
+    \item This is where the {\bf real transition will happen}, we want to move our ORM and UI generators to the new framework
+    \item The preparation phase's output is what should make this a quick transition
+    \item During this phase we will halt the development of new features
+    \item Two branches of MISP in parallel, 2.4 will enter bug fix only mode
+    \item We estimate this phase to be rather short, our plan is to try to cram it in about ~1-2 month
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Post release support}
+  \begin{itemize}
+    \item We will {\bf keep supporting the old version of MISP} for a short duration after the release
+    \item Two MISP versions operational in parallel
+    \item MISP 2.4 will not receive any new features any longer and will be on {\bf life support}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Other new things planned in upcoming releases}
+  \begin{itemize}
+    \item As part of the {\bf VARIOT} project, add the ability to export feeds in MISP and publish them to {\bf open data} directories
+    \item Work has begun on the next big leap for the feed system: working with feed providers to have their offerings directly available through MISP
+    \item The system incorporated for the decaying of indicators has been a rapid success - thanks to all the feedback we will be incorporating a host of changes
+    \item We are evaluating models to offer professional support for those users that require it
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cerebrate}
+  \begin{itemize}
+    \item Another {\bf OSS tool} meant to help us build organisation registries
+    \item Communities can run centralised installations and/or use the one provided by the misp-project
+    \item Opt-in system for organisations, communities
+    \item Repositories of signing keys for event signing
+    \item Add a list of MISP instances to your cerebrate's {\bf brood}
+    \item Create sync requests to {\bf simplify the process of interconnecting with trusted peers}
+    \item Link up trusted Cerebrates to {\bf join a swarm with your brood}
+  \end{itemize}
+\end{frame}
+
