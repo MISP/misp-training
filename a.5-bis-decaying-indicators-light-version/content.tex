@@ -218,63 +218,13 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementation in MISP: Playing with Models}
+\frametitle{Implementation in MISP: Objectives}
     \begin{itemize}
         \item \textbf{Automatic scoring} based on default values
         \item \textbf{User-friendly UI} to manually set \textit{Model} configuration (lifetime, decay, etc.)
         \item \textbf{Simulation} tool
         \item Interaction through the \textbf{API}
         \item Opportunity to create your \textbf{own} formula or algorythm
-    \end{itemize}
-\end{frame}
-
-\section{Decaying Models in Depth}
-\begin{frame}
-    \frametitle{Scoring Indicators: \texttt{base\_score} (1)}
-    $$ \texttt{score}(\texttt{\tiny Attribute}) = \texttt{base\_score}(\texttt{\tiny Attribute, Model}) \;\;\bullet\;\; {\color{gray}\texttt{decay}(\texttt{\tiny Model, time})} $$
-        When scoring indicators\footnote{Paper available: \url{https://arxiv.org/pdf/1803.11052}}, multiple parameters\footnote{at a variable extent as required} can be taken into account. The {\bf base score} is calculated with the following in mind:
-    \begin{itemize}
-        \item {\color{purple}Data reliability, credibility, analyst skills, custom prioritisation tags (economical-impact), etc.}
-        \item {\color{orange}Trust in the source}
-    \end{itemize}
-    \vspace{0.3cm}
-    $$\texttt{base\_score} = \omega_{tg} \cdot {\color{purple}tags} + \omega_{sc} \cdot {\color{orange}source\_confidence}$$
-    Where,
-    \begin{itemize}
-        \item[] $\omega_{sc} + \omega_{tg} = 1$
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Scoring Indicators: \texttt{base\_score} (2)}
-    Current implentation ignores \texttt{source\_confidence}:
-    $$\rightarrow \texttt{base\_score} = tags$$
-    \includegraphics[width=1.0\linewidth]{pics/bs-computation-steps.png}
-    $\rightarrow$ The \texttt{base\_score} can be use to prioritize attribute based on their attached context and source
-\end{frame}
-
-\begin{frame}
-    \frametitle{Scoring Indicators: decay speed (1)}
-    $$ \texttt{score}(\texttt{\tiny Attribute}) = {\color{gray}\texttt{base\_score}(\texttt{\tiny Attribute, Model})} \;\;\bullet\;\; \texttt{decay}(\texttt{\tiny Model, time}) $$
-    The \texttt{decay} is calculated using:
-   \begin{itemize}
-       \item The \texttt{lifetime} of the indicator
-       \begin{itemize}
-           \item May vary depending on the indicator type
-           \item short for an IP, long for an hash
-       \end{itemize}
-       \item The \texttt{decay rate}, or speed at which an attribute loses score over time
-       \item The \texttt{time} elapsed since the latest update or sighting
-   \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Scoring Indicators: putting it all toghether}
-    $\rightarrow$ \texttt{decay rate} is \textbf{re-initialized upon sighting} addition, or said differently, the \texttt{score} is reset to its base score as new \textit{sightings} are applied.
-    $$score = base\_score \cdot \left( 1 - \left( \frac{t}{\tau} \right)^{\frac{1}{\delta}} \right) $$
-    \begin{itemize}
-        \item $\tau = $ \texttt{lifetime}
-        \item $\delta = $ \texttt{decay speed}
     \end{itemize}
 \end{frame}
 
@@ -347,54 +297,6 @@
     }
     "score": 30,
 }
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Creating a new decay algorithm (1)}
-    The current architecture allows users to create their \textbf{own} formulae.
-
-    \begin{enumerate}
-        \item Create a new file \texttt{{\$}filename} in \texttt{app/Model/DecayingModelsFormulas/}
-        \item Extend the Base class as defined in \texttt{DecayingModelBase}
-        \item Implement the two mandatory functions \texttt{computeScore} and \texttt{isDecayed} using your own formula/algorithm
-        \item Create a Model and set the formula field to \texttt{{\$}filename}
-    \end{enumerate}
-
-    Use cases:
-    \begin{itemize}
-        \item Add support for \textbf{more feature} (expiration taxonomy)
-        \item \textbf{Query external services} then influence the score
-        \item Completely \textbf{different approach} (i.e streaming algorithm)
-        \item ...
-    \end{itemize}
-
-\end{frame}
-
-\lstset{language=PHP}
-\begin{frame}[fragile]
-    \frametitle{Creating a new decay algorithm (2)}
-    \lstset{basicstyle=\scriptsize}
-    \begin{lstlisting}
-<?php
-include_once 'Base.php';
-
-class Polynomial extends DecayingModelBase
-{
-    public const DESCRIPTION = 'The description of your new decaying algorithm';
-
-    public function computeScore($model, $attribute, $base_score, $elapsed_time)
-    {
-       // algorithm returning a numerical score
-    }
-
-    public function isDecayed($model, $attribute, $score)
-    {
-        // algorithm returning a boolean stating
-        // if the attribute is expired or not
-    }
-}
-?>
     \end{lstlisting}
 \end{frame}
 
