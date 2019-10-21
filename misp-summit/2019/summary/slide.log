@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  20 OCT 2019 22:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  21 OCT 2019 09:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1630,37 +1630,61 @@ LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/sc' will be
 <cfd.png, id=46, 578.16pt x 578.16pt>
 File: cfd.png Graphic file (type png)
 <use cfd.png>
-Package pdftex.def Info: cfd.png  used on input line 31.
+Package pdftex.def Info: cfd.png  used on input line 30.
 (pdftex.def)             Requested size: 104.0643pt x 104.0643pt.
 <objects-cfd.png, id=47, 578.16pt x 578.16pt>
 File: objects-cfd.png Graphic file (type png)
 <use objects-cfd.png>
-Package pdftex.def Info: objects-cfd.png  used on input line 31.
+Package pdftex.def Info: objects-cfd.png  used on input line 30.
 (pdftex.def)             Requested size: 104.0643pt x 104.0643pt.
 <galaxy-cfd.png, id=48, 578.16pt x 578.16pt>
 File: galaxy-cfd.png Graphic file (type png)
 <use galaxy-cfd.png>
-Package pdftex.def Info: galaxy-cfd.png  used on input line 31.
+Package pdftex.def Info: galaxy-cfd.png  used on input line 30.
 (pdftex.def)             Requested size: 104.0643pt x 104.0643pt.
  [3
 
  <./cfd.png (PNG copy)> <./objects-cfd.png (PNG copy)> <./galaxy-cfd.png (PNG c
-opy)>]
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 43.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 43.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 43.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
-(Font)              scaled to size 7.0pt on input line 43.
- [4
+opy)>] [4
 
-] [5
+]
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 51.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
+(Font)              scaled to size 7.0pt on input line 51.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
+(Font)              scaled to size 10.0pt on input line 51.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
+(Font)              scaled to size 7.0pt on input line 51.
+ [5
 
 ] [6
 
-])
+]
+[7
+
+] [8
+
+] [9
+
+]
+<misp-core-contributors.png, id=92, 945.5325pt x 910.40125pt>
+File: misp-core-contributors.png Graphic file (type png)
+<use misp-core-contributors.png>
+Package pdftex.def Info: misp-core-contributors.png  used on input line 92.
+(pdftex.def)             Requested size: 945.5302pt x 910.39902pt.
+
+Overfull \hbox (624.01395pt too wide) in paragraph at lines 92--92
+[][]  
+ []
+
+
+Overfull \vbox (654.82439pt too high) detected at line 92
+ []
+
+[10
+
+ <./misp-core-contributors.png>])
 \tf@nav=\write5
 \openout5 = `slide.nav'.
 
@@ -1672,16 +1696,15 @@ LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
-
-(./slide.aux (./content.aux))
+ (./slide.aux (./content.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 25628 strings out of 492982
- 512451 string characters out of 6134895
- 594976 words of memory out of 5000000
- 28582 multiletter control sequences out of 15000+600000
+ 25650 strings out of 492982
+ 512763 string characters out of 6134895
+ 594977 words of memory out of 5000000
+ 28595 multiletter control sequences out of 15000+600000
  294402 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,16n,83p,811b,830s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1692,10 +1715,10 @@ ts/type1/public/fira/FiraMono-Regular.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/symbols/msam10.pfb>
-Output written on slide.pdf (6 pages, 315446 bytes).
+Output written on slide.pdf (10 pages, 1365318 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
- 63 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 125 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
+ 21 named destinations out of 1000 (max. 500000)
+ 68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
