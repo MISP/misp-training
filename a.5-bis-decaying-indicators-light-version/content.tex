@@ -5,6 +5,15 @@
 \titlepage
 \end{frame}
 
+\begin{frame}
+    \frametitle{Outline of the presentation}
+    \begin{itemize}
+        \item Present the components used in MISP to expire IOCs
+        \item Present the current state of Indicators life-cycle management in MISP
+        \item Present the current state of Indicators life-cycle management in MISP
+    \end{itemize}
+\end{frame}
+
 \section{Expiring IOCs: Why and How?}
 \begin{frame}[fragile]
 \frametitle{Indicators - Problem Statement}
@@ -68,15 +77,15 @@
 \frametitle{Requirements to enjoy the decaying feature in MISP}
         \begin{itemize}
             \item Starting from \textbf{MISP 2.4.116}, the decaying feature is available
-            \item Don't forget to update the decay models and enable the ones you want
-            \item The decaying feature has no impact on the information in MISP, it's just an overlay to be used in the user-interface and API
+            \item Don't forget to \textbf{update the decay models} and \textbf{enable} the ones you want
+            \item The decaying feature has no impact on the information in MISP, it's just an \textbf{overlay} to be used in the user-interface and API
             \item Decay strongly relies on \textit{Taxonomies} and \textit{Sightings}, don't forget to review their configuration
         \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{\textit{Sightings} - Refresher}
-    \textit{Sightings} add temporal context to indicators.
+    \textit{Sightings} add \textbf{temporal context} to indicators.
     A user, script or an IDS can extend the information related to indicators by reporting back to MISP that
     an indicator has been \texttt{seen}, or that an indicator can be considered as a \texttt{false-positive}
     \vspace{0.5cm}
@@ -90,24 +99,11 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Organisations opt-in - setting a level of confidence}
-    MISP is a peer-to-peer system, information passes through multiple instances.
-    \begin{itemize}
-        \item \textbf{Producers can add context} (such as tags from \textit{Taxonomies}, \textit{Galaxies}) about their asserted confidence or the reliability of the data
-        \item Consumers can have \textbf{different levels of trust} in the producers and/or analysts themselves
-        \item Users might have other contextual needs
-    \end{itemize}
-    \begin{center}
-        $\rightarrow$ Achieved thanks to \textit{Taxonomies}
-    \end{center}
-\end{frame}
-
-\begin{frame}
     \frametitle{Taxonomies - Refresher (1)}
     \includegraphics[width=1.00\linewidth]{pics/taxonomies.png}
     \begin{itemize}
-        \item Tagging is a simple way to attach a classification to an \textit{Event} or an \textit{Attribute}
-        \item Classification must be globally used to be efficient
+        \item \textit{Taxonomies} are a simple way to attach a classification to an \textit{Event} or an \textit{Attribute}
+        \item Classification must be globally used to be efficient (or agreed on beforehand)
     \end{itemize}
 \end{frame}
 
@@ -127,7 +123,7 @@
             \item[$\rightarrow$] Can be used to prioritise \textit{Attributes}
         \end{itemize}
     \end{itemize}
-    \vspace{1cm}
+    \vspace{0.5cm}
 
     \begin{footnotesize}
     \begin{columns}[T] % align columns
@@ -163,6 +159,9 @@
     \end{column}%
     \end{columns}
     \end{footnotesize}
+
+    \vspace{0.5cm}
+    $\rightarrow$ In next version, Users will be able to override these \texttt{numerical\_value}
 \end{frame}
 
 \begin{frame}
@@ -177,6 +176,22 @@
         \item \texttt{Model} Contains the \textit{Model}'s configuration
     \end{itemize}
     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Scoring Indicators: Our solution}
+    $$ \texttt{score}(\texttt{\tiny Attribute}) = \texttt{base\_score}(\texttt{\tiny Attribute, Model}) \;\;\bullet\;\; \texttt{decay}(\texttt{\tiny Model, time}) $$
+    \begin{itemize}
+        \item \texttt{base\_score}(\texttt{\tiny Attribute, Model})
+            \begin{itemize}
+                \item Initial score of the \textit{Attribute} only considering the context (i.e. \textit{Tags})
+            \end{itemize}
+        \vspace{1cm}
+        \item \texttt{decay}(\texttt{\tiny Model, time})
+            \begin{itemize}
+                \item Function composed of the \textbf{lifetime} and \textbf{Decay speed} decreasing the \texttt{base\_score} over time
+            \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \section{Current implementation in MISP}
@@ -316,10 +331,6 @@
         \item Increase \textit{Taxonomy} coverage
         \begin{itemize}
             \item Users should be able to manually override the \texttt{numerical\_value} of \textit{Tags}
-        \end{itemize}
-        \item For specific type, take into account data from other services
-        \begin{itemize}
-            \item Could fetch data from \textit{BGP ranking}, \textit{Virus Total}, \textit{Passive X} for IP/domain/... and adapt the score
         \end{itemize}
     \end{itemize}
 \end{frame}
