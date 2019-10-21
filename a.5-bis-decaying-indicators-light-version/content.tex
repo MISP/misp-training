@@ -315,6 +315,33 @@
     \end{lstlisting}
 \end{frame}
 
+\lstset{language=PHP}
+\begin{frame}[fragile]
+    \frametitle{Creating a new decay algorithm}
+    \lstset{basicstyle=\scriptsize}
+    \begin{lstlisting}
+<?php
+include_once 'Base.php';
+
+class Polynomial extends DecayingModelBase
+{
+    public const DESCRIPTION = 'The description of your new decaying algorithm';
+
+    public function computeScore($model, $attribute, $base_score, $elapsed_time)
+    {
+       // algorithm returning a numerical score
+    }
+
+    public function isDecayed($model, $attribute, $score)
+    {
+        // algorithm returning a boolean stating
+        // if the attribute is expired or not
+    }
+}
+?>
+    \end{lstlisting}
+\end{frame}
+
 \begin{frame}
     \frametitle{Decaying Models 2.0}
     \begin{itemize}
