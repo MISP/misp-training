@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.21)  25 OCT 2019 02:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  25 OCT 2019 07:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -644,7 +644,7 @@ Package: amsthm 2017/10/31 v2.20.4
 \beamer@dimb=\dimen189
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty)))
-(/home/iglocska/Documents/misp-training/themes/beamerthemefocus.sty
+(/home/adulau/git/misp-training/themes/beamerthemefocus.sty
 Package: beamerthemefocus 2019/01/18 v2.3 Focus Beamer theme
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
@@ -777,9 +777,9 @@ o fonts.
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
 ))
-(/home/iglocska/Documents/misp-training/themes/beamercolorthemefocus.sty)
-(/home/iglocska/Documents/misp-training/themes/beamerfontthemefocus.sty)
-(/home/iglocska/Documents/misp-training/themes/beamerinnerthemefocus.sty
+(/home/adulau/git/misp-training/themes/beamercolorthemefocus.sty)
+(/home/adulau/git/misp-training/themes/beamerfontthemefocus.sty)
+(/home/adulau/git/misp-training/themes/beamerinnerthemefocus.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
@@ -849,7 +849,7 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 zlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 ))))
-(/home/iglocska/Documents/misp-training/themes/beamerouterthemefocus.sty
+(/home/adulau/git/misp-training/themes/beamerouterthemefocus.sty
 (/usr/share/texlive/texmf-dist/tex/latex/appendixnumberbeamer/appendixnumberbea
 mer.sty) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bookmark.sty
 Package: bookmark 2016/05/17 v1.26 PDF bookmarks (HO)
@@ -1631,11 +1631,10 @@ File: misplogo.pdf Graphic file (type pdf)
 <use misplogo.pdf>
 Package pdftex.def Info: misplogo.pdf  used on input line 6.
 (pdftex.def)             Requested size: 55.00186pt x 40.3096pt.
-
-(../includes/location.txt)
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
 (Font)              scaled to size 4.0pt on input line 6.
- [1
+
+[1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./misp.pdf> <./misplogo.pd
@@ -1671,55 +1670,72 @@ Package pdftex.def Info: matrix2.png  used on input line 57.
  [6
 
  <./matrix2.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for U+msa on input line 71.
+LaTeX Font Info:    Try loading font information for U+msa on input line 72.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 71.
+LaTeX Font Info:    Try loading font information for U+msb on input line 72.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 71.
+(Font)              scaled to size 7.0pt on input line 72.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' will be
-(Font)              scaled to size 5.0pt on input line 71.
+(Font)              scaled to size 5.0pt on input line 72.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 71.
+(Font)              scaled to size 10.0pt on input line 72.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
-(Font)              scaled to size 7.0pt on input line 71.
+(Font)              scaled to size 7.0pt on input line 72.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' will be
-(Font)              scaled to size 5.0pt on input line 71.
+(Font)              scaled to size 5.0pt on input line 72.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/b/n' will be
+(Font)              scaled to size 10.0pt on input line 72.
+<matrix-like.png, id=73, 936.49875pt x 212.795pt>
+File: matrix-like.png Graphic file (type png)
+<use matrix-like.png>
+Package pdftex.def Info: matrix-like.png  used on input line 72.
+(pdftex.def)             Requested size: 280.95178pt x 63.83897pt.
  [7
 
-]
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 83.
- [8
+ <./matrix-like.png>] [8
 
 ]
-<election.png, id=85, 983.92593pt x 444.15938pt>
+<election.png, id=88, 983.92593pt x 444.15938pt>
 File: election.png Graphic file (type png)
 <use election.png>
-Package pdftex.def Info: election.png  used on input line 88.
+Package pdftex.def Info: election.png  used on input line 91.
 (pdftex.def)             Requested size: 295.18005pt x 133.24883pt.
  [9
 
  <./election.png (PNG copy)>]
-<office.png, id=91, 1464.97313pt x 381.67593pt>
+<office.png, id=94, 1464.97313pt x 381.67593pt>
 File: office.png Graphic file (type png)
 <use office.png>
-Package pdftex.def Info: office.png  used on input line 93.
+Package pdftex.def Info: office.png  used on input line 96.
 (pdftex.def)             Requested size: 439.49533pt x 114.50366pt.
 
-Overfull \hbox (117.97908pt too wide) in paragraph at lines 93--93
+Overfull \hbox (117.97908pt too wide) in paragraph at lines 96--96
 [][]  
  []
 
 [10
 
- <./office.png (PNG copy)>])
+ <./office.png (PNG copy)>]
+<amitt.png, id=100, 1845.89626pt x 608.2725pt>
+File: amitt.png Graphic file (type png)
+<use amitt.png>
+Package pdftex.def Info: amitt.png  used on input line 101.
+(pdftex.def)             Requested size: 553.77316pt x 182.48315pt.
+
+Overfull \hbox (232.25691pt too wide) in paragraph at lines 101--101
+[][]  
+ []
+
+[11
+
+ <./amitt.png>])
 \tf@nav=\write5
 \openout5 = `slide.nav'.
 
@@ -1736,10 +1752,10 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 26098 strings out of 492982
- 520043 string characters out of 6134896
- 603242 words of memory out of 5000000
- 29027 multiletter control sequences out of 15000+600000
+ 26107 strings out of 492982
+ 520076 string characters out of 6134895
+ 603091 words of memory out of 5000000
+ 29035 multiletter control sequences out of 15000+600000
  229547 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,16n,83p,811b,830s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1748,10 +1764,10 @@ e/texlive/texmf-dist/fonts/enc/dvips/fira/fir_7gpamp.enc}</usr/share/texlive/te
 xmf-dist/fonts/type1/public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on slide.pdf (10 pages, 868443 bytes).
+Output written on slide.pdf (11 pages, 965315 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
- 84 compressed objects within 1 object stream
- 21 named destinations out of 1000 (max. 500000)
- 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 128 PDF objects out of 1000 (max. 8388607)
+ 89 compressed objects within 1 object stream
+ 23 named destinations out of 1000 (max. 500000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

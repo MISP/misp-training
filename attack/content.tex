@@ -20,10 +20,10 @@
 \begin{frame}
   \frametitle{New ATT\&CK sighting reporting format}
   \begin{itemize}
-    \item Result of discussions with Mitre
+    \item Result of discussions with MITRE
     \item MISP server hosts can now decide to export an {\bf enumeration of the patterns} used based on the data-set
     \item Subject to all regular {\bf restSearch filtering methods} (time, organisation, context, etc)
-    \item Export returns the data-set in Mitre's owns {\bf ATT\&CK sighting format}
+    \item Export returns the data-set in MITRE's owns {\bf ATT\&CK sighting format}
   \end{itemize}
 \end{frame}
 
@@ -63,21 +63,24 @@
     \item {\bf Francesco Bigarella} from ING showcased {\bf attack4fraud}
     \begin{itemize}
       \item {\bf ATT\&CK like matrix}
-      \item Makes use of kill-chain phases 
+      \item Makes use of kill-chain phases
       \item Enables all of the advantages provided by the framework (such as technique frequency analysis)
     \end{itemize}
     \item This inspired us to allow for other matrix-like galaxies to be added
   \end{itemize}
+        \includegraphics[scale=0.3]{matrix-like.png}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{ATT\&CK matrices as a standardised methodology outcomes}
   \begin{itemize}
-    \item Several ATT\&CK like matrices added since
+    \item Several ATT\&CK like matrices added since in MISP galaxy
     \begin{itemize}
+      \item {\bf attck4fraud}
       \item {\bf Election guidelines}
-      \item {\bf Office 365 exchange techniques}
+      \item {\bf Office365 exchange techniques}
+      \item {\bf AM!TT Tactic} (Adversarial Misinformation and Influence Tactics and Techniques) framework for describing disinformation incidents
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -90,5 +93,19 @@
 \begin{frame}
   \frametitle{Office 365 techniques}
   \includegraphics[scale=0.3]{office.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{AM!TT Tactic (Adversarial Misinformation and Influence Tactics and Techniques)}
+  \includegraphics[scale=0.3]{amitt.png}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Conclusion}
+        \begin{itemize}
+                \item The matrix-like enhancement from the MISP galaxy format will be added in the default MISP galaxy standard format\footnote{\url{https://www.misp-standard.org/}}
+                \item MITRE ATT\&CK sighting export in MISP was a first step to automate sharing of sightings ($\rightarrow$ public/private repository of sightings)
+                \item ATT\&CK like matrices become more and more common, thanks the {\bf continuous work of the community}
+        \end{itemize}
 \end{frame}
 
