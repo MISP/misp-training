@@ -60,7 +60,7 @@
 \begin{frame}
   \frametitle{Initial workflow}
   \begin{center}
-    \includegraphics[scale=0.4]{workflow_initial.png}
+    \includegraphics[width=1.0\linewidth]{workflow_initial2.png}
   \end{center}
 \end{frame}
 
@@ -83,11 +83,11 @@
 \begin{itemize}
        \item There were separate factors that made our data-sets less and less useful for detection/defense in general
         \begin{itemize}
-                \item {\bf Growth of our communities} different organisations with different objectives often lead to different quality data or data with a different focus
-                \item More advanced protective methods relied on knowing {\bf why certain information is of interest}, rather than just being fed raw data
-                \item {\bf False positive management} became more pivotal - and more importantly more diverse based on different use-cases
-                \item {\bf TTPs and aggregate information} in general were much more important to threat intel analysts and those dealing with risk assessment than raw data
-                \item Due to the increased data volumes, depending on the tools being fed there was a growing need to be able to prioritise
+                \item Growth of our communities
+                \item Distinguish between information of interest and raw data
+                \item False positive management
+                \item TTPs and aggregate information may be prevalent compared to raw data (risk assessment)
+                \item Increased data volumes leads to be able to prioritise
         \end{itemize}
 \end{itemize}
 \end{frame}
@@ -124,7 +124,7 @@
     \end{itemize}
   \end{itemize}
   \begin{center}
-    \includegraphics[scale=0.24]{creativity.png}
+    \includegraphics[scale=0.45]{creativity.png}
   \end{center}
 \end{frame}
 
@@ -134,30 +134,37 @@
        \item We ended up with a mixed approach, currently implemented by the MISP-taxonomy system
         \begin{itemize}
                 \item Taxonomies are {\bf vocabularies} of known tags
-                \item Tags would be in a {\bf triple tag format} (namespace:predicate=''value'')
-                \item Each taxonomy tag could have an optional normalised {\bf numerical value} (0-100)
-                \item Create your own taxonomies, recipients should be able to use data you tag with them
+                \item Tags would be in a {\bf triple tag format}
+                    \begin{itemize}
+                        \item[] \texttt{namespace:predicate=''value''}
+                    \end{itemize}
+                \item Create your own taxonomies, recipients should be able to use data you tag with them without knowing it at the first place
                 \item Avoid any coding, stick to {\bf JSON}
         \end{itemize}
         \item Massive success, approaching 100 taxonomies
         \item Organisations can solve their own issues without having to rely on us
 \end{itemize}
+\includegraphics[scale=0.4]{taxonomy-workflow.png}
 \end{frame}
 
 \begin{frame}
 \frametitle{We were still missing something...}
-\begin{itemize}
+    \begin{itemize}
        \item Taxonomy tags were in some cases non self-explanatory
        \item Example: universal understanding of tlp:green vs APT 28
        \item For the latter, a single string was ill-suited
-       \item So we needed something new in addition to taxonomies - Galaxies
+       \item So we needed something new in addition to taxonomies - \textbf{Galaxies}
         \begin{itemize}
-                \item Community driven knowledge-base libraries used as tags
-                \item Including descriptions, links, synonyms, meta information, etc. 
-                \item Goal was to keep it simple and make it reusable
-                \item Internally it works the exact same way as taxonomies
+            \item Community driven \textbf{knowledge-base libraries used as tags}
+            \item Including descriptions, links, synonyms, meta information, etc. 
+            \item Goal was to keep it \textbf{simple and make it reusable}
+            \item Internally it works the exact same way as taxonomies (stick to \textbf{JSON})
         \end{itemize}
-\end{itemize}
+    \end{itemize}
+    \begin{center}
+        \hspace{10em}
+        \includegraphics[scale=0.30]{galaxy-ransomware.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -176,13 +183,17 @@
 \begin{frame}
 \frametitle{Parallel to the contextualisation efforts: False positive handling}
 \begin{itemize}
-        \item One of the most common criticisms: {\bf low quality / false positive} prone information being shared
-        \item Lead to {\bf alert-fatigue}, organisations not using the data in any automated fashion
-        \item Could you kick organisation xy out of the community?
-        \item False positives are often blatantly obvious - {\bf can't we encode this knowledge}?
+        \item Low quality / false positive prone information being shared
+        \item Lead to {\bf alert-fatigue}
+        \item Exclude organisation xy out of the community?
+        \item False positives are often obvious - {\bf can be encoded}
         \item {\bf Warninglist system}\footnote{\url{https://github.com/MISP/misp-warninglists}} aims to do that
-        \item Predefined lists of well-known indicators which are often false-positives like RFC1918 networks, public DNS resolver are included by default
+        \item Lists of well-known indicators which are often false-positives like RFC1918 networks, ...
 \end{itemize}
+\begin{center}
+    \includegraphics[scale=0.22]{warning-list.png}
+    \includegraphics[scale=0.45]{warning-list-event.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -225,10 +236,10 @@
 \begin{frame}
   \frametitle{Supporting specific datamodel}
   \begin{center}
-    \includegraphics[scale=0.3]{sighting-n.png}
+    \includegraphics[scale=0.5]{sighting-n.png}
   \end{center}
   \begin{center}
-    \includegraphics[scale=0.34]{Sightings2.PNG}
+    \includegraphics[scale=0.60]{Sightings2.PNG}
   \end{center}  
 \end{frame}
 
@@ -260,7 +271,7 @@
       "OR": [
         "misp-galaxy:threat-actor=\"Sofacy\"",
         "misp-galaxy:sector=\"Chemical\""
-      ]
+      ],
     }
 }
     \end{lstlisting}
@@ -345,7 +356,7 @@
     $$ \texttt{score}(\texttt{\tiny Attribute}) = \texttt{base\_score}(\texttt{\tiny Attribute, Model}) \;\;\bullet\;\; \texttt{decay}(\texttt{\tiny Model, time}) $$
     Where,\vspace{0.5cm}
     \begin{itemize}
-        \item \texttt{score} $ \in [0, +\infty $
+        \item \texttt{score} $ \in [0, 100] $
         \item \texttt{base\_score} $ \in [0, 100] $
         \item \texttt{decay} is a function defined by model's parameters controlling decay speed
         \item \texttt{Attribute} Contains \textit{Attribute}'s values and metadata {\scriptsize (\textit{Taxonomies}, \textit{Galaxies}, ...)}
