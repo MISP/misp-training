@@ -1,7 +1,8 @@
 \begin{itemize}
-    \item (09:00 - 10:30) Introduction to Information Sharing with MISP
-    \item (11:00 - 12:30) User perspective - diving into MISP functionalities and integration
+    \item (10:00 - 10:30) Introduction to Information Sharing with MISP
+    \item (10:30 - 12:30) User perspective - diving into MISP functionalities and integration
     \item (12:30 - 13:30) Lunch Break
     \item (13:30 - 15:00) Admin perspective - Synchronisation and figuring out the health of your MISP instance.
-    \item (15:30 - 17:00) Building your sharing community
+    \item (15:00 - 15:15) Small break
+    \item (15:15 - 17:00) Building your sharing community and Wrapping up
 \end{itemize}
