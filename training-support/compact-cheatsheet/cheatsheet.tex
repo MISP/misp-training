@@ -75,8 +75,8 @@
 
 \section{Virtual Machine (MISP Training VM)}
 
-The MISP Training VM is available at the following location : \url{https://www.circl.lu/misp-images/latest/}.\\
-The VM can be imported in VirtualBox or VMWare as an appliance (OVA).\\
+The MISP Training VM is available at the following location : \url{https://www.circl.lu/misp-images/}.\\
+The VM can be imported into VirtualBox or VMWare as an appliance (OVA).\\
 {\it The MISP training VM includes multiple applications and packages which are configured by default without
         production-ready secure settings. We strongly recommend to not use this VM for production and/or for storing sensitive information.}\\
 \section{Default URL and (username/password)}
@@ -93,12 +93,12 @@ The VM can be imported in VirtualBox or VMWare as an appliance (OVA).\\
 \section{How to get the API key of my user?}
         Go to the MISP web interface, and simply click your username in the right upper corner to see your user profile which includes your API key.
 \section{How to reset a password in MISP?}
-If you did any specific mistake while setting up your password at the first loging. You can reset the password by login
-        on the system (via SSH or terminal) and type the following command:
+If you did any specific mistake while setting up your password at the first login. You can reset the password by logging in
+        on the system (via SSH or terminal) and typing the following command:
 {\tt /var/www/MISP/app/Console/cake Password admin@admin.test YourTemporaryPasssword}
 \section{How to reset the bruteforce login protection?}
 While trying to log into MISP multiple times unsuccessfuly, the bruteforce protection might be triggered. You can reset the bruteforce
-        login protection's state by loging into the system (via SSH or terminal) and typing the following command:
+        login protection's state by logging into the system (via SSH or terminal) and typing the following command:
 {\tt /var/www/MISP/app/Console/cake Admin clearBruteforce}
         \section{How to upgrade MISP to the latest version?}
 Log in via SSH or terminal and type the following commands (your VM must have an Internet access):
@@ -108,10 +108,10 @@ Log in via SSH or terminal and type the following commands (your VM must have an
                 \item {\tt git submodule update ----init ----recursive}
         \end{enumerate}
         \section{Getting OSINT information into your MISP}
-        By default, a fresh installation of MISP is emtpy as we prefer to leave it up to the users to store, gather and share the information they need. If you would like to populate your MISP with some real-life data, simply enable the CIRCL OSINT feed, which contains cybersecurity threat-related information. In order to enable the OSINT feed, go to $\rightarrow$ {\tt Sync Actions} then $\rightarrow$ {\tt List Feeds}. Then select the first feed's (called {\tt CIRCL OSINT Feed}) checkbox and click on top {\tt Enable Selected}. Then on the right side of the {\tt CIRCL OSINT Feed} row, simply click the icon depicting a downward pointing arrow in a circle. Once you go back to the event index, the events will start appearing gradually.
+        By default, a fresh installation of MISP is empty as we prefer to leave it up to the users to store, gather, and share the information they need. If you would like to populate your MISP with some real-life data, simply enable the CIRCL OSINT feed, which contains cybersecurity threat-related information. In order to enable the OSINT feed, go to $\rightarrow$ {\tt Sync Actions} then $\rightarrow$ {\tt List Feeds}. Then select the checkbox next to the first feed (called {\tt CIRCL OSINT Feed}) and click on top {\tt Enable Selected}. To fetch all events from the selected feed, scroll to the right side of the {\tt CIRCL OSINT Feed} row and simply click the icon depicting a downward pointing arrow in a circle. Once you go back to the Event Index, the events will start appearing gradually.
 
 \section{Training materials and documentation}
-        The MISP training materials are available at the following location \url{https://www.circl.lu/services/misp-training-materials/} and are freely licensed under CC-BY-SA.
+        MISP training materials are available at the following location \url{https://www.circl.lu/services/misp-training-materials/} and are freely licensed under CC-BY-SA.
         MISP book is available at the following location \url{https://www.circl.lu/doc/misp/}.
 
 
