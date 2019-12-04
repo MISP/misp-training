@@ -339,7 +339,7 @@ private function __convertAttribute($attribute, $event) {
         '%s|%s|%s|%s|%s',
         $this->__escapeSpecialChars($attribute['value'][$part]),
         $this->__mapping[$attribute['type']][$part],
-        $event['uuid'],
+        /events/view/ . $event['uuid'],
         $this->__escapeSpecialChars($event['info']),
         $this->__decideOnAction($attribute['AttributeTag'])
       );
@@ -349,7 +349,7 @@ private function __convertAttribute($attribute, $event) {
       '%s|%s|%s|%s|%s',
       $this->__escapeSpecialChars($attribute['value']),
       $this->__mapping[$attribute['type']],
-      $event['uuid'],
+      /events/view/ . $event['uuid'],
       $this->__escapeSpecialChars($event['info']),
       $this->__decideOnAction($attribute['AttributeTag'])
     );
