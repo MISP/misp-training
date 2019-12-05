@@ -129,9 +129,9 @@
   \frametitle{Mapping the types to MISP}
   \begin{itemize}
     \item Though we have types to map from MISP, in some cases several types map to a Nibbler type
-    \item We've created a rough mapping (this is probably the most difficult task) in advance
+    \item We've created a rough {\bf mapping} (this is probably the most difficult task) in advance
     \item Some MISP types map to a Nibbler type directly
-    \item Composite MISP types map to 2 Nibbler types each
+    \item {\bf Composite} MISP types map to {\bf 2 Nibbler types} each
   \end{itemize}
 \end{frame}
 
@@ -390,9 +390,9 @@ private function __escapeSpecialChars($value)
 \begin{frame}[fragile]
   \frametitle{Modifying the MISP core to know about the export module}
   \begin{itemize}
-    \item The models that we are targeting by scope (Event, Attribute) need to be updated
-    \item They are located in /var/www/MISP/app/Model/
-    \item The global variable \$validFormats houses all mappings
+    \item The {\bf models} that we are targeting by scope (Event, Attribute) {\bf need to be updated}
+    \item They are located in {\bf /var/www/MISP/app/Model/}
+    \item The global variable {\bf \$validFormats} houses all mappings
     \item Simply add a new line such as the following:
     \item 'nibbler' => array('nibbler', 'NibblerExport', 'nibbler')
   \end{itemize}
@@ -401,9 +401,9 @@ private function __escapeSpecialChars($value)
 \begin{frame}[fragile]
   \frametitle{Let us test the module!}
   \begin{itemize}
-    \item Use the rest client to test it conveniently
+    \item Use the {\bf rest client} to test it conveniently
     \item Both the event and attribute level restSearch function should work
-    \item Simply set the returnFormat to nibbler, which should also show up as a valid export format
+    \item Simply set the {\bf returnFormat} to nibbler, which should also show up as a valid export format
   \end{itemize}
 \end{frame}
 
