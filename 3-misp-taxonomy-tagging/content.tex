@@ -12,14 +12,14 @@
    \item Tagging is a simple way to attach a classification to an event or an attribute.
    \item In the early version of MISP, tagging was local to an instance.
    \item {\bf Classification must be globally used to be efficient}.
-   \item After evaluating different solutions of classification, we build a new scheme using the concept of machine tags.
+   \item After evaluating different solutions of classification, we built a new scheme using the concept of machine tags.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Machine Tags}
         \begin{itemize}
-                \item Triple tag or machine tag was introduced in 2004 to extend geotagging on images.
+                \item Triple tag, or machine tag, format was introduced in 2004 to extend geotagging on images.
         \end{itemize}
         {
                 \setlength{\fboxsep}{1pt}
@@ -30,7 +30,7 @@
         \item A machine tag is just a tag expressed in way that allows systems to parse and interpret it.
         \item Still have a human-readable version:\\
         \begin{itemize}
-                \item admiralty-scale:Source Reliability="Fairly reliable"
+                \item admiralty-scale:source-reliability="Fairly reliable"
         \end{itemize}
         \end{itemize}
 \end{frame}
@@ -41,8 +41,8 @@
 \item Taxonomies are implemented in a simple JSON format.
 \item Anyone can create their own taxonomy or reuse an existing one.
 \item The taxonomies are in an independent git repository\footnote{\url{https://www.github.com/MISP/misp-taxonomies/}}.
-\item These can be freely reused and integrated in other threat intel tools.
-\item Taxonomies are licensed under CC0 (public domain) except if the taxonomy author decided to use another license.
+\item These can be freely reused and integrated into other threat intel tools.
+\item Taxonomies are licensed under Creative Commons (public domain) except if the taxonomy author decided to use another license.
 \end{itemize}
 \end{frame}
 
@@ -58,7 +58,7 @@
 \item OSINT {\bf Open Source Intelligence - Classification}
 \item TLP - {\bf Traffic Light Protocol}
 \item Vocabulary for Event Recording and Incident Sharing - {\bf VERIS}
-\item and many more like ENISA, Europol, or the draft FIRST SIG Information Exchange Policy.
+\item And many more like ENISA, Europol, or the draft FIRST SIG Information Exchange Policy.
 \end{itemize}
 \end{frame}
 
@@ -139,7 +139,7 @@
 \frametitle{How are taxonomies integrated in MISP?}
         \includegraphics[scale=0.21]{tags-2-4-70.png}
 \begin{itemize}
-        \item MISP administrator can just import (or even cherry pick) the namespace or predicates they want to use as tag.
+        \item MISP administrator can just import (or even cherry pick) the namespace or predicates they want to use as tags.
 \item Tags can be exported to other instances.
 \item Tags are also accessible via the MISP REST API.
 \end{itemize}
@@ -158,7 +158,7 @@
         \frametitle{Other use cases using MISP taxonomies}
 \begin{itemize}
     \item Tags can be used to set events or attributes for {\bf further processing by external tools} (e.g. VirusTotal auto-expansion using Viper).
-    \item Ensuring a classification manager {\bf classies the events before release} (e.g. release of information from air-gapped/classified networks).
+    \item Ensuring a classification manager {\bf classifies the events before release} (e.g. release of information from air-gapped/classified networks).
     \item {\bf Enriching IDS export} with tags to fit your NIDS deployment.
     \item Using {\bf IntelMQ} and MISP together to process events (tags limited per organization introduced in MISP 2.4.49).
 \end{itemize}
@@ -181,7 +181,7 @@
     \item {\bf Python module} to handle the taxonomies
     \item {\bf Offline} and online mode (fetch the newest taxonomies from GitHub)
     \item Simple {\bf search} to make tagging easy
-        \item Totally independant from MISP
+        \item Totally independent from MISP
         \item {\bf No external dependencies} in offline mode
         \item Python3 only
         \item Can be used to create \& {\bf dump a new taxonomy}
@@ -224,22 +224,22 @@ print(taxonomies.get('circl').machinetags_expanded())
 \end{frame}
 
 \begin{frame}
-        \frametitle{The dilemma of false-positive}
+        \frametitle{The dilemma of false-positives}
         \begin{itemize}
-            \item False-positive is a {\bf common issue} in threat intelligence sharing.
+            \item False-positives are a {\bf common issue} in threat intelligence sharing.
                 \item It's often a contextual issue:
                 \begin{itemize}
-                \item false-positive might be different per community of users sharing information.
-                \item organization might have their {\bf own view} on false-positive.
+                \item False-positives might be different per community of users sharing information.
+                \item Organizations might have their {\bf own view} on false-positives.
                 \end{itemize}
-        \item Based on the success of the MISP taxonomy model, we build misp-warninglists.
+        \item Based on the success of the MISP taxonomy model, we built misp-warninglists.
         \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]
         \frametitle{MISP warning lists}
         \begin{itemize}
-            \item misp-warninglists are lists of {\b well-known indicators} that can be associated to potential false positives, errors or mistakes.
+            \item misp-warninglists are lists of {\b well-known indicators} that can be associated to potential false positives, errors, or mistakes.
                 \item Simple JSON files
         \end{itemize}
 \begin{lstlisting}[language=json,firstnumber=1]
@@ -264,7 +264,7 @@ print(taxonomies.get('circl').machinetags_expanded())
 \item The warning lists are integrated in MISP to display an info/warning box at the event and attribute level.
 \item Enforceable via the API where all attributes that have a hit on a warninglist will be excluded.
 \item This can be enabled at MISP instance level.
-\item Default warning lists can be enabled or disabled like {\bf known public resolver}, {\bf multicast IP addresses}, {\bf hashes for empty values}, {\bf rfc1918}, {\bf TLDs} or {\bf known google domains}.
+\item Default warning lists can be enabled or disabled like {\bf known public resolver}, {\bf multicast IP addresses}, {\bf hashes for empty values}, {\bf rfc1918}, {\bf TLDs} or {\bf known Google domains}.
 \item The warning lists can be expanded or added in JSON locally or via pull requests.
 \item Warning lists can be also used for {\bf critical or core infrastructure warning}, {\bf personally identifiable information}...
 \end{itemize}
