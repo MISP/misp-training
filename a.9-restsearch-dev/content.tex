@@ -8,12 +8,12 @@
 \begin{frame}
   \frametitle{Building a native restSearch export}
   \begin{itemize}
-    \item Similar in scope to an export module via MISP modules
+    \item Similar in scope to an {\bf export module} of the MISP modules system
     \item Pros:
     \begin{itemize}
-      \item Can be used for composited data coming from a search
-      \item Fast, native approach
-      \item Can be built to support several scopes (events, attributes, sightings)
+      \item Can be used for composited data coming from a {\bf filtered query}
+      \item Fast, {\bf native approach}
+      \item Can be built to support {\bf several scopes} (events, attributes, sightings)
     \end{itemize}
     \item Cons...
   \end{itemize}
@@ -22,12 +22,12 @@
 \begin{frame}
   \frametitle{Building a native restSearch export}
   \begin{itemize}
-    \item Similar in scope to an export module via MISP modules
+        \item Similar in scope to an {\bf export module} of the MISP modules system
     \item Pros:
     \begin{itemize}
-      \item Can be used for composited data coming from a search
-      \item Fast, native approach
-      \item Can be built to support several scopes (events, attributes, sightings)
+      \item Can be used for composited data coming from a {\bf filtered query}
+      \item Fast, {\bf native approach}
+      \item Can be built to support {\bf several scopes} (events, attributes, sightings)
     \end{itemize}
     \item Cons...
   \end{itemize}
@@ -39,10 +39,10 @@
 \begin{frame}
   \frametitle{So how does restSearch work?}
   \begin{itemize}
-    \item Standardised way of collecting parameters
-    \item Using the parameters, a loop is started to chunk and gradually build our export data
+    \item Standardised way of collecting {\bf parameters}
+    \item Using the parameters, a loop is started to {\bf chunk and gradually build} our export data
     \item The chunk size depends on memory envelopes
-    \item Each chunk is converted piece by piece...
+    \item Each chunk is {\bf converted piece by piece}...
     \item ... and subsequently are concatenated into a temporary file
     \item Once no more elements are left, the file is sent in the response
   \end{itemize}
@@ -53,11 +53,11 @@
   \begin{itemize}
     \item The export modules handle 5 tasks:
     \begin{itemize}
-      \item Pass meta-information back to restSearch on the export format itself
-      \item Add a start section to the exported data
-      \item Do the actual conversion from MISP's internal format to the desired export format
-      \item Provide a separator for data chunks
-      \item Have a closing segment for the returned data, based on the format\'s conventions
+      \item Pass {\bf meta-information} back to restSearch on the export format itself
+      \item Add a {\bf start segment} to the exported data
+      \item Do the actual {\bf conversion} from MISP's internal format to the desired export format
+      \item Provide a {\bf separator} for data chunks
+      \item Have a {\bf closing segment} for the returned data, based on the format\'s conventions
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -72,19 +72,10 @@
 \begin{frame}
   \frametitle{Nibbler}
   \begin{itemize}
-    \item Simplistic tool with its own proprietary format
-    \item Meant to mimic a typical in-house tool
+    \item Simplistic tool with its {\bf own proprietary format}
+    \item Meant to mimic a typical {\bf in-house tool}
     \item Lightweight scope, for simplicity\'s sake
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Nibbler format}
-  \begin{itemize}
-    \item Format
-    \item Meant to mimic a typical in-house tool
-    \item Lightweight scope, for simplicity\'s sake
-    \item pipe separated values
+    \item {\bf pipe separated values}
     \item VALUE | TYPE | DESCRIPTION | REFERENCE | ACTION
   \end{itemize}
 \end{frame}
@@ -105,11 +96,11 @@
 \begin{frame}
   \frametitle{Nibbler format}
   \begin{itemize}
-    \item Value: The actual indicator value
-    \item Type: The format of the indicator
-    \item Description: A quick description for analysts investigating the alert, why is this relevant
-    \item Reference: A backreference that the analyst can use to find out more about the alert
-    \item Action: What should Nibbler do if it trips over the value?
+    \item {\bf Value}: The actual indicator value
+    \item {\bf Type}: The format of the indicator
+    \item {\bf Description}: A quick description for analysts investigating the alert, why is this relevant
+    \item {\bf Reference}: A backreference that the analyst can use to find out more about the alert
+    \item {\bf Action}: What should Nibbler do if it trips over the value?
   \end{itemize}
 \end{frame}
 
