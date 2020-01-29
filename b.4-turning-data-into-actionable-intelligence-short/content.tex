@@ -24,36 +24,23 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{The initial scope of MISP}
-  \begin{itemize}
-    \item {\bf Extract information} during the analysis process
-    \item Store and {\bf correlate} these datapoints
-    \item {\bf Share} the data with partners
-    \item Focus on technical indicators: IP, domain, hostname, hashes, filename, pattern in file/memory/traffic
-    \item Generate protective signatures out of the data: snort, suricata, OpenIOC
-  \end{itemize}
+\frametitle{What is MISP?}
+\begin{itemize}
+       \item Open source "TISP"
+       \item A tool that collects information from partners, your analysts, your tools, feeds
+       \item Normalises, correlates, enriches the data
+       \item Allows teams and communities to collaborate
+       \item Feeds automated protective tools and analyst tools with the output
+\end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Why was it so simplistic?}
-  \begin{itemize}
-    \item This was both a reflection of our maturity as a community
-    \begin{itemize}
-      \item Capabilities for {\bf extracting} information
-      \item Capabilities for {\bf utilising} the information
-      \item Lack of {\bf willingness} to share context
-      \item Lack of {\bf co-operation} between teams doing technical analysis/monitoring and threat-intel
-    \end{itemize}
-    \item The more growth we saw in maturity, the more we tried to match it with our data-model, often against pushback
-  \end{itemize}
-\end{frame}
 
 \begin{frame}
 \frametitle{The growing need to contextualise data}
 \begin{itemize}
-       \item There were separate factors that made our data-sets less and less useful for detection/defense in general
+       \item Contextualisation became more and more important as we as a community matured
         \begin{itemize}
-                \item {\bf Growth of our communities}
+                \item {\bf Growth and diversification} of our communities
                 \item Distinguish between information of interest and raw data
                 \item {\bf False-positive} management
                 \item TTPs and aggregate information may be prevalent compared to raw data (risk assessment)
@@ -244,22 +231,6 @@
     }
 }
     \end{lstlisting}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Synchronisation filters}
-  \begin{itemize}
-    \item Making decisions on whom to share data with based on context
-    \begin{itemize}
-      \item MISP by default decides based on the information creator's decision who data gets shared with
-      \item Community hosts can {\bf act as a safety net} for sharing
-      \begin{itemize}
-        \item {\bf Push filters} - what can I push?
-        \item {\bf Pull filters} - what am I interested in?
-        \item {\bf Local tags} allow for information flow control
-      \end{itemize}
-    \end{itemize}
-  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
