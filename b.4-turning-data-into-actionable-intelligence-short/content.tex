@@ -6,18 +6,10 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{about CIRCL}
-  \includegraphics[scale=0.4]{circl.png}
-  \begin{itemize}
-    \item The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven initiative designed to provide a systematic response facility to computer security threats and incidents. CIRCL is the CERT for the private sector, communes and non-governmental entities in Luxembourg and is operated by securitymadein.lu g.i.e.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
   \frametitle{MISP and CIRCL}
   \begin{itemize}
     \item CIRCL is mandated by the Ministry of Economy and acting as the Luxembourg National CERT for private sector.
-    \item CIRCL leads the development of the Open Source MISP threat intelligence platform which is used by many military or intelligence communities, private companies, financial sector, National CERTs and LEAs globally.
+    \item We lead the development of the Open Source MISP TISP which is used by many military or intelligence communities, private companies, financial sector, National CERTs and LEAs globally.
     \item {\bf CIRCL runs multiple large MISP communities performing active daily threat-intelligence sharing}.
   \end{itemize}
 \end{frame}
@@ -25,24 +17,9 @@
 \begin{frame}
   \frametitle{The aim of this presentation}
   \begin{itemize}
-     \item To give some insight into what sort of an evolution of our various communities' have gone through as observed over the past 8 years
-     \item Show the importance of {\bf strong contextualisation}...
-     \item ...and how that can be leveraged when trying to make our data {\bf actionable}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Development based on practical user feedback}
-  \begin{itemize}
-    \item There are many different types of users of an information sharing platform like MISP:
-    \begin{itemize}
-      \item {\bf Malware reversers} willing to share indicators of analysis with respective colleagues.
-      \item {\bf Security analysts} searching, validating and using indicators in operational security.
-      \item {\bf Intelligence analysts} gathering information about specific adversary groups.
-      \item {\bf Law-enforcement} relying on indicators to support or bootstrap their DFIR cases.
-      \item {\bf Risk analysis teams} willing to know about the new threats, likelyhood and occurences.
-      \item {\bf Fraud analysts} willing to share financial indicators to detect financial frauds.
-    \end{itemize}
+     \item Why is contextualisation important?
+     \item What options do we have in MISP?
+     \item How can we leverage this in the end?
   \end{itemize}
 \end{frame}
 
@@ -55,13 +32,6 @@
     \item Focus on technical indicators: IP, domain, hostname, hashes, filename, pattern in file/memory/traffic
     \item Generate protective signatures out of the data: snort, suricata, OpenIOC
   \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Initial workflow}
-  \begin{center}
-    \includegraphics[width=1.0\linewidth]{workflow_initial2.png}
-  \end{center}
 \end{frame}
 
 \begin{frame}
@@ -93,62 +63,53 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Our initial solution}
+\frametitle{Different layers of context}
 \begin{itemize}
-       \item Allow users to {\bf tag any information} created in MISP
-       \item We wanted to be {\bf lax with what we accept} in terms of data, but be {\bf strict on what we fed to our tools}, with strong filter options
-       \item We had some ideas on how to potentially move forward...
+       \item Context added by analysts / tools
+       \item Data that tells a story
+       \item Encoding analyst knowledge to automatically leverage the above
+\end{itemize}
+\end{frame}
+
+\section{Context added by analysts / tools}
+
+\begin{frame}
+\frametitle{Expressing why data-points matter}
+\begin{itemize}
+       \item An IP address by itself is barely ever interesting
+       \item We need to tell the recipient / machine why this is relevant
+       \item All data in MISP has a bare minimum required context
+       \item We differentiate between indicators and supporting data
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Our initial failures}
+\frametitle{Broadening the scope of what sort of context we are interested in}
 \begin{itemize}
-       \item Try to capture different aspects of contextualisation into {\bf normalised values} (threat level, source reliability, etc)
-        \begin{itemize}
-                \item Didn't scale with needs other than our own
-                \item Incorporating new types of contextualisation would mean {\bf the modification of the software}
-                \item Getting communities with {\bf established naming conventions} to use anything but their go-to vocabularies was a pipe-dream
-                \item Heated arguments over numeric conversions
-        \end{itemize}
+       \item {\bf Who} can receive our data? {\bf What} can they do with it?
+       \item {\bf Data accuracy, source reliability}
+       \item {\bf Why} is this data relevant to us?
+       \item {\bf Who} do we think is behind it, {\bf what tools} were used?
+       \item What sort of {\bf motivations} are we dealing with? Who are the {\bf targets}?
+       \item How can we {\bf block/detect/remediate} the attack?
+       \item What sort of {\bf impact} are we dealing with?
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Human creativity}
-  \begin{itemize}
-    \item We tried an alternate approach instead: Free tagging
-    \begin{itemize}
-      \item Result was spectacularly painful, at least 7 different ways to spell tlp:amber
-      \item No canonisation for common terms lead to tagging ultimately becoming a highly flawed tool for filtering within a sharing community
-    \end{itemize}
-  \end{itemize}
-  \begin{center}
-    \includegraphics[scale=0.45]{creativity.png}
-  \end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{How we ended up tackling the issue more successfuly}
+\frametitle{Tagging and taxonomies}
 \begin{itemize}
-       \item We ended up with a mixed approach, currently implemented by the MISP-taxonomy system
-        \begin{itemize}
-                \item Taxonomies are {\bf vocabularies} of known tags
-                \item Tags would be in a {\bf triple tag format}
-                    \begin{itemize}
-                        \item[] \texttt{namespace:predicate=''value''}
-                    \end{itemize}
-                \item Create your own taxonomies, recipients should be able to use data you tag with them without knowing it at the first place
-                \item Avoid any coding, stick to {\bf JSON}
-        \end{itemize}
-        \item Massive success, approaching 100 taxonomies
-        \item Organisations can solve their own issues without having to rely on us
+       \item Simple labels
+       \item Standardising on vocabularies
+       \item Different organisational/community cultures require different nomenclatures
+       \item Triple tag system - taxonomies
+       \item JSON libraries that can easily be defined without our intervention
+***********PICPLZ
 \end{itemize}
-\includegraphics[scale=0.4]{taxonomy-workflow.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{We were still missing something...}
+\frametitle{Galaxies}
     \begin{itemize}
        \item Taxonomy tags often {\bf non self-explanatory}
        \item Example: universal understanding of tlp:green vs APT 28
@@ -168,33 +129,21 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Broadening the scope of what sort of context we are interested in}
-\begin{itemize}
-       \item {\bf Who} can receive our data? {\bf What} can they do with it?
-       \item {\bf Data accuracy, source reliability}
-       \item {\bf Why} is this data relevant to us?
-       \item {\bf Who} do we think is behind it, {\bf what tools} were used?
-       \item What sort of {\bf motivations} are we dealing with? Who are the {\bf targets}?
-       \item How can we {\bf block/detect/remediate} the attack?
-       \item What sort of {\bf impact} are we dealing with?
-\end{itemize}
+  \frametitle{The emergence of ATT\&CK and similar galaxies}
+  \begin{itemize}
+    \item Standardising on high-level {\bf TTPs} was a solution to a long list of issues
+    \item Adoption was rapid, tools producing ATT\&CK data, familiar interface for users
+    \item A much better take on kill-chain phases in general
+    \item Feeds into our {\bf filtering} and {\bf situational awareness} needs extremely well
+    \item Gave rise to other, ATT\&CK-like systems tackling other concerns
+    \begin{itemize}
+      \item {\bf attck4fraud} \footnote{\url{https://www.misp-project.org/galaxy.html\#_attck4fraud}} by Francesco Bigarella from ING
+      \item {\bf Election guidelines} \footnote{\url{https://www.misp-project.org/galaxy.html\#_election_guidelines}} by NIS Cooperation Group
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Parallel to the contextualisation efforts: False positive handling}
-\begin{itemize}
-        \item Low quality / false positive prone information being shared
-        \item Lead to {\bf alert-fatigue}
-        \item Exclude organisation xy out of the community?
-        \item False positives are often obvious - {\bf can be encoded}
-        \item {\bf Warninglist system}\footnote{\url{https://github.com/MISP/misp-warninglists}} aims to do that
-        \item Lists of well-known indicators which are often false-positives like RFC1918 networks, ...
-\end{itemize}
-\begin{center}
-    \includegraphics[scale=0.22]{warning-list.png}
-    \includegraphics[scale=0.45]{warning-list-event.png}
-\end{center}
-\end{frame}
+\section{Data that tells a story}
 
 \begin{frame}
   \frametitle{More complex data-structures for a modern age}
@@ -243,15 +192,35 @@
   \end{center}  
 \end{frame}
 
+******TIMELINETHING
+
+\section{Encoding analyst knowledge to automatically leverage the above}
+
+\begin{frame}
+\frametitle{False positive handling}
+\begin{itemize}
+        \item Low quality / false positive prone information being shared
+        \item Lead to {\bf alert-fatigue}
+        \item Exclude organisation xy out of the community?
+        \item False positives are often obvious - {\bf can be encoded}
+        \item {\bf Warninglist system}\footnote{\url{https://github.com/MISP/misp-warninglists}} aims to do that
+        \item Lists of well-known indicators which are often false-positives like RFC1918 networks, ...
+\end{itemize}
+\begin{center}
+    \includegraphics[scale=0.22]{warning-list.png}
+    \includegraphics[scale=0.45]{warning-list-event.png}
+\end{center}
+\end{frame}
+
 \begin{frame}
   \frametitle{Making use of all this context}
   \begin{itemize}
-    \item Most obvious goal: Improve the way we query data
+    \item Providing advanced ways of querying data
     \begin{itemize}
-      \item Unified all export APIs
-      \item Incorporate all contextualisation options into {\bf API filters}
-      \item Allow for an {\bf on-demand} way of {\bf excluding potential false positives}
-      \item Allow users to easily {\bf build their own} export modules feed their various tools
+      \item Unified export APIs
+      \item Incorporating all contextualisation options into {\bf API filters}
+      \item Allowing for an {\bf on-demand} way of {\bf excluding potential false positives}
+      \item Allowing users to easily {\bf build their own} export modules feed their various tools
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -280,30 +249,15 @@
 \begin{frame}
   \frametitle{Synchronisation filters}
   \begin{itemize}
-    \item Make decisions on whom to share data with based on context
+    \item Making decisions on whom to share data with based on context
     \begin{itemize}
       \item MISP by default decides based on the information creator's decision who data gets shared with
-      \item Community hosts should be able to {\bf act as a safety net} for sharing
+      \item Community hosts can {\bf act as a safety net} for sharing
       \begin{itemize}
         \item {\bf Push filters} - what can I push?
         \item {\bf Pull filters} - what am I interested in?
         \item {\bf Local tags} allow for information flow control
       \end{itemize}
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{The emergence of ATT\&CK and similar galaxies}
-  \begin{itemize}
-    \item Standardising on high-level {\bf TTPs} was a solution to a long list of issues
-    \item Adoption was rapid, tools producing ATT\&CK data, familiar interface for users
-    \item A much better take on kill-chain phases in general
-    \item Feeds into our {\bf filtering} and {\bf situational awareness} needs extremely well
-    \item Gave rise to other, ATT\&CK-like systems tackling other concerns
-    \begin{itemize}
-      \item {\bf attck4fraud} \footnote{\url{https://www.misp-project.org/galaxy.html\#_attck4fraud}} by Francesco Bigarella from ING
-      \item {\bf Election guidelines} \footnote{\url{https://www.misp-project.org/galaxy.html\#_election_guidelines}} by NIS Cooperation Group
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -349,19 +303,6 @@
        \item A lot of prototyping
     \end{itemize}
   \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Scoring Indicators: Our solution}
-    $$ \texttt{score}(\texttt{\tiny Attribute}) = \texttt{base\_score}(\texttt{\tiny Attribute, Model}) \;\;\bullet\;\; \texttt{decay}(\texttt{\tiny Model, time}) $$
-    Where,\vspace{0.5cm}
-    \begin{itemize}
-        \item \texttt{score} $ \in [0, 100] $
-        \item \texttt{base\_score} $ \in [0, 100] $
-        \item \texttt{decay} is a function defined by model's parameters controlling decay speed
-        \item \texttt{Attribute} Contains \textit{Attribute}'s values and metadata {\scriptsize (\textit{Taxonomies}, \textit{Galaxies}, ...)}
-        \item \texttt{Model} Contains the \textit{Model}'s configuration
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
