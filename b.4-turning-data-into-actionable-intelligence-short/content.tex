@@ -151,7 +151,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Supporting specific datamodel}
+  \frametitle{Supporting specific datamodels}
   \begin{center}
     \includegraphics[scale=0.24]{bankaccount.png}
   \end{center}
@@ -162,12 +162,14 @@
 
 \begin{frame}
   \frametitle{Continuous feedback loop}
-  \begin{itemize}
-    \item Data ingested by MISP was in a sense frozen in time
-    \item We had a creation data, but lacked a way to use the output of our detection
+  \begin{itemize}		  
+    \item Data shared was {\bf frozen in time}
+    \item All we  had was a creation/modification timestamp
+    \item Improved tooling and willingness allowed us to create a {\bf feedback loop}
     \item Lead to the introduction of the {\bf Sighting system}
-    \item The community could sight indicators and convey the time of sighting
-    \item Potentially powerful tool for IoC lifecycle management, clumsy query implementation default
+    \item Signal the fact of an indicator sighting...
+    \item ...as well as {\bf when} and {\bf where} it was sighted
+    \item Vital component for IoC {\bf lifecycle management}
   \end{itemize}
 \end{frame}
 
@@ -184,16 +186,16 @@
 \begin{frame}
   \frametitle{A brief history of time - Adding temporality to our data}
   \begin{itemize}
-    \item {\bf 2.4.120} introduced {\bf \texttt{first\_seen}} and {\bf \texttt{last\_seen}}
+    \item Recently introduced {\bf \texttt{first\_seen}} and {\bf \texttt{last\_seen}} data points
     \item Along with a complete integration with the {\bf UI}
-    \item {\bf Visualizating} and {\bf editing} time component effortlessly
+    \item Enables the {\bf visualisation} and {\bf adjustment} of indicators timeframes 
   \end{itemize}
   \begin{center}
     \includegraphics[width=1.0\linewidth]{timeline-misp-overview.png}
   \end{center}
 \end{frame}
 
-\section{Encoding analyst knowledge to automatically leverage the above}
+\section{The various ways of encoding analyst knowledge to automatically leverage our TI}
 
 \begin{frame}
 \frametitle{False positive handling}
@@ -201,7 +203,7 @@
         \item Low quality / false positive prone information being shared
         \item Lead to {\bf alert-fatigue}
         \item Exclude organisation xy out of the community?
-        \item False positives are often obvious - {\bf can be encoded}
+        \item FPs are often obvious - {\bf can be encoded}
         \item {\bf Warninglist system}\footnote{\url{https://github.com/MISP/misp-warninglists}} aims to do that
         \item Lists of well-known indicators which are often false-positives like RFC1918 networks, ...
 \end{itemize}
