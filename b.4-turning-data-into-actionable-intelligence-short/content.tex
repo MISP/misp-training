@@ -17,9 +17,9 @@
 \begin{frame}
   \frametitle{The aim of this presentation}
   \begin{itemize}
-     \item Why is contextualisation important?
+     \item Why is {\bf contextualisation} important?
      \item What options do we have in MISP?
-     \item How can we leverage this in the end?
+     \item How can we {\bf leverage} this in the end?
   \end{itemize}
 \end{frame}
 
@@ -91,15 +91,17 @@
        \item Different organisational/community cultures require different nomenclatures
        \item Triple tag system - taxonomies
        \item JSON libraries that can easily be defined without our intervention
-***********PICPLZ
 \end{itemize}
+\includegraphics[width=1.0\linewidth]{taxonomy-workflow.png}
 \end{frame}
 
 \begin{frame}
 \frametitle{Galaxies}
     \begin{itemize}
-       \item Taxonomy tags often {\bf non self-explanatory}
+      \item Taxonomy tags often {\bf non self-explanatory}
+      \begin{itemize}
        \item Example: universal understanding of tlp:green vs APT 28
+      \end{itemize}
        \item For the latter, a single string was ill-suited
        \item So we needed something new in addition to taxonomies - \textbf{Galaxies}
         \begin{itemize}
@@ -170,7 +172,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Supporting specific datamodel}
+  \frametitle{Continuous feedback loop (2)}
   \begin{center}
     \includegraphics[scale=0.5]{sighting-n.png}
   \end{center}
@@ -179,7 +181,17 @@
   \end{center}  
 \end{frame}
 
-******TIMELINETHING
+\begin{frame}
+  \frametitle{A brief history of time - Adding temporality to our data}
+  \begin{itemize}
+    \item {\bf 2.4.120} introduced {\bf \texttt{first\_seen}} and {\bf \texttt{last\_seen}}
+    \item Along with a complete integration with the {\bf UI}
+    \item {\bf Visualizating} and {\bf editing} time component effortlessly
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{timeline-misp-overview.png}
+  \end{center}
+\end{frame}
 
 \section{Encoding analyst knowledge to automatically leverage the above}
 
@@ -266,12 +278,13 @@
   \begin{itemize}
     \item We were still missing a way to use all of these systems in combination to decay indicators
     \item Move the decision making \textbf{from complex filter options to} complex \textbf{decay models}
-    \item Decay models would take into account various \textbf{taxonomies}, \textbf{sightings}, the \textbf{type} of each indicator \textbf{Sightings} and \textbf{Creation date}
-    \item The first iteration of what we have in MISP now took:
+    \item Decay models would take into account various available {\bf context}
     \begin{itemize}
-       \item 2 years of research
-       \item 3 published research papers
-       \item A lot of prototyping
+      \item Taxonomies
+      \item Sightings
+      \item type of each indicator
+      \item Creation date
+      \item ...
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -313,23 +326,10 @@
     \end{lstlisting}
 \end{frame}
 
-
-\begin{frame}
-    \frametitle{Implementation in MISP: Index}
-    \includegraphics[width=1.00\linewidth]{decaying-index.png}
-    View, update, add, create, delete, enable, export, import
-\end{frame}
-
 \begin{frame}
     \frametitle{Implementation in MISP: Fine tuning tool}
     \includegraphics[width=1.00\linewidth]{decaying-tool.png}
     Create, modify, visualise, perform mapping
-\end{frame}
-
-\begin{frame}
-    \frametitle{Implementation in MISP: \texttt{base\_score} tool}
-    \includegraphics[width=1.00\linewidth]{decaying-basescore.png}
-    Adjust Taxonomies relative weights
 \end{frame}
 
 \begin{frame}
@@ -344,12 +344,7 @@
     \begin{lstlisting}
 {
     "includeDecayScore": 1,
-    "includeFullModel": 0,
     "excludeDecayed": 0,
-    "decayingModel": [85],
-    "modelOverrides": {
-        "threshold": 30
-    }
     "score": 30,
 }
     \end{lstlisting}
