@@ -1,0 +1,169 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Current state and identified issues with the tooling}
+  \begin{itemize}
+    \item Melicertes's current implementation relies on re-implementations of exchange protocols
+    \item Very high complexity
+    \item Some misalignments with the intents of the underlying tools
+    \item Difficult to extend with new tools or offer alternatives
+    \item Trust circle management is complex
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The way forward}
+  \begin{itemize}
+    \item Extract the core functionalities into a new tool: Cerebrate
+      \begin{itemize}
+         \item 	Trust Circles 2.0
+         \item ContactDB 2.0
+         \item Integration layer
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{High level goals}
+  \begin{itemize}
+    \item Modular design: Only Cerebrate itself is mandatory, all other components are optional
+    \item Cerebrate should purely interact with the Melicertes tooling via native APIs
+    \item Rely on built-in exchange layers for CSIRT to CSIRT exchange
+    \item Manage already deployed tools or deploy from scratch
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{ContactDB component}
+  \begin{itemize}
+    \item Manage metadata of organisations / individuals
+    \item Offer a public/semi public lookup service to validate / share contacts
+    \item Assign trust relationships to trusted central cerebrates for ContactDB lookups
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Trust Circle component}
+  \begin{itemize}
+    \item Build and maintain trust circles built from ContactDB organisations
+    \item Retrieve trust circle information from trusted cerebrate nodes
+    \item Instrument information exchange with other teams based on trust circles
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Integration layer}
+  \begin{itemize}
+    \item Configure and interconnect tools internally within a melicertes installation
+    \item Configure and interconnect tools between different organisations
+    \item Initiate the information exchange between tools using their native exchange mechanisms
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Goals}
+  \begin{itemize}
+    \item Code reuse using MISP
+    \begin{itemize}
+      \item Application ACL, API handling, templating reused
+      \item Reduces duplication of effort
+      \item MISP improvements will inherently improve Cerebrate
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Cerebrate functionalities}
+  \begin{itemize}
+    \item Internal functionalities
+    \begin{itemize}
+        \item Manage the 
+    \end{itemize}
+    \item External functionalities (Interconnect tools with other orgs, advertise public/trusted information)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Internal functionalities}
+  \begin{itemize}
+    \item Manage users
+    \item Manage signing keys
+    \item Maintain organisation information
+    \item Manage trust circles/sharing groups
+    \item Instrument Melicertes tools
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{External functionalities (ACL governed, from public to trust circle)}
+  \begin{itemize}
+    \item Organisation registry
+    \item User registry
+    \item signing key registry
+    \item Request access / inbox system
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Design principles}
+  \begin{itemize}
+    \item As much code reuse as possible (via MISP 3 core)
+    \begin{itemize}
+      \item Reduce development time
+      \item Assure inherent improvements by upgrades implemented downstream from MISP
+    \end{itemize}
+    \item Reliance on built-in APIs, hands-off aproach
+    \begin{itemize}
+      \item Do not try to replicate what\'s already there
+      \item Don\'t open ourselves up to risks from misunderstanding an implementation / building incorrect implementations
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Design principles continued}
+  \begin{itemize}
+    \item Modular design
+    \begin{itemize}
+      \item Interactions with other tools should happen in modules and not in the core logic of the application
+      \item Similar to misp export/modules system
+      \item Built in cerebrate core, allow for implementations in other languages (see MISP STIX export as a design example)
+    \end{itemize}
+    \item Tool agnostic design
+    \begin{itemize}
+      \item Allow for modules that add new or replace existing tools for given purposes (e.g: I want to use the Hive instead of RT)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Design principles continued}
+  \begin{itemize}
+    \item Build the tool with a generic use-case in mind
+    \begin{itemize}
+      \item Organisation/User/Sharing groups outside of the CSIRT network should find the tool just as useful
+      \item Other communities should be able to find just as much value in the tool as the CSIRT network
+      \item Bridging communities should be an option
+    \end{itemize}
+    \item Configuration and updating should be simplified and no 3rd party should be involved other than granting access to a network
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Design principles continued}
+  \begin{itemize}
+    \item User/organisation/trust circle exchange where applicable
+    \item Forwarded authentication method (when possible)
+    \item Instrumentation for org \- org exchange (MISP sync setup, Jitsi call initiation, etc)
+    \item Instrumentation for intra-tool exchange (Configure RT \- MISP link, Viper \- MISP, etc)
+    \item Optional statistics / diagnostics APIs / representation in cerebrate
+  \end{itemize}
+\end{frame}
+

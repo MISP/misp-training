@@ -1,0 +1,137 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Current state and identified issues with the tooling}
+  \begin{itemize}
+    \item Melicertes's current implementation relies on re-implementations of exchange protocols
+    \item Massive overhead
+    \item Misalignments with the intents of the underlying tools
+    \item Difficult to extend with new tools as each new tool would mean a new reimplementation
+    \item Trust circle management is complex and awkward
+    \item Tool is complex for complexity's sake
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The goal is a full revamping of the management tooling of Melicertes}
+  \begin{itemize}
+    \item New tool to manage Melicertes functionalities: Cerebrate Sync Platform
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Goals}
+  \begin{itemize}
+    \item Handle trust group management (based on the MISP sharing group system)
+    \item Handle user and key management for the whole set of Melicertes tooling
+    \item Basic orchestration of the Melicertes platform tools
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Goals}
+  \begin{itemize}
+    \item Reusing and adapting elements from the MISP code-base and paradigms shared by both tools
+    \begin{itemize}
+      \item Authentication
+      \item ACL
+      \item User + role management
+      \item API handling
+      \item Organisation and trust circle management
+    \end{itemize}
+    \item Reduce the replication of tasks with the various Melicertes tools, rely on native communication channels and instrument the tools via their respective APIs
+    \item Modular, extensible design for supported tools
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Cerebrate functionalities}
+  \begin{itemize}
+    \item Internal functionalities (orchestrate my tools, manage my users, contacts)
+    \item External functionalities (Interconnect tools with other orgs, advertise public/trusted information)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Internal functionalities}
+  \begin{itemize}
+    \item Manage users
+    \item Manage signing keys
+    \item Maintain organisation information
+    \item Manage trust circles/sharing groups
+    \item Instrument Melicertes tools
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{External functionalities (ACL governed, from public to trust circle)}
+  \begin{itemize}
+    \item Organisation registry
+    \item User registry
+    \item signing key registry
+    \item Request access / inbox system
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Design principles}
+  \begin{itemize}
+    \item As much code reuse as possible (via MISP 3 core)
+    \begin{itemize}
+      \item Reduce development time
+      \item Assure inherent improvements by upgrades implemented downstream from MISP
+    \end{itemize}
+    \item Reliance on built-in APIs, hands-off aproach
+    \begin{itemize}
+      \item Do not try to replicate what\'s already there
+      \item Don\'t open ourselves up to risks from misunderstanding an implementation / building incorrect implementations
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Design principles continued}
+  \begin{itemize}
+    \item Modular design
+    \begin{itemize}
+      \item Interactions with other tools should happen in modules and not in the core logic of the application
+      \item Similar to misp export/modules system
+      \item Built in cerebrate core, allow for implementations in other languages (see MISP STIX export as a design example)
+    \end{itemize}
+    \item Tool agnostic design
+    \begin{itemize}
+      \item Allow for modules that add new or replace existing tools for given purposes (e.g: I want to use the Hive instead of RT)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Design principles continued}
+  \begin{itemize}
+    \item Build the tool with a generic use-case in mind
+    \begin{itemize}
+      \item Organisation/User/Sharing groups outside of the CSIRT network should find the tool just as useful
+      \item Other communities should be able to find just as much value in the tool as the CSIRT network
+      \item Bridging communities should be an option
+    \end{itemize}
+    \item Configuration and updating should be simplified and no 3rd party should be involved other than granting access to a network
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Design principles continued}
+  \begin{itemize}
+    \item User/organisation/trust circle exchange where applicable
+    \item Forwarded authentication method (when possible)
+    \item Instrumentation for org \- org exchange (MISP sync setup, Jitsi call initiation, etc)
+    \item Instrumentation for intra-tool exchange (Configure RT \- MISP link, Viper \- MISP, etc)
+    \item Optional statistics / diagnostics APIs / representation in cerebrate
+  \end{itemize}
+\end{frame}
+
