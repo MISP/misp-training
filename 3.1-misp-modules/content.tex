@@ -154,6 +154,134 @@
         \end{adjustbox}
 \end{frame}
 
+\begin{frame}
+        \frametitle{MISP modules - configuration in the UI}
+        \includegraphics[scale=0.50]{modules-integration.png}
+\end{frame}
+
+\begin{frame}
+        \frametitle{MISP modules - How it's integrated in the UI?}
+        \includegraphics[scale=0.40]{screenshots/enrichment1.PNG}\\
+        \includegraphics[scale=0.38]{screenshots/enrichment2.PNG}\\
+        \includegraphics[scale=0.35]{screenshots/enrichment3.PNG}
+\end{frame}
+
+\begin{frame}
+        \frametitle{MISP modules - main types of modules}
+        \begin{itemize}
+            \item Expansion modules - enrich data that is in MISP
+                    \begin{itemize}
+                        \item Hover type - showing the expanded values directly on the attributes
+                        \item Expansion type - showing and adding the expanded values via a proposal form
+                    \end{itemize}
+            \item Import modules - import new data into MISP
+            \item Export modules - export existing data from MISP
+        \end{itemize}
+\end{frame}
+
+% \begin{frame}[fragile]
+%       \frametitle{Creating your Expansion module (Skeleton)}
+%       \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%       \begin{lstlisting}[language=python]
+%         import json
+%         import dns.resolver
+%
+%         misperrors = {'error' : 'Error'}
+%         mispattributes = {'input': [], 'output': []}
+%         moduleinfo = {'version': '', 'author': '',
+%                       'description': '', 'module-type': []}
+%
+%         def handler(q=False):
+%             if q is False:
+%                 return False
+%             request = json.loads(q)
+%             r = {'results': [{'types': [], 'values':[]}]}
+%             return r
+%         def introspection():
+%             return mispattributes
+%         def version():
+%             return moduleinfo
+%
+%               \end{lstlisting}
+%         \end{adjustbox}
+% \end{frame}
+
+% \begin{frame}[fragile]
+%       \frametitle{Creating your Expansion module (metadata 1)}
+%       \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%       \begin{lstlisting}[language=python]
+%         misperrors = {'error' : 'Error'}
+%         mispattributes = {'input': ['hostname', 'domain'], 'output': ['ip-src', 'ip-dst']}
+%         moduleinfo = {'version': '', 'author': '',
+%                       'description': '', 'module-type': []}
+%               \end{lstlisting}
+%         \end{adjustbox}
+% \end{frame}
+%
+% \begin{frame}[fragile]
+%       \frametitle{Creating your Expansion module (metadata 2)}
+%       \begin{adjustbox}{width=\textwidth,height=10cm,keepaspectratio}
+%       \begin{lstlisting}[language=python,showstringspaces=false]
+%         misperrors = {'error' : 'Error'}
+%         mispattributes = {'input': ['hostname', 'domain'], 'output': ['ip-src', 'ip-dst']}
+%         moduleinfo = {'version': '0.1', 'author': 'Alexandre Dulaunoy',
+%                      'description': 'Simple DNS expansion service to
+%               resolve IP address from MISP attributes', 'module-type': ['expansion','hover']}
+%         \end{lstlisting}
+%         \end{adjustbox}
+% \end{frame}
+%
+% \begin{frame}[fragile]
+%       \frametitle{Creating your Expansion module (handler 1)}
+%       \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%       \begin{lstlisting}[language=python]
+%         def handler(q=False):
+%             if q is False:
+%                 return False
+%             request = json.loads(q)
+%             # MAGIC
+%             # MORE MAGIC
+%             r = {'results': [
+%                 {'types': output_types, 'values':values},
+%                 {'types': output_types2, 'values':values2}
+%             ]}
+%             return r
+%               \end{lstlisting}
+%         \end{adjustbox}
+% \end{frame}
+%
+%
+% \begin{frame}[fragile]
+%       \frametitle{Creating your Expansion module (handler 2)}
+%       \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%       \begin{lstlisting}[language=python]
+%             if request.get('hostname'):
+%                 toquery = request['hostname']
+%             elif request.get('domain'):
+%                 toquery = request['domain']
+%             else:
+%                 return False
+%             r = dns.resolver.Resolver()
+%             r.timeout = 2
+%             r.lifetime = 2
+%             r.nameservers = ['8.8.8.8']
+%             try:
+%                 answer = r.query(toquery, 'A')
+%             except dns.resolver.NXDOMAIN:
+%                 misperrors['error'] = "NXDOMAIN"
+%                 return misperrors
+%             except dns.exception.Timeout:
+%                 misperrors['error'] = "Timeout"
+%                 return misperrors
+%             except:
+%                 misperrors['error'] = "DNS resolving error"
+%                 return misperrors
+%             r = {'results': [{'types': mispattributes['output'], 'values':[str(answer[0])]}]}
+%             return r
+%               \end{lstlisting}
+%         \end{adjustbox}
+% \end{frame}
+
 \begin{frame}[fragile]
         \frametitle{Querying a module}
         \begin{itemize}
@@ -171,136 +299,8 @@
         \end{lstlisting}
 \end{frame}
 
-\begin{frame}
-        \frametitle{MISP modules - How it's integrated in the UI?}
-        \includegraphics[scale=0.40]{screenshots/enrichment1.PNG}\\
-        \includegraphics[scale=0.38]{screenshots/enrichment2.PNG}\\
-        \includegraphics[scale=0.35]{screenshots/enrichment3.PNG}
-\end{frame}
-
-\begin{frame}
-        \frametitle{MISP modules - configuration in the UI}
-        \includegraphics[scale=0.50]{modules-integration.png}
-\end{frame}
-
-\begin{frame}
-        \frametitle{MISP modules - main types of modules}
-        \begin{itemize}
-            \item Expansion modules - enrich data that is in MISP
-                    \begin{itemize}
-                        \item Hover type - showing the expanded values directly on the attributes
-                        \item Expansion type - showing and adding the expanded values via a proposal form
-                    \end{itemize}
-            \item Import modules - import new data into MISP
-            \item Export modules - export existing data from MISP
-        \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-      \frametitle{Creating your Expansion module (Skeleton)}
-      \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-      \begin{lstlisting}[language=python]
-        import json
-        import dns.resolver
-
-        misperrors = {'error' : 'Error'}
-        mispattributes = {'input': [], 'output': []}
-        moduleinfo = {'version': '', 'author': '',
-                      'description': '', 'module-type': []}
-
-        def handler(q=False):
-            if q is False:
-                return False
-            request = json.loads(q)
-            r = {'results': [{'types': [], 'values':[]}]}
-            return r
-        def introspection():
-            return mispattributes
-        def version():
-            return moduleinfo
-
-              \end{lstlisting}
-        \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-      \frametitle{Creating your Expansion module (metadata 1)}
-      \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-      \begin{lstlisting}[language=python]
-        misperrors = {'error' : 'Error'}
-        mispattributes = {'input': ['hostname', 'domain'], 'output': ['ip-src', 'ip-dst']}
-        moduleinfo = {'version': '', 'author': '',
-                      'description': '', 'module-type': []}
-              \end{lstlisting}
-        \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-      \frametitle{Creating your Expansion module (metadata 2)}
-      \begin{adjustbox}{width=\textwidth,height=10cm,keepaspectratio}
-      \begin{lstlisting}[language=python,showstringspaces=false]
-        misperrors = {'error' : 'Error'}
-        mispattributes = {'input': ['hostname', 'domain'], 'output': ['ip-src', 'ip-dst']}
-        moduleinfo = {'version': '0.1', 'author': 'Alexandre Dulaunoy',
-                     'description': 'Simple DNS expansion service to
-              resolve IP address from MISP attributes', 'module-type': ['expansion','hover']}
-        \end{lstlisting}
-        \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-      \frametitle{Creating your Expansion module (handler 1)}
-      \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-      \begin{lstlisting}[language=python]
-        def handler(q=False):
-            if q is False:
-                return False
-            request = json.loads(q)
-            # MAGIC
-            # MORE MAGIC
-            r = {'results': [
-                {'types': output_types, 'values':values},
-                {'types': output_types2, 'values':values2}
-            ]}
-            return r
-              \end{lstlisting}
-        \end{adjustbox}
-\end{frame}
-
-
-\begin{frame}[fragile]
-      \frametitle{Creating your Expansion module (handler 2)}
-      \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-      \begin{lstlisting}[language=python]
-            if request.get('hostname'):
-                toquery = request['hostname']
-            elif request.get('domain'):
-                toquery = request['domain']
-            else:
-                return False
-            r = dns.resolver.Resolver()
-            r.timeout = 2
-            r.lifetime = 2
-            r.nameservers = ['8.8.8.8']
-            try:
-                answer = r.query(toquery, 'A')
-            except dns.resolver.NXDOMAIN:
-                misperrors['error'] = "NXDOMAIN"
-                return misperrors
-            except dns.exception.Timeout:
-                misperrors['error'] = "Timeout"
-                return misperrors
-            except:
-                misperrors['error'] = "DNS resolving error"
-                return misperrors
-            r = {'results': [{'types': mispattributes['output'], 'values':[str(answer[0])]}]}
-            return r
-              \end{lstlisting}
-        \end{adjustbox}
-\end{frame}
-
  \begin{frame}[fragile]
-      \frametitle{Creating your module - finished DNS module}
+      \frametitle{Creating your module - DNS module}
       \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
       \begin{lstlisting}[language=python]
         import json
@@ -423,205 +423,206 @@
        \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-      \frametitle{Creating your Import module (Skeleton)}
-      \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-      \begin{lstlisting}[language=python]
-        import json
+% \begin{frame}[fragile]
+%       \frametitle{Creating your Import module (Skeleton)}
+%       \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%       \begin{lstlisting}[language=python]
+%         import json
+%
+%         misperrors = {'error' : 'Error'}
+%         userConfig = {
+%                          'number1': {
+%                              'type': 'Integer',
+%                              'regex': '/^[0-4]$/i',
+%                              'errorMessage': 'Expected a number in range [0-4]',
+%                              'message': 'Column number used for value'
+%                          }
+%                      };
+%         inputSource = ['file', 'paste']
+%         moduleinfo = {'version': '', 'author': '',
+%                       'description': '', 'module-type': ['import']}
+%         moduleconfig=[]
+%
+%         def handler(q=False):
+%             if q is False:
+%                 return False
+%             request = json.loads(q)
+%             request["data"] = base64.b64decode(request["data"])
+%             r = {'results': [{'categories': [], 'types': [], 'values':[]}]}
+%             return r
+%
+%         def introspection():
+%             return {'userConfig': userConfig, 'inputSource': inputSource, 'moduleConfig': moduleConfig}
+%
+%         def version():
+%             return moduleinfo
+%               \end{lstlisting}
+%         \end{adjustbox}
+% \end{frame}
 
-        misperrors = {'error' : 'Error'}
-        userConfig = {
-                         'number1': {
-                             'type': 'Integer',
-                             'regex': '/^[0-4]$/i',
-                             'errorMessage': 'Expected a number in range [0-4]',
-                             'message': 'Column number used for value'
-                         }
-                     };
-        inputSource = ['file', 'paste']
-        moduleinfo = {'version': '', 'author': '',
-                      'description': '', 'module-type': ['import']}
-        moduleconfig=[]
-
-        def handler(q=False):
-            if q is False:
-                return False
-            request = json.loads(q)
-            request["data"] = base64.b64decode(request["data"])
-            r = {'results': [{'categories': [], 'types': [], 'values':[]}]}
-            return r
-
-        def introspection():
-            return {'userConfig': userConfig, 'inputSource': inputSource, 'moduleConfig': moduleConfig}
-
-        def version():
-            return moduleinfo
-              \end{lstlisting}
-        \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Creating your import module (userConfig and inputSource)}
-    \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-        \begin{lstlisting}[language=python]
-            userConfig = {
-                'number1': {
-                    'type': 'Integer',
-                    'regex': '/^[0-4]$/i',
-                    'errorMessage': 'Expected a number in range [0-4]',
-                    'message': 'Column number used for value'
-                }
-            };
-            inputSource = ['file', 'paste']
-        \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Creating your import module (Handler)}
-    \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-        \begin{lstlisting}[language=python]
-            def handler(q=False):
-                if q is False:
-                    return False
-                request = json.loads(q)
-                request["data"] = base64.b64decode(request["data"])
-                r = {'results': [{'categories': [], 'types': [], 'values':[]}]}
-                return r
-        \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Creating your import module (Introspection)}
-    \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-        \begin{lstlisting}[language=python]
-            def introspection():
-                modulesetup = {}
-                try:
-                    userConfig
-                    modulesetup['userConfig'] = userConfig
-                except NameError:
-                    pass
-                try:
-                    moduleConfig
-                    modulesetup['moduleConfig'] = moduleConfig
-                except NameError:
-                    pass
-                try:
-                    inputSource
-                    modulesetup['inputSource'] = inputSource
-                except NameError:
-                    pass
-                return modulesetup
-        \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
+% \begin{frame}[fragile]
+%     \frametitle{Creating your import module (userConfig and inputSource)}
+%     \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%         \begin{lstlisting}[language=python]
+%             userConfig = {
+%                 'number1': {
+%                     'type': 'Integer',
+%                     'regex': '/^[0-4]$/i',
+%                     'errorMessage': 'Expected a number in range [0-4]',
+%                     'message': 'Column number used for value'
+%                 }
+%             };
+%             inputSource = ['file', 'paste']
+%         \end{lstlisting}
+%     \end{adjustbox}
+% \end{frame}
+%
+% \begin{frame}[fragile]
+%     \frametitle{Creating your import module (Handler)}
+%     \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%         \begin{lstlisting}[language=python]
+%             def handler(q=False):
+%                 if q is False:
+%                     return False
+%                 request = json.loads(q)
+%                 request["data"] = base64.b64decode(request["data"])
+%                 r = {'results': [{'categories': [], 'types': [], 'values':[]}]}
+%                 return r
+%         \end{lstlisting}
+%     \end{adjustbox}
+% \end{frame}
+%
+% \begin{frame}[fragile]
+%     \frametitle{Creating your import module (Introspection)}
+%     \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%         \begin{lstlisting}[language=python]
+%             def introspection():
+%                 modulesetup = {}
+%                 try:
+%                     userConfig
+%                     modulesetup['userConfig'] = userConfig
+%                 except NameError:
+%                     pass
+%                 try:
+%                     moduleConfig
+%                     modulesetup['moduleConfig'] = moduleConfig
+%                 except NameError:
+%                     pass
+%                 try:
+%                     inputSource
+%                     modulesetup['inputSource'] = inputSource
+%                 except NameError:
+%                     pass
+%                 return modulesetup
+%         \end{lstlisting}
+%     \end{adjustbox}
+% \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Export modules}
     \begin{itemize}
-       \item Input is currently only a single event
-       \item Dynamic settings
-       \item Later on to be expanded to event collections / attribute collections
-       \item Output is a file in the export format served back to the user
-       \item Export modules was recently introduced but a CEF export module already available
-       \item Lots of ideas for upcoming modules and including interaction with misp-darwin
+        \item Not the preferred way to export data from MISP
+        \item Input is currently only a single event
+        \item Output is a file in the export format served back to the user
+        \item Will be moved / merged with MISP built-in export modules
+        \begin{itemize}
+            \item Allows export of event / attribute collections
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-      \frametitle{Creating your Export module (Skeleton)}
-      \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-      \begin{lstlisting}[language=python]
-        import json
-        inputSource = ['event']
-        outputFileExtension = 'txt'
-        responseType = 'application/txt'
-        moduleinfo = {'version': '0.1', 'author': 'Andras Iklody',
-                      'description': 'Skeleton export module',
-                      'module-type': ['export']}
-
-        def handler(q=False):
-            if q is False:
-                return False
-            request = json.loads(q)
-            # insert your magic here!
-            output = my_magic(request["data"])
-            r = {"data":base64.b64encode(output.encode('utf-8')).decode('utf-8')}
-            return r
-
-        def introspection():
-            return {'userConfig': userConfig, 'inputSource': inputSource, 'moduleConfig': moduleConfig, 'outputFileExtension': outputFileExtension}
-
-        def version():
-            return moduleinfo
-              \end{lstlisting}
-        \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Creating your export module (settings)}
-    \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-        \begin{lstlisting}[language=python]
-            inputSource = ['event']
-            outputFileExtension = 'txt'
-            responseType = 'application/txt'
-        \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Creating your export module (handler)}
-    \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-        \begin{lstlisting}[language=python]
-            def handler(q=False):
-                if q is False:
-                    return False
-                request = json.loads(q)
-                # insert your magic here!
-                output = my_magic(request["data"])
-                r = {"data":base64.b64encode(output.encode('utf-8')).decode('utf-8')}
-                return r
-        \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Creating your export module (introspection)}
-    \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-        \begin{lstlisting}[language=python]
-            def introspection():
-                modulesetup = {}
-                try:
-                    responseType
-                    modulesetup['responseType'] = responseType
-                except NameError:
-                    pass
-                try:
-                    userConfig
-                    modulesetup['userConfig'] = userConfig
-                except NameError:
-                    pass
-                try:
-                    moduleConfig
-                    modulesetup['moduleConfig'] = moduleConfig
-                except NameError:
-                    pass
-                try:
-                    outputFileExtension
-                    modulesetup['outputFileExtension'] = outputFileExtension
-                except NameError:
-                    pass
-                try:
-                    inputSource
-                    modulesetup['inputSource'] = inputSource
-                except NameError:
-                    pass
-                return modulesetup
-        \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
+% \begin{frame}[fragile]
+%       \frametitle{Creating your Export module (Skeleton)}
+%       \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%       \begin{lstlisting}[language=python]
+%         import json
+%         inputSource = ['event']
+%         outputFileExtension = 'txt'
+%         responseType = 'application/txt'
+%         moduleinfo = {'version': '0.1', 'author': 'Andras Iklody',
+%                       'description': 'Skeleton export module',
+%                       'module-type': ['export']}
+%
+%         def handler(q=False):
+%             if q is False:
+%                 return False
+%             request = json.loads(q)
+%             # insert your magic here!
+%             output = my_magic(request["data"])
+%             r = {"data":base64.b64encode(output.encode('utf-8')).decode('utf-8')}
+%             return r
+%
+%         def introspection():
+%             return {'userConfig': userConfig, 'inputSource': inputSource, 'moduleConfig': moduleConfig, 'outputFileExtension': outputFileExtension}
+%
+%         def version():
+%             return moduleinfo
+%               \end{lstlisting}
+%         \end{adjustbox}
+% \end{frame}
+%
+% \begin{frame}[fragile]
+%     \frametitle{Creating your export module (settings)}
+%     \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%         \begin{lstlisting}[language=python]
+%             inputSource = ['event']
+%             outputFileExtension = 'txt'
+%             responseType = 'application/txt'
+%         \end{lstlisting}
+%     \end{adjustbox}
+% \end{frame}
+%
+% \begin{frame}[fragile]
+%     \frametitle{Creating your export module (handler)}
+%     \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%         \begin{lstlisting}[language=python]
+%             def handler(q=False):
+%                 if q is False:
+%                     return False
+%                 request = json.loads(q)
+%                 # insert your magic here!
+%                 output = my_magic(request["data"])
+%                 r = {"data":base64.b64encode(output.encode('utf-8')).decode('utf-8')}
+%                 return r
+%         \end{lstlisting}
+%     \end{adjustbox}
+% \end{frame}
+%
+% \begin{frame}[fragile]
+%     \frametitle{Creating your export module (introspection)}
+%     \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+%         \begin{lstlisting}[language=python]
+%             def introspection():
+%                 modulesetup = {}
+%                 try:
+%                     responseType
+%                     modulesetup['responseType'] = responseType
+%                 except NameError:
+%                     pass
+%                 try:
+%                     userConfig
+%                     modulesetup['userConfig'] = userConfig
+%                 except NameError:
+%                     pass
+%                 try:
+%                     moduleConfig
+%                     modulesetup['moduleConfig'] = moduleConfig
+%                 except NameError:
+%                     pass
+%                 try:
+%                     outputFileExtension
+%                     modulesetup['outputFileExtension'] = outputFileExtension
+%                 except NameError:
+%                     pass
+%                 try:
+%                     inputSource
+%                     modulesetup['inputSource'] = inputSource
+%                 except NameError:
+%                     pass
+%                 return modulesetup
+%         \end{lstlisting}
+%     \end{adjustbox}
+% \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{New expansion \& import modules format}
@@ -636,8 +637,20 @@
     \end{adjustbox}
     \begin{itemize}
         \item Takes a standard MISP attribute as input
-        \item Can return MISP attributes, objects \& tags
-        \item Supports relationships
+        \item Returns MISP format
+        \begin{itemize}
+            \item Attributes
+            \item Objects (with their references)
+            \item Tags
+        \end{itemize}
+    \end{itemize}
+    \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+        \begin{lstlisting}[language=python]
+            results = {'Attribute': [...], 'Object': [...],
+                       'Tag': [...]}
+        \end{lstlisting}
+    \end{adjustbox}
+    \begin{itemize}
         \item First modules supporting this new export format
             \begin{itemize}
                 \item urlhaus expansion module
@@ -652,11 +665,15 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Upcoming additions to the module system - General}
+    \frametitle{Future of the modules system}
     \begin{itemize}
-        \item Expose the modules to the APIs
+        \item Enrichment on full events
         \item Move the modules to background processes with a messaging system
-        \item Difficulty is dealing with uncertain results on import (without the user having final say)
+        \item Have a way to skip the results preview
+        \begin{itemize}
+            \item Preview can be very heavy
+            \item Difficulty is dealing with uncertain results (without the user having final say)
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -670,4 +687,3 @@
 \end{itemize}
 
 \end{frame}
-
