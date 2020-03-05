@@ -33,7 +33,7 @@
 \begin{frame}
   \frametitle{Dashboard in MISP}
   \begin{itemize}
-    \item User configured simple dashboard interface
+    \item User configurable simple dashboard interface
     \item {\bf Visualise}, {\bf aggregate} and {\bf track} data important to you
     \item Brand new feature, still undergoing reworks
   \end{itemize}
@@ -43,21 +43,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{The internals of a widget}
-  \begin{itemize}
-        \item The widget file itself
-        \begin{itemize}
-            \item Acts as the backend for the widget, full access to all MISP internals
-            \item Load data, convert it to a format easily represented by the appropriate views
-            \item Controls the default settings of the widget - size, name, behaviours
-            \item Only main function required to be implemented: handler()
-            \item Optional recognised function: checkPermissions() for ACL
-        \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{The internals of the widget}
+  \frametitle{The internals of awidget}
         \begin{itemize} 
             \item {\bf Backend} for the widget, full access to all MISP internals
             \item {\bf Load, convert, format} to be represented via view widgets
@@ -88,18 +74,20 @@
 \begin{frame}
   \frametitle{Widget behaviours}
   \begin{itemize}
-    \item Widgets can additionally be tied to certain {\bf behaviours}
-    \item Caching
+    \item Widgets can additionally be tied to certain {\bf behaviours}:
     \begin{itemize}
-      \item Executions of the widget logic are cached
-      \item {\bf Separate caches for each organisation in addition to site admins}
-      \item Cache duration is controlled by the widget logic
+      \item Caching
+      \begin{itemize}
+        \item Executions of the widget logic are cached
+        \item {\bf Separate caches for each organisation in addition to site admins}
+        \item Cache duration is controlled by the widget logic
+      \end{itemize}
+      \item Refresh
+      \begin{itemize}
+        \item Widgets can be set to refresh after x seconds
+      \end{itemize}
+      \item Both of these should be used with special care in regards to the use of {\bf system resources}
     \end{itemize}
-    \item Refresh
-    \begin{itemize}
-      \item Widgets can be set to refresh after x seconds
-    \end{itemize}
-    \item Both of these should be used with special care in regards to the use of {\bf system resources}
   \end{itemize}
 \end{frame}
 
