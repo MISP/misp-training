@@ -1,197 +1,237 @@
 % DO NOT COMPILE THIS FILE DIRECTLY!
 % This is included by the other .tex files.
 
-\begin{frame}
+\begin{frame}[t,plain]
 \titlepage
 \end{frame}
 
 \begin{frame}
-  \frametitle{MISP and CIRCL}
-  \begin{itemize}
-    \item CIRCL is mandated by the Ministry of Economy and acting as the Luxembourg National CERT for private sector.
-    \item We lead the development of the Open Source MISP TISP which is used by many military or intelligence communities, private companies, financial sector, National CERTs and LEAs globally.
-    \item {\bf CIRCL runs multiple large MISP communities performing active daily threat-intelligence sharing}.
-  \end{itemize}
+ \frametitle{MISP features}
+ \begin{itemize}
+         \item MISP\footnote{\url{https://github.com/MISP/MISP}} is a threat information sharing free \& open source software.
+         \item MISP has {\bf a host of functionalities} that assist users in creating, collaborating \& sharing threat information - e.g. flexible sharing groups, {\bf automatic correlation}, free-text import helper, event distribution \& proposals.
+         \item Many export formats which support IDSes / IPSes (e.g. Suricata, Bro, Snort), SIEMs (eg CEF), Host scanners (e.g. OpenIOC, STIX, CSV, yara), analysis tools (e.g. Maltego), DNS policies (e.g. RPZ).
+         \item A rich set of MISP modules\footnote{\url{https://www.github.com/MISP/misp-modules}} to add expansion, import and export functionalities.
+ \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{The aim of this presentation}
-  \begin{itemize}
-     \item Why is {\bf contextualisation} important?
-     \item What options do we have in MISP?
-     \item How can we {\bf leverage} this in the end?
-  \end{itemize}
+ \frametitle{MISP and starting from a practical use-case}
+ \begin{itemize}
+         \item During a malware analysis workgroup in 2012, we discovered that we worked on the analysis of the same malware.
+         \item We wanted to share information in an easy and automated way {\bf to avoid duplication of work}.
+         \item Christophe Vandeplas (then working at the CERT for the Belgian MoD) showed us his work on a platform that later became MISP.
+         \item A first version of the MISP Platform was used by the MALWG and {\bf the increasing feedback of users} helped us to build an improved platform.
+         \item MISP is now {\bf a community-driven development}.
+ \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{What is MISP?}
+\frametitle{about CIRCL}
+The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven initiative designed to provide a systematic response facility to computer security threats and incidents. CIRCL is the CERT for the private sector, communes and non-governmental entities in Luxembourg and is operated by securitymadein.lu g.i.e.
+\end{frame}
+
+\begin{frame}
+\frametitle{MISP and CIRCL}
 \begin{itemize}
-       \item Open source "TISP" - A TIP with a strong focus on sharing
-       \item Thanks to Andreas we don't have to explain what a TIP is... :) 
-       \item A tool that {\bf collects} information from partners, your analysts, your tools, feeds
-       \item Normalises, correlates, enriches the data
-       \item Allows teams and communities to {\bf collaborate}
-       \item {\bf Feeds} automated protective tools and analyst tools with the output
+\item CIRCL is mandated by the Ministry of Economy and acting as the Luxembourg National CERT for private sector.
+\item CIRCL leads the development of the Open Source MISP threat intelligence platform which is used by many military or intelligence communities, private companies, financial sector, National CERTs and LEAs globally.
+\item {\bf CIRCL runs multiple large MISP communities performing active daily threat-intelligence sharing}.
 \end{itemize}
+        \includegraphics{en_cef.png}
 \end{frame}
 
+\begin{frame}
+\frametitle{MISP model of governance}
+\includegraphics[scale=0.4]{governance.png}
+\end{frame}
 
 \begin{frame}
-\frametitle{The growing need to contextualise data}
+\frametitle{Development based on practical user feedback}
 \begin{itemize}
-       \item Contextualisation became more and more important as we as a community matured
+\item There are many different types of users of an information sharing platform like MISP:
         \begin{itemize}
-                \item {\bf Growth and diversification} of our communities
-                \item Distinguish between information of interest and raw data
-                \item {\bf False-positive} management
-                \item TTPs and aggregate information may be prevalent compared to raw data (risk assessment)
-                \item {\bf Increased data volumes} leads to a need to be able to prioritise
-	\end{itemize}
-	\item These help with filtering your TI based on your {\bf requirements}...
-	\item ...as highlighted by Pasquale Stirparo \textit{Your Requirements Are Not My Requirements}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Different layers of context}
-\begin{itemize}
-       \item Context added by analysts / tools
-       \item Data that tells a story
-       \item Encoding analyst knowledge to automatically leverage the above
-\end{itemize}
-\end{frame}
-
-\section{Context added by analysts / tools}
-
-\begin{frame}
-\frametitle{Expressing why data-points matter}
-\begin{itemize}
-       \item An IP address by itself is barely ever interesting
-       \item We need to tell the recipient / machine why this is relevant
-       \item All data in MISP has a bare minimum required context
-       \item We differentiate between indicators and supporting data
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Broadening the scope of what sort of context we are interested in}
-\begin{itemize}
-       \item {\bf Who} can receive our data? {\bf What} can they do with it?
-       \item {\bf Data accuracy, source reliability}
-       \item {\bf Why} is this data relevant to us?
-       \item {\bf Who} do we think is behind it, {\bf what tools} were used?
-       \item What sort of {\bf motivations} are we dealing with? Who are the {\bf targets}?
-       \item How can we {\bf block/detect/remediate} the attack?
-       \item What sort of {\bf impact} are we dealing with?
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Tagging and taxonomies}
-\begin{itemize}
-       \item Simple labels
-       \item Standardising on vocabularies
-       \item Different organisational/community cultures require different nomenclatures
-       \item Triple tag system - taxonomies
-       \item JSON libraries that can easily be defined without our intervention
-\end{itemize}
-\includegraphics[width=1.0\linewidth]{taxonomy-workflow.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Galaxies}
-    \begin{itemize}
-      \item Taxonomy tags often {\bf non self-explanatory}
-      \begin{itemize}
-       \item Example: universal understanding of tlp:green vs APT 28
-      \end{itemize}
-       \item For the latter, a single string was ill-suited
-       \item So we needed something new in addition to taxonomies - \textbf{Galaxies}
-        \begin{itemize}
-            \item Community driven \textbf{knowledge-base libraries used as tags}
-            \item Including descriptions, links, synonyms, meta information, etc. 
-            \item Goal was to keep it \textbf{simple and make it reusable}
-            \item Internally it works the exact same way as taxonomies (stick to \textbf{JSON})
+                \item {\bf Malware reversers} willing to share indicators of analysis with respective colleagues.
+                \item {\bf Security analysts} searching, validating and using indicators in operational security.
+                \item {\bf Intelligence analysts} gathering information about specific adversary groups.
+                \item {\bf Law-enforcement} relying on indicators to support or bootstrap their DFIR cases.
+                \item {\bf Risk analysis teams} willing to know about the new threats, likelyhood and occurences.
+                \item {\bf Fraud analysts} willing to share financial indicators to detect financial frauds.
         \end{itemize}
-    \end{itemize}
-    \begin{center}
-        \hspace{10em}
-        \includegraphics[scale=0.30]{galaxy-ransomware.png}
-    \end{center}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{The emergence of ATT\&CK and similar galaxies}
-  \begin{itemize}
-    \item Standardising on high-level {\bf TTPs} was a solution to a long list of issues
-    \item Adoption was rapid, tools producing ATT\&CK data, familiar interface for users
-    \item A much better take on kill-chain phases in general
-    \item Feeds into our {\bf filtering} and {\bf situational awareness} needs extremely well
-    \item Gave rise to other, ATT\&CK-like systems tackling other concerns
+ \frametitle{Communities using MISP}
+ \begin{itemize}
+	 \item Communities are groups of users sharing within a set of common objectives/values.
+	 \item CIRCL operates multiple MISP instances with a significant user base (more than 950 organizations with more than 2400 users).
+     \item {\bf Trusted groups} running MISP communities in island mode (air gapped system) or partially connected mode.
+	 \item {\bf Financial sector} (banks, ISACs, payment processing organizations) use MISP as a sharing mechanism.
+	 \item {\bf Military and international organizations} (NATO, military CSIRTs, n/g CERTs,...).
+	 \item {\bf Security vendors} running their own communities (e.g. Fidelis) or interfacing with MISP communities (e.g. OTX).
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Many objectives from different user-groups}
+        \begin{itemize}
+                \item Sharing indicators for a {\bf detection} matter.
+                        \begin{itemize}
+                                \item 'Do I have infected systems in my infrastructure or the ones I operate?'
+                        \end{itemize}
+                \item Sharing indicators to {\bf block}.
+                        \begin{itemize}
+                                \item 'I use these attributes to block, sinkhole or divert traffic.'
+                        \end{itemize}
+                \item Sharing indicators to {\bf perform intelligence}.
+                        \begin{itemize}
+                                \item 'Gathering information about campaigns and attacks. Are they related? Who is targeting me? Who are the adversaries?'
+                        \end{itemize}
+                \item $\rightarrow$ These objectives can be conflicting (e.g. False-positives have different impacts)
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sharing Difficulties}
+        \begin{itemize}
+                \item Sharing difficulties are not really technical issues but often it's a matter of {\bf social interactions} (e.g. {\bf trust}).
+                \item Legal restriction\footnote{\url{https://www.misp-project.org/compliance/}}
+                        \begin{itemize}
+                                \item "Our legal framework doesn't allow us to share information."
+                                \item "Risk of information-leak is too high and it's too risky for our organization or partners."
+                        \end{itemize}
+                \item Practical restriction
+                        \begin{itemize}
+                                \item "We don't have information to share."
+                                \item "We don't have time to process or contribute indicators."
+                                \item "Our model of classification doesn't fit your model."
+                                \item "Tools for sharing information are tied to a specific format, we use a different one."
+                        \end{itemize}
+        \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+        \frametitle{MISP Project Overview}
+        \includegraphics[scale=0.35]{misp-overview-simplified.pdf}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Helping Contributors in MISP}
+        \begin{itemize}
+            \item Contributors can use the UI, API or using the freetext import to add events and attributes.
+                \begin{itemize}
+                        \item Modules existing in Viper (a binary framework for malware reverser) to populate and use MISP from the vty or via your IDA.
+                \end{itemize}
+        \item Contribution can be direct by creating an event but {\bf users can propose attributes updates} to the event owner.
+            \item {\bf Users should not be forced to use a single interface to contribute}.
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Getting some naming conventions out of the way...}
+         \begin{itemize}
+                \item Data layer
+                \begin{itemize}
+                    \item {\bf Events} are encapsulations for contextually linked information
+                    \item {\bf Attributes} are individual data points, which can be indicators or supporting data.
+                    \item {\bf Objects} are custom templated Attribute compositions
+                    \item {\bf Object references} are the relationships between other building blocks
+                \end{itemize}
+                \item Context layer
+                \begin{itemize}
+                    \item {\bf Tags} are labels attached to events/attributes and can come from {\bf Taxonomies}
+                    \item {\bf Galaxy-clusters} are knowledge base items used to label events/attributes and come from {\bf Galaxies}. 
+                \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{A rich data-model: telling stories via relationships}
+        \includegraphics[scale=0.24]{screenshots/bankaccount.png}
+        \includegraphics[scale=0.18]{screenshots/bankview.png}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Contextualisation and aggregation}
+        \begin{itemize}
+                \item MISP integrates at the event and the attribute levels MITRE's Adversarial Tactics, Techniques, and Common Knowledge (ATT\&CK).
+        \end{itemize}
+        \includegraphics[scale=0.2]{screenshots/attack-screenshot.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sharing in MISP}
     \begin{itemize}
-      \item {\bf attck4fraud} \footnote{\url{https://www.misp-project.org/galaxy.html\#_attck4fraud}} by Francesco Bigarella from ING
-      \item {\bf Election guidelines} \footnote{\url{https://www.misp-project.org/galaxy.html\#_election_guidelines}} by NIS Cooperation Group
+        \item Sharing via distribution lists - {\bf Sharing groups}
+        \item {\bf Delegation} for pseudo-anonymised information sharing
+        \item {\bf Proposals} and {\bf Extended events} for collaborated information sharing
+        \item Synchronisation, Feed system, air-gapped sharing
+        \item User defined {\bf filtered sharing} for all the above mentioned methods
+        \item Cross-instance information {\bf caching} for quick lookups of large data-sets
+        \item Support for multi-MISP internal enclaves
     \end{itemize}
-  \end{itemize}
 \end{frame}
 
-\section{Data that tells a story}
+\begin{frame}
+\frametitle{MISP core distributed sharing functionality}
+\begin{itemize}
+\item MISPs' core functionality is sharing where everyone can be a consumer and/or a contributor/producer."
+\item Quick benefit without the obligation to contribute.
+\item Low barrier access to get acquainted to the system.
+\end{itemize}
+\includegraphics[scale=0.9]{misp-distributed.pdf}
+\end{frame}
+
+
 
 \begin{frame}
-  \frametitle{More complex data-structures for a modern age}
-  \begin{itemize}
-    \item Atomic attributes were a great starting point, but lacking in many aspects
-    \item {\bf MISP objects}\footnote{\url{https://github.com/MISP/misp-objects}} system
+\frametitle{Information quality management}
     \begin{itemize}
-      \item Simple {\bf templating} approach
-      \item Use templating to build more complex structures
-      \item Decouple it from the core, allow users to {\bf define their own} structures
-      \item MISP should understand the data without knowing the templates
-      \item Massive caveat: {\bf Building blocks have to be MISP attribute types}
-      \item Allow {\bf relationships} to be built between objects
+        \item Correlating data
+        \item Feedback loop from detections via {\bf Sightings}
+        \item {\bf False positive management} via the warninglist system
+        \item {\bf Enrichment system} via MISP-modules
+        \item {\bf Integrations} with a plethora of tools and formats
+        \item Flexible {\bf API} and support {\bf libraries} such as PyMISP to ease integration
+        \item {\bf Timelines} and giving information a temporal context
+        \item Full chain for {\bf indicator life-cycle management}
     \end{itemize}
-  \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Supporting specific datamodels}
-  \begin{center}
-    \includegraphics[scale=0.24]{bankaccount.png}
-  \end{center}
-  \begin{center}
-    \includegraphics[scale=0.18]{bankview.png}
-  \end{center}
+        \frametitle{Correlation features: a tool for analysts}
+        \includegraphics[scale=0.18]{screenshots/campaign.png}
+        \begin{itemize}
+                \item To {\bf corroborate a finding} (e.g. is this the same campaign?), {\bf reinforce an analysis} (e.g. do other analysts have the same hypothesis?), {\bf confirm a specific aspect} (e.g. are the sinkhole IP addresses used for one campaign?) or just find if this {\bf threat is new or unknown in your community}.
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Continuous feedback loop}
-  \begin{itemize}		  
-    \item Data shared was {\bf frozen in time}
-    \item All we  had was a creation/modification timestamp
-    \item Improved tooling and willingness allowed us to create a {\bf feedback loop}
-    \item Lead to the introduction of the {\bf Sighting system}
-    \item Signal the fact of an indicator sighting...
-    \item ...as well as {\bf when} and {\bf where} it was sighted
-    \item Vital component for IoC {\bf lifecycle management}
-  \end{itemize}
+        \frametitle{Sightings support}
+        \begin{columns}[t]
+        \column{5.0cm}
+        \begin{figure}
+        \includegraphics[scale=0.3]{screenshots/sighting-n.png}\\
+        \includegraphics[scale=0.34]{screenshots/Sightings2.PNG}
+        \end{figure}
+        \column{7cm}
+        \begin{itemize}
+                \item Has a data-point been {\bf sighted} by me or the community before?
+                \item Additionally, the sighting system supports negative sigthings (FP) and expiration sightings.
+                \item Sightings can be performed via the API or the UI.
+                \item Many use-cases for {\bf scoring indicators} based on users sighting.
+                \item For large quantities of data, {\bf SightingDB} by Devo
+        \end{itemize}
+        \end{columns}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Continuous feedback loop (2)}
-  \begin{center}
-    \includegraphics[scale=0.5]{sighting-n.png}
-  \end{center}
-  \begin{center}
-    \includegraphics[scale=0.60]{Sightings2.PNG}
-  \end{center}  
-\end{frame}
-
-\begin{frame}
-  \frametitle{A brief history of time - Adding temporality to our data}
+  \frametitle{Timelines and giving information a temporal context}
   \begin{itemize}
-    \item As Andreas said - no time based aspect was painful
     \item Recently introduced {\bf \texttt{first\_seen}} and {\bf \texttt{last\_seen}} data points
-    \item Along with a complete integration with the {\bf UI}
+    \item All data-points can be placed in time
     \item Enables the {\bf visualisation} and {\bf adjustment} of indicators timeframes 
   \end{itemize}
   \begin{center}
@@ -199,104 +239,8 @@
   \end{center}
 \end{frame}
 
-\section{The various ways of encoding analyst knowledge to automatically leverage our TI}
-
 \begin{frame}
-\frametitle{False positive handling}
-\begin{itemize}
-        \item Low quality / false positive prone information being shared
-        \item Lead to {\bf alert-fatigue}
-        \item Exclude organisation xy out of the community?
-        \item FPs are often obvious - {\bf can be encoded}
-        \item {\bf Warninglist system}\footnote{\url{https://github.com/MISP/misp-warninglists}} aims to do that
-        \item Lists of well-known indicators which are often false-positives like RFC1918 networks, ...
-\end{itemize}
-\begin{center}
-    \includegraphics[scale=0.22]{warning-list.png}
-    \includegraphics[scale=0.45]{warning-list-event.png}
-\end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Making use of all this context}
-  \begin{itemize}
-    \item Providing advanced ways of querying data
-    \begin{itemize}
-      \item Unified export APIs
-      \item Incorporating all contextualisation options into {\bf API filters}
-      \item Allowing for an {\bf on-demand} way of {\bf excluding potential false positives}
-      \item Allowing users to easily {\bf build their own} export modules feed their various tools
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Example query}
-    \texttt{/attributes/restSearch}
-    \begin{lstlisting}
-{
-    "returnFormat": "netfilter",
-    "enforceWarninglist": 1,
-    "tags": {
-      "NOT": [
-        "tlp:white",
-        "type:OSINT"
-      ],
-      "OR": [
-        "misp-galaxy:threat-actor=\"Sofacy\"",
-        "misp-galaxy:sector=\"Chemical\""
-      ],
-    }
-}
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Example query to generate ATT\&CK heatmaps}
-    \texttt{/events/restSearch}
-    \begin{lstlisting}
-{
-    "returnFormat": "attack",
-    "tags": [
-        "misp-galaxy:sector=\"Chemical\""
-    ],
-    "timestamp": "365d"
-}
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}
-  \frametitle{A sample result for the above query}
-  \begin{center}
-    \includegraphics[scale=0.2]{attack-screenshot.png}
-  \end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Monitor trends outside of MISP (example: dashboard)}
-  \begin{center}
-    \includegraphics[scale=0.2]{dashboard-trendings.png}
-  \end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Decaying of indicators}
-  \begin{itemize}
-    \item We were still missing a way to use all of these systems in combination to decay indicators
-    \item Move the decision making \textbf{from complex filter options to} complex \textbf{decay models}
-    \item Decay models would take into account various available {\bf context}
-    \begin{itemize}
-      \item Taxonomies
-      \item Sightings
-      \item type of each indicator
-      \item Creation date
-      \item ...
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Implementation in MISP: \texttt{Event/view}}
+    \frametitle{Life-cycle management via decaying of indicators}
     \includegraphics[width=1.00\linewidth]{decaying-event.png}
     \begin{itemize}
         \item \texttt{Decay score} toggle button
@@ -306,77 +250,27 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{Implementation in MISP: API result}
-    \texttt{/attributes/restSearch}
-    \begin{lstlisting}
-"Attribute": [
-  {
-    "category": "Network activity",
-    "type": "ip-src",
-    "to_ids": true,
-    "timestamp": "1565703507",
-    [...]
-    "value": "8.8.8.8",
-    "decay_score": [
-      {
-        "score": 54.475223849544456,
-        "decayed": false,
-        "DecayingModel": {
-          "id": "85",
-          "name": "NIDS Simple Decaying Model"
-        }
-      }
-    ],
-[...]
-    \end{lstlisting}
-\end{frame}
-
 \begin{frame}
-    \frametitle{Implementation in MISP: Fine tuning tool}
+    \frametitle{Decaying of indicators: Fine tuning tool}
     \includegraphics[width=1.00\linewidth]{decaying-tool.png}
     Create, modify, visualise, perform mapping
 \end{frame}
 
 \begin{frame}
-    \frametitle{Implementation in MISP: simulation tool}
+    \frametitle{Decaying of indicators: simulation tool}
     \includegraphics[width=1.00\linewidth]{decaying-simulation.png}
     Simulate \textit{Attributes} with different \textit{Models}
 \end{frame}
 
-\begin{frame}
-  \frametitle{To sum it all up...}
-  \begin{itemize}
-     \item Massive rise in {\bf user capabilities}
-     \item Growing need for truly {\bf actionable threat intel}
-     \item Lessons learned:
-     \begin{itemize}
-	\item {\bf Context is king} - Enables better decision making
-        \item {\bf Intelligence and situational awareness} are natural by-products of context
-        \item Don't lock users into your {\bf workflows}, build tools that enable theirs
-     \end{itemize}
-  \end{itemize}
-\end{frame}
 
 \begin{frame}
-  \frametitle{Get in touch if you have any questions}
-  \begin{itemize}
-    \item Contact us
-    \begin{itemize}
-      \item \url{https://twitter.com/mokaddem_sami}
-      \item \url{https://twitter.com/iglocska}
-    \end{itemize}
-    \item Contact CIRCL
-    \begin{itemize}
-      \item info@circl.lu
-      \item \url{https://twitter.com/circl_lu}
-      \item \url{https://www.circl.lu/}
-    \end{itemize}
-    \item Contact MISPProject 
-    \begin{itemize}
-      \item \url{https://github.com/MISP}
-      \item \url{https://gitter.im/MISP/MISP}
-      \item \url{https://twitter.com/MISPProject}
-    \end{itemize}
-  \end{itemize}
+        \frametitle{Conclusion}
+        \begin{itemize}
+                \item {\bf Information sharing practices come from usage} and by example (e.g. learning by imitation from the shared information).
+                \item MISP is just a tool. What matters is your sharing practices. The tool should be as transparent as possible to support you.
+                \item Enable users to customize MISP to meet their community's use-cases.
+                \item MISP project combines open source software, open standards, best practices and communities to make information sharing a reality.
+        \end{itemize}
 \end{frame}
+
+
