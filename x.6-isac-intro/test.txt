@@ -1,0 +1,45 @@
+
+Model of governance
+- Dictatorship instead of democracy
+- Gathering ideas, issues, use-cases, code from the community is key, listen to them but reserve the right to veto
+  - Prevents malevolent community members from blocking the process / imposing tunnel-visioned ideas
+- Don't wait for the perfect implementation, start small extend it later
+- If the idea doesn't seem suitable for the above, shelf it as soon as possible
+
+Development process based on failures
+- Any idea needs real-world validation
+- Be willing to throw away features that "sure seemed like a good idea at the time"
+- Failures can often be used to pinpoint better alternatives
+- Format follows the implementation (code is law)
+
+PMF model
+
+On the flip-side, the dangers of sticking to theoretical format development for too long
+- The same mistakes will be made anyway
+- Piling mistakes on shaky foundation will be more difficult to undo later
+  - technical reasons
+  - sunk cost fallacy
+
+Designing a standard with sharing in mind (how not to do it)
+- Originally the sharing aspects were quite limited (private flag)
+  - If I want to keep it within my organisation, simply set the flag
+  - If not set any organisation can see it on the instance
+- Utterly simplistic, only worked on communities using a hosted MISP
+
+Designing a standard with sharing in mind (how to be a minimalist)
+- Needed to be extended once communities started self-hosting MISP to be able to control the distance of the data-flow
+- Distirbution levels
+  - Organisation only (private)
+  - Community
+  - Connected community
+  - All
+
+Designing a standard with sharing in mind (going all out)
+- Still not covering all use cases, certain types of users wanting more granularity
+  - Sharing groups (distribution lists)
+  - Complex system for persistent and special ad-hoc use-cases
+- Next step: Multiple sharing groups/nested sharing groups
+
+
+
+
