@@ -148,19 +148,27 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{The emergence of ATT\&CK and similar galaxies}
+  \frametitle{The emergence of ATT\&CK}
   \begin{itemize}
     \item Standardising on high-level {\bf TTPs} was a solution to a long list of issues
     \item Adoption was rapid, tools producing ATT\&CK data, familiar interface for users
     \item A much better take on kill-chain phases in general
     \item Feeds into our {\bf filtering} and {\bf situational awareness} needs extremely well
     \item Gave rise to other, ATT\&CK-like systems tackling other concerns
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The emergence of ATT\&CK and similar galaxies}
     \begin{itemize}
       \item {\bf attck4fraud} \footnote{\url{https://www.misp-project.org/galaxy.html\#_attck4fraud}} by Francesco Bigarella from ING
       \item {\bf Election guidelines} \footnote{\url{https://www.misp-project.org/galaxy.html\#_election_guidelines}} by NIS Cooperation Group
+      \item {\bf AM!TT Misinformation pattern}  \footnote{\url{https://github.com/MISP/misp-galaxy/blob/master/clusters/misinfosec-amitt-misinformation-pattern.json}} by the misinfosecproject
+
     \end{itemize}
-  \end{itemize}
 \end{frame}
+
+
 
 \begin{frame}
 \frametitle{False positive handling}
@@ -244,7 +252,7 @@
 \begin{frame}
   \frametitle{A brief history of time - Timelines}
   \begin{itemize}
-    \item Not having the time based aspect was painful
+    \item Data providers including the timing of the data has allowed us to include it directly in MISP
     \item {\bf \texttt{First\_seen}} and {\bf \texttt{last\_seen}} data points
     \item Along with a complete integration with the {\bf UI}
     \item Enables the {\bf visualisation} and {\bf adjustment} of indicators timeframes 
@@ -316,6 +324,7 @@
   \begin{itemize}
     \item We were still missing a way to use all of these systems in combination to decay indicators
     \item Move the decision making \textbf{from complex filter options to} complex \textbf{decay models}
+    \item The idea is to {\bf not modify our data}, but to provide an overlay to make {\bf decisions on the fly}
     \item Decay models would take into account various available {\bf context}
     \begin{itemize}
       \item Taxonomies
@@ -365,11 +374,12 @@
  \begin{itemize}
          \item Using the new {\bf built in dashboarding} system of MISP
          \item {\bf Customising MISP} for a specific use-case
-         \item We are focusing on two areas of sharing:
+         \item We are focusing on four areas of sharing:
          \begin{itemize}
               \item {\bf Medical} information
               \item {\bf Cyber threats} related to / abusing COVID-19
               \item COVID-19 related {\bf disinformation}
+              \item {\bf Geo-political} events related to COVID-19
          \end{itemize}
          \item Low barrier of entry, aiming for wide spread
          \item Already a {\bf massive community}
