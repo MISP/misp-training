@@ -61,6 +61,7 @@ Sample videos which can be used to understand how the training materials are use
 
 - [MISP Training Module 1 - An Introduction to Cybersecurity Information Sharing](https://www.youtube.com/watch?v=aM7czPsQyaI)
 - [MISP Training Module 2 - General usage of MISP](https://www.youtube.com/watch?v=Jqp8CVHtNVk)
+- [MISP covid-19 sharing community - introduction](https://peertube.opencloud.lu/videos/watch/4f7acd4c-a909-4315-87aa-38ba95cceaf2)
 
 ### MISP Training support videos
 
