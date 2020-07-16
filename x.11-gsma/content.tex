@@ -148,12 +148,25 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
 \end{frame}
 
 \begin{frame}
-\frametitle{Sharing in MISP}
+\frametitle{Sharing in MISP: Distribution}
+    MISP offers granulars distribution settings
     \begin{itemize}
-        \item Granular distribution settings
-        \begin{itemize}
-            \item Including distribution lists - aka {\bf Sharing groups}
-        \end{itemize}
+        \item Organisation only
+        \item This community
+        \item Connected communities
+        \item All communities
+        \item Distribution lists - aka {\bf Sharing groups}
+    \end{itemize}
+    \begin{center}
+    \includegraphics[scale=0.2]{screenshots/sg-example.png}
+    \end{center}
+
+    At multiple levels: Events, Attributes and Objects (and their Attributes)
+\end{frame}
+
+\begin{frame}
+\frametitle{Sharing in MISP: Advanced usage}
+    \begin{itemize}
         \item {\bf Delegation} for pseudo-anonymised information sharing
         \item {\bf Proposals} and {\bf Extended events} for collaborated information sharing
         \item 2-way synchronisation, Feed system, air-gapped sharing
@@ -221,11 +234,58 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
   \end{center}
 \end{frame}
 
-
 \begin{frame}
     \frametitle{Life-cycle management via decaying of indicators}
     \includegraphics[width=1.00\linewidth]{decaying-simulation.png}
     Expiration based on user-defined \textit{Models}
+\end{frame}
+
+\begin{frame}
+    \frametitle{GSMA specific taxonomies}
+    \begin{itemize}
+        \item \texttt{gsma-attack-category}
+        \begin{itemize}
+            \item Used by GSMA for their information sharing program with telco describing the {\bf attack categories}
+        \end{itemize}
+        \item \texttt{gsma-fraud}
+        \begin{itemize}
+            \item Used by GSMA for their information sharing program with telco describing the {\bf various aspects of fraud}
+        \end{itemize}
+        \item \texttt{gsma-network-technology}
+        \begin{itemize}
+              \item Used by GSMA for their information sharing program with telco describing the {\bf types of infrastructure}.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Telco usefull galaxies: Bhadra Framework}
+    Bhadra is a threat modeling framework for mobile communication systems\footnote{https://arxiv.org/pdf/2005.05110.pdf}
+    \includegraphics[width=1.05\linewidth]{screenshots/bhadra-matrix.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Telco usefull {\bf MISP Objects}}
+    \begin{itemize}
+        \item \texttt{phone}
+        \begin{itemize}
+            \item A phone or mobile phone object which describe a phone
+            \item \texttt{brand}, \texttt{imei}, \texttt{imsi}, \texttt{serial-number}, ...
+        \end{itemize}
+
+        \item \texttt{short-message-service}
+        \begin{itemize}
+            \item 
+            \item \texttt{body}, \texttt{from}, \texttt{to}, \texttt{received-date}, ...
+        \end{itemize}
+
+        \item \texttt{ss7-attack}
+        \begin{itemize}
+            \item SS7 object of an attack seen on a GSM, UMTS or LTE network via SS7 logging
+            \item \texttt{SccpCdGT}, \texttt{Category}, \texttt{MapOpCode}, ...
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
