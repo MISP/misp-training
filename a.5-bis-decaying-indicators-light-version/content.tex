@@ -10,13 +10,12 @@
     \begin{itemize}
         \item Present the components used in MISP to expire IOCs
         \item Present the current state of Indicators life-cycle management in MISP
-        \item Present the current state of Indicators life-cycle management in MISP
     \end{itemize}
 \end{frame}
 
 \section{Expiring IOCs: Why and How?}
 \begin{frame}[fragile]
-\frametitle{Indicators - Problem Statement}
+\frametitle{Indicators lifecycle - Problem Statement}
     \begin{itemize}
         \item {\bf Sharing information} about threats {\bf is crucial}
         \item Organisations are sharing more and more
@@ -51,51 +50,62 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Indicators - Problem Statement}
+\frametitle{Indicators lifecycle - Problem Statement}
     \begin{itemize}
         \item Various users and organisations can share data via MISP, multiple parties can be involved
         \begin{itemize}
-            \item \textbf{Trust}, \textbf{data quality} and \textbf{time-to-live} issues
-            \item Each user/organisation has \textbf{different use-cases} and interests
+            \item \textbf{Trust}, \textbf{data quality} and \textbf{relevance} issues
+            \item Each user/organisation have \textbf{different use-cases} and interests
                 \begin{itemize}
-                    \item Conflicting interests such as operational security, attribution,... (depends on the user)
+                    \item Conflicting interests: Operational security VS attribution 
                 \end{itemize}
         \end{itemize}
         \item[] $\rightarrow$ Can be partially solved with \textit{Taxonomies}
         \pause
         \vspace{0.5cm}
-        \item Attributes can be shared in large quantities (more than 7.3 million on \texttt{MISPPRIV})
+    \item Attributes can be shared in large quantities \small{(more than 12M on \texttt{MISPPRIV} - Sept. 2020)}
         \begin{itemize}
             \item Partial info about their \textbf{freshness} (\textit{Sightings})
-            \item Partial info about their \textbf{validity} (last update)
+            \item Partial info about their \textbf{validity} (\textit{last\_seen})
         \end{itemize}
-        \item[] $\rightarrow$ Can be partially solved with our \textit{Decaying model}
+        \item[] $\rightarrow$ Can be partially solved with our \textit{Data model}
     \end{itemize}
+    \begin{center}
+        MISP's \textit{Decaying model} combines the two
+    \end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Requirements to enjoy the decaying feature in MISP}
-        \begin{itemize}
-            \item Starting from \textbf{MISP 2.4.116}, the decaying feature is available
-            \item Don't forget to \textbf{update the decay models} and \textbf{enable} the ones you want
-            \item The decaying feature has no impact on the information in MISP, it's just an \textbf{overlay} to be used in the user-interface and API
-            \item Decay strongly relies on \textit{Taxonomies} and \textit{Sightings}, don't forget to review their configuration
-        \end{itemize}
+    \begin{itemize}
+        \item Starting from \textbf{MISP 2.4.116}, the decaying feature is available
+        \item \textbf{Update} decay models and \textbf{enable} some
+        \item MISP Decaying strongly relies on \textit{Taxonomies} and \textit{Sightings}, don't forget to review their configuration
+    \end{itemize}
+    \vspace{0.7cm}
+     Note: The decaying feature has no impact on the information stored in MISP, it's just an \textbf{overlay} to be used in the user-interface and API
 \end{frame}
 
 \begin{frame}
-    \frametitle{\textit{Sightings} - Refresher}
-    \textit{Sightings} add \textbf{temporal context} to indicators.
-    A user, script or an IDS can extend the information related to indicators by reporting back to MISP that
-    an indicator has been \texttt{seen}, or that an indicator can be considered as a \texttt{false-positive}
-    \vspace{0.5cm}
+    \frametitle{\textit{Sightings} - Refresher (1)}
+    \textit{Sightings} add a \textbf{temporal context} to indicators.
+    \begin{itemize}
+        \item \textit{Sightings} can be used to represent that you saw the IoC
+        \item \textbf{Usecase:} Continuous feedback loop MISP $\leftrightarrow$ IDS
+    \end{itemize}
+
+    \begin{center}
+        \includegraphics[scale=1.00]{pics/sightings.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\textit{Sightings} - Refresher (2)}
+    \textit{Sightings} add a \textbf{temporal context} to indicators.
     \begin{itemize}
         \item \textit{Sightings} give more credibility/visibility to indicators
         \item This information can be used to {\bf prioritise and decay indicators}
     \end{itemize}
-    \begin{center}
-        \includegraphics[scale=1.00]{pics/sightings.png}
-    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -118,14 +128,56 @@
 \begin{frame}
     \frametitle{Taxonomies - Refresher (3)}
     \begin{itemize}
-        \item Some taxonomies have \texttt{numerical\_value}
+        \item Some taxonomies have a \texttt{numerical\_value}
+        \item Allows concepts to be used in an mathematical expression
         \begin{itemize}
-            \item[$\rightarrow$] Can be used to prioritise \textit{Attributes}
+            \item[$\rightarrow$] Can be used to prioritise IoCs
         \end{itemize}
     \end{itemize}
     \vspace{0.5cm}
 
     \begin{footnotesize}
+    \texttt{admirality-scale} taxonomy\footnote{\url{https://github.com/MISP/misp-taxonomies/blob/master/admiralty-scale/machinetag.json}}
+    \begin{columns}[T] % align columns
+    \begin{column}{.40\textwidth}
+        \begin{tabular}{|ll|}
+            \hline
+            \textbf{Description} & \textbf{Value}\\
+            \hline
+            Completely reliable & 100\\
+            Usually reliable & 75\\
+            Fairly reliable & 50\\
+            Not usually reliable & 25\\
+            Unreliable & 0\\
+            Reliability cannot be judged & 50\\
+            Deliberatly deceptive & 0\\
+            \hline
+        \end{tabular}
+    \end{column}%
+    \hfill%
+    \begin{column}{.48\textwidth}
+        \begin{tabular}{|ll|}
+            \hline
+            \textbf{Description} & \textbf{Value}\\
+            \hline
+            Confirmed by other sources & 100\\
+            Probably true & 75\\
+            Possibly true & 50\\
+            Doubtful & 25\\
+            Improbable & 0\\
+            Truth cannot be judged & 50\\
+            \hline
+        \end{tabular}
+    \end{column}%
+    \end{columns}
+    \end{footnotesize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Taxonomies - Refresher (3)}
+    \begin{footnotesize}
+    \texttt{admirality-scale} taxonomy\footnote{\url{https://github.com/MISP/misp-taxonomies/blob/master/admiralty-scale/machinetag.json}}
     \begin{columns}[T] % align columns
     \begin{column}{.40\textwidth}
         \begin{tabular}{|ll|}
@@ -161,21 +213,7 @@
     \end{footnotesize}
 
     \vspace{0.5cm}
-    $\rightarrow$ In next version, Users will be able to override these \texttt{numerical\_value}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Scoring Indicators: Our solution}
-    $$ \texttt{score}(\texttt{\tiny Attribute}) = \texttt{base\_score}(\texttt{\tiny Attribute, Model}) \;\;\bullet\;\; \texttt{decay}(\texttt{\tiny Model, time}) $$
-    Where,\vspace{0.5cm}
-    \begin{itemize}
-        \item \texttt{score} $ \in [0, +\infty $
-        \item \texttt{base\_score} $ \in [0, 100] $
-        \item \texttt{decay} is a function defined by model's parameters controlling decay speed
-        \item \texttt{Attribute} Contains \textit{Attribute}'s values and metadata {\scriptsize (\textit{Taxonomies}, \textit{Galaxies}, ...)}
-        \item \texttt{Model} Contains the \textit{Model}'s configuration
-    \end{itemize}
-    
+    $\rightarrow$ Users can override tag \texttt{numerical\_value}
 \end{frame}
 
 \begin{frame}
@@ -184,14 +222,29 @@
     \begin{itemize}
         \item \texttt{base\_score}(\texttt{\tiny Attribute, Model})
             \begin{itemize}
-                \item Initial score of the \textit{Attribute} only considering the context (i.e. \textit{Tags})
+                \item Initial score of the \textit{Attribute} only considering the context (\textit{Attribute's type}, \textit{Tags})
             \end{itemize}
         \vspace{1cm}
         \item \texttt{decay}(\texttt{\tiny Model, time})
             \begin{itemize}
-                \item Function composed of the \textbf{lifetime} and \textbf{Decay speed} decreasing the \texttt{base\_score} over time
+                \item Function composed of the \textbf{lifetime} and \textbf{decay speed} 
+                \item Decreases the \texttt{base\_score} over time
             \end{itemize}
     \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Scoring Indicators: Our solution}
+    $$ \texttt{score}(\texttt{\tiny Attribute}) = \texttt{base\_score}(\texttt{\tiny Attribute, Model}) \;\;\bullet\;\; \texttt{decay}(\texttt{\tiny Model, time}) $$
+    \begin{center}
+    \begin{tikzpicture}
+        \draw[->] (-1, 0) -- (4.5, 0) node[right] {$time$};
+        \draw[->] (0, -1) -- (0, 4.2) node[left] {$score$};
+        \node at (-1, 2.6) {\footnotesize base\_score};
+        \draw[scale=0.5, domain=0:8, smooth, variable=\y, blue]  plot ({\y}, {5 * (1 - (\y/8)^(3.5))});
+    \end{tikzpicture}
+    \end{center}
 \end{frame}
 
 \section{Current implementation in MISP}
@@ -247,29 +300,30 @@
     \frametitle{Implementation in MISP: Models definition}
         \hspace{190pt}
         \raisebox{-1.0ex}{\Large $\Rsh$} {\tiny $score = base\_score \cdot \left( 1 - \left( \frac{t}{\tau} \right)^{\frac{1}{\delta}} \right) $}
-    \textit{Models} are an instanciation of the formula where elements can be defined:
+    \textit{Models} are an instanciation of the formula with configurable parameters:
     \begin{itemize}
         \item Parameters: \texttt{lifetime, decay\_rate, threshold}
-        \item \texttt{base\_score}
+        \item \texttt{base\_score} computation
         \item \texttt{default base\_score}
-        \item formula
         \item associate \textit{Attribute} types
+        \item formula
         \item creator organisation
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Implementation in MISP: Models Types}
-    Multiple model types are available
+    Two types of model are available
     \begin{itemize}
-        \item \textbf{Default Models}: Models created and shared by the community. Available from \texttt{misp-decaying-models} repository\footnote{\url{https://github.com/MISP/misp-decaying-models.git}}.
+        \item \textbf{Default Models}: Created and shared by the community. Coming from \texttt{misp-decaying-models} repository\footnote{\url{https://github.com/MISP/misp-decaying-models.git}}.
         \begin{itemize}
-            \item $\rightarrow$ Not editable
+            \item[$\rightarrow$] Not editable
         \end{itemize}
-    \item \textbf{Organisation Models}: Models created by a user belonging to an organisation
+    \vspace{0.5cm}
+    \item \textbf{Organisation Models}: Created by a user on MISP
         \begin{itemize}
-            \item These models can be hidden or shared to other organisation 
-            \item $\rightarrow$ Editable
+            \item Can be hidden or shared to other organisation 
+            \item[$\rightarrow$] Editable
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -277,13 +331,13 @@
 \begin{frame}
     \frametitle{Implementation in MISP: Index}
     \includegraphics[width=1.00\linewidth]{pics/decaying-index.png}
-    View, update, add, create, delete, enable, export, import
+    Standard CRUD operations: View, update, add, create, delete, enable, export, import
 \end{frame}
 
 \begin{frame}
     \frametitle{Implementation in MISP: Fine tuning tool}
     \includegraphics[width=1.00\linewidth]{pics/decaying-tool.png}
-    Create, modify, visualise, perform mapping
+    Configure models: Create, modify, visualise, perform mapping
 \end{frame}
 
 \begin{frame}
@@ -295,7 +349,7 @@
 \begin{frame}
     \frametitle{Implementation in MISP: simulation tool}
     \includegraphics[width=1.00\linewidth]{pics/decaying-simulation.png}
-    Simulate \textit{Attributes} with different \textit{Models}
+    Simulate decay on \textit{Attributes} with different \textit{Models}
 \end{frame}
 
 \begin{frame}[fragile]
