@@ -29,7 +29,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | [a.2-pymisp](https://www.misp-project.org/misp-training/a.2-pymisp.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.2-pymisp) |
 | [a.3-misp-feed](https://www.misp-project.org/misp-training/a.3-misp-feed.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.3-misp-feed) |
 | [a.4-best-practices](https://www.misp-project.org/misp-training/a.4-best-practices.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.4-best-practices) |
-| [a.5-decaying-indicators](https://www.misp-project.org/misp-training/a.5-decaying-indicators.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.5-decaying-indicators) |
+| [a.5-decaying-indicators](https://www.misp-project.org/misp-training/a.5-bis-decaying-indicators-light-version.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.5-bis-decaying-indicators-light-version) |
 | [a.6-forensic](https://www.misp-project.org/misp-training/a.6-forensic.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.6-forensic) |
 | [a.7-rest-API](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.7-rest-API) |
 | [a.8-dev-hands-on.pdf](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.8-dev-hands-on) |
