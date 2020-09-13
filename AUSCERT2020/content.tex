@@ -8,9 +8,9 @@
 \begin{frame}
   \frametitle{MISP and CIRCL}
   \begin{center}
-    \includegraphics[scale=0.45]{pics/circl.png}
+    \includegraphics[scale=0.45]{circl.png}
     \hspace{2.5em}
-    \includegraphics[scale=0.35]{pics/misp.pdf}
+    \includegraphics[scale=0.35]{misp.pdf}
   \end{center}
   \begin{itemize}
     \item CIRCL is mandated by the Ministry of Economy and acting as the Luxembourg {\bf National CERT for the private sector}. 
@@ -166,6 +166,38 @@
 \end{frame}
 
 \begin{frame}
+\frametitle{MISP format modules}
+\begin{itemize}
+    \item Initial modules
+    \begin{itemize}
+        \item Return single attributes only
+        \item As light weight as possible
+        \item Good to handle simple queries
+    \end{itemize}
+    \item MISP format modules
+    \begin{itemize}
+        \item Return MISP standard format
+        \item Backward compatible
+        \item Much better results with complex data
+    \end{itemize}
+\end{itemize}
+\pause
+\begin{itemize}
+    \item Why are they interesting?
+    \pause
+    \item Keep the {\bf context} of the results returned by the modules
+    \item {\bf Validation} of the data to ingest
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{MISP format modules}
+\begin{center}
+    \includegraphics[width=0.7\linewidth]{cve_module.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
 \frametitle{So that's where we are now}
 \begin{itemize}
 	\item Let's have a brief look at what is on our immediate and long-term roadmaps
@@ -173,6 +205,24 @@
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Going further with the MISP modules}
+\begin{itemize}
+    \item Move the export modules to the built-in export library
+    \item Make import module able to generate new events
+    \item Expansion modules for events
+\end{itemize}
+\begin{itemize}
+    \item Move the modules to background processes with a
+messaging system
+    \item Avoid results preview if needed
+    \begin{itemize}
+        \item Preview page can be very heavy
+        \item Difficulty is dealing with uncertain results (without the user
+having final say)
+    \end{itemize}
+\end{itemize}
+\end{frame}
 
 \begin{frame}
 \frametitle{MISP galaxy 2.0}
