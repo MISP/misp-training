@@ -1,0 +1,48 @@
+\documentclass{beamer}
+\usetheme[numbering=progressbar]{focus}
+\definecolor{main}{RGB}{47, 161, 219}
+\definecolor{textcolor}{RGB}{128, 128, 128}
+\definecolor{background}{RGB}{240, 247, 255}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,arrows}
+
+\lstdefinelanguage{javascript}{
+    basicstyle=\scriptsize,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=5pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+    %keywordstyle=\color{blue}\bfseries,
+    ndkeywords={class, export, boolean, throw, implements, import, this},
+    ndkeywordstyle=\color{darkgray}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{purple}\ttfamily,
+    %stringstyle=\color{red}\ttfamily,
+    morestring=[b]',
+    morestring=[b]"
+}
+
+\title{An Introduction to Cybersecurity Information Sharing}
+\subtitle{MISP - Threat Sharing}
+\author{\small{\input{../includes/authors.txt}}}
+\date{\input{../includes/location.txt}}
+\titlegraphic{\includegraphics[scale=0.85]{misp.pdf}}
+\institute{MISP Project \\ \url{https://www.misp-project.org/}}
+
+
+\begin{document}
+\include{content}
+\end{document}
+
