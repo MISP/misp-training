@@ -1,0 +1,58 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}[fragile]
+        \frametitle{MISP Standard}
+\begin{itemize}
+        \item Following the grow of organisations relying on MISP, the {\bf JSON format used by MISP are standardised under the misp-standard.org umbrella}
+\item The goal is to provide a flexible set of standards to support information exchange and data modeling in the following field:
+        \begin{itemize}
+                \item Cybersecurity intelligence
+                \item Threat intelligence
+                \item Financial fraud
+                \item Vulnerability information
+                \item Border control information
+                \item Digital Forensic and Incident Response
+                \item and intelligence at large
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+        \frametitle{Standard - MISP core format}
+        This standard describes the {\bf MISP core format} used to exchange indicators and threat information between MISP instances. The {\bf JSON format includes the overall structure along with the semantics associated for each respective key}. The format is described to support other implementations, aiming to reuse the format and ensuring the interoperability with the existing MISP software and other Threat Intelligence Platforms.
+\end{frame}
+
+\begin{frame}[fragile]
+        \frametitle{MISP object template format}
+        This standard describes the {\bf MISP object} template format which describes a simple JSON format to represent the various templates used to construct MISP objects. A {\bf public directory of common MISP object templates and relationships} is available and relies on the MISP object reference format.
+\end{frame}
+
+\begin{frame}[fragile]
+       \frametitle{MISP galaxy format}
+        This standard describes the {\bf MISP galaxy format which describes a simple JSON format to represent galaxies and clusters} that can be attached to MISP events or attributes. A public directory of MISP galaxies is available and relies on the MISP galaxy format. MISP galaxies are used to attach additional information structures such as MISP events or attributes. {\bf MISP galaxy is a public repository of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing}.
+\end{frame}
+
+\begin{frame}[fragile]
+        \frametitle{SightingDB format}
+        This standard describes the format used by SightingDB to give automated context to a given Attribute by {\bf counting occurrences and tracking times of observability}. SightingDB was designed to provide to MISP and other tools an interoperable, scalable and fast way to store and retrieve attributes sightings.
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Internet-Draft - IETF for MISP formats and MISP standard}
+\begin{itemize}
+\item If you want to contribute to our IETF Internet-Draft for the MISP standard, misp-rfc\footnote{\url{https://github.com/MISP/misp-rfc}} is the repository where to contribute.
+\item {\bf Update only the markdown file}, the XML and ASCII for the IETF I-D are automatically generated.
+\item If a major release or updates happen in the format, we will publish the I-D to the IETF\footnote{\url{https://datatracker.ietf.org/doc/search/?name=misp&activedrafts=on&rfcs=on}}.
+\item The process is always MISP implementation $\rightarrow$ IETF I-D updates.
+\item Then published standards in misp-standard.org.
+\end{itemize}
+
+\end{frame}
+
+
