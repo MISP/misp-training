@@ -55,6 +55,7 @@ done
 echo ${listofpdf}
 
 pdfunite ${listofpdf} cheatsheet.pdf usage.pdf ack.pdf ../misp-training.pdf
+cp ../misp-training.pdf .
 cd ..
 
 exiftool -overwrite_original_in_place -Title="MISP Training and Slide Decks" -Author="CIRCL Computer Incident Response Center Luxembourg" -Subject="MISP Threat Intelligence Platform Training Materials" -Keywords="MISP Threat Intelligence CTI STIX information sharing yara sigma suricata snort bro openioc threat-actor TIP threat intelligence platform circl.lu training cybersecurity MISPProject" misp-training.pdf
