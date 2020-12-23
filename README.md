@@ -37,6 +37,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | [a.8-dev-hands-on](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.8-dev-hands-on) |
 | [a.9-restsearch-dev](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.9-restsearch-dev) |
 | [a.10-galaxy-2.0](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.10-galaxy-2.0) |
+| [a.11-misp-data-model](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.11-misp-data-model) |
 | [a.a-widget-dev](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.a-widget-dev) |
 | [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/b.2-turning-data-into-actionable-intelligence) |
 | [4-misp-standard](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [source](https://github.com/MISP/misp-training/tree/master/4-misp-standard) |
