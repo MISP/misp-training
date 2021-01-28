@@ -29,13 +29,19 @@ given to the materials. We welcome contributions in order to improve the trainin
 | [a.2-pymisp](https://www.misp-project.org/misp-training/a.2-pymisp.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.2-pymisp) |
 | [a.3-misp-feed](https://www.misp-project.org/misp-training/a.3-misp-feed.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.3-misp-feed) |
 | [a.4-best-practices](https://www.misp-project.org/misp-training/a.4-best-practices.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.4-best-practices) |
-| [a.5-decaying-indicators](https://www.misp-project.org/misp-training/a.5-bis-decaying-indicators-light-version.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.5-bis-decaying-indicators-light-version) |
+| [a.5-decaying-indicators](https://www.misp-project.org/misp-training/a.5-decaying-indicators.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.5-decaying-indicators) |
+| [a.5-bis-decaying-indicators-light-version](https://www.misp-project.org/misp-training/a.5-bis-decaying-indicators-light-version.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.5-bis-decaying-indicators-light-version) |
 | [a.6-forensic](https://www.misp-project.org/misp-training/a.6-forensic.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.6-forensic) |
 | [a.7-rest-API](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.7-rest-API) |
-| [a.8-dev-hands-on.pdf](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.8-dev-hands-on) |
-| [a.9-restsearch-dev.pdf](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) |[source](https://github.com/MISP/misp-training/tree/master/a.9-restsearch-dev) |
-| [b.1-best-practices-in-threat-intelligence](https://www.misp-project.org/misp-training/b.1-best-practices-in-threat-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/b.1-best-practices-in-threat-intelligence)
-| [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/b.2-turning-data-into-actionable-intelligence)
+| [b.1-best-practices-in-threat-intelligence](https://www.misp-project.org/misp-training/b.1-best-practices-in-threat-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/b.1-best-practices-in-threat-intelligence) |
+| [a.8-dev-hands-on](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.8-dev-hands-on) |
+| [a.9-restsearch-dev](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.9-restsearch-dev) |
+| [a.10-galaxy-2.0](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.10-galaxy-2.0) |
+| [a.11-misp-data-model](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.11-misp-data-model) |
+| [a.a-widget-dev](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.a-widget-dev) |
+| [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/b.2-turning-data-into-actionable-intelligence) |
+| [4-misp-standard](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [source](https://github.com/MISP/misp-training/tree/master/4-misp-standard) |
+
 
 ### Complementary materials
 
