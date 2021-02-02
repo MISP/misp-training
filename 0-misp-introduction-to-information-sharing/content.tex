@@ -6,6 +6,10 @@
 \end{frame}
 
 \begin{frame}{Agenda}
+    \input{../includes/week_agenda.txt}
+\end{frame}
+
+\begin{frame}{Agenda}
     \input{../includes/agenda.txt}
 \end{frame}
 
@@ -35,6 +39,16 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
         \includegraphics{en_cef.png}
 \end{frame}
 
+\begin{frame}
+\frametitle{What is MISP?}
+\begin{itemize}
+       \item MISP is a {\bf threat information sharing} platform that is free \& open source software
+       \item A tool that {\bf collects} information from partners, your analysts, your tools, feeds
+       \item Normalises, {\bf correlates}, {\bf enriches} the data
+       \item Allows teams and communities to {\bf collaborate}
+       \item {\bf Feeds} automated protective tools and analyst tools with the output
+\end{itemize}
+\end{frame}
 
 \begin{frame}
 \frametitle{Development based on practical user feedback}
@@ -76,6 +90,19 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
 \end{frame}
 
 \begin{frame}
+ \frametitle{Communities using MISP}
+ \begin{itemize}
+	 \item Communities are groups of users sharing within a set of common objectives/values.
+	 \item CIRCL operates multiple MISP instances with a significant user base (more than 1200 organizations with more than 4000 users).
+         \item {\bf Trusted groups} running MISP communities in island mode (air gapped system) or partially connected mode.
+	 \item {\bf Financial sector} (banks, ISACs, payment processing organizations) use MISP as a sharing mechanism.
+	 \item {\bf Military and international organizations} (NATO, military CSIRTs, n/g CERTs,...).
+	 \item {\bf Security vendors} running their own communities (e.g. Fidelis) or interfacing with MISP communities (e.g. OTX).
+         \item {\bf Topical communities} set up to tackle individual specific issues (COVID-19 MISP)
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
 \frametitle{Sharing Difficulties}
         \begin{itemize}
                 \item Sharing difficulties are not really technical issues but often it's a matter of {\bf social interactions} (e.g. {\bf trust}).
@@ -100,79 +127,26 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
         \includegraphics[scale=0.35]{misp-overview-simplified.pdf}
 \end{frame}
 
-%\begin{frame}
-%        \frametitle{MISP Project Overview}
-%        \begin{columns}[t]
-%        \column{5.0cm}
-%        \begin{figure}
-%        \includegraphics[scale=0.20]{misp-overview.pdf}\\
-%        \end{figure}
-%        \column{7cm}
-%        \begin{itemize}
-%                \item The {\bf core project}\footnote{\url{http://github.com/MISP/}} (PHP/Python3) supports the backend, API \& UI.
-%                \item Modules (Python3) expand MISP functionalities.
-%                \item Taxonomies (JSON) to add categories \& global tagging.
-%                \item Warning-lists (JSON) help analysts to detect potential false-positives.
-%                \item Galaxy (JSON) to add threat-actors, tools or "intelligence".
-%                \item Objects (JSON) to allow for templated composition of security related atomic points of information.
-%        \end{itemize}
-%        \end{columns}
-%\end{frame}
-
 \begin{frame}
- \frametitle{MISP features}
- \begin{itemize}
-         \item MISP\footnote{\url{https://github.com/MISP/MISP}} is a threat information sharing free \& open source software.
-         \item MISP has {\bf a host of functionalities} that assist users in creating, collaborating \& sharing threat information - e.g. flexible sharing groups, {\bf automatic correlation}, free-text import helper, event distribution \& proposals.
-         \item Many export formats which support IDSes / IPSes (e.g. Suricata, Bro, Snort), SIEMs (eg CEF), Host scanners (e.g. OpenIOC, STIX, CSV, yara), analysis tools (e.g. Maltego), DNS policies (e.g. RPZ).
-         \item A rich set of MISP modules\footnote{\url{https://www.github.com/MISP/misp-modules}} to add expansion, import and export functionalities.
- \end{itemize}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Correlation features: a tool for analysts}
-        \includegraphics[scale=0.18]{screenshots/campaign.png}
-        \begin{itemize}
-                \item To {\bf corroborate a finding} (e.g. is this the same campaign?), {\bf reinforce an analysis} (e.g. do other analysts have the same hypothesis?), {\bf confirm a specific aspect} (e.g. are the sinkhole IP addresses used for one campaign?) or just find if this {\bf threat is new or unknown in your community}.
-        \end{itemize}
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Communities using MISP}
- \begin{itemize}
-	 \item Communities are groups of users sharing within a set of common objectives/values.
-	 \item CIRCL operates multiple MISP instances with a significant user base (more than 950 organizations with more than 2400 users).
-     \item {\bf Trusted groups} running MISP communities in island mode (air gapped system) or partially connected mode.
-	 \item {\bf Financial sector} (banks, ISACs, payment processing organizations) use MISP as a sharing mechanism.
-	 \item {\bf Military and international organizations} (NATO, military CSIRTs, n/g CERTs,...).
-	 \item {\bf Security vendors} running their own communities (e.g. Fidelis) or interfacing with MISP communities (e.g. OTX).
- \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{MISP core distributed sharing functionality}
-\begin{itemize}
-\item MISPs' core functionality is sharing where everyone can be a consumer and/or a contributor/producer."
-\item Quick benefit without the obligation to contribute.
-\item Low barrier access to get acquainted to the system.
-\end{itemize}
-\includegraphics[scale=0.9]{misp-distributed.pdf}
-\end{frame}
-
-
-\begin{frame}
-        \frametitle{Events, Objects and Attributes in MISP}
+        \frametitle{Getting some naming conventions out of the way...}
          \begin{itemize}
-                \item MISP events are encapsulations for contextually linked information
-                \item MISP attributes\footnote{attributes can be anything that helps describe the intent of the event package from indicators, vulnerabilities or any relevant information} initially started with a standard set of "cyber security" indicators.
-                \item MISP attributes are purely {\bf based on usage} (what people and organizations use daily).
-                \item Evolution of MISP attributes is based on practical usage \& users (e.g. the addition of {\bf financial indicators} in 2.4).
-                \item MISP objects are attribute compositions describing points of data using many facets, constructed along the lines of community and user defined templates.
-                \item Galaxies granularly contextualise, classify \& categorise data based on {\bf threat actors}, {\bf preventive measures}, tools used by adversaries.
+                \item Data layer
+                \begin{itemize}
+                    \item {\bf Events} are encapsulations for contextually linked information
+                    \item {\bf Attributes} are individual data points, which can be indicators or supporting data
+                    \item {\bf Objects} are custom templated Attribute compositions
+                    \item {\bf Object references} are the relationships between other building blocks
+                    \item {\bf Sightings} are time-specific occurances of a given data-point detected
+                \end{itemize}
+                \item Context layer
+                \begin{itemize}
+                    \item {\bf Tags} are labels attached to events/attributes and can come from {\bf Taxonomies}
+                    \item {\bf Galaxy-clusters} are knowledge base items used to label events/attributes and come from {\bf Galaxies}
+                    \item {\bf Cluster relationships} denote pre-defined relationships between clusters
+                \end{itemize}
         \end{itemize}
 \end{frame}
+
 \begin{frame}
         \frametitle{Terminology about Indicators}
         \begin{itemize}
@@ -194,63 +168,63 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
         \end{itemize}
 \end{frame}
 
-
 \begin{frame}
-        \frametitle{Sharing Attackers Techniques}
-        \begin{itemize}
-                \item MISP integrates at event or attribute level MITRE's Adversarial Tactics, Techniques, and Common Knowledge (ATT\&CK).
-        \end{itemize}
-        \includegraphics[scale=0.2]{screenshots/attack-screenshot.png}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Supporting specific datamodel}
+        \frametitle{A rich data-model: telling stories via relationships}
         \includegraphics[scale=0.24]{screenshots/bankaccount.png}
         \includegraphics[scale=0.18]{screenshots/bankview.png}
 \end{frame}
 
 \begin{frame}
-        \frametitle{Helping Contributors in MISP}
+        \frametitle{Contextualisation and aggregation}
         \begin{itemize}
-            \item Contributors can use the UI, API or using the freetext import to add events and attributes.
-                \begin{itemize}
-                        \item Modules existing in Viper (a binary framework for malware reverser) to populate and use MISP from the vty or via your IDA.
-                \end{itemize}
-        \item Contribution can be direct by creating an event but {\bf users can propose attributes updates} to the event owner.
-            \item {\bf Users should not be forced to use a single interface to contribute}.
+                \item MISP integrates at the event and the attribute levels MITRE's Adversarial Tactics, Techniques, and Common Knowledge (ATT\&CK).
         \end{itemize}
+        \includegraphics[scale=0.2]{screenshots/attack-screenshot.png}
 \end{frame}
 
 \begin{frame}
-        \frametitle{Example: Freetext import in MISP}
-        \includegraphics[scale=0.3]{screenshots/freetext1.PNG}\\
-        \includegraphics[scale=0.3]{screenshots/freetxt2.PNG}\\
-        \includegraphics[scale=0.3]{screenshots/freetxt3.PNG}
+\frametitle{Sharing in MISP}
+    \begin{itemize}
+        \item Sharing via distribution lists - {\bf Sharing groups}
+        \item {\bf Delegation} for pseudo-anonymised information sharing
+        \item {\bf Proposals} and {\bf Extended events} for collaborated information sharing
+        \item Synchronisation, Feed system, air-gapped sharing
+        \item User defined {\bf filtered sharing} for all the above mentioned methods
+        \item Cross-instance information {\bf caching} for quick lookups of large data-sets
+        \item Support for multi-MISP internal enclaves
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-        \frametitle{Supporting Classification}
-        \begin{itemize}
-          \item Tagging is a simple way to attach a classification to an event or an attribute.
-          \item {\bf Classification must be globally used to be efficient}.
-          \item MISP includes a flexible tagging scheme where users can select from more than 42 existing taxonomies or create their own taxonomy.
-        \end{itemize}
-        \includegraphics[scale=0.20]{tags-2-4-70.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Supporting Sharing in MISP}
+\frametitle{MISP core distributed sharing functionality}
 \begin{itemize}
-        \item Delegate events publication to another organization (introduced in MISP 2.4.18).
-        \begin{itemize}
-                \item The other organization can take over the ownership of an event and provide {\bf pseudo-anonymity to initial organization}.
-        \end{itemize}
-        \item Sharing groups allow custom sharing (introduced in MISP 2.4) per event or even at attribute level.
-        \begin{itemize}
-                \item Sharing communities can be used locally or even cross MISP instances.
-                \item {\bf Sharing groups} can be done at {\bf event level or attributes level} (e.g. financial indicators shared to a financial sharing groups and cyber security indicators to CSIRT community).
-        \end{itemize}
+\item MISPs' core functionality is sharing where everyone can be a consumer and/or a contributor/producer."
+\item Quick benefit without the obligation to contribute.
+\item Low barrier access to get acquainted to the system.
 \end{itemize}
+\includegraphics[scale=0.9]{misp-distributed.pdf}
+\end{frame}
+
+\begin{frame}
+\frametitle{Information quality management}
+    \begin{itemize}
+        \item Correlating data
+        \item Feedback loop from detections via {\bf Sightings}
+        \item {\bf False positive management} via the warninglist system
+        \item {\bf Enrichment system} via MISP-modules
+        \item {\bf Integrations} with a plethora of tools and formats
+        \item Flexible {\bf API} and support {\bf libraries} such as PyMISP to ease integration
+        \item {\bf Timelines} and giving information a temporal context
+        \item Full chain for {\bf indicator life-cycle management}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Correlation features: a tool for analysts}
+        \includegraphics[scale=0.18]{screenshots/campaign.png}
+        \begin{itemize}
+                \item To {\bf corroborate a finding} (e.g. is this the same campaign?), {\bf reinforce an analysis} (e.g. do other analysts have the same hypothesis?), {\bf confirm a specific aspect} (e.g. are the sinkhole IP addresses used for one campaign?) or just find if this {\bf threat is new or unknown in your community}.
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -263,35 +237,53 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
         \end{figure}
         \column{7cm}
         \begin{itemize}
-                \item Sightings allow users to notify the community about the activities related to an indicator.
-                \item In recent MISP versions, the sighting system supports negative sigthings (FP) and expiration sightings.
-                \item Sightings can be performed via the API, and the UI, even including the import of STIX sighting documents.
-                \item Many use-cases for scoring indicators based on users sighting.
+                \item Has a data-point been {\bf sighted} by me or the community before?
+                \item Additionally, the sighting system supports negative sigthings (FP) and expiration sightings.
+                \item Sightings can be performed via the API or the UI.
+                \item Many use-cases for {\bf scoring indicators} based on users sighting.
+                \item For large quantities of data, {\bf SightingDB} by Devo
         \end{itemize}
         \end{columns}
 \end{frame}
 
-
 \begin{frame}
-\frametitle{Improving Information Sharing in MISP}
-\begin{itemize}
-        \item False-positives are a recurring challenge in information sharing.
-        \item In MISP 2.4.39, we introduced the misp-warninglists\footnote{\url{https://github.com/MISP/misp-warninglists}} to help analysts in their day-to-day job.
-        \item Predefined lists of well-known indicators which are often false-positives like RFC1918 networks, public DNS resolver are included by default.
-\end{itemize}
+  \frametitle{Timelines and giving information a temporal context}
+  \begin{itemize}
+    \item Recently introduced {\bf \texttt{first\_seen}} and {\bf \texttt{last\_seen}} data points
+    \item All data-points can be placed in time
+    \item Enables the {\bf visualisation} and {\bf adjustment} of indicators timeframes 
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{timeline-misp-overview.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Improving support of sharing within and outside an organization}
-\begin{itemize}
-        \item Even in a single organization, multiple use-cases of MISP can appear (groups using it for dynamic malware analysis correlations, dispatching notification).
-        \item In MISP 2.4.51, we introduced the ability to have {\bf local MISP} servers connectivity to avoid changes in distribution level. This allows to have mixed synchronization setup within and outside an organization.
-        \item Feed support was also introduced to support synchronization between untrusted and trusted networks.
-\end{itemize}
+    \frametitle{Life-cycle management via decaying of indicators}
+    \includegraphics[width=1.00\linewidth]{decaying-event.png}
+    \begin{itemize}
+        \item \texttt{Decay score} toggle button
+        \begin{itemize}
+            \item Shows Score for each \textit{Models} associated to the \textit{Attribute} type
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-        \frametitle{Bootstrapping MISP with indicators}
+    \frametitle{Decaying of indicators: Fine tuning tool}
+    \includegraphics[width=1.00\linewidth]{decaying-tool.png}
+    Create, modify, visualise, perform mapping
+\end{frame}
+
+\begin{frame}
+    \frametitle{Decaying of indicators: simulation tool}
+    \includegraphics[width=1.00\linewidth]{decaying-simulation.png}
+    Simulate \textit{Attributes} with different \textit{Models}
+\end{frame}
+
+
+\begin{frame}
+        \frametitle{Bootstrapping your MISP with data}
         \begin{itemize}
                 \item We maintain the default CIRCL OSINT feeds (TLP:WHITE selected from our communities) in MISP to allow users to ease their bootstrapping.
                 \item The format of the OSINT feed is based on standard MISP JSON output pulled from a remote TLS/HTTP server.
@@ -300,7 +292,6 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
                 \item Opening contribution to other threat intel feeds but also allowing the analysis of overlapping data\footnote{A recurring challenge in information sharing}.
         \end{itemize}
 \end{frame}
-
 
 \begin{frame}
         \frametitle{Conclusion}
@@ -312,19 +303,4 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
         \end{itemize}
 \end{frame}
 
-\begin{frame}{MISP User Experience Survey}
-
-  A researcher--Borce STOJKOVSKI--from University of Luxembourg (SnT) is
-  conducting a survey about MISP UX.
-  \vspace{1cm}
-  \begin{itemize}
-    \item You may participate at the following location: \url{https://misp-project.org/ux-survey}
-    \item on-voluntary basis: opt-out at any time,
-    \item results will be communicated back to the community and used to improve
-      MISP's User Interface,
-    \item for any inquiries contact ux@misp-project.org
-  \end{itemize}
-  
-
-\end{frame}
 

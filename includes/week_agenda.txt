@@ -1,0 +1,8 @@
+\begin{itemize}
+    \item (02.02) Usage 1
+    \item (03.02) Usage 2
+    \item (04.02) Analyst hands-on
+    \item (10.02) Administration
+    \item (11.02) Integration day
+    \item (12.02) Developer day
+\end{itemize}
