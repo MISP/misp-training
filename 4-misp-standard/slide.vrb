@@ -1,9 +1,0 @@
-\frametitle{Internet-Draft - IETF for MISP formats and MISP standard}
-\begin{itemize}
-\item If you want to contribute to our IETF Internet-Draft for the MISP standard, misp-rfc\footnote{\url{https://github.com/MISP/misp-rfc}} is the repository where to contribute.
-\item {\bf Update only the markdown file}, the XML and ASCII for the IETF I-D are automatically generated.
-\item If a major release or updates happen in the format, we will publish the I-D to the IETF\footnote{\url{https://datatracker.ietf.org/doc/search/?name=misp&activedrafts=on&rfcs=on}}.
-\item The process is always MISP implementation $\rightarrow$ IETF I-D updates.
-\item Then published standards in misp-standard.org.
-\end{itemize}
-
