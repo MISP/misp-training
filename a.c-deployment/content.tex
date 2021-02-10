@@ -1,0 +1,159 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{MISP deployment considerations}
+    \begin{itemize}
+        \item {\bf Deployment types}
+        \item {\bf Distro} choice
+        \item {\bf Hardware specs}
+        \item {\bf Authentication}
+        \item Other considerations - {\bf settings}, {\bf gotchas}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Deployment types}
+    \begin{itemize}
+        \item Native install
+        \begin{itemize}
+            \item Manual
+            \item One liner script - INSTALL.sh \url{https://github.com/MISP/MISP/tree/2.4/INSTALL}
+        \end{itemize}
+        \item MISP VM  \url{https://www.circl.lu/misp-images/latest/}
+        \item Docker
+        \item RPM maintained by SWITCH \url{https://github.com/amuehlem/MISP-RPM}
+        \item Cloud provider images  \url {https://github.com/MISP/misp-cloud}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Docker options}
+    \begin{itemize}
+        \item CoolAcid's MISP images \url{https://github.com/coolacid/docker-misp}
+	\item MISP-docker by XME \url{https://github.com/MISP/misp-docker}
+        \item docker-misp by Harvard security \url{https://github.com/MISP/docker-misp}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Distro options}
+        \begin{itemize}
+            \item Ubuntu 20.04 (18.04 will also work)
+            \begin{itemize}
+                \item Our target platform
+                \item Our CI target
+                \item Use this unless you are absolutely forced not to
+            \end{itemize}
+            \item CentOS 7
+            \begin{itemize}
+                \item Annoying to operate
+                \item Less tested, though used by many
+                \item CentOS is going away. Consider other options
+            \end{itemize}
+            \item RHEL 7
+            \begin{itemize}
+                \item Same annoyance as CentOS in general
+                \item We test against CentOS in general, some assembly may be required
+            \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hardware specs}
+    \begin{itemize}
+        \item No firm recommendations, it's highly usage dependent
+        \item It's better to go a bit over what you need than under
+        \item {\bf SSDs} are massively beneficial
+        \item Let's look at what affects specs and some sample configurations
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hardware considerations}
+    \begin{itemize}
+        \item What are the factors that can impact my performance?
+        \begin{itemize}
+            \item Clustering of the data (how many datapoints / event?) (RAM, disk speed)
+            \item Correlation (RAM, disk speed, disk space)
+            \begin{itemize}
+                \item Consider blocking overtly correlating values from doing so
+                \item Feed ingestion strategy is crucial
+            \end{itemize}
+            \item Over-contextualisation (RAM, disk speed)
+            \begin{itemize}
+                \item Contextualise the container over each datapoint contained within
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hardware considerations - continues}
+    \begin{itemize}
+        \item What are the factors that can impact my performance?
+        \begin{itemize}
+            \item Number of users that are active at any given time (RAM, CPU, disk speed)
+            \item Logging strategy (Disk space)
+            \item API users especially with heavy searches (substring searches for example) (RAM, CPU, Disk speed)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hardware considerations - continues}
+    \begin{itemize}
+        \item What are the factors that generally do {\bf NOT} impact my performance as much as expected?
+        \begin{itemize}
+            \item Warninglist usage
+            \item Number of raw attributes on the instance
+            \item Number of sync connections / recurring syncs (with measure)
+            \item Tools feeding off the automation channels (ZMQ, kafka, syslog)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Authentication options}
+    \begin{itemize}
+        \item Username/password is the default
+        \item Some built in modules by 3rd parties (LDAP, Shibboleth, x509)
+        \item CustomAuth system for more flexibility
+        \item Additionally, consider Email OTP
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Other considerations - tuning}
+    \begin{itemize}
+        \item PHP tuning
+        \begin{itemize}
+            \item Maximum memory usage (per process)
+            \item Timeout settings
+            \item Consider setting it per role!
+            \item Background processes are exempt
+        \end{itemize}
+        \item MySQL: InnoDB buffer size is important
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Other considerations - high availability}
+    \begin{itemize}
+        \item Clustering
+        \begin{itemize}
+            \item Load balanced apache servers with MISP
+            \item Replicating / mirrored database backends
+        \end{itemize}
+        \item Careful about session pinning
+        \item Attachment storage can be abstracted / network attached
+        \item An example implementation for AWS \url{https://github.com/0xtf/HAMISPA}
+    \end{itemize}
+\end{frame}
+
+
+
