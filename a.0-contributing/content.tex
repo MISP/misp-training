@@ -37,14 +37,14 @@
 \begin{frame}[fragile]
 \frametitle{Automatic integration and testing}
 \begin{itemize}
-\item The majority of the repositories within the MISP GitHub organisation includes automatic integration with TravisCI.
+\item The majority of the repositories within the MISP GitHub organisation includes automatic integration via Github Actions.
 \item If you contribute and make a pull-request, {\bf verify if your changes affect the result of the tests}.
 \item Automatic integration is not perfect including Travis but it's a quick win to catch new bugs or major issues in contribution.
-\item When you do a pull-request, TravisCI is automatically called\footnote{\url{https://travis-ci.org/MISP}}.
+\item When you do a pull-request, the CI suite is automatically called\footnote{\url{https://github.com/MISP/MISP/actions}}.
 \begin{itemize}
-\item If this fails, no worries, {\bf review the output at Travis} (it's not always you).
+\item If this fails, no worries, {\bf review the output at Github actions} (it's not always you).
 \end{itemize}
-\item We are working on additional automatic tests including unit testing for the MISP core software (contributors are welcome).
+\item We are working on additional automatic tests including security testing for the MISP core software (contributors are welcome).
 \end{itemize}
 \end{frame}
 
