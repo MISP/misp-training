@@ -13,34 +13,40 @@ given to the materials. We welcome contributions in order to improve the trainin
 
 | Slides (PDF) | Source Code |
 | ------------ | ----------- |
-| [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tree/master/0-misp-introduction-to-information-sharing) |
-| [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1-misp-usage) |
-| [1.2-misp-integration](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1.2-misp-integration) |
-| [1.1-misp-viper-integration](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1.1-misp-viper-integration) |
-| [1.2.1-misp-integration-mail2misp](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [source](https://github.com/MISP/misp-training/tree/master/1.2.1-misp-integration-mail2misp) |
-| [2-misp-administration](https://www.misp-project.org/misp-training/2-misp-administration.pdf) | [source](https://github.com/MISP/misp-training/tree/master/2-misp-administration) |
-| [3-misp-taxonomy-tagging](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [source](https://github.com/MISP/misp-training/tree/master/3-misp-taxonomy-tagging) |
-| [3.1-misp-modules](https://www.misp-project.org/misp-training/3.1-misp-modules.pdf) | [source](https://github.com/MISP/misp-training/tree/master/3.1-misp-modules) |
-| [3.2-misp-galaxy](https://www.misp-project.org/misp-training/3.2-misp-galaxy.pdf) | [source](https://github.com/MISP/misp-training/tree/master/3.2-misp-galaxy) |
-| [3.3-misp-object-template](https://www.misp-project.org/misp-training/3.3-misp-object-template.pdf) | [source](https://github.com/MISP/misp-training/tree/master/3.3-misp-object-template) |
-| [6.0-misp-dashboard](https://www.misp-project.org/misp-training/6.0-misp-dashboard.pdf) | [source](https://github.com/MISP/misp-training/tree/master/6.0-misp-dashboard) |
-| [a.0-contributing](https://www.misp-project.org/misp-training/a.0-contributing.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.0-contributing) |
-| [a.1-devintro](https://www.misp-project.org/misp-training/a.1-devintro.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.1-devintro) |
-| [a.2-pymisp](https://www.misp-project.org/misp-training/a.2-pymisp.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.2-pymisp) |
-| [a.3-misp-feed](https://www.misp-project.org/misp-training/a.3-misp-feed.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.3-misp-feed) |
-| [a.4-best-practices](https://www.misp-project.org/misp-training/a.4-best-practices.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.4-best-practices) |
-| [a.5-decaying-indicators](https://www.misp-project.org/misp-training/a.5-decaying-indicators.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.5-decaying-indicators) |
-| [a.5-bis-decaying-indicators-light-version](https://www.misp-project.org/misp-training/a.5-bis-decaying-indicators-light-version.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.5-bis-decaying-indicators-light-version) |
-| [a.6-forensic](https://www.misp-project.org/misp-training/a.6-forensic.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.6-forensic) |
-| [a.7-rest-API](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.7-rest-API) |
-| [b.1-best-practices-in-threat-intelligence](https://www.misp-project.org/misp-training/b.1-best-practices-in-threat-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/b.1-best-practices-in-threat-intelligence) |
-| [a.8-dev-hands-on](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.8-dev-hands-on) |
-| [a.9-restsearch-dev](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.9-restsearch-dev) |
-| [a.10-galaxy-2.0](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.10-galaxy-2.0) |
-| [a.11-misp-data-model](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.11-misp-data-model) |
-| [a.a-widget-dev](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/master/a.a-widget-dev) |
-| [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/master/b.2-turning-data-into-actionable-intelligence) |
-| [4-misp-standard](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [source](https://github.com/MISP/misp-training/tree/master/4-misp-standard) |
+| [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tree/main/0-misp-introdu
+ction-to-information-sharing) |
+| [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1-misp-usage) |
+| [1.2-misp-integration](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2-misp-integration) |
+| [1.1-misp-viper-integration](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.1-misp-viper-integration) |
+| [1.2.1-misp-integration-mail2misp](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2.1-misp-integration-mail2misp) |
+| [2-misp-administration](https://www.misp-project.org/misp-training/2-misp-administration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/2-misp-administration) |
+| [3-misp-taxonomy-tagging](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [source](https://github.com/MISP/misp-training/tree/main/3-misp-taxonomy-tagging) |
+| [3.1-misp-modules](https://www.misp-project.org/misp-training/3.1-misp-modules.pdf) | [source](https://github.com/MISP/misp-training/tree/main/3.1-misp-modules) |
+| [3.2-misp-galaxy](https://www.misp-project.org/misp-training/3.2-misp-galaxy.pdf) | [source](https://github.com/MISP/misp-training/tree/main/3.2-misp-galaxy) |
+| [3.3-misp-object-template](https://www.misp-project.org/misp-training/3.3-misp-object-template.pdf) | [source](https://github.com/MISP/misp-training/tree/main/3.3-misp-object-template) |
+| [6.0-misp-dashboard](https://www.misp-project.org/misp-training/6.0-misp-dashboard.pdf) | [source](https://github.com/MISP/misp-training/tree/main/6.0-misp-dashboard) |
+| [a.0-contributing](https://www.misp-project.org/misp-training/a.0-contributing.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.0-contributing) |
+| [a.1-devintro](https://www.misp-project.org/misp-training/a.1-devintro.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.1-devintro) |
+| [a.2-pymisp](https://www.misp-project.org/misp-training/a.2-pymisp.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.2-pymisp) |
+| [a.3-misp-feed](https://www.misp-project.org/misp-training/a.3-misp-feed.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.3-misp-feed) |
+| [a.4-best-practices](https://www.misp-project.org/misp-training/a.4-best-practices.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.4-best-practices) |
+| [a.5-decaying-indicators](https://www.misp-project.org/misp-training/a.5-decaying-indicators.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.5-decaying-indicators) |
+| [a.5-bis-decaying-indicators-light-version](https://www.misp-project.org/misp-training/a.5-bis-decaying-indicators-light-version.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.5-bis-decaying
+-indicators-light-version) |
+| [a.6-forensic](https://www.misp-project.org/misp-training/a.6-forensic.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.6-forensic) |
+| [a.7-rest-API](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.7-rest-API) |
+| [b.1-best-practices-in-threat-intelligence](https://www.misp-project.org/misp-training/b.1-best-practices-in-threat-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.1-best-practic
+es-in-threat-intelligence) |
+| [a.8-dev-hands-on](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.8-dev-hands-on) |
+| [a.9-restsearch-dev](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.9-restsearch-dev) |
+| [a.10-galaxy-2.0](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.10-galaxy-2.0) |
+| [a.11-misp-data-model](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.11-misp-data-model) |
+| [a.a-widget-dev](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.a-widget-dev) |
+| [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.2-turn
+ing-data-into-actionable-intelligence) |
+| [4-misp-standard](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [source](https://github.com/MISP/misp-training/tree/main/4-misp-standard) |
+| [x.13-exercise-movie](https://www.misp-project.org/misp-training/x.13-exercise-movie.pdf) | [source](https://github.com/MISP/misp-training/tree/main/x.13-exercise-movie) |
+| [a.b-cli](https://www.misp-project.org/misp-training/a.b-cli.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.b-cli) |
 
 
 ### Complementary materials
