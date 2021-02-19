@@ -1,0 +1,11 @@
+\frametitle{Example query to generate ATT\&CK heatmaps}
+    \texttt{/events/restSearch}
+    \begin{lstlisting}
+{
+    "returnFormat": "attack",
+    "tags": [
+        "misp-galaxy:sector=\"Chemical\""
+    ],
+    "timestamp": "365d"
+}
+    \end{lstlisting}

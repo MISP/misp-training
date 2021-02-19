@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Context added by analysts / tools}{9}{0}{1}
+\beamer@sectionintoc {2}{Data that tells a story}{17}{0}{2}
+\beamer@sectionintoc {3}{The various ways of encoding analyst knowledge to automatically leverage our TI}{24}{0}{3}
+\beamer@sectionintoc {4}{A small detour - COVID-19 MISP}{34}{0}{4}

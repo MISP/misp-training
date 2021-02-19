@@ -1,9 +1,4 @@
 \begin{itemize}
-    \item (13:00 - 13:45) Introduction to Information Sharing with MISP
-    \item (13:45 - 15:00) Usage 1
-    \item (15:00 - 15:15) break
-    \item (15:15 - 16:00) Usage 2
-    \item (16:00 - 16:30) Integration
-    \item (16:30 - 16:50) Best practices
-    \item (16:50 - 17:00) QA
+    \item (14:00 - 14:45) Introduction to Information Sharing with MISP
+    \item (14:45 - 16:00) Usage
 \end{itemize}
