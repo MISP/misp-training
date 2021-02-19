@@ -44,6 +44,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | [4-misp-standard](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [source](https://github.com/MISP/misp-training/tree/main/4-misp-standard) |
 | [x.13-exercise-movie](https://www.misp-project.org/misp-training/x.13-exercise-movie.pdf) | [source](https://github.com/MISP/misp-training/tree/main/x.13-exercise-movie) |
 | [a.b-cli](https://www.misp-project.org/misp-training/a.b-cli.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.b-cli) |
+| [a.c-deployment](https://www.misp-project.org/misp-training/a.c-deployment.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.c-deployment) |
 
 ### Complementary materials
 
