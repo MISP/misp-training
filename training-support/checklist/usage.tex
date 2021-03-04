@@ -26,7 +26,7 @@
 \newcommand{\ourOrganizationAddress}{(+352) 247 88444 - info@circl.lu – www.circl.lu}
 
 \begin{document}
-\section*{List of features to explain: User (MISP trainer support)}
+\section*{List of features to explain: User}
 \begin{center}
 \begin{tabular}{@{}lll@{}}
 \hline
@@ -35,19 +35,18 @@ Check & Description&Length\\
         $\Box$ & {\bf Add events} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
 	$\Box$ & - via Standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
 	$\Box$ & - Distribution levels and publication & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-	$\Box$ & - Different type of timestamps & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Different timestamps \& publish\_timestamp & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
 
         $\Box$ & {\bf Add attributes} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - via Freetext & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - via Standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - via Template & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - via ReST API (including freetext API?) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Freetext & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Template & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - ReST API & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - via EventGraph & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & {\bf Object} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - add Object & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - add References & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - show via EventGraph & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - add additional elements via the EventGraph & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & {\bf *-lists}  & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - Warninglists: show warnings raised in steps above & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - Noticelists: show warnings when adding data & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
@@ -58,33 +57,37 @@ Check & Description&Length\\
         $\Box$ & - show correlations graph & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - feeds \& servers correlation & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & {\bf Tags and Galaxies} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - add Tag from Taxonomy & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - add GalaxyCluster & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - add ATT\&CK pattern & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - Creating and using Tag Collection & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Tag from Taxonomy & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - GalaxyCluster & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - ATT\&CK pattern \& Galaxy matrix & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Tag Collection & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & {\bf Sighting} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - via UI + custom via UI (new source or expiration sighting) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - via API & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - via UI \& API & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & {\bf Delegation} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & {\bf Proposal} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & {\bf Delete (including soft versus hard delete) } & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - Event blacklist when deleting & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Event blocklist when deleting & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & {\bf Extending event} (how and when to use it) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & {\bf Extracting the data} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Exporting data} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - download from & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - download from via modules & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - .json routing & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
-        $\Box$ & - mass export & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - RestSearch & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & {\bf Searching for data} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - Attribute search & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
         $\Box$ & - Event index filter search & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Advanced features} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Event graph, Event timeline, Event report & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Decaying of IoC & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Galaxy 2.0 & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & {\bf Enrichments} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
+        $\Box$ & - Hover \& persistent & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
 \hline
 \end{tabular}
 \end{center}
 
 \newpage
-\section*{List of features to explain: Administrator (MISP trainer support)}
+\section*{List of features to explain: Administrator (Community)}
 \begin{center}
 \begin{tabular}{@{}lll@{}}
 \hline
@@ -92,6 +95,8 @@ Check & Description&Length\\
 \hline
         $\Box$ & {\bf User} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
 	$\Box$ & - administration and contact via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - Pasword/Auth key reset & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - Disabling (never remove) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
 	$\Box$ & - Roles & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
         $\Box$ & {\bf Organisations} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
 	$\Box$ & - local and remote & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
@@ -99,26 +104,62 @@ Check & Description&Length\\
 	$\Box$ & - Org admins and sync users & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
         $\Box$ & {\bf Sharing group} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
 	$\Box$ & - administration via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf Roles and permissions} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - Constraints \& special sync-user & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf Block listing} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - Events & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - Organisations & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf Synchronisation} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - MISP to MISP & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - MISP to tool & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - Pub-Sub & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf Collaboration settings} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - `proposal\_block\_attributes`, `sanitise\_attribute\_on\_delete`, `Sightings\_anonymise` & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
         $\Box$ & {\bf Templates} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
 	$\Box$ & - administration via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
         $\Box$ & - Pulling and Updating & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\newpage
+\section*{List of features to explain: Administrator (Instance)}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\hline
+Check & Description&Length\\
+\hline
+        $\Box$ & {\bf Advanced Auth keys} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - Migration from old system & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - Usage & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf Server settings} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf Maintenance} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - Updating \& release process & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - Submodules and populate DB & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - Diagnostic & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
         $\Box$ & {\bf Jobs and Workers} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
 	$\Box$ & - administration via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
 	$\Box$ & - Scheduled Tasks and CRON jobs & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Black listing} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Events & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Organisations & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Searching} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Dashboard & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Event index & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Attributes: values, [not] tag & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Event level: quickfilter, contextual, distribution & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Event level: event graph & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - RestSearch & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf User settings \& User management} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - User settings & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - User monitoring, self-management, auto-registration & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf Logging \& auditing} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - Logs (and constraints: event history) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - Paranoid, IP \& Auth log, Sync audit & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf Troubleshooting} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - Clean cache \& DB Schema diagnostic & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - Stuck workers & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+	$\Box$ & - Update in progress & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & - Apache logs \& workers logs & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
 
 \hline
 \end{tabular}
 \end{center}
+
+
 
 \end{document}
 
