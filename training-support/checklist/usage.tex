@@ -26,11 +26,11 @@
 \newcommand{\ourOrganizationAddress}{(+352) 247 88444 - info@circl.lu – www.circl.lu}
 
 \begin{document}
-\section*{List of features to explain: User}
+\section*{User}
 \begin{center}
 \begin{tabular}{@{}lll@{}}
 \hline
-Check & Description&Length\\
+    Check & Description&Length \\
 \hline
         $\Box$ & {\bf Add events} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1}\\
 	$\Box$ & - via Standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
@@ -87,37 +87,33 @@ Check & Description&Length\\
 \end{center}
 
 \newpage
-\section*{List of features to explain: Administrator (Community)}
+\section*{Administrator (Community)}
 \begin{center}
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{@{}llll@{}}
 \hline
-Check & Description&Length\\
+    Check & Description & Length &\\
 \hline
-        $\Box$ & {\bf User} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - administration and contact via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Pasword/Auth key reset & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Disabling (never remove) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Roles & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Organisations} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - local and remote & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - administration: Creation and merge  & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Org admins and sync users & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Sharing group} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - administration via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Roles and permissions} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Constraints \& special sync-user & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Block listing} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Events & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Organisations & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Synchronisation} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - MISP to MISP & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - MISP to tool & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Pub-Sub & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Collaboration settings} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - `proposal\_block\_attributes`, `sanitise\_attribute\_on\_delete`, `Sightings\_anonymise` & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Templates} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - administration via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Pulling and Updating & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
+        $\Box$ & {\bf Organisations} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.5} & 10m\\
+        $\Box$ & - local and remote & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & 2m\\
+        $\Box$ & - administration: Creation and merge & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.4} & 8m\\
+        $\Box$ & {\bf User} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3} & 5m\\
+        $\Box$ & - administration and contact via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.2} & \\
+        $\Box$ & - Pasword/Auth key reset & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & - Disabling (never remove) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & {\bf Roles and permissions} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & 3m\\
+        $\Box$ & - Constraints \& special sync-user & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & {\bf Sharing group} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3} & 5m\\
+        $\Box$ & - administration via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3} &\\
+        $\Box$ & {\bf Block listing} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & 3m\\
+        $\Box$ & - Events \& Organisations & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & {\bf Synchronisation} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{1.0} & 35m\\
+        $\Box$ & - MISP to MISP (sync\_user, test \& preview, flow control) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.8} & 20m\\
+        $\Box$ & - Feeds to MISP (Options, overlap) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.5} & 10m\\
+        $\Box$ & - Pub-Sub & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.2} & 5m\\
+        $\Box$ & {\bf Collaboration settings} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & - `proposal\_block\_attributes`, `sanitise\_attribute\_on\_delete`, `Sightings\_anonymise` & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & {\bf Templates} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} &\\
+        $\Box$ & - administration via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
 	
 \hline
 \end{tabular}
@@ -126,35 +122,34 @@ Check & Description&Length\\
 
 
 \newpage
-\section*{List of features to explain: Administrator (Instance)}
+\section*{Administrator (Instance)}
 \begin{center}
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{@{}llll@{}}
 \hline
 Check & Description&Length\\
 \hline
-        $\Box$ & {\bf Advanced Auth keys} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Migration from old system & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Usage & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Server settings} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Maintenance} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Updating \& release process & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Submodules and populate DB & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Diagnostic & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Jobs and Workers} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - administration via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Scheduled Tasks and CRON jobs & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf User settings \& User management} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - User settings & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - User monitoring, self-management, auto-registration & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Logging \& auditing} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Logs (and constraints: event history) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Paranoid, IP \& Auth log, Sync audit & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & {\bf Troubleshooting} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Clean cache \& DB Schema diagnostic & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Stuck workers & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-	$\Box$ & - Update in progress & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-        $\Box$ & - Apache logs \& workers logs & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3}\\
-
+        $\Box$ & {\bf Advanced Auth keys} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.2} & 3m \\
+        $\Box$ & - Migration from old system & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & - Usage & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & {\bf Server settings} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.2} & 5m \\
+        $\Box$ & {\bf Maintenance} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.7} & 15m\\
+        $\Box$ & - Updating \& release process & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & - Submodules and populate DB & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & - Diagnostic & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3} & \\
+        $\Box$ & {\bf Jobs and Workers} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.2} & 10m\\
+        $\Box$ & - Administration via standard UI & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.2} & \\
+        $\Box$ & - Scheduled Tasks and CRON jobs & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & {\bf User settings \& User management} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3} & 5m\\
+        $\Box$ & - User settings & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.2} & \\
+        $\Box$ & - User monitoring, self-management, auto-registration & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & {\bf Logging \& auditing} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.2} & 10m \\
+        $\Box$ & - Logs (and purge: event history) & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.2} & \\
+        $\Box$ & - Paranoid, IP \& Auth log, Sync audit & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & {\bf Troubleshooting} & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.3} & 5m \\
+        $\Box$ & - Clean cache \& DB Schema diagnostic & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & - Stuck workers & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & - Update in progress & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
+        $\Box$ & - Apache logs \& workers logs & \progressbar[filledcolor=ForestGreen, emptycolor=white]{0.1} & \\
 \hline
 \end{tabular}
 \end{center}
