@@ -10,8 +10,8 @@
     \begin{itemize}
         \item CIRCL
         \begin{itemize}
-            \item National CERT for the for the private sector, communes, non-govermental entities in Luxembourg
-            \item Government-driven initiative, funded by the ministry of economy
+            \item National CERT for the private sector, communes, non-govermental entities in Luxembourg
+            \item Government-driven initiative, funded by the Ministry of Economy
             \item Mission is to provide a systematic response facility to computer security threats and incidents
         \end{itemize}
         \item Our relationship with MISP has two sides
@@ -29,14 +29,14 @@
          \item We wanted to share information in an easy and automated way {\bf to avoid duplication of work}.
          \item Christophe Vandeplas (then working at the CERT for the Belgian MoD) showed us his work on a platform that later became MISP.
          \item A first version of the MISP Platform was used by the MALWG and {\bf the increasing feedback of users} helped us to build an improved platform.
-         \item MISP is now {\bf a community-driven development}.
+         \item MISP is now {\bf a community-driven development} supporting different intelligence communities.
  \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{What is MISP?}
 \begin{itemize}
-       \item MISP is a {\bf threat information sharing} platform that is free \& open source software
+        \item MISP is a {\bf threat information sharing} platform and {\bf open standard} that is free \& open source software
        \item A tool that {\bf collects} information from partners, your analysts, your tools, feeds
        \item Normalises, {\bf correlates}, {\bf enriches} the data
        \item Allows teams and communities to {\bf collaborate}
@@ -94,11 +94,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{MISP model of governance}
-    \includegraphics[scale=0.4]{governance.png}
-\end{frame}
-
-\begin{frame}
     \frametitle{Getting some naming conventions out of the way...}
      \begin{itemize}
             \item Data layer
@@ -121,9 +116,9 @@
                     \item \texttt{Android Malware}, \texttt{C2}, ...
                 \end{itemize}
 
-                \item {\bf Taxonomies} are a set of common classification allowing to express the same vocabulary among a distributed set of users and organisations 
+                \item {\bf Taxonomies} are a set of common classification allowing to express the same vocabulary among a distributed set of users and organisations
                 \begin{itemize}
-                    \item \texttt{tlp:green}, \texttt{false-positive:risk="high"}, \texttt{gsma-fraud:technical="sim-card-cloning"}, \texttt{gsma-attack-category:spoofing}
+                    \item \texttt{tlp:green}, \texttt{false-positive:risk="high"}, \texttt{gsma-fraud:technical="sim-card-cloning"}, \texttt{adversary:infrastructure-action="monitoring-active"}
                 \end{itemize}
 
                 \item {\bf Galaxy-clusters} are knowledge base items used to label events/attributes and come from {\bf Galaxies}. Basically a taxonomy with additional meta-information.
@@ -253,7 +248,9 @@
 \begin{frame}
     \frametitle{Life-cycle management via decaying of indicators}
     \includegraphics[width=1.00\linewidth]{decaying-simulation.png}
-    Expiration based on user-defined \textit{Models}
+        \begin{itemize}
+    \item Expiration of attributes based on user-defined \textit{Models}
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -270,7 +267,7 @@
 \begin{frame}
 \frametitle{Benefits of using MISP}
 \begin{itemize}
-        \item  LE can leverage the long-standing experience in information sharing and {\bf bridge their use-cases} with MISP's information sharing mechanisms.
+        \item  LE can leverage the long-standing experience in information sharing and {\bf bridge their use-cases} with MISP's information sharing mechanisms (internal/external sharing).
         \item {\bf Accessing existing MISP information sharing communities} by getting actionable information from CSIRTs/CERTs networks or security researchers.
         \item {\bf Bridging LE communities with other communities}. Sharing groups can be created (and managed) between cross-sectors to support specific use-cases.
         \item {\bf MISP standard format} is a flexible format which can be extended by the users who use the MISP platform. A MISP object template can be created in 30 minutes and directly share information with your model towards existing communities.
@@ -291,14 +288,11 @@
 \begin{frame}
   \frametitle{Get in touch if you have any questions}
   \begin{itemize}
-    \item Contact CIRCL
+    \item Contact us:
     \begin{itemize}
       \item info@circl.lu
       \item \url{https://twitter.com/circl_lu}
       \item \url{https://www.circl.lu/}
-    \end{itemize}
-    \item Contact MISPProject
-    \begin{itemize}
       \item \url{https://github.com/MISP}
       \item \url{https://www.misp-project.org/}
       \item \url{https://twitter.com/MISPProject}
