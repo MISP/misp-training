@@ -8,7 +8,7 @@
 \begin{frame}
   \frametitle{Some things to know in advance...}
   \begin{itemize}
-    \item MISP is based on PHP 5.6+
+    \item MISP is based on PHP 7.3+
     \item Using the MVC framework CakePHP 2.x
     \item What we'll look at now will be a quick glance at the structuring / layout of the code
   \end{itemize}
@@ -83,10 +83,11 @@
 \begin{frame}
   \frametitle{Controllers - additional functionalities}
   \begin{itemize}
-    \item code handling API requests
+    \item Handling API responses (RestResponseComponent)
+    \item Handling API requests (IndexFilterComponent)
     \item auth/session management
     \item ACL management
-    \item API management
+    \item CRUD Component
     \item Security component
     \item important: quertString/PyMISP versions, MISP version handler
     \item future improvements to the export mechanisms
@@ -190,6 +191,40 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Views - Generators}
+  \begin{itemize}
+    \item Mostly in genericElements
+    \item Preparing the move to Cake4
+    \item Important ones
+    \begin{itemize}
+      \item Form - generate forms in a standardised way (/add, /edit, etc)
+      \item IndexTable - index lists using Field templates (/index, etc)
+      \item SingleViews - key-value lists with child elements (/view, etc)
+      \item Menues - to be refactored, see Cerebrate
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{General reusable libraries}
+  \begin{itemize}
+    \item Located in app/Lib
+    \item Code that is to be reused across several layers
+    \item Important ones
+    \begin{itemize}
+      \item Dashboard - Dashboard widget backend code
+      \item EventReport - Report generation
+      \item Export - MISP -> external format converter modules
+      \item Tools - List of generic helper libraries - examples:
+      \begin{itemize}
+         \item Attachment, JSON conversion, random generation, emailing, sync request generation
+         \item Kafka, ZMQ, AWS S3, Elastic integration, PGP encryption, CIDR operations
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
   \frametitle{Distribution}
   \begin{itemize}
     \item algorithm for checking if a user has access to an attribute
@@ -206,6 +241,7 @@
   \frametitle{Testing your code}
   \begin{itemize}
     \item funtional testing
+    \item Github actions
     \item impact scope
     \begin{itemize}
       \item view code changes: only impacts request type based views
