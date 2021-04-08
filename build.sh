@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage" "1.2-misp-integration" "1.1-misp-viper-integration" "1.2.1-misp-integration-mail2misp" "2-misp-administration" "3-misp-taxonomy-tagging" "3.1-misp-modules" "3.2-misp-galaxy" "3.3-misp-object-template" "6.0-misp-dashboard" "a.0-contributing" "a.1-devintro" "a.2-pymisp" "a.3-misp-feed" "a.4-best-practices" "a.5-decaying-indicators" "a.5-bis-decaying-indicators-light-version" "a.6-forensic" "a.7-rest-API" "b.1-best-practices-in-threat-intelligence" "a.8-dev-hands-on" "a.9-restsearch-dev" "a.10-galaxy-2.0" "a.11-misp-data-model" "a.a-widget-dev" "b.2-turning-data-into-actionable-intelligence" "4-misp-standard" "x.13-exercise-movie" "a.b-cli" "a.c-deployment")
+slidedecks=("0-misp-introduction-to-information-sharing" "1-misp-usage" "1.2-misp-integration" "1.1-misp-viper-integration" "1.2.1-misp-integration-mail2misp" "2-misp-administration" "3-misp-taxonomy-tagging" "3.1-misp-modules" "3.2-misp-galaxy" "3.3-misp-object-template" "6.0-misp-dashboard" "a.0-contributing" "a.1-devintro" "a.2-pymisp" "a.3-misp-feed" "a.4-best-practices" "a.5-decaying-indicators" "a.5-bis-decaying-indicators-light-version" "a.6-forensic" "a.7-rest-API" "b.1-best-practices-in-threat-intelligence" "a.8-dev-hands-on" "a.9-restsearch-dev" "a.10-galaxy-2.0" "a.11-misp-data-model" "a.a-widget-dev" "b.2-turning-data-into-actionable-intelligence" "4-misp-standard" "a.b-cli" "a.c-deployment")
 
 mkdir output
 export TEXINPUTS=::`pwd`/themes/
