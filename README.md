@@ -68,6 +68,8 @@ given to the materials. We welcome contributions in order to improve the trainin
 
 Sample videos which can be used to understand how the training materials are used in companion with a live MISP demo instance.
 
+- [MISP General Usage Training - Part 1 of 2](https://www.youtube.com/watch?v=-NuODyh1YJE)
+- [MISP General Usage Training - Part 2 of 2](https://www.youtube.com/watch?v=LlKnh5b0bgw)
 - [MISP Training Usage - Training given the 2nd March 2021 - 2h50 min](https://cra.circl.lu/videos/MISP-Usage-Training-20210302.mp4)
 - [MISP Training Administration and Building Communities- Training given the 3rd March 2021 - 2h56min](https://cra.circl.lu/videos/MISP-Administration-and-Building-Communities-20210303.mp4)
 - [MISP Training Module 1 - An Introduction to Cybersecurity Information Sharing](https://www.youtube.com/watch?v=aM7czPsQyaI)
