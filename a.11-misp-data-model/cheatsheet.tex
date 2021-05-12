@@ -13,14 +13,14 @@
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{fontawesome}
+\usepackage{xparse}
 \usepackage[utf8]{inputenc}
 
-\title{MISP Concepts Cheat Sheet}
+\title{MISP Cheat Sheet}
 \author{MISP Project}
 \date{\today}
 
 \makeatletter
-\let\thetitle\@title
 \let\theauthor\@author
 \let\thedate\@date
 \makeatother
@@ -38,6 +38,8 @@
 \newcommand{\attribute}{\texttt{Attribute }}
 \newcommand{\objects}{\texttt{MISP Objects }}
 \newcommand{\object}{\texttt{MISP Object }}
+\newcommand{\reference}{\texttt{Reference }}
+\newcommand{\references}{\texttt{References }}
 \newcommand{\proposals}{\texttt{Proposals }}
 \newcommand{\proposal}{\texttt{Proposal }}
 \newcommand{\eventreports}{\texttt{Event Reports }}
@@ -52,6 +54,10 @@
 \newcommand{\cluster}{\texttt{Galaxy Cluster }}
 \newcommand{\sharinggroups}{\texttt{Sharing Groups }}
 \newcommand{\sharinggroup}{\texttt{Sharing Group }}
+
+\newcommand{\taggable}{\faicon{tags}\hspace*{0.3em}}
+\newcommand{\distributable}{\faicon{eye-slash}\hspace*{0.3em}}
+\newcommand{\synchronisable}{\faicon{exchange}\hspace*{0.3em}}
 %\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
 \tikzstyle{mybox} = [
     draw=black,
@@ -69,24 +75,48 @@
     font=\bfseries,
     right=10pt
 ]
-% arg1 = purpose
-% arg2 = title
-% arg3 = content
-\newcommand{\cheatbox}[3][]{
+% arg1 = icon
+% arg2 = purpose
+% arg3 = usecase
+% arg4 = actions
+% arg5 = description
+% arg6 = title
+% arg7 = content
+\tikzset{actionbox/.style={
+    text=white,
+    yshift=-1pt,xshift=-1pt,
+    append after command={
+    \pgfextra
+            \draw[sharp corners, fill=black]% 
+        (\tikzlastnode.west)% 
+        [rounded corners=0pt] |- (\tikzlastnode.north)% 
+        [rounded corners] -| (\tikzlastnode.east)% 
+        [rounded corners=0pt] |- (\tikzlastnode.south)% 
+        [rounded corners] -| (\tikzlastnode.west);
+    \endpgfextra
+    }
+}}
+\NewDocumentCommand{\cheatbox}{ O{} O{} O{} O{} O{} m m}{
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-            \textit{#1}
-            \ifthenelse{\isempty{#1}}{}{\vspace{2pt}}
-            #3
+            \ifthenelse{\isempty{#4}}{}{\vspace{1em}}
+            \textit{#5}
+            \vspace*{0.3em}
+            \ifthenelse{\isempty{#2}}{}{ \par{\textbf{Purpose}: #2}}
+            \ifthenelse{\isempty{#3}}{}{ \par{\textbf{Usecase}: #3\\}}
+            #7
             \end{minipage}
         };
-        \node[boxtitle] at (box.north west) {#2};
+        \node[boxtitle] at (box.north west) {#1 #6};
+        \ifthenelse{\isempty{#4}}{}{
+            \path node [actionbox, anchor=north east] at (box.north east) (actionLabel) {#4};
+        }
     \end{tikzpicture}
 
-    \vspace*{5pt}
+    \vspace*{2pt}
 }
-% arg1 = purpose
+% arg1 = description
 % arg2 = title
 % arg3 = content
 \newcommand{\cheatboxlarge}[3][]{
@@ -101,12 +131,17 @@
         \node[boxtitle] at (box.north west) {#2};
     \end{tikzpicture}
 
-    \vspace*{5pt}
+    \vspace*{4pt}
 }
 % arg1 = label
 % arg2 = text
 \newcommand{\boxentry}[2]{
     \par{\textbf{#1}: #2\vspace*{0.3em}}
+}
+% arg1 = label
+% arg2 = text
+\newcommand{\boxentrycompact}[2]{
+    \par{\textbf{#1} #2}
 }
 
 % arg1 = current level
@@ -149,7 +184,8 @@
 
 \begin{document}
 
-\begin{center}{\huge{\textbf{\thetitle}}}\\
+\begin{center}{
+    \huge{\textbf{MISP Concept Cheat sheet}}}\\
 \end{center}
 \begin{multicols*}{2}
 
@@ -330,8 +366,96 @@
     \end{center}
 }
 \end{multicols*}
+\newpage
 
+\begin{center}{
+    \huge{\textbf{MISP Data Model Cheat Sheet}}}\\
+\end{center}
 \begin{multicols*}{3}
+    \cheatbox{Legend}{
+        \boxentrycompact{\taggable}{Context such as \taxonomies or \clusters can be attached to the element}
+        \boxentrycompact{\distributable}{Can have a distribution level}
+        \boxentrycompact{\synchronisable}{Can be synchronised to other instances}
+        % \boxentry{$\blacklozenge \owns \blacktriangle$}{The element $\blacklozenge$ can act as a container and contains $\blacktriangle$}
+    }
+
+    % EVENT 
+    \cheatbox[\faicon{user}]
+        [Group datapoints and contexts together. Acting as an envelop, it allows setting its distribution and sharing rules.]
+        [Encode incidents, events, reports, …]
+        [\taggable \distributable \synchronisable]
+        [Encapsulations for contextually linked information.]
+        {Event}
+        {
+            $\blacktriangleright$ \events can contain other elements such as \attributes, \objects and \eventreports.
+        }
+
+    % ATTRIBUTE 
+    \cheatbox[\faicon{cube}]
+        [Individual data point. Can be an indicator or supporting data.]
+        [Domain, IP, link, sha1, attachment, …]
+        [\taggable \distributable \synchronisable]
+        [Basic building block to share information.]
+        {Attribute}
+        {
+            $\blacktriangleright$ \attributes cannot be duplicated inside the same \event and can have \sightings.
+        }
+
+    % Object 
+    \cheatbox[\faicon{cubes}]
+        [Groups \attributes that are intrinsically linked together.]
+        [File, person, credit card, x509, device, …]
+        [\distributable \synchronisable]
+        [Advanced building block providing \attribute compositions via templates.]
+        {MISP Object}
+        {
+            $\blacktriangleright$ \objects have their formats described in their respective template. They contain \attributes and can reference \reference other \attributes or \objects.
+        }
+    \columnbreak
+
+    % Object Reference
+    \cheatbox[$\nearrow$]
+        [Allows to create relationships between entities, thus creating a graph where they are the edges and entities are the nodes]
+        [Represent behaviours, similarities, affiliation, …]
+        [\synchronisable]
+        [Relationships between individual building blocks.]
+        {Object Reference}
+        {
+            $\blacktriangleright$ \references can have a textual relationship which can come from MISP or be set freely.
+        }
+
+    % Sightings
+    \cheatbox[\faicon{eye}]
+        [Allows to add temporality to the data]
+        [Record activity or occurence, perform IoC expiration, …]
+        [\synchronisable]
+        [Means to convey that a data point has been seen.]
+        {Sightings}
+        {
+            $\blacktriangleright$ \sightings are the best way to express that something has been seen. They can also be used to mark \textit{false positives}.
+        }
+
+    % Event report
+    \cheatbox[\faicon{file-text}]
+        [Supporting data point to describe events or processes]
+        [Encode reports, provide more information about the \event, …]
+        [\distributable \synchronisable]
+        [Advanced building block that can contain text.]
+        {Event Report}
+        {
+            $\blacktriangleright$ \eventreports are markdown-aware and includes a special syntax to reference data points or context.
+        }
+
+    % Proposals
+    \cheatbox[\faicon{comment}]
+        [Allow the correction or the creation of \attributes for \events your organisation does not own.]
+        [Disable the IDS flag, Correct errors]
+        [\synchronisable]
+        [Clone of an \attribute containing information about modification to be done.]
+        {Proposals}
+        {
+            $\blacktriangleright$ As \proposals are sync., if the creator organisation is connected to the MISP instance from where the \proposal has been created, it will be able to either \textit{accept} or \textit{discard} it. 
+        }
 
 \end{multicols*}
 \end{document}
