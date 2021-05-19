@@ -4,6 +4,12 @@
 \usepackage[landscape]{geometry}
 \usepackage{xifthen}
 \usepackage{url}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black
+}
 \usepackage{tikz}
 \usetikzlibrary{positioning,fit,calc,backgrounds}
 
@@ -69,7 +75,7 @@
   language=json,                 % the language of the code
 %   keywordstyle=\bfseries,
 %   morekeywords={GET,POST,PUT,DELETE,... },           % if you want to add more keywords to the set
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
   numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
   rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
@@ -86,6 +92,7 @@
 \date{\today}
 
 \makeatletter
+\newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
 \let\theauthor\@author
 \let\thedate\@date
 \makeatother

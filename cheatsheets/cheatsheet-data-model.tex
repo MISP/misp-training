@@ -18,7 +18,7 @@
         [Encode incidents, events, reports, …]
         [\taggable \distributable \synchronisable]
         [Encapsulations for contextually linked information.]
-        {Event}
+        {\linkdest{event}Event}
         {
             $\blacktriangleright$ \events can contain other elements such as \attributes, \objects and \eventreports.\\
             $\blacktriangleright$ The distribution level and any context added on an \event (such as \taxonomies) are propagated to its underlying data.
@@ -30,7 +30,7 @@
         [Domain, IP, link, sha1, attachment, …]
         [\taggable \distributable \synchronisable]
         [Basic building block to share information.]
-        {Attribute}
+        {\linkdest{attribute}Attribute}
         {
             $\blacktriangleright$ \attributes cannot be duplicated inside the same \event and can have \sightings.\\
             $\blacktriangleright$ The difference between an IoC or supporting data is usualy indicated by the state of the attribute's \texttt{to\_ids} flag.
@@ -42,7 +42,7 @@
         [File, person, credit-card, x509, device, …]
         [\distributable \synchronisable]
         [Advanced building block providing \attribute compositions via templates.]
-        {MISP Object}
+        {\linkdest{object}MISP Object}
         {
             $\blacktriangleright$ \objects have their attribute compositions described in their respective template. They are instanciated with \attributes and can reference \reference other \attributes or \objects.\\
             $\blacktriangleright$ MISP is not required to know the template to save and display the object. However, \textit{edits} will not be possible as the template to validate against is not known.
@@ -55,7 +55,7 @@
         [Represent behaviours, similarities, affiliation, …]
         [\synchronisable]
         [Relationships between individual building blocks.]
-        {Object Reference}
+        {\linkdest{reference}Object Reference}
         {
             $\blacktriangleright$ \references can have a textual relationship which can come from MISP or be set freely.
         }
@@ -66,7 +66,7 @@
         [Record activity or occurence, perform IoC expiration, …]
         [\synchronisable]
         [Means to convey that a data point has been seen.]
-        {Sightings}
+        {\linkdest{sighting}Sightings}
         {
             $\blacktriangleright$ \sightings are the best way to express that something has been seen. They can also be used to mark \textit{false positives}.
         }
@@ -77,7 +77,7 @@
         [Encode reports, provide more information about the \event, …]
         [\distributable \synchronisable]
         [Advanced building block that can contain text.]
-        {Event Report}
+        {\linkdest{eventreport}Event Report}
         {
             $\blacktriangleright$ \eventreports are markdown-aware and includes a special syntax to reference data points or context.
         }
@@ -88,7 +88,7 @@
         [Disable the IDS flag, Correct errors]
         [\synchronisable]
         [Clone of an \attribute containing information about modification to be done.]
-        {Proposals}
+        {\linkdest{proposal}Proposals}
         {
             $\blacktriangleright$ As \proposals are sync., if the creator organisation is connected to the MISP instance from where the \proposal has been created, it will be able to either \textit{accept} or \textit{discard} it. 
         }
@@ -100,7 +100,7 @@
         [TLP, Confidence, Source, Workflows, Event type, …]
         []
         [Machine and human-readable labels standardised on a common set of vocabularies.]
-        {Taxonomies}
+        {\linkdest{taxonomy}Taxonomies}
         {
             $\blacktriangleright$ Even though MISP allows the creation of free-text tags, it's always preferable to use those coming from \taxonomies if they exists.
         }
@@ -111,7 +111,7 @@
         [Exploit-Kit, Preventive Measure, MITRE ATT\&CK, Tools, Threat-actors, …]
         []
         [Act as a container to group together context described by \clusters by their type.]
-        {Galaxies}
+        {\linkdest{galaxy}Galaxies}
         {}
 
     % Galaxy Clusters
@@ -120,7 +120,7 @@
         [\texttt{threat-actor="APT 29"}, \texttt{country="germany"}, \texttt{mitre-attack-pattern="Disk Wipe - T1561"}]
         [\distributable \synchronisable]
         [Kownledge base items used as tags with additional complex meta-data aimed for human consumption.]
-        {Galaxies Clusters}
+        {\linkdest{cluster}Galaxies Clusters}
         {
             $\blacktriangleright$ \clusters can be seen as an enhanced \taxonomy as they can have meta-data and relationships with other \clusters.\\
             $\blacktriangleright$ Any \clusters can contain the following:

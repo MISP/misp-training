@@ -48,6 +48,7 @@ POST /attributes/restSearch
     \begin{minipage}{0.46\textwidth}
     \lstset{style=js}
     \begin{lstlisting}
+POST /attributes/restSearch
 {
     "galaxy.synonyms": "APT29",
     "galaxy.cfr-target-category": "Financial sector"
@@ -60,7 +61,7 @@ POST /attributes/restSearch
     \begin{minipage}{0.46\textwidth}
     \lstset{style=js}
     \begin{lstlisting}
-/tags/attachTagToObject
+POST /tags/attachTagToObject
 {
     "uuid": "[Could be UUID from Event, Attribute, ...]",
     "tag": "tlp:amber"
@@ -97,8 +98,8 @@ POST /attributes/restSearch
                 \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
                     \item Usecase: Get events modified in the last $t$
                 \end{itemize}
-            \item Usage
-            \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+            \item Usage:
+            \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
                 \item[] \usebox\codeboxD
             \end{itemize}
         \end{description}

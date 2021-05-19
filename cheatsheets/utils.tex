@@ -3,28 +3,28 @@
 %
 \newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
 \newcommand{\misp}{\includegraphics[scale=0.2]{misp.pdf}\hspace*{0.5em}}
-\newcommand{\events}{\texttt{Events }}
-\newcommand{\event}{\texttt{Event }}
-\newcommand{\attributes}{\texttt{Attributes }}
-\newcommand{\attribute}{\texttt{Attribute }}
-\newcommand{\objects}{\texttt{MISP Objects }}
-\newcommand{\object}{\texttt{MISP Object }}
-\newcommand{\reference}{\texttt{Reference }}
-\newcommand{\references}{\texttt{References }}
-\newcommand{\proposals}{\texttt{Proposals }}
-\newcommand{\proposal}{\texttt{Proposal }}
-\newcommand{\eventreports}{\texttt{Event Reports }}
-\newcommand{\eventreport}{\texttt{Event Report }}
-\newcommand{\sightings}{\texttt{Sightings }}
-\newcommand{\sighting}{\texttt{Sighting }}
+\newcommand{\events}{\hyperlink{event}{\texttt{Events}} }
+\newcommand{\event}{\hyperlink{event}{\texttt{Event}} }
+\newcommand{\attributes}{\hyperlink{attribute}{\texttt{Attributes}} }
+\newcommand{\attribute}{\hyperlink{attribute}{\texttt{Attribute}} }
+\newcommand{\objects}{\hyperlink{object}{\texttt{MISP Objects}} }
+\newcommand{\object}{\hyperlink{object}{\texttt{MISP Object}} }
+\newcommand{\reference}{\hyperlink{reference}{\texttt{Reference}} }
+\newcommand{\references}{\hyperlink{reference}{\texttt{References}} }
+\newcommand{\proposals}{\hyperlink{proposal}{\texttt{Proposals}} }
+\newcommand{\proposal}{\hyperlink{proposal}{\texttt{Proposal}} }
+\newcommand{\eventreports}{\hyperlink{eventreport}{\texttt{Event Reports}} }
+\newcommand{\eventreport}{\hyperlink{eventreport}{\texttt{Event Report}} }
+\newcommand{\sightings}{\hyperlink{sighting}{\texttt{Sightings}} }
+\newcommand{\sighting}{\hyperlink{sighting}{\texttt{Sighting}} }
 \newcommand{\taxonomies}{\texttt{Taxonomies }}
 \newcommand{\taxonomy}{\texttt{Taxonomy }}
-\newcommand{\galaxy}{\texttt{Galaxy }}
-\newcommand{\galaxies}{\texttt{Galaxies }}
-\newcommand{\clusters}{\texttt{Galaxy Clusters }}
-\newcommand{\cluster}{\texttt{Galaxy Cluster }}
-\newcommand{\sharinggroups}{\texttt{Sharing Groups }}
-\newcommand{\sharinggroup}{\texttt{Sharing Group }}
+\newcommand{\galaxy}{\hyperlink{galaxy}{\texttt{Galaxy}} }
+\newcommand{\galaxies}{\hyperlink{galaxy}{\texttt{Galaxies}} }
+\newcommand{\clusters}{\hyperlink{cluster}{\texttt{Galaxy Clusters}} }
+\newcommand{\cluster}{\hyperlink{cluster}{\texttt{Galaxy Cluster}} }
+\newcommand{\sharinggroups}{\hyperlink{sharinggroup}{\texttt{Sharing Groups}} }
+\newcommand{\sharinggroup}{\hyperlink{sharinggroup}{\texttt{Sharing Group}} }
 
 \newcommand{\taggable}{\faicon{tags}\hspace*{0.3em}}
 \newcommand{\distributable}{\faicon{eye-slash}\hspace*{0.3em}}
@@ -38,7 +38,7 @@
     fill=white,
     very thick,
     rectangle, rounded corners,
-    inner sep=10pt, inner ysep=10pt
+    inner sep=10pt
 ]
 \tikzstyle{boxtitle} = [
     % fill=black,
@@ -49,8 +49,8 @@
     % right=10pt
     draw=black,
     line width=1pt,
-    text=black,
-    fill=gray!70,
+    text=white,
+    fill=black!80,
     font=\bfseries,
     rectangle, rounded corners=2pt,
     inner sep=4pt,

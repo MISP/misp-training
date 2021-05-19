@@ -9,7 +9,7 @@
     \boxentry{Caching}{Is the process of \textit{fetching} data from a MISP instance or feed but only storing hashes of the collected values for correlations and look-ups purposes.}
     \boxentry{Delegation}{Is the act of transfering the ownership of an \event to another organisation and removing any associations with the original creator.}
     \boxentry{Deletion (hard/soft)}{\textit{Hard deletion} is the act of removing the element from the database. It will thus do not perform revocation on other MISP instances. \textit{Soft deletion} is the act flagging an element as deleted and thus propagating the revocation among the network of connected MISP instances.}
-    \boxentry{Extended \event}{Is an \event that extends an existing \event, providing a combined view of the data contained in both \events. The owner of the extending \event is the organisation that created the extension, this allows anyone to extend any \events and have control over them.}
+    \boxentry{Extended Event}{Is an \event that extends an existing \event, providing a combined view of the data contained in both \events. The owner of the extending \event is the organisation that created the extension, this allows anyone to extend any \events and have control over them.}
     \boxentry{\galaxy Matrix}{Is a matrix derived from \clusters belonging to the same \galaxy. The layout (pages and columns) is defined at the \galaxy level and its content comes from the \clusters meta-data themselves.}
     \boxentry{Indicators}{contain a pattern that can be used to detect suspicious or malicious cyber activity. They are generally \attributes having their \texttt{to\_ids} flag set.}
     \boxentry{Orgc / Org}{\textit{Creator Organisation} (\textbf{Orgc}) is the organisation that created the data and the one allowed to modify it. \textit{Owner Organisation} (\textbf{Org}) is the organisation owning the data on a given instance and is allowed to view it regardless of the distribution level.}
@@ -37,7 +37,7 @@
     \boxentry{All Communities}{Anyone having access: Will be freely propagated in the network of connected MISP instances.}
     \vspace*{-0.7em}
     \begin{center}\distrigraph{3}\end{center}
-    \boxentry{Sharing Groups}{Organisations being part of the distribution list that exhaustively keeps track of who can access the data and how it should be synchronised.}
+    \boxentry{\linkdest{sharinggroup}Sharing Groups}{Organisations being part of the distribution list that exhaustively keeps track of who can access the data and how it should be synchronised.}
 
     \begin{multicols*}{2}
         \begin{center}
