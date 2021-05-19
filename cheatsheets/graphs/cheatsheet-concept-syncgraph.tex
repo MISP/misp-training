@@ -1,0 +1,63 @@
+\pgfdeclarelayer{bg0}    % declare background layer
+\pgfdeclarelayer{bg1}    % declare background layer
+\pgfsetlayers{bg0,bg1,main}  % set the order of the layers (main is the standard layer)
+\begin{tikzpicture}[
+    simplebox/.style n args={3}{
+        rectangle, rounded corners, thick,
+        draw=black, fill=#1,
+        minimum width=#2,
+        minimum height=#3,
+        inner sep=10pt, inner ysep=10pt
+    },
+    simpleboxtitle/.style = {
+        rectangle, rounded corners=0,
+        minimum width=1em,
+        fill=brown!10, text=black, draw, thick,
+        font=\bfseries,
+        inner sep=3pt
+    },
+    header/.style = {%
+        inner ysep = +1.0em,
+        append after command = {
+            \pgfextra{\let\TikZlastnode\tikzlastnode}
+            node[simpleboxtitle] (header-\TikZlastnode) at (\TikZlastnode.north) {#1}
+        }
+    },
+    coloredHeader/.style n args={2}{
+        inner ysep = +1.0em,
+        append after command = {
+            \pgfextra{\let\TikZlastnode\tikzlastnode}
+            node[simpleboxtitle,fill=#2] (header-\TikZlastnode) at (\TikZlastnode.north) {#1}
+        }
+    },
+    user/.style = {
+        inner sep=0pt
+    },
+    legend/.style = {
+        rectangle, rounded corners=0,
+        inner sep=2pt,
+        draw=black
+    },
+    nodes = {align = center}
+]
+
+    \node[user] (misp1users) {\faicon{user} \faicon{user} \faicon{user}};
+    \node[user] (misp2users) [right= 13em of misp1users] {\faicon{user} \faicon{user}};
+    \node[user] (misp2users2) [right= 3em of misp2users] {\faicon{user} \faicon{user} \faicon{user}};
+    \node[user,inner xsep=3pt] (syncuser) [left= 0.0em of misp2users] {\faicon{user-plus}};
+    \begin{pgfonlayer}{bg1}
+        \node[yshift=2pt, fit = (misp1users), simplebox={white}{1em}{2em}, header = Org. $\pmb{\alpha}$] (misp1org) {};
+        \node[yshift=2pt, fit = (misp2users) (syncuser), simplebox={white}{1em}{2em}, header = Org. $\pmb{\alpha}$] (misp2org) {};
+        \node[yshift=2pt, fit = (misp2users2), simplebox={gray!30}{1em}{2em}, header = Org. $\pmb{\omega}$] (misp2org2) {};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{bg0}
+        \node[yshift=+0.5em, fit = (misp1org), simplebox={gray}{11em}{6em}, coloredHeader={MISP 1}{blue!10}] (m1) {};
+        \node[yshift=+0.5em, fit = (misp2org) (misp2org2), simplebox={gray}{11em}{6em}, coloredHeader={MISP 2}{blue!10}] (m2) {};
+    \end{pgfonlayer}
+    \draw[-,very thick] (m1.south) -- ++(0,-15pt) -| ($(syncuser.south) + (0,-2pt)$) node [
+        pos=0.25,above,yshift=-0.9em
+    ] (textsync) {Sync. connection};
+    \def \offsetY {3}
+    \draw[->,thick] ($(m1.east) + (1pt,\offsetY pt)$) -- ($(m2.west) + (-1pt,\offsetY pt)$) node [above,midway,yshift=-\offsetY pt] {PUSH};
+    \draw[<-,thick] ($(m1.east) + (1pt,-\offsetY pt)$) -- ($(m2.west) + (-1pt,-\offsetY pt)$) node [below,midway,yshift=\offsetY pt] {PULL};
+\end{tikzpicture}

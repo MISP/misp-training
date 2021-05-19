@@ -1,0 +1,150 @@
+\begin{center}{
+    \huge{\textbf{MISP User \& Admin Cheat Sheet}}}\\
+\end{center}
+
+\newsavebox\codeboxA
+\begin{lrbox}{\codeboxA}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+POST /attributes/restSearch
+{"value": "1.2.3.%"}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxB
+\begin{lrbox}{\codeboxB}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+POST /attributes/restSearch
+{"tags": ["tlp:white", "!tlp:green"]}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxC
+\begin{lrbox}{\codeboxC}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+POST /attributes/restSearch
+{"tags": {"AND": ["tlp:green", "Malware"], "NOT": ["%ransomware%"]}}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxD
+\begin{lrbox}{\codeboxD}
+    \begin{minipage}{0.405\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+{"timestamp": 1521846000}
+{"timestamp": "7d"}
+{"timestamp": ["2d", "1h"]}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxE
+\begin{lrbox}{\codeboxE}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+{
+    "galaxy.synonyms": "APT29",
+    "galaxy.cfr-target-category": "Financial sector"
+}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxF
+\begin{lrbox}{\codeboxF}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+/tags/attachTagToObject
+{
+    "uuid": "[Could be UUID from Event, Attribute, ...]",
+    "tag": "tlp:amber"
+}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\begin{multicols*}{2}
+    \multicolstitle{User}
+    \cheatboxlarge{API}{
+        \textbf{\texttt{Wildcard} searches:}\\
+        \hspace*{0.5em}\usebox\codeboxA\\
+        \textbf{\texttt{Or} and \texttt{Negation} searches:}\\
+        \hspace*{0.5em}\usebox\codeboxB\\
+        \textbf{\texttt{And} and \texttt{Negation} searches:}\\
+        \hspace*{0.5em}\usebox\codeboxC\\
+        \textbf{\cluster metadata searches:}\\
+        \hspace*{0.5em}\usebox\codeboxE\\
+        \textbf{Attach tags:}\\
+        \hspace*{0.5em}\usebox\codeboxF\\
+        \textbf{Timestamps:}
+        \begin{description}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+            \item \texttt{timestamp}: Time of the last modification on the data
+            \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                \item Usecase: Get data was modified in the last $t$
+                \item E.g.: Last updated data from a feed
+            \end{itemize}
+            \item \texttt{publish\_timestamp}: Time at which the event was published
+            \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                \item Usecase: Get data that arrived in my system since $t$
+                \item E.g.: New data from a feed
+            \end{itemize}
+            \item \texttt{event\_timestamp}: Used in the Attribute scope
+                \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                    \item Usecase: Get events modified in the last $t$
+                \end{itemize}
+            \item Usage
+            \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                \item[] \usebox\codeboxD
+            \end{itemize}
+        \end{description}
+    }
+
+    \cheatboxlarge{Tips \& Tricks}{
+        \boxentry{Get JSON Representation}{Append \texttt{.json} at any URL to get the content in JSON format. Example: \texttt{/events/view/42.json}}
+    }
+
+    \columnbreak
+    \multicolstitle{Admin}
+    \cheatboxlarge{Reset Password}{
+        API: \httpcode[\{"password": "***"\}]{POST}{/users/initiatePasswordReset/[id]}\\
+        CLI: \clicode{Password [email] [password]}
+    }
+    \cheatboxlarge{Reset Bruteforce login protection}{
+        CLI: \clicode{Admin clearBruteforce [email]}
+    }
+    \cheatboxlarge{Upgrade to the latest version}{%
+        All in 1-shot: \clicode{Admin updateMISP}\\
+        Manually:
+        \begin{enumerate}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+            \item \bashcode{/var/www/MISP}
+            \item \bashcode{git pull origin 2.4}
+            \item \bashcode{git submodule update --init --recursive}
+            \item \clicode{Admin updateJSON}
+            \setlength\itemsep{-0.1em}
+            \item Check live update progress \texttt{/servers/updateProgress}
+        \end{enumerate}
+    }
+    \cheatboxlarge{Workers}{
+        Restart All: \clicode{Admin restartWorkers}\\
+        Add: \clicode{Admin startWorker [queue]}\\
+        Stop: \clicode{Admin stopWorker [pid]}
+    }
+    \cheatboxlarge{Settings}{
+        Get: \clicode{Admin getSetting [setting]}\\
+        Set: \clicode{Admin setSetting [setting] [value]}\\
+        Stop: \clicode{Admin stopWorker [pid]}\\
+        Base URL: \clicode{Baseurl [baseurl]}
+    }
+    \cheatboxlarge{Miscalenous}{
+        Clean Caches: \clicode{Admin cleanCaches}\\
+        Get IPs For User ID: \clicode{Admin UserIP [user_id]}\\
+        Get User ID For User IP: \clicode{Admin IPUser [ip]}\\
+        Documentation: \texttt{/events/automation}\\
+        Logs files location: \texttt{MISP/app/tmp/logs}
+    }
+\end{multicols*}

@@ -1,0 +1,46 @@
+\begin{tikzpicture}[
+    node/.style={inner sep=0pt},
+    simplebox/.style n args={3}{
+        rectangle, rounded corners, thick,
+        draw=black, fill=#1,
+        minimum width=#2,
+        minimum height=#3,
+        inner sep=10pt, inner ysep=10pt
+    },
+    simpleboxtitle/.style = {
+        rectangle, rounded corners=0,
+        minimum width=1em,
+        fill=brown!10, text=black, draw, thick,
+        font=\bfseries,
+        inner sep=3pt
+    },
+    header/.style = {%
+        inner ysep = +1.0em,
+        append after command = {
+            \pgfextra{\let\TikZlastnode\tikzlastnode}
+            node[simpleboxtitle] (header-\TikZlastnode) at (\TikZlastnode.north) {#1}
+        }
+    },
+    coloredHeader/.style n args={2}{
+        inner ysep = +1.0em,
+        append after command = {
+            \pgfextra{\let\TikZlastnode\tikzlastnode}
+            node[simpleboxtitle,fill=#2] (header-\TikZlastnode) at (\TikZlastnode.north) {#1}
+        }
+    }
+]
+
+    \node[simpleboxtitle] (orgs01) [] {Org. $\pmb{\alpha}$};
+    \node[simpleboxtitle] (orgs02) [below = 0.3em of orgs01] {Org. $\pmb{\omega}$};
+    \node[fit = (orgs01) (orgs02)] (orgs0) {};
+    \node[simpleboxtitle] (orgs1) [above right= -0.8em and 4em of orgs0] {Org. $\pmb{\omega}$};
+    \node[simpleboxtitle] (orgs2) [below = 3.5em of orgs1] {Org. $\pmb{\gamma}$};
+    \begin{scope}[on background layer]
+        \node[yshift=2pt, fit = (orgs01) (orgs02), simplebox={gray}{1em}{2em}, coloredHeader={MISP 1}{blue!10}] (m1) {};
+        \node[yshift=2pt, fit = (orgs1), simplebox={gray}{1em}{2em}, coloredHeader={MISP 2}{blue!10}] (m2) {};
+        \node[yshift=2pt, fit = (orgs2), simplebox={gray}{1em}{2em},  coloredHeader={MISP 3}{blue!10}] (m3) {};
+    \end{scope}
+
+    \draw[-, thick] (m1) to[out=20, in=180] (m2);
+    \draw[-, thick] (m1) to[out=-20, in=180] (m3);
+\end{tikzpicture}

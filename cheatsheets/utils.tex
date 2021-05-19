@@ -1,0 +1,145 @@
+%
+% MISP ELEMENTS
+%
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+\newcommand{\events}{\texttt{Events }}
+\newcommand{\event}{\texttt{Event }}
+\newcommand{\attributes}{\texttt{Attributes }}
+\newcommand{\attribute}{\texttt{Attribute }}
+\newcommand{\objects}{\texttt{MISP Objects }}
+\newcommand{\object}{\texttt{MISP Object }}
+\newcommand{\reference}{\texttt{Reference }}
+\newcommand{\references}{\texttt{References }}
+\newcommand{\proposals}{\texttt{Proposals }}
+\newcommand{\proposal}{\texttt{Proposal }}
+\newcommand{\eventreports}{\texttt{Event Reports }}
+\newcommand{\eventreport}{\texttt{Event Report }}
+\newcommand{\sightings}{\texttt{Sightings }}
+\newcommand{\sighting}{\texttt{Sighting }}
+\newcommand{\taxonomies}{\texttt{Taxonomies }}
+\newcommand{\taxonomy}{\texttt{Taxonomy }}
+\newcommand{\galaxy}{\texttt{Galaxy }}
+\newcommand{\galaxies}{\texttt{Galaxies }}
+\newcommand{\clusters}{\texttt{Galaxy Clusters }}
+\newcommand{\cluster}{\texttt{Galaxy Cluster }}
+\newcommand{\sharinggroups}{\texttt{Sharing Groups }}
+\newcommand{\sharinggroup}{\texttt{Sharing Group }}
+
+\newcommand{\taggable}{\faicon{tags}\hspace*{0.3em}}
+\newcommand{\distributable}{\faicon{eye-slash}\hspace*{0.3em}}
+\newcommand{\synchronisable}{\faicon{exchange}\hspace*{0.3em}}
+
+%
+% Layout
+%
+\tikzstyle{mybox} = [
+    draw=black,
+    fill=white,
+    very thick,
+    rectangle, rounded corners,
+    inner sep=10pt, inner ysep=10pt
+]
+\tikzstyle{boxtitle} = [
+    fill=black,
+    text=white,
+    font=\bfseries,
+    right=10pt
+]
+\tikzset{actionbox/.style={
+    text=white,
+    yshift=-1pt,xshift=-1pt,
+    append after command={
+    \pgfextra
+            \draw[sharp corners, fill=black]% 
+        (\tikzlastnode.west)% 
+        [rounded corners=0pt] |- (\tikzlastnode.north)% 
+        [rounded corners] -| (\tikzlastnode.east)% 
+        [rounded corners=0pt] |- (\tikzlastnode.south)% 
+        [rounded corners] -| (\tikzlastnode.west);
+    \endpgfextra
+    }
+}}
+
+% Creates a box with a label taking 1/3 of the available width
+% arg1[optional] = icon
+% arg2[optional] = purpose
+% arg3[optional] = usecase
+% arg4[optional] = actions
+% arg5[optional] = description
+% arg6 = title
+% arg7 = content
+\NewDocumentCommand{\cheatbox}{ O{} O{} O{} O{} O{} m m}{
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+            \ifthenelse{\isempty{#4}}{}{\vspace{1em}}
+            \textit{#5}
+            \vspace*{0.3em}
+            \ifthenelse{\isempty{#2}}{}{ \par{\textbf{Purpose}: #2}}
+            \ifthenelse{\isempty{#3}}{}{ \par{\textbf{Usecase}: #3\ifthenelse{\isempty{#7}}{}{\\}}}
+            #7
+            \end{minipage}
+        };
+        \node[boxtitle] at (box.north west) {#1 #6};
+        \ifthenelse{\isempty{#4}}{}{
+            \path node [actionbox, anchor=north east] at (box.north east) (actionLabel) {#4};
+        }
+    \end{tikzpicture}
+
+    \vspace*{2pt}
+}
+
+% Creates a box with a label taking 0.46 of the available width
+% arg1[optiona] = description
+% arg2 = title
+% arg3 = content
+\newcommand{\cheatboxlarge}[3][]{
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.46\textwidth}
+            \ifthenelse{\isempty{#1}}{}{\textit{#1}}
+            \ifthenelse{\isempty{#1}}{}{\vspace{2pt}}
+            #3
+            \end{minipage}
+        };
+        \node[boxtitle] at (box.north west) {#2};
+    \end{tikzpicture}
+
+    \vspace*{3pt}
+}
+
+% Creates a formated entry in a \cheatbox
+% arg1 = label
+% arg2 = text
+\newcommand{\boxentry}[2]{
+    \par{\textbf{#1}: #2\vspace*{0.3em}}
+}
+
+% Creates a formated entry in a \cheatbox without additional spacing
+% arg1 = label
+% arg2 = text
+\newcommand{\boxentrycompact}[2]{
+    \par{\textbf{#1} #2}
+}
+
+% Creates a centered text for the available width with color formating
+% arg1[optional, default=black] = bg color
+% arg2[optional, default=white] = text color
+% arg3 = text
+\NewDocumentCommand{\multicolstitle}{O{black} O{white} m}{
+    \begin{minipage}{0.46\textwidth}
+        \begin{center}
+            \colorbox{#1}{\Large\textcolor{#2}{\textbf{#3}}}
+        \end{center}
+    \end{minipage}
+}
+
+\newcommand{\bashcode}[1]{
+    \colorbox{gray!20}{\lstinline[language=bash]|#1|}
+}
+\newcommand{\clicode}[1]{
+    \colorbox{gray!20}{\lstinline[language=bash]|MISP/app/Console/cake #1|}
+}
+\newcommand{\httpcode}[3][]{\colorbox{gray!20}{#2 \lstinline[]|#3|}
+    \colorbox{gray!20}{\lstinline[]|#1|}
+}
