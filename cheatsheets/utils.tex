@@ -2,6 +2,7 @@
 % MISP ELEMENTS
 %
 \newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+\newcommand{\misp}{\includegraphics[scale=0.2]{misp.pdf}\hspace*{0.5em}}
 \newcommand{\events}{\texttt{Events }}
 \newcommand{\event}{\texttt{Event }}
 \newcommand{\attributes}{\texttt{Attributes }}
@@ -40,9 +41,19 @@
     inner sep=10pt, inner ysep=10pt
 ]
 \tikzstyle{boxtitle} = [
-    fill=black,
-    text=white,
+    % fill=black,
+    % text=white,
+    % fill=gray!30,
+    % text=black,
+    % font=\bfseries,
+    % right=10pt
+    draw=black,
+    line width=1pt,
+    text=black,
+    fill=gray!70,
     font=\bfseries,
+    rectangle, rounded corners=2pt,
+    inner sep=4pt,
     right=10pt
 ]
 \tikzset{actionbox/.style={
