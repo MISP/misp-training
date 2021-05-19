@@ -38,7 +38,7 @@ echo "Generating awesome cheatsheet.."
 cd cheatsheets/
 pdflatex cheatsheet
 rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
-cp cheatsheet.pdf ../../output
+cp cheatsheet.pdf ../output
 rm cheatsheet.pdf
 cd ..
 
