@@ -34,9 +34,9 @@ cp ack.pdf ../../output
 rm ack.pdf
 cd ../..
 
-echo "Generating cheatsheet..."
-cd training-support/compact-cheatsheet/
-pdflatex cheatsheet.tex
+echo "Generating awesome cheatsheet.."
+cd cheatsheets/
+pdflatex cheatsheet
 rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
 cp cheatsheet.pdf ../../output
 rm cheatsheet.pdf
