@@ -14,7 +14,77 @@
 \usepackage{multirow}
 \usepackage{fontawesome}
 \usepackage{xparse}
+\usepackage{listings}
 \usepackage[utf8]{inputenc}
+\usepackage[listings]{tcolorbox}
+\tcbuselibrary{listings}
+% \lstset{%
+% basicstyle=\ttfamily,
+% breaklines = true,
+% backgroundcolor=\color{gray!30},
+% }
+\lstdefinestyle{simple}{ %
+    basicstyle=\ttfamily,
+    breaklines = true,
+    backgroundcolor=\color{gray!30},
+}
+\lstdefinestyle{bash}{ %
+  backgroundcolor=\color{gray!30},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize\color{black},        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  language=bash,                 % the language of the code
+  keywordstyle=\bfseries,
+  morekeywords={GET,POST,PUT,DELETE,... },           % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+}
+\lstdefinelanguage{json}{
+    keywords={GET,POST,PUT,DELETE},
+    keywordstyle=\color{darkgray!70!black}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{purple}\ttfamily,
+    stringstyle=\color{green!50!black}\ttfamily,
+    morestring=[b]',
+    morestring=[b]"
+}
+\lstdefinestyle{js}{ %
+  backgroundcolor=\color{gray!30},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize\color{black},        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  language=json,                 % the language of the code
+%   keywordstyle=\bfseries,
+%   morekeywords={GET,POST,PUT,DELETE,... },           % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+}
+\lstset{style=simple}
 
 \title{MISP Cheat Sheet}
 \author{MISP Project}
@@ -58,7 +128,6 @@
 \newcommand{\taggable}{\faicon{tags}\hspace*{0.3em}}
 \newcommand{\distributable}{\faicon{eye-slash}\hspace*{0.3em}}
 \newcommand{\synchronisable}{\faicon{exchange}\hspace*{0.3em}}
-%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
 \tikzstyle{mybox} = [
     draw=black,
     fill=white,
@@ -67,9 +136,6 @@
     inner sep=10pt, inner ysep=10pt
 ]
 \tikzstyle{boxtitle} = [
-    % fill=white,
-    % draw=black,
-    % text=black,
     fill=black,
     text=white,
     font=\bfseries,
@@ -104,7 +170,7 @@
             \textit{#5}
             \vspace*{0.3em}
             \ifthenelse{\isempty{#2}}{}{ \par{\textbf{Purpose}: #2}}
-            \ifthenelse{\isempty{#3}}{}{ \par{\textbf{Usecase}: #3\\}}
+            \ifthenelse{\isempty{#3}}{}{ \par{\textbf{Usecase}: #3\ifthenelse{\isempty{#7}}{}{\\}}}
             #7
             \end{minipage}
         };
@@ -123,7 +189,7 @@
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.46\textwidth}
-            \textit{#1}
+            \ifthenelse{\isempty{#1}}{}{\textit{#1}}
             \ifthenelse{\isempty{#1}}{}{\vspace{2pt}}
             #3
             \end{minipage}
@@ -131,7 +197,7 @@
         \node[boxtitle] at (box.north west) {#2};
     \end{tikzpicture}
 
-    \vspace*{4pt}
+    \vspace*{3pt}
 }
 % arg1 = label
 % arg2 = text
@@ -189,28 +255,22 @@
 \end{center}
 \begin{multicols*}{2}
 
-% \cheatboxlarge{Legend}{
-%     \boxentry{\faicon{tags}}{Context can be attached to the element}
-%     \boxentry{\faicon{lowVision}}{Can have a distribution level}
-%     \boxentry{\faicon{exchange}}{Can be synchronised to other instances}
-%     \boxentry{$\blacklozenge \owns \blacktriangle$}{The element $\blacklozenge$ can act as a container and contains $\blacktriangle$}
-% }
 \cheatboxlarge{Glossary}{
 
-    \boxentry{Correlations}{Are created automatically when an \attribute is created or modified. It links two \events having values that matches according to the correlation engine}
+    \boxentry{Correlations}{Are links created automatically whenever an \attribute is created or modified. They allow interconnection between \events based on their values.}
     \boxentry{Correlation Engine}{Is the system used by MISP to create correlation between \attribute's value. It currently support strict string comparison, SSDEEP and CDIR blocks matches.}
-    \boxentry{Caching}{Is the process of \textit{pulling} data from another MISP instance or a feed but only storing hashes of the collected values to be used for correlations.}
-    \boxentry{Delegation}{Is the act of delegating the publication and the ownership of an \event to another organisation, thus hiding the original creator of the \event.}
-    \boxentry{Deletion (soft)}{Is the act flagging an element as deleted and thus propagating the revocation among the network of connected MISP instances.}
-    \boxentry{Deletion (hard)}{Is the act of removing the element from the database. It will thus do not perform revocation on other MISP instances.}
-    \boxentry{Extended \event}{Is an \event that extends an existing \event, providing a combined view of the data contained in both \events. The owner of the extending \event is the organisation that created the extension, this allowing anyone to extend any \events and altering those.}
-    \boxentry{\galaxy Matrix}{Is a matrix derived from \clusters belonging to the same \galaxy. The layout (pages and columns) is defined at the \galaxy level while its content comes from the \clusters themselves.}
-    \boxentry{IoC}{And Indicator Of Compromise is an \attribute having the \texttt{to\_ids} flag set}
-    \boxentry{Publishing}{For an \event or a \cluster to be synchronised, they must be \textit{published}. \textit{publishing} an \event will also send e-mail notifications and expose it to certain format requiring the \event to be in this state.}
-    \boxentry{Pulling}{Is the process of using the configured sync user on a remote instance to fetch the accessible data and store it.}
-    \boxentry{Pushing}{Is the process of using the configured uplink connection to send data to a remote instance.}
+    \boxentry{Caching}{Is the process of \textit{fetching} data from a MISP instance or feed but only storing hashes of the collected values for correlations and look-ups purposes.}
+    \boxentry{Delegation}{Is the act of transfering the ownership of an \event to another organisation and removing any associations with the original creator.}
+    \boxentry{Deletion (hard/soft)}{\textit{Hard deletion} is the act of removing the element from the database. It will thus do not perform revocation on other MISP instances. \textit{Soft deletion} is the act flagging an element as deleted and thus propagating the revocation among the network of connected MISP instances.}
+    \boxentry{Extended \event}{Is an \event that extends an existing \event, providing a combined view of the data contained in both \events. The owner of the extending \event is the organisation that created the extension, this allows anyone to extend any \events and have control over them.}
+    \boxentry{\galaxy Matrix}{Is a matrix derived from \clusters belonging to the same \galaxy. The layout (pages and columns) is defined at the \galaxy level and its content comes from the \clusters meta-data themselves.}
+    \boxentry{Indicators}{contain a pattern that can be used to detect suspicious or malicious cyber activity. They are generally \attributes having their \texttt{to\_ids} flag set.}
+    \boxentry{Orgc / Org}{\textit{Creator Organisation} (\textbf{Orgc}) is the organisation that created the data and the one allowed to modify it. \textit{Owner Organisation} (\textbf{Org}) is the organisation owning the data on a given instance and is allowed to view it regardless of the distribution level.}
+    \boxentry{Publishing}{Is the action of declaring that an \event is ready to be synchronised. It may also send e-mail notifications and make it available to some formats.}
+    \boxentry{Pulling}{Is the action of using a user on a remote instance to fetch the accessible data and store it locally.}
+    \boxentry{Pushing}{Is the action of using an uplink connection via a \textit{sync. user} to send data to a remote instance.}
     \boxentry{Synchronisation}{Is the exchange of data between two (or more) MISP instances throught the \textit{pull} and \textit{push} mechanism.}
-    \boxentry{Sync. filtering rule}{Rules that can be applied on a synchronisation link for both the \textit{pull} and \textit{push} mechanism allowing to block the data matching or not said rule.}
+    \boxentry{Sync. filtering rule}{Can be applied on a synchronisation link for both the \textit{pull} and \textit{push} mechanisms to block or allow the data to be transfered.}
     \boxentry{Sync. User}{Special role of a user granting addional sync permissions. The recommanded way to setup \textit{pull} and \textit{push} synchronisation is to use \textit{sync users}.}
     \boxentry{Proposals}{Are a mechanism to propose modications to the creating organisations. If a path of connected MISP instances exists, it will be synchronized so that the creator may accept or discard it.}
 }
@@ -240,7 +300,7 @@
                 & MISP 3\\
             \hline
         \end{tabular}\\
-        \hspace*{-2em}*Or enable roaming mode
+        *Or enable roaming mode instead
     \end{center}
     \columnbreak
 
@@ -371,23 +431,27 @@
 \begin{center}{
     \huge{\textbf{MISP Data Model Cheat Sheet}}}\\
 \end{center}
+
 \begin{multicols*}{3}
-    \cheatbox{Legend}{
-        \boxentrycompact{\taggable}{Context such as \taxonomies or \clusters can be attached to the element}
-        \boxentrycompact{\distributable}{Can have a distribution level}
-        \boxentrycompact{\synchronisable}{Can be synchronised to other instances}
-        % \boxentry{$\blacklozenge \owns \blacktriangle$}{The element $\blacklozenge$ can act as a container and contains $\blacktriangle$}
-    }
+    \begin{minipage}{0.3\textwidth}
+        \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+            \item[\taggable] Context such as \taxonomies or \clusters can be attached to the element
+            \item[\distributable] Can have a distribution level 
+            \item[\synchronisable] Can be synchronised to/from other instances
+        \end{itemize}
+    \end{minipage}
+    \vspace*{0.5em}
 
     % EVENT 
-    \cheatbox[\faicon{user}]
+    \cheatbox[\faicon{envelope}]
         [Group datapoints and contexts together. Acting as an envelop, it allows setting its distribution and sharing rules.]
         [Encode incidents, events, reports, …]
         [\taggable \distributable \synchronisable]
         [Encapsulations for contextually linked information.]
         {Event}
         {
-            $\blacktriangleright$ \events can contain other elements such as \attributes, \objects and \eventreports.
+            $\blacktriangleright$ \events can contain other elements such as \attributes, \objects and \eventreports.\\
+            $\blacktriangleright$ The distribution level and any context added on an \event (such as \taxonomies) are propagated to its underlying data.
         }
 
     % ATTRIBUTE 
@@ -398,18 +462,20 @@
         [Basic building block to share information.]
         {Attribute}
         {
-            $\blacktriangleright$ \attributes cannot be duplicated inside the same \event and can have \sightings.
+            $\blacktriangleright$ \attributes cannot be duplicated inside the same \event and can have \sightings.\\
+            $\blacktriangleright$ The difference between an IoC or supporting data is usualy indicated by the state of the attribute's \texttt{to\_ids} flag.
         }
 
     % Object 
     \cheatbox[\faicon{cubes}]
         [Groups \attributes that are intrinsically linked together.]
-        [File, person, credit card, x509, device, …]
+        [File, person, credit-card, x509, device, …]
         [\distributable \synchronisable]
         [Advanced building block providing \attribute compositions via templates.]
         {MISP Object}
         {
-            $\blacktriangleright$ \objects have their formats described in their respective template. They contain \attributes and can reference \reference other \attributes or \objects.
+            $\blacktriangleright$ \objects have their attribute compositions described in their respective template. They are instanciated with \attributes and can reference \reference other \attributes or \objects.\\
+            $\blacktriangleright$ MISP is not required to know the template to save and display the object. However, \textit{edits} will not be possible as the template to validate against is not known.
         }
     \columnbreak
 
@@ -456,6 +522,219 @@
         {
             $\blacktriangleright$ As \proposals are sync., if the creator organisation is connected to the MISP instance from where the \proposal has been created, it will be able to either \textit{accept} or \textit{discard} it. 
         }
+    \columnbreak
 
+    % Taxonomies
+    \cheatbox[$\mathcal{T}$]
+        [Enable efficent classification globally understood, easing consumption and automation.]
+        [TLP, Confidence, Source, Workflows, Event type, …]
+        []
+        [Machine and human-readable labels standardised on a common set of vocabularies.]
+        {Taxonomies}
+        {
+            $\blacktriangleright$ Even though MISP allows the creation of free-text tags, it's always preferable to use those coming from \taxonomies if they exists.
+        }
+
+    % Galaxies
+    \cheatbox[\faicon{rebel}]
+        [Bundle \clusters by their type to avoid confusing and to ease searches.]
+        [Exploit-Kit, Preventive Measure, MITRE ATT\&CK, Tools, Threat-actors, …]
+        []
+        [Act as a container to group together context described by \clusters by their type.]
+        {Galaxies}
+        {}
+
+    % Galaxy Clusters
+    \cheatbox[\faicon{rebel}]
+        [Enable description of complex high-level information for classification.]
+        [\texttt{threat-actor="APT 29"}, \texttt{country="germany"}, \texttt{mitre-attack-pattern="Disk Wipe - T1561"}]
+        [\distributable \synchronisable]
+        [Kownledge base items used as tags with additional complex meta-data aimed for human consumption.]
+        {Galaxies Clusters}
+        {
+            $\blacktriangleright$ \clusters can be seen as an enhanced \taxonomy as they can have meta-data and relationships with other \clusters.\\
+            $\blacktriangleright$ Any \clusters can contain the following:
+            \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                \item \texttt{Cluster Elements}: Key-Value pair forming the meta-data.
+                \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                    \item[Example:] \texttt{Country:LU}, \texttt{Synonym:APT28}, \texttt{Currency:Dollar}, \texttt{refs:https://*}, …
+                \end{itemize}
+                \item \texttt{Cluster Relations} (\taggable\synchronisable\distributable): Enable the creation of relationships between one or more \clusters.
+                \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                    \item[Example:] Threat actor \texttt{X} \texttt{is similar} to threat actor \texttt{Y} with \texttt{high-likelyhood.}
+                \end{itemize}
+            \end{itemize}
+        }
 \end{multicols*}
+\newpage
+
+\begin{center}{
+    \huge{\textbf{MISP User \& Admin Cheat Sheet}}}\\
+\end{center}
+
+\NewDocumentCommand{\multicolstitle}{O{black} O{white} m}{
+    \begin{minipage}{0.46\textwidth}
+        \begin{center}
+            \colorbox{#1}{\Large\textcolor{#2}{\textbf{#3}}}
+        \end{center}
+    \end{minipage}
+}
+
+\newcommand{\bashcode}[1]{
+    \colorbox{gray!20}{\lstinline[language=bash]|#1|}
+}
+\newcommand{\clicode}[1]{
+    \colorbox{gray!20}{\lstinline[language=bash]|MISP/app/Console/cake #1|}
+}
+\newcommand{\httpcode}[3][]{\colorbox{gray!20}{#2 \lstinline[]|#3|}
+    \colorbox{gray!20}{\lstinline[]|#1|}
+}
+
+\newsavebox\codeboxA
+\begin{lrbox}{\codeboxA}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+POST /attributes/restSearch
+{"value": "1.2.3.%"}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxB
+\begin{lrbox}{\codeboxB}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+POST /attributes/restSearch
+{"tags": ["tlp:white", "!tlp:green"]}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxC
+\begin{lrbox}{\codeboxC}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+POST /attributes/restSearch
+{"tags": {"AND": ["tlp:green", "Malware"], "NOT": ["%ransomware%"]}}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxD
+\begin{lrbox}{\codeboxD}
+    \begin{minipage}{0.405\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+{"timestamp": 1521846000}
+{"timestamp": "7d"}
+{"timestamp": ["2d", "1h"]}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxE
+\begin{lrbox}{\codeboxE}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+{
+    "galaxy.synonyms": "APT29",
+    "galaxy.cfr-target-category": "Financial sector"
+}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\newsavebox\codeboxF
+\begin{lrbox}{\codeboxF}
+    \begin{minipage}{0.46\textwidth}
+    \lstset{style=js}
+    \begin{lstlisting}
+/tags/attachTagToObject
+{
+    "uuid": "[Could be UUID from Event, Attribute, ...]",
+    "tag": "tlp:amber"
+}\end{lstlisting}
+    \end{minipage}
+\end{lrbox}
+
+\begin{multicols*}{2}
+    \multicolstitle{User}
+    \cheatboxlarge{API}{
+        \textbf{\texttt{Wildcard} searches:}\\
+        \hspace*{0.5em}\usebox\codeboxA\\
+        \textbf{\texttt{Or} and \texttt{Negation} searches:}\\
+        \hspace*{0.5em}\usebox\codeboxB\\
+        \textbf{\texttt{And} and \texttt{Negation} searches:}\\
+        \hspace*{0.5em}\usebox\codeboxC\\
+        \textbf{\cluster metadata searches:}\\
+        \hspace*{0.5em}\usebox\codeboxE\\
+        \textbf{Attach tags:}\\
+        \hspace*{0.5em}\usebox\codeboxF\\
+        \textbf{Timestamps:}
+        \begin{description}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+            \item \texttt{timestamp}: Time of the last modification on the data
+            \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                \item Usecase: Get data was modified in the last $t$
+                \item E.g.: Last updated data from a feed
+            \end{itemize}
+            \item \texttt{publish\_timestamp}: Time at which the event was published
+            \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                \item Usecase: Get data that arrived in my system since $t$
+                \item E.g.: New data from a feed
+            \end{itemize}
+            \item \texttt{event\_timestamp}: Used in the Attribute scope
+                \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                    \item Usecase: Get events modified in the last $t$
+                \end{itemize}
+            \item Usage
+            \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+                \item[] \usebox\codeboxD
+            \end{itemize}
+        \end{description}
+    }
+
+    \cheatboxlarge{Tips \& Tricks}{
+        \boxentry{Get JSON Representation}{Append \texttt{.json} at any URL to get the content in JSON format. Example: \texttt{/events/view/42.json}}
+    }
+
+    \columnbreak
+    \multicolstitle{Admin}
+    \cheatboxlarge{Reset Password}{
+        API: \httpcode[\{"password": "***"\}]{POST}{/users/initiatePasswordReset/[id]}\\
+        CLI: \clicode{Password [email] [password]}
+    }
+    \cheatboxlarge{Reset Bruteforce login protection}{
+        CLI: \clicode{Admin clearBruteforce [email]}
+    }
+    \cheatboxlarge{Upgrade to the latest version}{%
+        All in 1-shot: \clicode{Admin updateMISP}\\
+        Manually:
+        \begin{enumerate}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+            \item \bashcode{/var/www/MISP}
+            \item \bashcode{git pull origin 2.4}
+            \item \bashcode{git submodule update --init --recursive}
+            \item \clicode{Admin updateJSON}
+            \setlength\itemsep{-0.1em}
+            \item Check live update progress \texttt{/servers/updateProgress}
+        \end{enumerate}
+    }
+    \cheatboxlarge{Workers}{
+        Restart All: \clicode{Admin restartWorkers}\\
+        Add: \clicode{Admin startWorker [queue]}\\
+        Stop: \clicode{Admin stopWorker [pid]}
+    }
+    \cheatboxlarge{Settings}{
+        Get: \clicode{Admin getSetting [setting]}\\
+        Set: \clicode{Admin setSetting [setting] [value]}\\
+        Stop: \clicode{Admin stopWorker [pid]}\\
+        Base URL: \clicode{Baseurl [baseurl]}
+    }
+    \cheatboxlarge{Miscalenous}{
+        Clean Caches: \clicode{Admin cleanCaches}\\
+        Get IPs For User ID: \clicode{Admin UserIP [user_id]}\\
+        Get User ID For User IP: \clicode{Admin IPUser [ip]}\\
+        Documentation: \texttt{/events/automation}\\
+        Logs files location: \texttt{MISP/app/tmp/logs}
+    }
+\end{multicols*}
+
 \end{document}
