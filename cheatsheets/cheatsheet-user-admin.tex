@@ -106,7 +106,7 @@ POST /tags/attachTagToObject
     }
 
     \cheatboxlarge{Tips \& Tricks}{
-        \boxentry{Get JSON Representation}{Append \texttt{.json} at any URL to get the content in JSON format. Example: \texttt{/events/view/42.json}}
+        \boxentry{Get JSON Representation}{Append \texttt{.json} to any URLs to get their content in JSON format. Example: \texttt{/events/view/42.json}}
     }
 
     \columnbreak
@@ -122,12 +122,12 @@ POST /tags/attachTagToObject
         All in 1-shot: \clicode{Admin updateMISP}\\
         Manually:
         \begin{enumerate}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
-            \item \bashcode{/var/www/MISP}
+            \item \bashcode{cd /var/www/MISP}
             \item \bashcode{git pull origin 2.4}
             \item \bashcode{git submodule update --init --recursive}
             \item \clicode{Admin updateJSON}
             \setlength\itemsep{-0.1em}
-            \item Check live update progress \texttt{/servers/updateProgress}
+            \item Check live update progress \texttt{GET /servers/updateProgress}
         \end{enumerate}
     }
     \cheatboxlarge{Workers}{
@@ -138,10 +138,9 @@ POST /tags/attachTagToObject
     \cheatboxlarge{Settings}{
         Get: \clicode{Admin getSetting [setting]}\\
         Set: \clicode{Admin setSetting [setting] [value]}\\
-        Stop: \clicode{Admin stopWorker [pid]}\\
         Base URL: \clicode{Baseurl [baseurl]}
     }
-    \cheatboxlarge{Miscalenous}{
+    \cheatboxlarge{Miscellaneous}{
         Clean Caches: \clicode{Admin cleanCaches}\\
         Get IPs For User ID: \clicode{Admin UserIP [user_id]}\\
         Get User ID For User IP: \clicode{Admin IPUser [ip]}\\

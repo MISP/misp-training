@@ -28,16 +28,21 @@
         \node[currentstyle]  (d2)  [right=of d1b] {};
         \changestyledistribution{#1}{2}
         \node[currentstyle]  (d3)  [right=of d2] {};
+        \node[currentstyle] (d4a) [above right= 5pt and 30pt of d3] {};
+        \node[currentstyle] (d4b) [right= of d3] {};
 
         \node[textnode] (d0-notice) [above= 10pt of d0] {$n=0$};
         \node[textnode] (d1a-notice) [above= 5pt of d1a] {$n=1$};
         \node[textnode] (d2-notice) [above= 15pt of d2] {$n=2$};
         \node[textnode] (d3-notice) [above= 15pt of d3] {$n=3$};
+        \node[textnode] (d4-notice) [above= 15pt of d4b] {$n=4$};
 
         \draw[-] (d0) to[out=30, in=180] (d1a);
         \draw[-] (d0) to[out=-30, in=180] (d1b);
         \draw[-] (d1b) -- (d2);
         \draw[-] (d2) -- (d3);
+        \draw[-] (d3) to[out=30, in=180] (d4a);
+        \draw[-] (d3) -- (d4b);
 
         % \draw[-] (d0-notice.east) -- +(15pt,0pt) -- (d0.135);
         % \draw[-] ($(d0-notice.east) + (-1pt,-2pt)$) -- ($(d0) + (-3pt,2pt)$);

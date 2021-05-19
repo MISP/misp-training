@@ -6,7 +6,7 @@
     \begin{minipage}{0.3\textwidth}
         \begin{itemize}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
             \item[\taggable] Context such as \taxonomies or \clusters can be attached to the element
-            \item[\distributable] Can have a distribution level 
+            \item[\distributable] Has a distribution level 
             \item[\synchronisable] Can be synchronised to/from other instances
         \end{itemize}
     \end{minipage}
@@ -14,8 +14,8 @@
 
     % EVENT 
     \cheatbox[\faicon{envelope}]
-        [Group datapoints and contexts together. Acting as an envelop, it allows setting its distribution and sharing rules.]
-        [Encode incidents, events, reports, …]
+        [Group datapoints and context together. Acting as an envelop, it allows setting distribution and sharing rules for itself and its children.]
+        [Encode incidents/events/reports/…]
         [\taggable \distributable \synchronisable]
         [Encapsulations for contextually linked information.]
         {\linkdest{event}Event}
@@ -33,7 +33,7 @@
         {\linkdest{attribute}Attribute}
         {
             $\blacktriangleright$ \attributes cannot be duplicated inside the same \event and can have \sightings.\\
-            $\blacktriangleright$ The difference between an IoC or supporting data is usualy indicated by the state of the attribute's \texttt{to\_ids} flag.
+            $\blacktriangleright$ The difference between an indicator or supporting data is usualy indicated by the state of the attribute's \texttt{to\_ids} flag.
         }
 
     % Object 
@@ -44,14 +44,14 @@
         [Advanced building block providing \attribute compositions via templates.]
         {\linkdest{object}MISP Object}
         {
-            $\blacktriangleright$ \objects have their attribute compositions described in their respective template. They are instanciated with \attributes and can reference \reference other \attributes or \objects.\\
-            $\blacktriangleright$ MISP is not required to know the template to save and display the object. However, \textit{edits} will not be possible as the template to validate against is not known.
+            $\blacktriangleright$ \objects have their attribute compositions described in their respective template. They are instanciated with \attributes and can \reference other \attributes or \objects.\\
+            $\blacktriangleright$ MISP is not required to know the template to save and display the object. However, \textit{edits} will not be possible as the template to validate against is unknown.
         }
     \columnbreak
 
     % Object Reference
     \cheatbox[$\nearrow$]
-        [Allows to create relationships between entities, thus creating a graph where they are the edges and entities are the nodes]
+        [Allows to create relationships between entities, thus creating a graph where they are the edges and entities are the nodes.]
         [Represent behaviours, similarities, affiliation, …]
         [\synchronisable]
         [Relationships between individual building blocks.]
@@ -62,10 +62,10 @@
 
     % Sightings
     \cheatbox[\faicon{eye}]
-        [Allows to add temporality to the data]
+        [Allows to add temporality to the data.]
         [Record activity or occurence, perform IoC expiration, …]
         [\synchronisable]
-        [Means to convey that a data point has been seen.]
+        [Means to convey that an \attribute has been seen.]
         {\linkdest{sighting}Sightings}
         {
             $\blacktriangleright$ \sightings are the best way to express that something has been seen. They can also be used to mark \textit{false positives}.
@@ -73,13 +73,13 @@
 
     % Event report
     \cheatbox[\faicon{file-text}]
-        [Supporting data point to describe events or processes]
+        [Supporting data point to describe events or processes.]
         [Encode reports, provide more information about the \event, …]
         [\distributable \synchronisable]
-        [Advanced building block that can contain text.]
+        [Advanced building block containing formated text.]
         {\linkdest{eventreport}Event Report}
         {
-            $\blacktriangleright$ \eventreports are markdown-aware and includes a special syntax to reference data points or context.
+            $\blacktriangleright$ \eventreports are markdown-aware and include a special syntax to reference data points or context.
         }
 
     % Proposals
@@ -97,27 +97,28 @@
     % Taxonomies
     \cheatbox[$\mathcal{T}$]
         [Enable efficent classification globally understood, easing consumption and automation.]
-        [TLP, Confidence, Source, Workflows, Event type, …]
+        [Provide classification such as: TLP, Confidence, Source, Workflows, Event type, …]
         []
         [Machine and human-readable labels standardised on a common set of vocabularies.]
         {\linkdest{taxonomy}Taxonomies}
         {
-            $\blacktriangleright$ Even though MISP allows the creation of free-text tags, it's always preferable to use those coming from \taxonomies if they exists.
+            $\blacktriangleright$ Even though MISP allows the creation of free-text tags, it's always preferable to use those coming from \taxonomies, if they exists.
         }
 
     % Galaxies
     \cheatbox[\faicon{rebel}]
-        [Bundle \clusters by their type to avoid confusing and to ease searches.]
-        [Exploit-Kit, Preventive Measure, MITRE ATT\&CK, Tools, Threat-actors, …]
+        [Bundle \clusters by their type to avoid confusion and to ease searches.]
+        [Bundle types: Exploit-Kit, Preventive Measures, ATT\&CK, Tools, Threat-actors, …]
         []
-        [Act as a container to group together context described by \clusters by their type.]
+        [Act as a container to group together context described in \clusters by their type.]
         {\linkdest{galaxy}Galaxies}
         {}
 
     % Galaxy Clusters
     \cheatbox[\faicon{rebel}]
         [Enable description of complex high-level information for classification.]
-        [\texttt{threat-actor="APT 29"}, \texttt{country="germany"}, \texttt{mitre-attack-pattern="Disk Wipe - T1561"}]
+        % [\texttt{threat-actor="APT 29"}, \texttt{country="germany"}, \texttt{mitre-attack-pattern="Disk Wipe - T1561"}]
+        [Extensively describe elements such as: threat actors, countries, technique used, …]
         [\distributable \synchronisable]
         [Kownledge base items used as tags with additional complex meta-data aimed for human consumption.]
         {\linkdest{cluster}Galaxies Clusters}
