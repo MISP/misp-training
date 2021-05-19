@@ -1,0 +1,64 @@
+% arg1 = current distri level
+% arg2 = text
+\newcommand{\changestyledistribution}[2]{
+    \ifthenelse{#1 > #2}{
+        \tikzset{currentstyle/.style=fullnode}
+    }{
+        \tikzset{currentstyle/.style=emptynode}
+    }
+}
+% arg1 = current distri level
+\newcommand{\distrigraph}[1]{
+    \def \scale {0.2}
+    \def \scaletext {0.1}
+    \begin{tikzpicture}[
+        emptynode/.style={circle, draw=black, scale=\scale},
+        fullnode/.style={circle, draw=black, fill=black, scale=\scale},
+        textnode/.style={scale=0.7, inner sep=3pt,xshift=-2pt},
+    ]
+    \tikzset{
+        currentstyle/.style={}
+    }
+        \changestyledistribution{#1}{0}
+        \node[currentstyle] (d0)  {};
+        \changestyledistribution{#1}{1}
+        \node[currentstyle] (d1a) [above right= 1pt and 30pt of d0] {};
+        \node[currentstyle] (d1b) [below right= 1pt and 30pt of d0] {};
+        \changestyledistribution{#1}{2}
+        \node[currentstyle]  (d2)  [right=of d1b] {};
+        \changestyledistribution{#1}{2}
+        \node[currentstyle]  (d3)  [right=of d2] {};
+        \node[currentstyle] (d4a) [above right= 5pt and 30pt of d3] {};
+        \node[currentstyle] (d4b) [right= of d3] {};
+
+        \node[textnode] (d0-notice) [above= 10pt of d0] {$n=0$};
+        \node[textnode] (d1a-notice) [above= 5pt of d1a] {$n=1$};
+        \node[textnode] (d2-notice) [above= 15pt of d2] {$n=2$};
+        \node[textnode] (d3-notice) [above= 15pt of d3] {$n=3$};
+        \node[textnode] (d4-notice) [above= 15pt of d4b] {$n=4$};
+
+        \draw[-] (d0) to[out=30, in=180] (d1a);
+        \draw[-] (d0) to[out=-30, in=180] (d1b);
+        \draw[-] (d1b) -- (d2);
+        \draw[-] (d2) -- (d3);
+        \draw[-] (d3) to[out=30, in=180] (d4a);
+        \draw[-] (d3) -- (d4b);
+
+        % \draw[-] (d0-notice.east) -- +(15pt,0pt) -- (d0.135);
+        % \draw[-] ($(d0-notice.east) + (-1pt,-2pt)$) -- ($(d0) + (-3pt,2pt)$);
+    \end{tikzpicture}
+}
+
+\newcommand{\createdistrilegend}{
+    \def \scale {0.2}
+    \begin{tikzpicture}[
+        emptynode/.style={circle, draw=black, scale=\scale},
+        fullnode/.style={circle, draw=black, fill=black, scale=\scale},
+        textnode/.style={scale=0.7, inner sep=3pt,xshift=-2pt},
+    ]
+        \node[emptynode] (empty) {};
+        \node[fullnode] (full) [below=5pt of empty] {};
+        \node[textnode] () [right=3pt of empty] {Does not have the Event};
+        \node[textnode] () [right=3pt of full] {Has the Event};
+    \end{tikzpicture}
+}

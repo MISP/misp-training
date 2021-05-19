@@ -1,0 +1,73 @@
+\begin{center}{
+    \huge{\textbf{MISP Concepts Cheat sheet}}}\\
+\end{center}
+
+\begin{multicols*}{2}
+\cheatboxlarge{Glossary}{
+    \boxentry{Correlations}{Links created automatically whenever an \attribute is created or modified. They allow interconnection between \events based on their attributes.}
+    \boxentry{Correlation Engine}{Is the system used by MISP to create correlations between \attribute's value. It currently supports strict string comparison, SSDEEP and CDIR blocks matches.}
+    \boxentry{Caching}{Is the process of \textit{fetching} data from a MISP instance or feed but only storing hashes of the collected values for correlation and look-up purposes.}
+    \boxentry{Delegation}{Act of transfering the ownership of an \event to another organisation while hidding the original creator, thus providing anonymity.}
+    \boxentry{Deletion (hard/soft)}{\textit{Hard deletion} is the act of removing the element from the system; it will not perform revocation on other MISP instances. \textit{Soft deletion} is the act flagging an element as deleted and propagating the revocation among the network of connected MISP instances.}
+    \boxentry{Extended Event}{\event that extends an existing \event, providing a combined view of the data contained in both \events. The owner of the extending \event is the organisation that created the extension. This allows anyone to extend any \events and have total control over them.}
+    \boxentry{\galaxy Matrix}{Matrix derived from \clusters belonging to the same \galaxy. The layout (pages and columns) is defined at the \galaxy level and its content comes from the \clusters meta-data themselves.}
+    \boxentry{Indicators}{\attribute containing a pattern that can be used to detect suspicious or malicious activity. These \attributes usually have their \texttt{to\_ids} flag enabled.}
+    \boxentry{Orgc / Org}{\textit{Creator Organisation} (\textbf{Orgc}) is the organisation that created the data and the one allowed to modify it. \textit{Owner Organisation} (\textbf{Org}) is the organisation owning the data on a given instance and is allowed to view it regardless of the distribution level. The two are not necessarily the same.}
+    \boxentry{Publishing}{Action of declaring that an \event is ready to be synchronised. It may also send e-mail notifications and makes it available to some export formats.}
+    \boxentry{Pulling}{Action of using a user on a remote instance to fetch the accessible data and storing it locally.}
+    \boxentry{Pushing}{Action of using an uplink connection via a \textit{sync. user} to send data to a remote instance.}
+    \boxentry{Synchronisation}{Is the exchange of data between two (or more) MISP instances throught the \textit{pull} or \textit{push} mechanisms.}
+    \boxentry{Sync. filtering rule}{Can be applied on a synchronisation link for both the \textit{pull} and \textit{push} mechanisms to block or allow data to be transfered.}
+    \boxentry{Sync. User}{Special role of a user granting addional sync permissions. The recommanded way to setup \textit{push} synchronisation is to use \textit{sync users}.}
+    \boxentry{Proposals}{Are a mechanism to propose modications to the creating organisations (\textbf{Orgc}). If a path of connected MISP instances exists, the \proposal will be synchronised allowing the creator to accept or discard it.}
+}
+
+\columnbreak
+\input{graphs/cheatsheet-concept-distributiongraph.tex}
+\cheatboxlarge[Controls who can see the data and how it should be synchronised.]{Distribution}{
+    \boxentry{Organisation only}{Only members of your organisation}
+    \boxentry{This community}{Organisations on this MISP instance}
+    \boxentry{Connected Communities}{Organisations on this MISP instance and those on MISP instances synchronising with this one. Upon receiving data, the distribution will be downgraded to \texttt{This community} to avoid further propagation. ($n\leq 1$)}
+    \vspace*{-0.7em}
+    \begin{center}
+        \createdistrilegend
+        \hspace*{1em}
+        \distrigraph{2}
+    \end{center}
+    \boxentry{All Communities}{Anyone having access. Data will be freely propagated in the network of connected MISP instances. ($n = \infty$)}
+    \vspace*{-0.7em}
+    \begin{center}\distrigraph{3}\end{center}
+    \boxentry{\linkdest{sharinggroup}Sharing Groups}{Distribution list that exhaustively keeps track of which organisations can access the data and how it should be synchronised.}
+
+    \begin{multicols*}{2}
+        \begin{center}
+            \begin{tabular}{| l | l |}
+                \hline
+                \multicolumn{2}{|c|}{\sharinggroup configuration} \\
+                \hline
+                \multirow{3}{*}{Organisations} & Org. $\alpha$\\
+                    & Org. $\omega$\\
+                    & Org. $\gamma$\\
+                \hline
+                \multirow{3}{*}{Instances*} & MISP 1\\
+                    & MISP 2\\
+                    & MISP 3\\
+                \hline
+            \end{tabular}\\
+            *Or enable roaming mode instead
+        \end{center}
+        \columnbreak
+
+        \begin{center}
+            \input{graphs/cheatsheet-concept-sharinggroupgraph.tex}
+        \end{center}
+    \end{multicols*}
+}
+
+\cheatboxlarge[The act of \textbf{sharing} where everyone can be a consumer and/or a producer.]{Synchronisation}{
+    A one way synchronisation link between two MISP instances. Organisation $\alpha$ created a \textit{sync user} \faicon{user-plus} on MISP 2 and noted down the generated API Key. A synchronisation link can be created on MISP 1 using the API Key and the organisation of the \textit{sync user}. At that point, MISP 1 can \textit{pull} data from MISP 2 and \textit{push} data to MISP 2.
+    \begin{center}
+        \input{graphs/cheatsheet-concept-syncgraph.tex}
+    \end{center}
+}
+\end{multicols*}
