@@ -40,7 +40,7 @@ pdflatex cheatsheet
 rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
 cp cheatsheet.pdf ../../output
 rm cheatsheet.pdf
-cd ../..
+cd ..
 
 echo "Generating checklist..."
 cd training-support/checklist
