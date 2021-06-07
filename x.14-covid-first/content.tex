@@ -53,10 +53,11 @@
 \begin{frame}
  \frametitle{A side note - FIRST MISP instance}
  \begin{itemize}
-         \item \url(https://misp.first.org)
+         \item \url{https://misp.first.org}
          \item Just authenticate with the SSO of FIRST
          \item Start using the {\bf hosted instance}...
          \item ...or {\bf set up your own} and start synchronising with it.
+         \item Information sharing SIG (\url{https://www.first.org/global/sigs/information-sharing})
  \end{itemize}
 \end{frame}
 
@@ -169,7 +170,7 @@
  \frametitle{So who was interested?}
  \begin{itemize}
          \item Initially, mostly people looking for a COVID-19 dashboard/health info
-         \item Over the time though, we've ended up with 4 main pillars of informaiton sharing around COVID-19
+         \item Over the time though, we've ended up with 4 main pillars of information sharing around COVID-19
          \begin{itemize}
               \item Health
               \item Cyber-threats
@@ -187,11 +188,6 @@
          \item Daily updates of health data
          \item Articles / reports about the topic
  \end{itemize}
-\end{frame}
-
-\begin{frame}
- \frametitle{Userbase growth}
- \includegraphics[width=0.8\linewidth]{user_regs_daily.png}
 \end{frame}
 
 \begin{frame}
@@ -217,17 +213,34 @@
          \item Anti-vaxxers / Anti-maskers
          \item COVID-deniers
          \item Often political motivation / influence campaigns
-         \item Driven by (\href(https://cogsec-collab.org/){CogSec Collaborative})
+         \item Driven by CogSec Collaborative (\url{https://cogsec-collab.org/})
+         \item Spawned a host of new object templates (focusing on social media, facebook, twitter, etc)
  \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Disinformation \#wewontstayhome}
+    \includegraphics[width=1.00\linewidth]{wewontstayhome.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Disinformation "Operation Gridlock"}
+    \includegraphics[width=1.00\linewidth]{operationgridlock.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Disinformation and correlation}
+    \includegraphics[scale=0.14]{misinfo-correlation.png}
 \end{frame}
 
 \begin{frame}
  \frametitle{Allowlists for known good resources}
  \begin{itemize}
-         \item Anything covid often ended up getting blocked
+         \item Anything covid related often ended up {\bf getting blocked}
          \item Including official, national outlets
          \item Publishing of legitimate research, visualisations
-         \item Lead to maintaining several allowlists (CTI-league, Krassi's list, etc)
+         \item {\bf No official lists of governmental known good related sites}
+         \item Lead to maintaining several {\bf allowlists} (CTI-league, Krassi's list, etc)
  \end{itemize}
 \end{frame}
 
@@ -243,6 +256,11 @@
 \end{frame}
 
 \begin{frame}
+ \frametitle{Userbase growth}
+ \includegraphics[width=1\linewidth]{user_regs_daily.png}
+\end{frame}
+
+\begin{frame}
  \frametitle{The shift in topics of information shared}
  \includegraphics[width=1.00\linewidth]{topics_of_sharing_daily.png}
 \end{frame}
@@ -255,6 +273,7 @@
          \item We saw several useful {\bf community efforts} emerge (regional health sector initiatives, disinfo sharing, etc)
          \item Loads of ideas for {\bf improvements} that will {\bf benefit other use-cases}
          \item We could adapt the tool itself quite quickly
+         \item Interesting overlaps between data from the 4 different domain
  \end{itemize}
 \end{frame}
 
@@ -273,9 +292,11 @@
  \frametitle{Lessons learnt / takeaways}
  \begin{itemize}
          \item {\bf Don't be afraid to step out of your comfort zones}
-         \item Be agile. If there's a new threat, don't wait, just get to work
-         \item Bootstraping a community is easy technically, but requires some considerations to avoid issues
-         \item MISP is indeed quite flexible, but we had some serious deficiencies to overcome (visualisation)
+         \item Be {\bf agile} when {\bf new types of threats} emerge, don't wait, just get to work
+         \item {\bf Removing control provides freedom} to collaborate and share information
+         \item Bootstraping a community is easy technically, but requires continuous {\bf community management}
+         \item {\bf New information and topics} shared can move a community towards different fields
+         \item MISP is indeed quite flexible, but we had some serious deficiencies that we had to overcome (visualisation)
          \item The {\bf good-will is there in the community} to share and to help others stay protected. Assist them!
  \end{itemize}
 \end{frame}
