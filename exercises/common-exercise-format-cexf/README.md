@@ -17,7 +17,7 @@ Common Exercise Format is a proposed format to describe an exercise including th
 ```json
 {
     "exercise": {
-       "uuid": "75d7460-af9d-4098-8ad1-754457076b32"
+       "uuid": "75d7460-af9d-4098-8ad1-754457076b32",
        "name": "Phishing e-mail",
        "description": "Simple Spear Phishing e-mail example, mimicing a fraud case"
        "tags": ["exercise:software-scope=\"\misp\"", "state:production"]
