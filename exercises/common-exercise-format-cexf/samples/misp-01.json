@@ -1,0 +1,203 @@
+{
+  "exercise": {
+    "uuid": "75d7460-af9d-4098-8ad1-754457076b32",
+    "name": "Phishing e-mail",
+    "description": "Simple Spear Phishing e-mail example, mimicing a fraud case",
+    "tags": [
+      "exercise:software-scope=\"misp\"",
+      "state:production"
+    ]
+  },
+  "inject_flow": [
+    {
+      "inject_uuid": "19272db1-a7c4-4cb3-aa33-df775b8fec8c",
+      "trigger": "startex",
+      "requirements": []
+    },
+    {
+      "inject_uuid": "c104aa37-e394-43ce-b82b-a733d3745468",
+      "trigger": "inject-resolution",
+      "requirements": {
+        "inject_uuid": "19272db1-a7c4-4cb3-aa33-df775b8fec8c",
+        "resolution_requirement": "Publishing"
+      }
+    }
+  ],
+  "injects": [
+    {
+      "uuid": "19272db1-a7c4-4cb3-aa33-df775b8fec8c",
+      "name": "received e-mail from csirt@telco.lu",
+      "action": "email_to_participants",
+      "action_payload_resource_uuid": "930c6f6b-f89d-456d-a59d-5cb89bdec0b1",
+      "target_tool": "MISP",
+      "inject_evaluation": [
+        {
+          "result": "MISP event creation",
+          "parameters": [
+            {
+              "Event.info": {
+                "comparison": "contains",
+                "values": [
+                  "phishing",
+                  "CEO"
+                ]
+              }
+            }
+          ],
+          "score_range": [
+            0,
+            10
+          ]
+        },
+        {
+          "result": "MISP attribute capture",
+          "parameters": [
+            {
+              "Event.attribute": {
+                "comparison": "equals",
+                "values": [
+                  {
+                    "value": "john.doe@luxembourg.edu",
+                    "type": [
+                      "email-src",
+                      "email"
+                    ]
+                  },
+                  {
+                    "value": "throwaway-email-provider.com",
+                    "type": "domain"
+                  },
+                  {
+                    "value": "137.221.106.104",
+                    "type": [
+                      "ip-src",
+                      "ip-dst"
+                    ]
+                  },
+                  {
+                    "value": "CVE-2015-5465",
+                    "type": [
+                      "vulnerability"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "score_range": [
+            0,
+            40
+          ]
+        },
+        {
+          "result": "MISP object use",
+          "parameters": [
+            {
+              "Event.Object": {
+                "comparison": "count",
+                "values": [
+                  ">3"
+                ]
+              }
+            }
+          ],
+          "score_range": [
+            0,
+            30
+          ]
+        },
+        {
+          "result": "Mitre ATT&CK use",
+          "parameters": {
+            "OR": [
+              {
+                "Event.EventTag.Tag.{n}.Tag.name": {
+                  "comparison": "contains",
+                  "values": [
+                    "T1566"
+                  ]
+                }
+              },
+              {
+                "Event.Attribute.{n}.AttributeTag.{n}.Tag.name": {
+                  "comparison": "contains",
+                  "values": [
+                    "T1566"
+                  ]
+                }
+              }
+            ]
+          },
+          "score_range": [
+            0,
+            10
+          ]
+        },
+        {
+          "result": "Publishing",
+          "parameters": [
+            {
+              "Event.published": {
+                "comparison": "is",
+                "values": [
+                  1
+                ]
+              }
+            }
+          ],
+          "score_range": [
+            0,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "c104aa37-e394-43ce-b82b-a733d3745468",
+      "name": "malicious network flow",
+      "action": "network connection",
+      "action_payload_resource_uuid": "9b519819-36cc-48b1-8418-43831f2d3a6a",
+      "target_tool": "Suricata",
+      "inject_evaluation": [
+        {
+          "result": "alert",
+          "parameters": [
+            {
+              "source-ip": {
+                "comparison": "is",
+                "values": [
+                  "137.221.106.104"
+                ]
+              }
+            }
+          ],
+          "score_range": [
+            0,
+            50
+          ]
+        }
+      ]
+    }
+  ],
+  "inject_payloads": [
+    {
+      "uuid": "930c6f6b-f89d-456d-a59d-5cb89bdec0b1",
+      "name": "",
+      "type": "file",
+      "parameters": {
+        "filename": "email.eml",
+        "content": "RnJvbSBjc2lydEB0ZWxjby5sdQoKRGVhciB4eSwKCldlIGhhdmUgaGFkIGEgZmFpbGVkIHNwZWFycGhpc2hpbmcgYXR0ZW1wdCB0YXJnZXRpbmcgb3VyIENFTyByZWNlbnRseSB3aXRoIHRoZSBmb2xsb3dpbmcgZGV0YWlsczoKCk91ciBDRU8gcmVjZWl2ZWQgYW4gRS1tYWlsIG9uIDAzLzAyLzIwMjEgMTU6NTYgY29udGFpbmluZyBhIHBlcnNvbmFsaXNlZCBtZXNzYWdlIGFib3V0IGEgcmVwb3J0IGNhcmQgZm9yIHRoZWlyIGNoaWxkLiBUaGUgYXR0YWNrZXIgcHJldGVuZGVkIHRvIGJlIHdvcmtpbmcgZm9yIHRoZSBzY2hvb2wgb2YgdGhlIENFT+KAmXMgZGF1Z2h0ZXIsIHNlbmRpbmcgdGhlIG1haWwgZnJvbSBhIHNwb29mZWQgYWRkcmVzcyAoam9obi5kb2VAbHV4ZW1ib3VyZy5lZHUpLiBKb2huIERvZSBpcyBhIHRlYWNoZXIgb2YgdGhlIHN0dWRlbnQuIFRoZSBlbWFpbCB3YXMgcmVjZWl2ZWQgZnJvbSB0aHJvd2F3YXktZW1haWwtcHJvdmlkZXIuY29tICgxMzcuMjIxLjEwNi4xMDQpLiAKClRoZSBlLW1haWwgY29udGFpbmVkIGEgbWFsaWNpb3VzIGZpbGUgKGZpbmQgaXQgYXR0YWNoZWQpIHRoYXQgd291bGQgdHJ5IHRvIGRvd25sb2FkIGEgc2Vjb25kYXJ5IHBheWxvYWQgZnJvbSBodHRwczovL2V2aWxwcm92aWRlci5jb20vdGhpcy1pcy1ub3QtbWFsaWNpb3VzLmV4ZSAoYWxzbyBhdHRhY2hlZCwgcmVzb2x2ZXMgdG8gMjYwNzo1MzAwOjYwOmNkNTI6MzA0Yjo3NjBkOmRhNzpkNSkuIEl0IGxvb2tzIGxpa2UgdGhlIHNhbXBsZSBpcyB0cnlpbmcgdG8gZXhwbG9pdCBDVkUtMjAxNS01NDY1LiBBZnRlciBhIGJyaWVmIHRyaWFnZSwgdGhlIHNlY29uZGFyeSBwYXlsb2FkIGhhcyBhIGhhcmRjb2RlZCBDMiBhdCBodHRwczovL2Fub3RoZXIuZXZpbC5wcm92aWRlci5jb206NTc2NjYgKDExOC4yMTcuMTgyLjM2KSB0byB3aGljaCBpdCB0cmkKZXMgdG8gZXhmaWx0cmF0ZSBsb2NhbCBjcmVkZW50aWFscy4gVGhpcyBpcyBob3cgZmFyIHdlIGhhdmUgZ290dGVuIHNvIGZhci4gUGxlYXNlIGJlIG1pbmRmdWwgdGhhdCB0aGlzIGlzIGFuIG9uZ29pbmcgaW52ZXN0aWdhdGlvbiwgd2Ugd291bGQgbGlrZSB0byBhdm9pZCBpbmZvcm1pbmcgdGhlIGF0dGFja2VyIG9mIHRoZSBkZXRlY3Rpb24gYW5kIGtpbmRseSBhc2sgeW91IHRvIG9ubHkgdXNlIHRoZSBjb250YWluZWQgaW5mb3JtYXRpb24gdG8gcHJvdGVjdCB5b3VyIGNvbnN0aXR1ZW50cy4KCkJlc3QgcmVnYXJkcywKCg==",
+        "content-type": "base64"
+      }
+    },
+    {
+      "uuid": "9b519819-36cc-48b1-8418-43831f2d3a6a",
+      "name": "",
+      "type": "telnet_connection",
+      "parameters": {
+        "source": "137.221.106.104",
+        "destination": "player_network_mail_server"
+      }
+    }
+  ]
+}
