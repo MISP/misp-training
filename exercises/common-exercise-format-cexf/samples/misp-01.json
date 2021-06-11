@@ -3,16 +3,22 @@
     "uuid": "75d7460-af9d-4098-8ad1-754457076b32",
     "name": "Phishing e-mail",
     "description": "Simple Spear Phishing e-mail example, mimicing a fraud case",
+    "expanded": "# Simple Spear Phishing e-mail example, mimicing a fraud case",
     "tags": [
       "exercise:software-scope=\"misp\"",
       "state:production"
-    ]
+    ],
+    "version": "20210611",
+    "valid_until": "20310611",
+    "level": "beginner",
+    "namespace": "phishing"
   },
   "inject_flow": [
     {
       "inject_uuid": "19272db1-a7c4-4cb3-aa33-df775b8fec8c",
       "trigger": "startex",
-      "requirements": []
+      "requirements": [],
+      "reporting_callback": []
     },
     {
       "inject_uuid": "c104aa37-e394-43ce-b82b-a733d3745468",
@@ -20,7 +26,8 @@
       "requirements": {
         "inject_uuid": "19272db1-a7c4-4cb3-aa33-df775b8fec8c",
         "resolution_requirement": "Publishing"
-      }
+      },
+      "reporting_callback": []
     }
   ],
   "injects": [
