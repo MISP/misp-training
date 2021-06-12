@@ -11,6 +11,14 @@ Common Exercise Format is a proposed format to describe an exercise including th
 - To trace the evolution of an exercise (via diff ang git);
 - To allow external contributions by using a common format;
 
+# Details
+
+- Create a new training repository according to the repository template, naming convention and license
+    - "misp-training-xxx"
+    - license ABC
+    - Copy folder from "base", change name
+- 
+
 ## Common Exercise format - Sample
 
 
@@ -20,13 +28,18 @@ Common Exercise Format is a proposed format to describe an exercise including th
        "uuid": "75d7460-af9d-4098-8ad1-754457076b32",
        "name": "Phishing e-mail",
        "description": "Simple Spear Phishing e-mail example, mimicing a fraud case",
-       "tags": ["exercise:software-scope=\"\misp\"", "state:production"]
+       "tags": ["exercise:software-scope=\"\misp\"", "state:production"],
+       "version": "20210611",
+       "valid_until": "20310611",
+       "level": "beginner",
+       "namespace": "phishing"       
     },
     "inject_flow": [
         {
             "inject_uuid": "19272db1-a7c4-4cb3-aa33-df775b8fec8c",
             "trigger": "startex",
             "requirements": []
+            "reporting_callback": []
         },
                 {
             "inject_uuid": "c104aa37-e394-43ce-b82b-a733d3745468",
