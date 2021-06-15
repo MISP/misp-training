@@ -76,6 +76,12 @@ Sample videos which can be used to understand how the training materials are use
 - [MISP Training Module 2 - General usage of MISP](https://www.youtube.com/watch?v=Jqp8CVHtNVk)
 - [MISP covid-19 sharing community - introduction](https://peertube.opencloud.lu/videos/watch/4f7acd4c-a909-4315-87aa-38ba95cceaf2)
 
+#### Passive DNS and MISP - Training videos
+
+- [Farsight Passive DNS and MISP - Part I](https://vimeo.com/561877178/ac09629591)
+- [Farsight Passive DNS and MISP - Part II](https://vimeo.com/561903295/8af1d6692b)
+- [Farsight Passive DNS and MISP - Part III](https://vimeo.com/561908216/764a2e19e4)
+
 ### MISP Training support videos
 
 Those are videos to support MISP trainings or demonstrations at large:
