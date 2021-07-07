@@ -92,7 +92,7 @@ Those are videos to support MISP trainings or demonstrations at large:
 
 ### MISP Training VMs
 
-Pre-built MISP training VMs are available at [https://www.circl.lu/misp-images/latest/](https://www.circl.lu/misp-images/latest/).
+Pre-built MISP training VMs are available at [https://vm.misp-project.org/](https://vm.misp-project.org/).
 
 ## Source Code
 
