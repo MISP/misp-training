@@ -28,6 +28,18 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Ramping up the development efforts}
+  \begin{itemize}
+      \item MISP Professional services has taken off
+      \item Fast-tracked support, custom development, private training offerings
+      \item Additional funds invested in the development efforts
+      \item Growth of the core developer team
+      \item Luciano Righetti (@righel) joins the core dev team
+      \item Continued herculean effort by Jakub Onderka in improving the internals of MISP
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
   \frametitle{So what were the main changes?}
   \begin{itemize}
      \item The usual {\bf bug- and usability-fixes, quality of life improvements}
@@ -46,6 +58,7 @@
         \item Broad coverage of all APIs
         \item Parameter examples and explanations
         \item Sample responses along with potential error responses
+        \item \url{https://www.misp-project.org/documentation/openapi.html}
 \end{itemize}
 \end{frame}
 
@@ -57,7 +70,7 @@
 \begin{frame}
 \frametitle{Custom warninglists}
 \begin{itemize}
-	\item Create waringlists ad hoc
+	\item Create warninglists ad-hoc
         \item Add / modify values
         \item {\bf Replaces} the old regex lists for blocking
         \item Use the full potential of the various {\bf matching algorithms}
@@ -88,7 +101,7 @@
 \begin{itemize}
 	\item Rework of the MISP modules system
         \item Support all MISP structures in module data returned (including reports)
-        \item Long list of new modules
+        \item Long list of new modules (hashlookup, greynoise, McAfee Mvision, vmware_nsx, ...)
         \item Direct integration with Cerebrate and CyCat in the MISP core
 \end{itemize}
 \end{frame}
@@ -99,6 +112,17 @@
 	\item Blog posts on integration with various monitoring tools
         \item New CLI tools to support monitoring efforts
         \item Cerebrate's MISP management functionalities
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{STIX integration complete rework}
+\begin{itemize}
+	\item After a full year of focused work from Christian Studer (@chrisr3d) the new system is nearly ready
+        \item Comprehensive {\bf STIX 1.1.1, 1.2, 2.0, 2.1} support for ingestion and export
+        \item Extraction of the MISP-STIX subsystem to a separate {\bf stand-alone library}
+        \item Detailed {\bf mapping documentation}
+        \item \url{https://github.com/MISP/misp-stix}
 \end{itemize}
 \end{frame}
 
@@ -144,7 +168,7 @@
           \item Monitoring and large scale management tooling
           \item Fleshing out the documentation and supporting materials
      \end{itemize}
-     \item Cerebrate is aiming to fill the void oc community/fleet management that we currently have
+     \item Cerebrate is aiming to fill the void of community/fleet management that we currently have
      \item Definitely no lack of new ideas and improvements, if you want to participate, it's easy to {\bf get involved}
      \item Prioritisation is hard. {\bf Let us know what you think we should focus on}!
   \end{itemize}
