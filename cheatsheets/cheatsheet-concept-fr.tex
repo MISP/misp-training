@@ -1,0 +1,73 @@
+\begin{center}{
+    \huge{\textbf{MISP Concepts Cheat sheet (FR)}}}\\
+\end{center}
+
+\begin{multicols*}{2}
+\cheatboxlarge{Glossary}{
+    \boxentry{Correlations}{Relations créées automatiquement depuis un \attribute. Elles permettent l'inter-connexion entre \events basés sur leurs \attributes.}
+    \boxentry{Correlation engine}{Système utilisé par MISP pour créer des correlations entre la valeur des \attribute. Il supporte actuellement la comparaison stricte de chaines de caractères, SSDEEP et les blocks CDIR.}
+    \boxentry{Caching}{Processus de récupération de données d'une instance ou d'un feed afin de sauver les hashs des valeurs récupérées servant à la corrélation et la recherche.}    
+    \boxentry{Delegation}{Acte de transférer la propriété d'un event vers une autre organisation tout en cachant le créateur original afin de garantir l'anonymat}    
+    \boxentry{Deletion (hard/soft)}{\textit{Hard deletion} est l'acte de supprimer un element du système; Cela ne va pas révoquer la donnée sur les autres systèmes contrairement à la \textit{Soft deletion} où la révocation est propagée sur le réseau d'instances connectées.}
+    \boxentry{Extended Event}{\event qui en étend un autre, permetant d'avoir une vue combinée. L'organisation qui a étendu l'\event est le propriétaire de l'extension . Cela permet à n'importe qui d'étendre n'importe quel \events et d'en avoir le contrôle.}
+    \boxentry{\galaxy Matrix}{Matrice dérivée d'un \clusters appartenant à la même \galaxy. La structure (pages et colones) est définie au niveau de la \galaxy et son contenu provient des méta-données des \clusters.}
+    \boxentry{Indicators}{\attribute contenant un pattern utile pour détecter une activité suspicieuse ou malveillante. Ils ont souvent la propriété \texttt{to\_ids} activée.}
+    \boxentry{Orgc / Org}{\textit{L'organisation créatrice} (\textbf{Orgc}) est l'organisation qui a créé les données et qui est la seule à pouvoir les modifier. \textit{L'organisation propriétaire} (\textbf{Org}) est l'organisation qui possède les données et qui peut consulter le contenu. \textbf{Orgc} \& \textbf{Org} ne sont pas nécessairement les mêmes organisations.}
+    \boxentry{Publishing}{Action de déclarer qu'un \event peut être synchronisé. Ce processus peut aussi envoyer des notifications et permet certains types de format d'export.}
+    \boxentry{Pulling}{Action d'utiliser un utilisateur depuis une autre instance pour récupérer les données accessibles et les stoquer localement.}
+    \boxentry{Pushing}{Action d'utiliser une connexion via un \textit{sync. user} pour envoyer des données à une autre instance.}
+    \boxentry{Synchronisation}{Est l'échange de données entre deux (ou plus) instances MISP par le mécanisme de \textit{pull} ou \textit{push}.}
+    \boxentry{Sync. filtering rule}{Peuvent être appliquées sur un lien de synchronisation pour le \textit{pull} ou \textit{push} afin de bloquer ou pemettre à des données d'être transférées.}
+    \boxentry{Sync. User}{Rôle spécial pour un utilisateur donnant des permissions de synchronisation supplémentaires. L'utilisation des \textit{sync users} est la manière recommandée de configurer la synchronisation via \textit{push}.}
+    \boxentry{Proposals}{Mécanisme pour proposer des modifications à l'organisation créatrice (\textbf{Orgc}). Si un chemin entre les instances existe, le \proposal pourra être synchronisé permetant au créateur de l'accepter ou de le refuser.}
+}
+
+\columnbreak
+\input{graphs/cheatsheet-concept-distributiongraph.tex}
+\cheatboxlarge[Contrôle qui peut voir les données et comment elles doivent être synchronisées.]{Distribution}{
+    \boxentry{Organisation only}{Seulement les membres de l'organisation}
+    \boxentry{This community}{Les organisations sur l'instance MISP}
+    \boxentry{Connected Communities}{Les organisations sur l'instance et celles d'autres instances se synchronisant dessus. Lorsque les données sont reçues, leur distribution est réduite à \texttt{This community} afin d'éviter d'autres propagations. ($n\leq 1$)}
+    \vspace*{-0.7em}
+    \begin{center}
+        \createdistrilegend
+        \hspace*{1em}
+        \distrigraph{2}
+    \end{center}
+    \boxentry{All Communities}{Tous ceux ayant accès. Les données seront propagées librement dans le réseau d'instances connectées. ($n = \infty$)}
+    \vspace*{-0.7em}
+    \begin{center}\distrigraph{3}\end{center}
+    \boxentry{\linkdest{sharinggroup}Sharing Groups}{Liste de distribution qui énumère la liste des organisations ayant accès aux données et comment celles-ci doivent être synchronisées.}
+
+    \begin{multicols*}{2}
+        \begin{center}
+            \begin{tabular}{| l | l |}
+                \hline
+                \multicolumn{2}{|c|}{\sharinggroup configuration} \\
+                \hline
+                \multirow{3}{*}{Organisations} & Org. $\alpha$\\
+                    & Org. $\omega$\\
+                    & Org. $\gamma$\\
+                \hline
+                \multirow{3}{*}{Instances*} & MISP 1\\
+                    & MISP 2\\
+                    & MISP 3\\
+                \hline
+            \end{tabular}\\
+            *Ou activé le mode roaming à la place
+        \end{center}
+        \columnbreak
+
+        \begin{center}
+            \input{graphs/cheatsheet-concept-sharinggroupgraph.tex}
+        \end{center}
+    \end{multicols*}
+}
+
+\cheatboxlarge[L'acte de partager où tout le monde peut être un consommateur et/ou un producteur.]{Synchronisation}{
+    Une synchronisation dans un sens entre deux instances MISP. L'organisation $\alpha$ avait créé un \textit{sync user} \faicon{user-plus} sur MISP 2 et a noté la clé API générée. Un lien de synchronisation peut être créé sur MISP 1 en utilisant cette clé API et l'organisation du \textit{sync user}. Dès lors, MISP 1 peut \textit{pull} des données depuis MISP 2 et \textit{push} des données vers MISP 2.
+    \begin{center}
+        \input{graphs/cheatsheet-concept-syncgraph.tex}
+    \end{center}
+}
+\end{multicols*}

@@ -1,0 +1,115 @@
+% Template inspired by Drew Ulick
+% https://www.overleaf.com/articles/130-cheat-sheet/ntwtkmpxmgrp
+\documentclass{article}
+\usepackage[landscape]{geometry}
+\usepackage{xifthen}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black
+}
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit,calc,backgrounds}
+
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb, amsmath,endnotes}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fontawesome}
+\usepackage{xparse}
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage[listings]{tcolorbox}
+\tcbuselibrary{listings}
+\lstdefinestyle{simple}{ %
+    basicstyle=\ttfamily,
+    breaklines = true,
+    backgroundcolor=\color{gray!30},
+}
+\lstdefinestyle{bash}{ %
+  backgroundcolor=\color{gray!30},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize\color{black},        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  language=bash,                 % the language of the code
+  keywordstyle=\bfseries,
+  morekeywords={GET,POST,PUT,DELETE,... },           % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+}
+\lstdefinelanguage{json}{
+    keywords={GET,POST,PUT,DELETE},
+    keywordstyle=\color{darkgray!70!black}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{purple}\ttfamily,
+    stringstyle=\color{green!50!black}\ttfamily,
+    morestring=[b]',
+    morestring=[b]"
+}
+\lstdefinestyle{js}{ %
+  backgroundcolor=\color{gray!30},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize\color{black},        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  language=json,                 % the language of the code
+%   keywordstyle=\bfseries,
+%   morekeywords={GET,POST,PUT,DELETE,... },           % if you want to add more keywords to the set
+  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+}
+\lstset{style=simple}
+
+\title{MISP Cheat Sheet (FR)}
+\author{MISP Project}
+\date{\today}
+
+\makeatletter
+\newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.5in
+\advance\evensidemargin-1.5in
+\parindent0pt
+\parskip2pt
+
+\input{utils.tex}
+
+\begin{document}
+    \input{cheatsheet-concept-fr.tex}
+    %\newpage
+    %\input{cheatsheet-data-model.tex}
+    %\newpage
+    %\input{cheatsheet-user-admin.tex}
+\end{document}
