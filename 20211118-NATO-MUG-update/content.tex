@@ -40,14 +40,14 @@
 \begin{frame}
   \frametitle{STIX libraries}
   \begin{itemize}
-     \item Massive rework, the outcome o over a year of development by Christian Studer
+     \item Massive rework, the outcome of over a year of development by Christian Studer
      \item Added STIX 2.1 support on export
      \item STIX 1.1.1, 1.2, 2.0, 2.1 all supported
      \item Much more complex, in-depth mapping, aiming for 100\% coverage of the standard
-     \item Collaboration with DHS and Mitre
+     \item Collaboration with DHS and MITRE
      \item The MISP->STIX converters became their own standalone library
      \item Extensive documentation and examples for all possible generated objects
-     \item Test suites to validate against Mitre's libraries
+     \item Test suites to validate against MITRE's libraries
   \end{itemize}
 \end{frame}
 
@@ -93,9 +93,11 @@
 \begin{itemize}
 	\item Finally, it is time to sunset the ancient background processor of MISP
         \item New tool, built from the ground up by Luciano Righetti
-        \item More simplistic, relying on Supervisord
-        \item No bloated scheduling - reliance on cron jobs
-        \item Internally compatible with the old processor
+        \begin{itemize}
+            \item More simplistic, relying on Supervisord
+            \item No bloated scheduling - reliance on cron jobs
+            \item Internally compatible with the old processor
+        \end{itemize}
         \item For a period of time we will be supporting both concurrently
         \item Coming in MISP 2.4.151
 \end{itemize}
