@@ -1,0 +1,1429 @@
+{
+	"info": {
+		"_postman_id": "1b4b6bb1-83ca-4829-b5f2-6772fc2b7c18",
+		"name": "MISP-training",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "attributes",
+			"item": [
+				{
+					"name": "add attribute (minimal)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"10.0.0.10\",\n    \"type\": \"ip-dst\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/attributes/add/{{event_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attributes",
+								"add",
+								"{{event_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add attribute (extended)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"evil.com\",\n    \"type\": \"domain\",\n    \"to_ids\": true,\n    \"disable_correlation\": true,\n    \"comment\": \"This domain was used as a C2\",\n    \"first_seen\": \"2021-11-23 10:10:53\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/attributes/add/{{event_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attributes",
+								"add",
+								"{{event_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index attributes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/attributes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view attribute",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/attributes/view/{{attribute_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attributes",
+								"view",
+								"{{attribute_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restSearch attributes 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"domain\",\n    \"page\": \"1\",\n    \"limit\": \"10\",\n    \"to_ids\": true,\n    \"tags\": {\n        \"AND\": [\n            \"Backdoor\"\n        ],\n        \"NOT\": [\n            \"tlp:red\",\n            \"%ransomware%\"\n        ]\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/attributes/restSearch",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attributes",
+								"restSearch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restSearch attributes 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page\": \"1\",\n    \"limit\": \"10\",\n    \"type\": \"ip-src\",\n    \"value\": \"10.0.0.%\",\n    \"returnFormat\": \"xml\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/attributes/restSearch",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attributes",
+								"restSearch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit attribute",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comment\": \"eicar malware test file\",\n    \"to_ids\": true,\n    \"disable_correlation\": true,\n    \"first_seen\": \"2021-11-20 10:10:53\",\n    \"last_seen\": \"2021-11-23 10:10:53\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/attributes/edit/{{attribute_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attributes",
+								"edit",
+								"{{attribute_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete attribute",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/attributes/{{attribute_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attributes",
+								"{{attribute_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "events",
+			"item": [
+				{
+					"name": "add event (minimal)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"info\": \"My new event\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/events/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add event (extended)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"info\": \"My new event\",\n    \"org_id\": \"1\",\n    \"distribution\": \"0\",\n    \"orgc_id\": \"1\",\n    \"date\": \"2021-11-20\",\n    \"published\": false,\n    \"analysis\": \"0\",\n    \"proposal_email_lock\": true,\n    \"threat_level_id\": \"1\",\n    \"publish_timestamp\": \"1617875568\",\n    \"sighting_timestamp\": \"1617875568\",\n    \"disable_correlation\": true,\n    \"event_creator_email\": \"user@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/events/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index events",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index events (xml)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/events/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index events (csv)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/csv",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/events/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view event",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/events/view/{{event_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"view",
+								"{{event_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit event",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"info\": \"My new event (foobar)\",\n    \"analysis\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/events/edit/{{event_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"edit",
+								"{{event_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restSearch events w/Attachments",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page\": \"1\",\n    \"limit\": \"10\",\n    \"publish_timestamp\": \"30d\",\n    \"withAttachments\": true,\n    \"category\": \"Payload delivery\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/events/restSearch",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"restSearch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restSearch events (xml)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page\": \"1\",\n    \"limit\": \"10\",\n    \"metadata\": true,\n    \"tags\": \"Backdoor\",\n    \"returnFormat\": \"xml\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/events/restSearch",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"restSearch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "publish event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/events/publish/{{event_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"publish",
+								"{{event_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unpublish event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/events/unpublish/{{event_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"unpublish",
+								"{{event_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete event",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/events/delete/{{event_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"delete",
+								"{{event_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sightings",
+			"item": [
+				{
+					"name": "index sightings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sightings/index",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sightings",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add sighting",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"timestamp\": 1622535500\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sightings/add/{{attribute_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sightings",
+								"add",
+								"{{attribute_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete sighting",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sightings/delete/{{sighting_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sightings",
+								"delete",
+								"{{sighting_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "warning_lists",
+			"item": [
+				{
+					"name": "index warninglists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/warninglists",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"warninglists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view warninglist",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/warninglists/view/{{warning_list_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"warninglists",
+								"view",
+								"{{warning_list_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggleEnable warninglist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{warning_list_id}}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/warninglists/toggleEnable",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"warninglists",
+								"toggleEnable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check value",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"104.155.11.149\"\n]"
+						},
+						"url": {
+							"raw": "{{base_url}}/warninglists/checkValue",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"warninglists",
+								"checkValue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete warninglist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/warninglists/delete/{{warning_list_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"warninglists",
+								"delete",
+								"{{warning_list_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://www.misp-project.org/documentation/openapi.html"
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "add user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"org_id\": \"1\",\n    \"email\": \"user@misp.local\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/users/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/admin_index",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"admin_index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/admin_index/value:user@admin.test",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"admin_index",
+								"value:user@admin.test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "initiate password reset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/initiatePasswordReset/{{user_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"initiatePasswordReset",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/users/delete/{{user_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"delete",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "servers",
+			"item": [
+				{
+					"name": "settings",
+					"item": [
+						{
+							"name": "server get settings",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/servers/serverSettings",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"servers",
+										"serverSettings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "server get setting by name",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/servers/getSetting/MISP.live",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"servers",
+										"getSetting",
+										"MISP.live"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit setting",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"value\": true\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/servers/serverSettingsEdit/MISP.live/null/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"servers",
+										"serverSettingsEdit",
+										"MISP.live",
+										"null",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "index servers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/servers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pull server",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/servers/pull/{{server_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servers",
+								"pull",
+								"{{server_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "push server",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/servers/push/{{server_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servers",
+								"push",
+								"{{server_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update server",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"branch\": \"2.4\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/servers/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servers",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feeds",
+			"item": [
+				{
+					"name": "index feeds",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feeds/index",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feeds",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view feed",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feeds/view/{{feed_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feeds",
+								"view",
+								"{{feed_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch from feed",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feeds/fetchFromFeed/{{feed_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feeds",
+								"fetchFromFeed",
+								"{{feed_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch from all feeds",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feeds/fetchFromAllFeeds",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feeds",
+								"fetchFromAllFeeds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enable feed",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feeds/enable/{{feed_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feeds",
+								"enable",
+								"{{feed_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disable feed",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feeds/disable/{{feed_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feeds",
+								"disable",
+								"{{feed_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "logs",
+			"item": [
+				{
+					"name": "index logs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page\": 1,\n    \"limit\": 10,\n    \"created\": \"1d\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/logs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{api_auth_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
