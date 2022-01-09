@@ -68,6 +68,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 
 Sample videos which can be used to understand how the training materials are used in companion with a live MISP demo instance.
 
+- [Fundamentals MISP given FIRSTdotOrg 2021 Virtual Symposium African and Arab regions](https://www.youtube.com/watch?v=00jq7Gbqdz8) - 18th December 2021
 - [MISP General Usage Training - Part 1 of 2](https://www.youtube.com/watch?v=-NuODyh1YJE)
 - [MISP General Usage Training - Part 2 of 2](https://www.youtube.com/watch?v=LlKnh5b0bgw)
 - [MISP Training Usage - Training given the 2nd March 2021 - 2h50 min](https://cra.circl.lu/videos/MISP-Usage-Training-20210302.mp4)
