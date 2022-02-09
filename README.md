@@ -35,6 +35,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | [a.6-forensic](https://www.misp-project.org/misp-training/a.6-forensic.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.6-forensic) |
 | [a.7-rest-API](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.7-rest-API) |
 | [b.1-best-practices-in-threat-intelligence](https://www.misp-project.org/misp-training/b.1-best-practices-in-threat-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.1-best-practices-in-threat-intelligence) |
+| [b.5-turning-data-into-actionable-intelligence-training](https://www.misp-project.org/misp-training/b.5-turning-data-into-actionable-intelligence-training.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.5-turning-data-into-actionable-intelligence-training) |
 | [a.8-dev-hands-on](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.8-dev-hands-on) |
 | [a.9-restsearch-dev](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.9-restsearch-dev) |
 | [a.10-galaxy-2.0](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.10-galaxy-2.0) |
