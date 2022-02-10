@@ -78,8 +78,12 @@
 \begin{frame}[fragile]
     \frametitle{Data layer: Events}
         {\bf Events} are encapsulations for contextually linked information
+        \begin{itemize}
+            \item[] \textbf{Purpose}: Group datapoints and context together. Acting as an envelop, it allows setting distribution and sharing rules for itself and its children.
+            \item[] \textbf{Usecase}: Encode incidents / events / reports / ...
+        \end{itemize}
         \begin{center}
-            \includegraphics[width=0.9\linewidth]{screenshots/ui-event.png}
+            \includegraphics[width=0.7\linewidth]{screenshots/ui-event.png}
         \end{center}
 \end{frame}
 
@@ -115,6 +119,10 @@
 \begin{frame}[fragile]
     \frametitle{Data layer: Attributes}
         {\bf Attributes} are individual data points, indicators or supporting data
+        \begin{itemize}
+            \item[] \textbf{Purpose}: Individual data point. Can be an indicator or supporting data.
+            \item[] \textbf{Usecase}: Domain, IP, link, sha1, attachment, ...
+        \end{itemize}
         \begin{center}
             \includegraphics[width=1.0\linewidth]{screenshots/enrichment4.png}
         \end{center}
@@ -154,6 +162,10 @@
 \begin{frame}
     \frametitle{Data layer: MISP Objects}
         {\bf Objects} are custom templated Attribute compositions
+        \begin{itemize}
+            \item[] \textbf{Purpose}: Groups Attributes that are intrinsically linked together
+            \item[] \textbf{Usecase}: File, person, credit-card, x509, device, ...
+        \end{itemize}
         \begin{center}
             \includegraphics[width=1.0\linewidth]{object.png}
         \end{center}
@@ -191,8 +203,12 @@
 \begin{frame}[fragile]
     \frametitle{Data layer: Object references}
     {\bf Object references} are the relationships between individual building blocks
+    \begin{itemize}
+        \item[] \textbf{Purpose}: Allows to create relationships between entities, thus creating a graph where they are the edges and entities are the nodes.
+        \item[] \textbf{Usecase}: Represent behaviours, similarities, affiliation, ...
+    \end{itemize}
     \begin{center}
-        \includegraphics[width=1.0\linewidth]{screenshots/eventgraph.png}
+        \includegraphics[width=0.9\linewidth]{screenshots/eventgraph.png}
     \end{center}
 \end{frame}
 
@@ -222,8 +238,12 @@
 \begin{frame}[fragile]
     \frametitle{Data layer: Sightings}
     {\bf Sightings} are a means to convey that a data point has been seen
+    \begin{itemize}
+        \item[] \textbf{Purpose}: Allows to add temporality to the data.
+        \item[] \textbf{Usecase}: Record activity or occurence, perform IoC expiration, ...
+    \end{itemize}
     \begin{center}
-        \includegraphics[width=1.0\linewidth]{screenshots/sighting-n.png}
+        \includegraphics[width=0.7\linewidth]{screenshots/sighting-n.png}
     \end{center}
     \begin{lstlisting}[language=javascript,firstnumber=1]
 {
@@ -240,8 +260,12 @@
 \begin{frame}[fragile]
     \frametitle{Data layer: Event reports}
     {\bf Event reports} are supporting data for analysis to describe {\bf events}, {\bf processes}, ect
+    \begin{itemize}
+        \item[] \textbf{Purpose}: Supporting data point to describe events or processes
+        \item[] \textbf{Usecase}: Encode reports, provide more information about the Event, ...
+    \end{itemize}
     \begin{center}
-        \includegraphics[width=0.9\linewidth]{screenshots/event-report.png}
+        \includegraphics[width=0.7\linewidth]{screenshots/event-report.png}
     \end{center}
 \end{frame}
 
@@ -272,13 +296,6 @@
         \begin{center}
             \includegraphics[scale=0.30]{screenshots/event-building-blocks/full.png}
         \end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Data layer: Combining the data layer}
-    \begin{center}
-        \includegraphics[width=0.90\linewidth]{screenshots/datamodel4.png}
-    \end{center}
 \end{frame}
 
 \section{Context layer}
@@ -339,6 +356,10 @@
 \begin{frame}
     \frametitle{Context layer: Taxonomies}
     Simple label standardised on common set of vocabularies
+    \begin{itemize}
+        \item[] \textbf{Purpose}: Enable efficent classification globally understood, easing consumption and automation.
+        \item[] \textbf{Usecase}: Provide classification such as: TLP, Confidence, Source, Workflows, Event type, ...
+    \end{itemize}
     \vspace{1em}
     \begin{center}
         \includegraphics[width=1.0\linewidth]{taxonomy-workflow.png}
@@ -379,8 +400,12 @@
 \begin{frame}
     \frametitle{Context layer: Galaxy clusters}
     Kownledge base items including a description, links, synonyms, meta-information and relationships
+    \begin{itemize}
+        \item[] \textbf{Purpose}: Enable description of complex high-level information for classification
+        \item[] \textbf{Usecase}: Extensively describe elements such as threat actors, countries, technique used, ...
+    \end{itemize}
     \begin{center}
-        \includegraphics[width=0.9\linewidth]{screenshots/cluster-view.png}
+        \includegraphics[width=0.65\linewidth]{screenshots/cluster-view.png}
     \end{center}
 \end{frame}
 \begin{frame}
@@ -501,12 +526,6 @@
         \end{lstlisting}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Both layers: Combining everything}
-    \begin{center}
-        \includegraphics[width=0.75\linewidth]{screenshots/datamodel8.png}
-    \end{center}
-\end{frame}
 
 \begin{frame}
     \frametitle{Acknowledgements}
