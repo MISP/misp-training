@@ -5,6 +5,7 @@
 \usepackage{xifthen}
 \usepackage{url}
 \usepackage{hyperref}
+\usepackage[final]{pdfpages}
 \usepackage{xcolor}
 \hypersetup{
     colorlinks=true,
@@ -110,6 +111,8 @@
     \input{cheatsheet-concept.tex}
     \newpage
     \input{cheatsheet-data-model.tex}
+    \newpage
+    \includepdf[pages=-,pagecommand={},width=\textwidth]{full-event/misp-full-event-example.pdf}
     \newpage
     \input{cheatsheet-user-admin.tex}
 \end{document}
