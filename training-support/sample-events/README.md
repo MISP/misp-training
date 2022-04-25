@@ -2,6 +2,8 @@
 
 MISP events in JSON format which can be used in MISP trainings, workshop and exercises.
 
+![](./sea.png)
+
 ## Sample events with real cases
 
 - [ATM Vulnerabilities Allow Deposit Forgery Attacks - Galaxy for finance, eventreport](./atm-vulnerabilities-allow-deposit-forgery-attacks.json).
