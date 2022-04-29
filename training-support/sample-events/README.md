@@ -13,6 +13,7 @@ MISP events in JSON format which can be used in MISP trainings, workshop and exe
 
 ## Sample events with synthetic data
 
+- [Dirty Harry](./dirty-harry-example.json) - movie example with human relationships.
 - [Decaying example](./sample-decaying-example.json). Synthetic data to show the decaying functionality in MISP.
 - [Sample spear phishing](./sample-spear-phishing-attempt-targeting-telco.json) created from [exercise](./sample-spear-phishing-attempt-targeting-telco.text).
 
