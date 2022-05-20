@@ -110,6 +110,17 @@ The output directory will contain all the generated PDF files and the PDF file c
 
 **Note**: In case the rendering is somewhat broken, it might be related to latex using the styles installed systemwide in `/usr/share/texlive/texmf-dist/tex/latex/beamertheme-focus`. Removing this directory will solve the problem.
 
+## Dependencies
+
+[FiraMath Font](https://github.com/firamath/firamath/releases)
+
+XeLaTex, can be parametered in .tex header (works in TeXshop):
+
+```
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+```
+
 ## License, Attribution and Funding
 
 All the materials are dual-licensed under GNU Affero General Public License version 3 or later and
