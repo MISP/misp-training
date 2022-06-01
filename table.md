@@ -1,5 +1,6 @@
 | Slides (PDF) | Source Code |
 | ------------ | ----------- |
+| [0-intro-shorter](https://www.misp-project.org/misp-training/0-intro-shorter.pdf) | [source](https://github.com/MISP/misp-training/tree/main/0-intro-shorter) |
 | [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tree/main/0-misp-introduction-to-information-sharing) |
 | [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1-misp-usage) |
 | [1.2-misp-integration](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2-misp-integration) |
@@ -27,6 +28,7 @@
 | [a.11-misp-data-model](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.11-misp-data-model) |
 | [a.a-widget-dev](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.a-widget-dev) |
 | [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.2-turning-data-into-actionable-intelligence) |
+| [b.5-turning-data-into-actionable-intelligence-training](https://www.misp-project.org/misp-training/b.5-turning-data-into-actionable-intelligence-training.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.5-turning-data-into-actionable-intelligence-training) |
 | [4-misp-standard](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [source](https://github.com/MISP/misp-training/tree/main/4-misp-standard) |
-| [x.13-exercise-movie](https://www.misp-project.org/misp-training/x.13-exercise-movie.pdf) | [source](https://github.com/MISP/misp-training/tree/main/x.13-exercise-movie) |
 | [a.b-cli](https://www.misp-project.org/misp-training/a.b-cli.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.b-cli) |
+| [a.c-deployment](https://www.misp-project.org/misp-training/a.c-deployment.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.c-deployment) |
