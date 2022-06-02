@@ -17,15 +17,17 @@
 \begin{frame}
     \frametitle{What problems are we trying to tackle}
     \begin{itemize}
-        \item Initial idea came from GeekWeek7.5
+        %\item Initial idea came from GeekWeek7.5\footnote{Workshop organized by the Canadian Cyber Center}{https://cyber.gc.ca/en/events/geekweek-75}
+        \item Initial idea came from GeekWeek7.5\footnote{\href{https://cyber.gc.ca/en/events/geekweek-75}{Workshop organized by the Canadian Cyber Center}}
         \begin{center}
             \includegraphics[width=0.5\linewidth]{pictures/geekweek75.jpg}
         \end{center}
-        \item Experienced users wanted to have a way to trigger actions and to modify to behavior of MISP
+        \item Experienced users wanted to be able to interact with the behavior of MISP for specific operations
+        \item Same spirit than web-hooks but more flexible
         \item Use-cases:
         \begin{itemize}
-            \item Prevent publication of event not meeting some criterias
-            \item Enrich event before the publication takes place
+            \item Prevent publication of events not meeting some criterias
+            \item Enrich events before the actual publication takes place
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -33,9 +35,11 @@
 \begin{frame}
     \frametitle{Simplistic overview}
     \begin{enumerate}
-        \item User/API Interraction
-        \item MISP handles the request
-        \item MISP executes workflows listening to the trigger
+        \item \textbf{User Interacts} with MISP using the UI or API
+        \item MISP handles the request, starts \textbf{preparing data} to perform the operation
+        \item MISP checks if there are workflows \textbf{listening to the trigger}
+        \item MISP fetches enabled workflows and \textbf{executes} them
+        \item If all went fine, MISP \textbf{continue} to perform the operation
     \end{enumerate}
 \end{frame}
 
@@ -44,7 +48,13 @@
     \begin{enumerate}
         \item \textbf{workflow}: Sequence of actions to be executed
         \item \textbf{execution path}: A path composed of actions to be executed sequentially
+        \begin{itemize}
+            \item A workflow can contain more than one execution path
+        \end{itemize}
         \item \textbf{trigger}: Starting point of an \texttt{execution path}. Triggers are called when specific action are done by MISP
+        \begin{itemize}
+            \item A workflow can contain more than one trigger, but only one per type
+        \end{itemize}
     \end{enumerate}
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/workflow-view.png}
@@ -74,7 +84,7 @@
             \item Any other blocking path of next workflows {\bf will not be executed}
         \end{itemize}
         \vspace{0.5em}
-        \item {\bf Non-blocking}/Deferred: Stop execution for current path only
+        \item {\bf Non-blocking/Deferred}: Stop execution for current path only
         \begin{itemize}
             \item Current execution path is {\bf stopped}
             \item {\bf Resume} execution of remaining paths
@@ -86,9 +96,9 @@
 \begin{frame}
     \frametitle{Execution Order and Execution Types}
     \begin{itemize}
-        \item \textbf{Blocking} paths from all workflows are executed first in the saved order
+        \item \textbf{Blocking} paths from all workflows are executed in the saved order
         \item If any blocking executions failed, the action that called the trigger will \textbf{be stopped}
-        \item \textbf{Parallel/Deferred} paths from all workflows are executed. The order is irrelevant
+        \item Then, \textbf{Parallel/Deferred} paths from all workflows are executed. The order is irrelevant
     \end{itemize}
 
     \begin{center}
@@ -106,7 +116,7 @@
         \item MISP executes a workflow listening to the trigger
         \begin{itemize}
             \item {\bf execution success}: Proceed publishing
-            \item {\bf execution failure}: Stop publishing, log the reason and report the failure to the user
+            \item {\bf execution failure}: Stop publishing, log the reason and report the failure back to the user
         \end{itemize}
     \end{enumerate}
 \end{frame}
@@ -128,7 +138,7 @@
     \begin{itemize}
         \item 3 types of modules
         \begin{itemize}
-            \item \texttt{trigger}: Entry point of the execution
+            \item \texttt{trigger}: Entry point of the execution path
             \begin{itemize}
                 \item Event publish, email about to be sent, feed data about to be saved, ...
             \end{itemize}
@@ -136,7 +146,7 @@
             \begin{itemize}
                 \item IF condition, fork the blocking execution into a non-blocking one, ...
             \end{itemize}
-            \item \texttt{action}: Modules that can modify data, prevent execution or perform additional actions
+            \item \texttt{action}: Can modify data, prevent execution or perform additional actions
             \begin{itemize}
                 \item Publish to ZMQ, perform enrichments, block the execution, ...
             \end{itemize}
@@ -153,7 +163,7 @@
             \begin{itemize}
                 \item Written in PHP
                 \item They can use MISP's built-in functionalities (restsearch, enrichment, push to zmq, ...)
-                \item Faster and easier to interact with for those having internal knowledge of MISP
+                \item Fast and easier to interact with for those having internal knowledge of MISP
             \end{itemize}
             \item \texttt{From the misp-module service} 
             \begin{itemize}
@@ -184,16 +194,17 @@
 
 \begin{frame}
     \frametitle{Working with the editor}
-    Operations not allowed
+    Operations not allowed:
     \begin{itemize}
-        \item Create an execution loop
+        \item Can only add the same trigger once
+        \item Execution loop are blocked
+        \begin{itemize}
+            \item Current caveat: If an action re-trigger the workflow
+        \end{itemize}
     \end{itemize}
     \begin{center}
         \includegraphics[width=0.7\linewidth]{pictures/editor-not-allowed-1.png}
     \end{center}
-    \begin{itemize}
-        \item Use the same trigger twice
-    \end{itemize}
 \end{frame}
 
 \section{Learning by examples}
