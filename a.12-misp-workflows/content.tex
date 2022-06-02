@@ -207,6 +207,33 @@
     \end{center}
 \end{frame}
 
+\begin{frame}
+    \frametitle{TODOs / FIXMEs}
+    \begin{enumerate}
+        \item Global setting to enable/disabled Workflows
+        \item Settings to enable/disable modules
+        \item Increase workflow run counter
+        \item Show which workflows use a module and the other way around
+        \item Perfom parallel execution by a worker (currently in-line)
+        \item Implement parallel task module
+        \item ACL-aware: new \texttt{workflow editor} role
+    \end{enumerate}
+    \begin{enumerate}
+        \item Various UI glitches \& inconsistencies
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Implemented modules}
+    \begin{itemize}
+        \item \textbf{trigger}\texttt{:publish} - Is called whenever an event is published
+        \item \textbf{logic}\texttt{:if} - Allows to match on Event and Attribute using restSearch
+        \item \textbf{action}\texttt{:push\_to\_ZMQ} - Pushes provided data to ZMQ, mainly for debugging purposes
+        \item \textbf{action}\texttt{:enrich\_event} - Enriches the provided Event (or Attributes if filtered by \texttt{if}) for the specified misp-module
+        \item \textbf{action}\texttt{:stop\_execution} - Stops execution for current path (and all blocking paths)
+    \end{itemize}
+\end{frame}
+
 \section{Learning by examples}
 \begin{frame}
     \frametitle{Workflow example 1}
