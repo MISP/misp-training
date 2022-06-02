@@ -31,30 +31,40 @@
 \begin{frame}
     \frametitle{Simplistic overview}
     \begin{enumerate}
-        \item User/API Interraction
-        \item MISP handles the request
-        \item MISP executes workflows listening to the trigger
+        \item \textbf{User Interacts} with MISP using the UI or API
+        \item MISP handles the request, starts \textbf{preparing data} to perform the operation
+        \item MISP checks if there are workflows \textbf{listening to the trigger}
+        \item MISP fetches enabled workflows and \textbf{executes} them
+        \item If all went fine, MISP \textbf{continue} to perform the operation
     \end{enumerate}
 \end{frame}
+
 
 \begin{frame}
     \frametitle{Terminology}
     \begin{enumerate}
         \item \textbf{workflow}: Sequence of actions to be executed
         \item \textbf{execution path}: A path composed of actions to be executed sequentially
+        \begin{itemize}
+            \item A workflow can contain more than one execution path
+        \end{itemize}
         \item \textbf{trigger}: Starting point of an \texttt{execution path}. Triggers are called when specific action are done by MISP
+        \begin{itemize}
+            \item A workflow can contain more than one trigger, but only one per type
+        \end{itemize}
     \end{enumerate}
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/workflow-view.png}
     \end{center}
 \end{frame}
 
+
 \begin{frame}
-    \frametitle{Workflow execution}
+    \frametitle{Workflow execution in MISP}
     \begin{enumerate}
-        \item A trigger is called
-        \item Collect workflows listening to called trigger
-        \item Execute workflows in the saved order
+        \item A trigger is called;
+        \item Collect workflows listening to called trigger;
+        \item Execute workflows in the saved order;
     \end{enumerate}
     \begin{center}
         \includegraphics[width=0.5\linewidth]{pictures/execution-order-1.png}
@@ -142,28 +152,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Workflow modules}
-    \begin{itemize}
-        \item \texttt{action} modules can be from 2 sources
-        \begin{itemize}
-            \item \texttt{\scriptsize app/Model/WorkflowModules/action/[module\_name].php}
-            \begin{itemize}
-                \item Written in PHP
-                \item They can use MISP's built-in functionalities (restsearch, enrichment, push to zmq, ...)
-                \item Faster and easier to interact with for those having internal knowledge of MISP
-            \end{itemize}
-            \item \texttt{From the misp-module service} 
-            \begin{itemize}
-                \item Written in Python
-                \item They can use any python libraries
-                \item Easier to write
-                \item New module type \texttt{action}
-            \end{itemize}
-        \end{itemize}
-        \item Both systems are \textbf{plug-and-play}
-    \end{itemize}
-\end{frame}
 
 \begin{frame}
     \frametitle{Creating a workflow with the editor}
@@ -180,180 +168,21 @@
     \end{center}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Working with the editor}
-    Operations not allowed
-    \begin{itemize}
-        \item Create an execution loop
-    \end{itemize}
-    \begin{center}
-        \includegraphics[width=0.7\linewidth]{pictures/editor-not-allowed-1.png}
-    \end{center}
-    \begin{itemize}
-        \item Use the same trigger twice
-    \end{itemize}
-\end{frame}
 
-\section{Learning by examples}
 \begin{frame}
-    \frametitle{Workflow example 1}
+    \frametitle{Workflow example with ATT\&CK}
     \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-1.png}
+        \includegraphics[width=0.9\linewidth]{pictures/ATT&CK-support.png}
     \end{center}
 
     \begin{enumerate}
-        \item Will the next blocking path (from another workflow) be executed?
-    \end{enumerate}
-\end{frame}
-\begin{frame}
-    \frametitle{Workflow example 1: Answers}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-1.png}
-    \end{center}
-
-    \begin{enumerate}
-        \item Will the next blocking path (from another workflow) be executed?
-        \begin{itemize}
-            \item \textbf{No}. We are in a blocking path. As the execution has been stopped, no other blocking paths will be executed.
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Workflow example 2}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-2.png}
-    \end{center}
-
-    \begin{enumerate}
-        \item Will the next blocking path (from another workflow) be executed?
-        \item Will \texttt{Enrich Event} module be executed?
-    \end{enumerate}
-\end{frame}
-\begin{frame}
-    \frametitle{Workflow example 2: Answers}
-    \begin{center}
-        \includegraphics[width=0.7\linewidth]{pictures/example-2.png}
-    \end{center}
-
-    \begin{enumerate}
-        \item Will the next blocking path (from another workflow) be executed?
-        \begin{itemize}
-            \item \textbf{No}. Same reason that before
-        \end{itemize}
-        \item Will \texttt{Enrich Event} module be executed?
-        \begin{itemize}
-            \item \textbf{Yes}. The module is in the non-blocking path. Regardless of the result of the blocking path, it will be executed.
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Workflow example 3}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-3.png}
-    \end{center}
-
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
-        \item Will the next blocking path (from another workflow) be executed?
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Workflow example 3: Answers}
-    \begin{center}
-        \includegraphics[width=0.55\linewidth]{pictures/example-3.png}
-    \end{center}
-
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
-        \begin{itemize}
-            \item \textbf{Yes}
-            \item The blocking path is executed before the non-blocking one
-            \item The result of the non-blocking path has no influence on the blocking one
-        \end{itemize}
-        \item Will the next blocking path (from another workflow) be executed?
-        \begin{itemize}
-            \item \textbf{Yes}
-            \item The blocking path is executed before the non-blocking one
-            \item The result of the non-blocking path has no influence the execution of other workflows
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Workflow example 4}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-4.png}
-    \end{center}
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
+        \item Automatically processing phishing cases from ATT\&CK context including enrichments and publishing pipelines. 
     \end{enumerate}
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Workflow example 4: Answers}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-4.png}
-    \end{center}
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
-        \begin{itemize}
-            \item \textbf{Yes} and \textbf{No}. The execution order for the same output is not guaranteed
-            \item If \texttt{Stop execution} is executed first, it's a no.
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Workflow example 5}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-5.png}
-    \end{center}
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
-    \end{enumerate}
-\end{frame}
-\begin{frame}
-    \frametitle{Workflow example 5: Answers}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-5.png}
-    \end{center}
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
-        \begin{itemize}
-            \item \textbf{Yes}. The execution order for the same output is not guaranteed
-            \item However, as we are in a non-blocking path, the outcome of the execution of another path has no impact
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Workflow example 6}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-6.png}
-    \end{center}
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
-    \end{enumerate}
-\end{frame}
-\begin{frame}
-    \frametitle{Workflow example 6: Answers}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/example-6.png}
-    \end{center}
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
-        \begin{itemize}
-            \item \textbf{No}. Even if we are in a non-blocking path, if the current execution path is blocked, the execution will be stopped
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Workflow example 7}
+    \frametitle{Workflow - advanced example}
     \vspace{-2em}
     \begin{center}
         \includegraphics[width=1.05\linewidth]{pictures/example-7.png}
@@ -361,28 +190,15 @@
     \begin{center}
         \includegraphics[width=0.45\linewidth]{pictures/event-1.png}
     \end{center}
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
-        \item Will \texttt{circl.lu} have a tag attached to it?
-    \end{enumerate}
 \end{frame}
+
 \begin{frame}
-    \frametitle{Workflow example 7: Answers}
-    \begin{center}
-        \includegraphics[width=0.7\linewidth]{pictures/example-7.png}
-    \end{center}
-    \begin{center}
-        \includegraphics[width=0.3\linewidth]{pictures/event-1.png}
-    \end{center}
-    \begin{enumerate}
-        \item Will \texttt{Enrich Event} module be executed?
-        \begin{itemize}
-            \item \textbf{Yes}. The event contains an attribute satisfying the matching condition
-        \end{itemize}
-        \item Will \texttt{circl.lu} have a tag attached to it?
-        \begin{itemize}
-            \item \textbf{No}. The event contains an attribute satisfying the matching condition. The \texttt{else} part will not be executed.
-        \end{itemize}
-    \end{enumerate}
+    \frametitle{Ongoing developments}
+    \begin{itemize}
+        \item First release of the workflow in MISP for the FIRST.org annual conference in Dublin (end of June).
+        \item {\bf Workflows are shareable} and a library of workflows will be available.
+        \item Gathering ideas and requirements for new workflows from the threat intelligence community.
+        \item Reviewing ATT\&CK techniques to be mapped in the MISP workflows.
+    \end{itemize}
 \end{frame}
 
