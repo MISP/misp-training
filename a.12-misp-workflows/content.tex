@@ -293,3 +293,38 @@
         \item After a user has been saved, a message containing the user's email will be sent to a Mattermost channel and the user detailed will be posted to the webhook URL
     \end{itemize}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Creating a new module in PHP}
+    \begin{center}
+        \includegraphics[width=0.65\linewidth]{pictures/custom-1.png}
+    \end{center}
+
+    \begin{itemize}
+        \item Module configuration are defined as public variables
+        \item The \texttt{exec} function has to be implemented.
+        \begin{itemize}
+            \item If it returns \texttt{true}, execution will proceed
+            \item If it returns \texttt{false}
+            \begin{itemize}
+                \item And the module is \texttt{blocking}, the execution will stop and the operation will be blocked
+                \item And the module is not \texttt{blocking}, the execution for the current path will stop
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Creating a new module in Python}
+    \begin{center}
+        \includegraphics[width=0.6\linewidth]{pictures/custom-2.png}
+    \end{center}
+
+    \begin{itemize}
+        \item Module configuration are defined in the \texttt{moduleinfo} and \texttt{moduleconfig} variables
+        \item The \texttt{handler} function has to be implemented.
+        \item Blocking logic is the same as other modules
+    \end{itemize}
+\end{frame}
+
