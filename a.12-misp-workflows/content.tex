@@ -10,24 +10,25 @@
     \begin{itemize}
         \item What problems are we trying to tackle
         \item MISP Workflows overview
-        \item Design of the system \& how can it be extended
+        \item Design of the system \& how it can be extended
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{What problems are we trying to tackle}
     \begin{itemize}
-        %\item Initial idea came from GeekWeek7.5\footnote{Workshop organized by the Canadian Cyber Center}{https://cyber.gc.ca/en/events/geekweek-75}
         \item Initial idea came from GeekWeek7.5\footnote{\href{https://cyber.gc.ca/en/events/geekweek-75}{Workshop organized by the Canadian Cyber Center}}
         \begin{center}
             \includegraphics[width=0.3\linewidth]{pictures/geekweek75.jpg}
         \end{center}
-        \item Experienced users wanted to be able to interact with the behavior of MISP for specific operations
-        \item Same spirit than web-hooks but more flexible
+        \item Needs:
+        \begin{itemize}
+            \item Interacting with MISP's behavior
+            \item Hooking specific action via callbacks
+        \end{itemize}
         \item Use-cases:
         \begin{itemize}
             \item Prevent publication of events not meeting some criterias
-            \item Enrich events before the actual publication takes place
             \item Prevent querying thrid-party service (e.g. virustotal) for sensitive information
             \item Send a notification in chat room when new events get published
             \item And much much more..
@@ -36,13 +37,12 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Simplistic overview}
+    \frametitle{Simplistic overview of a Workflow in action}
     \begin{enumerate}
-        \item \textbf{User Interacts} with MISP using the UI or API
-        \item MISP handles the request, starts \textbf{preparing data} to perform the operation
-        \item MISP checks if there is an enabled workflow \textbf{listening to the trigger}
-        \item MISP fetches enabled workflows and \textbf{executes} them
-        \item If all went fine, MISP \textbf{continue} to perform the operation
+        \item An \textbf{action} is performed in MISP
+        \item If there is an \textbf{enabled} Workflow for that \textbf{action}
+        \item MISP runs the Workflow
+        \item If all went fine, MISP \textbf{continue} to perform the action
         \begin{itemize}
             \item The operation can potentially be cancelled by \texttt{blocking} modules
         \end{itemize}
@@ -53,118 +53,106 @@
     \frametitle{Terminology}
     \begin{enumerate}
         \item \textbf{workflow}: Sequence of actions to be executed
-        \item \textbf{execution path}: A path composed of actions to be executed sequentially
-        \begin{itemize}
-            \item A workflow can contain more than one execution path
-        \end{itemize}
-        \item \textbf{trigger}: Starting point of an \texttt{execution path}. Triggers are called when specific actions are done by MISP
+        \item \textbf{execution path}: A path composed of nodes to be executed sequentially
+        \item \textbf{trigger}: Starting point of a workflow. Triggers are called when specific actions happen in MISP
         \begin{itemize}
             \item A trigger can only have one workflow and vice-versa
         \end{itemize}
     \end{enumerate}
     \begin{center}
-        \includegraphics[width=1.0\linewidth]{pictures/workflow-view.png}
+        \includegraphics[width=1.0\linewidth]{pictures/simple-workflow.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Workflow execution}
+    \frametitle{Workflow execution process}
+    Typical execution process:
     \begin{enumerate}
-        \item An operation happen in MISP (e.g. event publication)
-        \item A trigger is called
-        \item Collect enabled workflow listening to called trigger
-        \item Execute workflow
+        \item An action happen in MISP
+        \item The workflow associated to the trigger is run
+        \item Execution result:
         \begin{itemize}
             \item \texttt{\color{green!50!black}success}: Proceed with the operation
-            \item \texttt{\color{red}failure} | \texttt{\color{blue}cancel}: Cancel the operation
+            \item \texttt{\color{red}failure} | \texttt{\color{blue}blocked}: Cancel the operation
+        \end{itemize}
+    \end{enumerate}
+    \vspace{0.5em}
+    Example for Event publish:
+    \begin{enumerate}
+        \item An Event is about to be published
+        \item MISP executes the workflow listening to the \texttt{event-publish} trigger
+        \begin{itemize}
+            \item {\bf\color{green!50!black}success}: Proceed the publishing action
+            \item {\bf\color{red}failure} | \texttt{\color{blue}blocked}: Stop publishing and log the reason
         \end{itemize}
     \end{enumerate}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Execution Paths}
-    Currently 2 types of execution path:
+    \frametitle{Blocking and non-blocking Workflows}
+    Currently 2 types of workflows:
     \vspace{0.5em}
     \begin{itemize}
-        \item {\bf Blocking}: Execution is stoped in case of error or module cancel
+        \item {\bf Blocking}: Completion of the initial action can be prevented
         \begin{itemize}
-            \item Current workflow's blocking execution path is {\bf stopped}
+            \item If a \textbf{blocking module} blocks the action
+            \item If a \textbf{blocking module} raises an exception
         \end{itemize}
         \vspace{0.5em}
-        \item {\bf Non-blocking/Parallel}: Stop execution for current path only
+        \item {\bf Non-blocking}: Workflow execution outcome has no impact
         \begin{itemize}
-            \item Current execution path is {\bf stopped}
-            \item {\bf Resume} execution of remaining paths
+            \item \textbf{Blocking modules} become \textbf{non-blocking}
+            \item Execution proceed unless on exception
         \end{itemize}
     \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Publishing example}
-    Example:
-    \begin{enumerate}
-        \item An Event is published
-        \item MISP starts the publishing process
-        \item MISP executes the workflow listening to the trigger
-        \begin{itemize}
-            \item {\bf\color{green!50!black}success execution success}: Proceed publishing
-            \item {\bf\color{red}success execution failure}: Stop publishing, log the reason and report the failure back to the user
-        \end{itemize}
-    \end{enumerate}
 \end{frame}
 
 \begin{frame}
     \frametitle{Execution context}
     \begin{itemize}
-        \item Workflow are \textit{triggered by any users}
+        \item Workflows can be triggered by \textbf{any users}
+        \item Workflows can be triggered by operations done via the \textbf{UI or the API}
         \item However, the user for which the workflow executes has the \texttt{site-admin} role and is from the \texttt{MISP.host\_org\_id}
-        \item This is to make sure, all data are processed regardless of the ACL
+        \item This is to make sure, all data are processed regardless of ownership and access (no ACL)
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Workflow modules}
+    \frametitle{Types of Workflow modules}
     \begin{center}
         \includegraphics[width=0.5\linewidth]{pictures/module-type.png}
     \end{center}
-    4 types of module
+    2 types of action modules
     \begin{itemize}
         \item \textbf{logic}: Allow to redirect the execution flow.
         \begin{itemize}
             \item IF condition, fork the blocking execution into a non-blocking one, ...
         \end{itemize}
-        \item \textbf{action}: Can modify data, prevent execution or perform additional actions
+        \item \textbf{action}: Allow to perform additional actions, prevent execution or modify data
         \begin{itemize}
-            \item Publish to ZMQ, perform enrichments, block the execution, ...
-        \end{itemize}
-        \item \textbf{misp-module}: Basically \texttt{action} modules but using the \texttt{misp-module} service for the logic
-        \begin{itemize}
-            \item Written in Python!
-        \end{itemize}
-        \item \textbf{custom}: Allow user to create their own \texttt{action} and \texttt{logic} module in PHP
-        \begin{itemize}
-            \item Can use any functions defined in the application
+            \item Webhook, block the execution, perform enrichments, ...
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Workflow modules}
-    \texttt{action} modules can be from 3 sources
+    3 sources of action modules
     \begin{itemize}
         \item \texttt{\scriptsize app/Model/WorkflowModules/action/[module\_name].php}
         \begin{itemize}
-            \item Built-in module in the application
+            \item Built-in \textbf{default} modules in the application
             \item Written in PHP
             \item Can use MISP's built-in functionalities (restsearch, enrichment, push to zmq, ...)
             \item Fast and easier to interact with for those having internal knowledge of MISP
         \end{itemize}
         \item \texttt{\scriptsize app/Lib/WorkflowModules/action/[module\_name].php}
         \begin{itemize}
-            \item Same as previous but allow users to create their own without sharing with the community
+            \item \textbf{Custom} modules written by users
         \end{itemize}
         \item \texttt{From the misp-module service} 
         \begin{itemize}
+            \item \textbf{Default} and \textbf{custom} modules
             \item Written in Python
             \item Can use any python libraries
             \item New \texttt{misp-module} module type: \texttt{action}
@@ -181,7 +169,7 @@
     \begin{enumerate}
         \item Make sure \texttt{MISP.background\_jobs} is turned on
         \item Turn on setting \texttt{Plugin.Workflow\_enable}
-        \item Make sure workers are up-and-running
+        \item Make sure workers are up-and-running and healthy
     \end{enumerate}
     \begin{center}
         \includegraphics[width=0.75\linewidth]{pictures/settings-1.png}
@@ -191,7 +179,7 @@
 
 \begin{frame}
     \frametitle{Getting started with workflows (2)}
-    If you wish to use action modules from the \texttt{misp-module}:
+    If you wish to use action modules from \texttt{misp-module}:
     \begin{itemize}
         \item Make sure you update your \texttt{misp-module} application to the latest version
         \item Make sure your have the new \texttt{action\_mod} module type in \url{misp-modules/misp\_modules/modules}
@@ -241,6 +229,22 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Workflow blueprints}
+    \begin{enumerate}
+        \item Blueprints allow to re-use parts of a workflow in another one
+        \item Blueprints can be saved, exported and shared
+    \end{enumerate}
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{pictures/blueprint-debugging.png}
+    \end{center}
+    Blueprints origins:
+    \begin{enumerate}
+        \item From the "official" \texttt{misp-workflow-blueprints} repository
+        \item Created or imported by users
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
     \frametitle{Workflow blueprints: Create}
     Select one or more modules to be saved as blueprint then click on the \texttt{save blueprint} button
     \begin{center}
@@ -259,15 +263,54 @@
     \end{center}
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{Hash path filtering}
+    \begin{itemize}
+        \item Some modules have the possibility to filter or check conditions using CakePHP's path expression.
+    \end{itemize}
+\begin{lstlisting}[language=javascript,firstnumber=1]
+$path_expression = '{n}[name=fred].id';
+$users = [
+    {'id': 123, 'name': 'fred', 'surname': 'bloggs'},
+    {'id': 245, 'name': 'fred', 'surname': 'smith'},
+    {'id': 356, 'name': 'joe', 'surname': 'smith'},
+];
+$ids = Hash::extract($users, $path_expression);
+// => $ids will be [123, 245]
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}
-    \frametitle{TODOs / FIXMEs}
-    \begin{enumerate}
-        \item Show which workflows use a module and the other way around
-        \item Perfom parallel execution by a worker (currently in-line)
-        \item Implement parallel task module
-        \item ACL-aware: new \texttt{workflow editor} role
-        \item Standardize how data is passed between modules
-    \end{enumerate}
+    \frametitle{Data format in Workflows}
+    \begin{itemize}
+        \item All triggers will inject data in a workflow
+        \item In some cases, there is no format (e.g. User after-save)
+        \item In others, the format is \textbf{compliant with the MISP Core format}
+        \item In addition to the RFC, the passed data has \textbf{additional properties}
+        \begin{itemize}
+            \item Attributes are always encapsulated in the Event or Object
+            \item Additional key \texttt{\_AttributeFlattened}
+            \item Additional key \texttt{\_allTags}
+            \item Additional key \texttt{inherited} for Tags
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Logic module: Concurrent Task}
+    \begin{itemize}
+        \item Special type of \textbf{logic} module
+        \item Allows breaking the execution flow into a concurrent tasks to be executed later on by a background worker
+        \item As a side effect, blocking modules cannot cancel an ongoing operation anymore
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Debugging Workflows}
+    \begin{itemize}
+        \item Workflow execution is logged in the application logs: \texttt{/admin/logs/index}
+        \item Or stored on disk in the following file: \texttt{/app/tmp/logs/workflow-execution.log}
+    \end{itemize}
 \end{frame}
 
 \section{Learning by examples}
@@ -290,17 +333,6 @@
 
     \begin{itemize}
         \item If an event has the \texttt{PAP:RED} tag or any of the attribute has it, the enrichment process will be cancelled
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Workflow example 3}
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{pictures/example-3.png}
-    \end{center}
-
-    \begin{itemize}
-        \item After a user has been saved, a message containing the user's email will be sent to a Mattermost channel and the user detailed will be posted to the webhook URL
     \end{itemize}
 \end{frame}
 
