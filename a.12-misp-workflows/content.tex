@@ -8,10 +8,14 @@
 \begin{frame}
     \frametitle{Content of the presentation}
     \begin{itemize}
-        \item What problems are we trying to tackle
-        \item MISP Workflows overview
+        \item MISP Workflows fundamentals
+        \item Getting started
         \item Design of the system \& how it can be extended
     \end{itemize}
+
+    \begin{center}
+        \includegraphics[width=0.9\linewidth]{pictures/overview.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -23,25 +27,25 @@
         \end{center}
         \item Needs:
         \begin{itemize}
-            \item Interacting with MISP's behavior
-            \item Hooking specific action via callbacks
+            \item Prevent default MISP behaviors
+            \item Hook specific actions via callbacks
         \end{itemize}
         \item Use-cases:
         \begin{itemize}
             \item Prevent publication of events not meeting some criterias
-            \item Prevent querying thrid-party service (e.g. virustotal) for sensitive information
-            \item Send a notification in chat room when new events get published
+            \item Prevent querying thrid-party services (e.g. virustotal) with sensitive information
+            \item Send a notification in a chat room
             \item And much much more..
         \end{itemize}
     \end{itemize}
 \end{frame}
 
+\section{Workflow - Fundamentals}
 \begin{frame}
     \frametitle{Simplistic overview of a Workflow in action}
     \begin{enumerate}
         \item An \textbf{action} is performed in MISP
-        \item If there is an \textbf{enabled} Workflow for that \textbf{action}
-        \item MISP runs the Workflow
+        \item If there is an \textbf{enabled} Workflow for that \textbf{action}, run it
         \item If all went fine, MISP \textbf{continue} to perform the action
         \begin{itemize}
             \item The operation can potentially be cancelled by \texttt{blocking} modules
@@ -51,14 +55,14 @@
 
 \begin{frame}
     \frametitle{Terminology}
-    \begin{enumerate}
-        \item \textbf{workflow}: Sequence of actions to be executed
-        \item \textbf{execution path}: A path composed of nodes to be executed sequentially
+    \begin{itemize}
+        \item \textbf{workflow}: Sequence of all operations (nodes) to be executed. Basically the whole graph
+        \item \textbf{execution path}: A path composed of nodes
         \item \textbf{trigger}: Starting point of a workflow. Triggers are called when specific actions happen in MISP
         \begin{itemize}
             \item A trigger can only have one workflow and vice-versa
         \end{itemize}
-    \end{enumerate}
+    \end{itemize}
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/simple-workflow.png}
     \end{center}
@@ -68,12 +72,12 @@
     \frametitle{Workflow execution process}
     Typical execution process:
     \begin{enumerate}
-        \item An action happen in MISP
-        \item The workflow associated to the trigger is run
-        \item Execution result:
+        \item An action happens in MISP
+        \item The workflow associated to the trigger is ran
+        \item Execution result?
         \begin{itemize}
-            \item \texttt{\color{green!50!black}success}: Proceed with the operation
-            \item \texttt{\color{red}failure} | \texttt{\color{blue}blocked}: Cancel the operation
+            \item \texttt{\color{green!50!black}success}: Proceed the action
+            \item \texttt{\color{red}failure} | \texttt{\color{blue}blocked}: Cancel the action
         \end{itemize}
     \end{enumerate}
     \vspace{0.5em}
@@ -111,103 +115,143 @@
     \frametitle{Execution context}
     \begin{itemize}
         \item Workflows can be triggered by \textbf{any users}
-        \item Workflows can be triggered by operations done via the \textbf{UI or the API}
-        \item However, the user for which the workflow executes has the \texttt{site-admin} role and is from the \texttt{MISP.host\_org\_id}
-        \item This is to make sure, all data are processed regardless of ownership and access (no ACL)
+        \item Workflows can be triggered by actions done via the \textbf{UI} or \textbf{API}
+        \item However, the user for which the workflow executes has:
+        \begin{itemize}
+            \item The \texttt{site-admin} permission
+            \item Is from the \texttt{MISP.host\_org\_id}
+        \end{itemize}
+        \item Ensures data is processed regardless of ownership and access: \textbf{no ACL}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Types of Workflow modules}
+    \frametitle{Classes of Workflow modules}
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{pictures/module-type.png}
+        \includegraphics[width=0.6\linewidth]{pictures/module-type.png}
     \end{center}
-    2 types of action modules
+    3 classes of modules
     \begin{itemize}
+        \item \textbf{action}: Allow to executes actions, callbacks or scripts
+        \begin{itemize}
+            \item Can stop execution
+            \item e.g. Webhook, block the execution, perform enrichments, ...
+        \end{itemize}
         \item \textbf{logic}: Allow to redirect the execution flow.
         \begin{itemize}
             \item IF condition, fork the blocking execution into a non-blocking one, ...
         \end{itemize}
-        \item \textbf{action}: Allow to perform additional actions, prevent execution or modify data
+        \item \textbf{blueprint}: Allow to reuse composition of modules
         \begin{itemize}
-            \item Webhook, block the execution, perform enrichments, ...
+            \item Can save subworkflows and their module's configuration
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Workflow modules}
+    \frametitle{Sources of Workflow modules}
     3 sources of action modules
     \begin{itemize}
-        \item \texttt{\scriptsize app/Model/WorkflowModules/action/[module\_name].php}
+        \item Built-in \textbf{default} modules
         \begin{itemize}
-            \item Built-in \textbf{default} modules in the application
             \item Written in PHP
             \item Can use MISP's built-in functionalities (restsearch, enrichment, push to zmq, ...)
             \item Fast and easier to interact with for those having internal knowledge of MISP
+            \item \texttt{\scriptsize app/Model/WorkflowModules/action/[module\_name].php}
         \end{itemize}
-        \item \texttt{\scriptsize app/Lib/WorkflowModules/action/[module\_name].php}
+        \item User-defined \textbf{custom} modules
         \begin{itemize}
-            \item \textbf{Custom} modules written by users
+            \item Can extend existing default modules
+            \item \texttt{\scriptsize app/Lib/WorkflowModules/action/[module\_name].php}
         \end{itemize}
-        \item \texttt{From the misp-module service} 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sources of Workflow modules}
+    3 sources of action modules
+    \begin{itemize}
+        \item Modules from the \textbf{enrichment service}
         \begin{itemize}
             \item \textbf{Default} and \textbf{custom} modules
+            \item \texttt{From the misp-module service} \includegraphics[width=0.25\linewidth]{pictures/misp-module-icon.png}
             \item Written in Python
             \item Can use any python libraries
             \item New \texttt{misp-module} module type: \texttt{action}
         \end{itemize}
     \end{itemize}
+    \vspace{1em}
     \begin{center}
         $\rightarrow$ Both the PHP and Python systems are \textbf{plug-and-play}
     \end{center}
 \end{frame}
 
 \begin{frame}
+    \frametitle{Triggers currently available}
+    Currently 8 triggers can be hooked. 3 being \textbf{blocking}.
+    \includegraphics[width=1.0\linewidth]{pictures/triggers.png}
+\end{frame}
+
+\section{Workflow - Getting started}
+\begin{frame}
     \frametitle{Getting started with workflows (1)}
     Review MISP settings:
     \begin{enumerate}
         \item Make sure \texttt{MISP.background\_jobs} is turned on
-        \item Turn on setting \texttt{Plugin.Workflow\_enable}
         \item Make sure workers are up-and-running and healthy
+        \item Turn the setting \texttt{Plugin.Workflow\_enable} on
+        \begin{center}
+            \includegraphics[width=0.70\linewidth]{pictures/settings-1.png}
+        \end{center}
+        \item {[optional:misp-module]} Turn the setting \texttt{Plugin.Action\_services\_enable} on
+        \begin{center}
+            \includegraphics[width=0.70\linewidth]{pictures/settings-2.png}
+        \end{center}
     \end{enumerate}
-    \begin{center}
-        \includegraphics[width=0.75\linewidth]{pictures/settings-1.png}
-        \includegraphics[width=0.75\linewidth]{pictures/settings-2.png}
-    \end{center}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Getting started with workflows (2)}
-    If you wish to use action modules from \texttt{misp-module}:
+    If you wish to use action modules from \texttt{misp-module}, make sure to have:
     \begin{itemize}
-        \item Make sure you update your \texttt{misp-module} application to the latest version
-        \item Make sure your have the new \texttt{action\_mod} module type in \url{misp-modules/misp\_modules/modules}
-        \item Restart your \texttt{misp-module} application
+        \item The latest update of \texttt{misp-module}
+        \begin{itemize}
+            \item There should be an \texttt{action\_mod} module type in \url{misp-modules/misp\_modules/modules}
+        \end{itemize}
+        \item Restarted your \texttt{misp-module} application
     \end{itemize}
+    \begin{lstlisting}[language=text,firstnumber=1]
+# This command should show all `action` modules
+$ curl -s http://127.0.0.1:6677/modules | \
+jq '.[] | select(.meta."module-type"[] | contains("action")) |
+{name: .name, version: .meta.version}'
+    \end{lstlisting}
 \end{frame}
 
 \begin{frame}
     \frametitle{Getting started with workflows (3)}
     \begin{enumerate}
-        \item Go to the trigger list: \texttt{Administration > Workflows}
+        \item Go to the list of modules
         \begin{itemize}
-            \item \url{/workflows/triggers}
+            \item \texttt{Administration > Workflows > List Modules}
+            \item or \url{/workflows/moduleIndex}
         \end{itemize}
-        \item Turn a trigger on
-        \item Use the editor to edit the workflow associated to this trigger
+        \item Make sure \textbf{default} modules are loaded
+        \item {[optional:misp-module]} Make sure \textbf{misp-module} modules are loaded
     \end{enumerate}
 \end{frame}
 
 \begin{frame}
     \frametitle{Creating a workflow with the editor}
     \begin{enumerate}
-        \item Choose a \texttt{trigger} from the list
+        \item Go to the list of triggers \texttt{Administration > Workflows}
+        \item Enable and edit a \texttt{trigger} from the list
         \item Drag an \texttt{action} module from the side panel to the canvas
-        \item From the \texttt{trigger} output, drag an arrow into the \texttt{action} input (left side)
+        \item From the \texttt{trigger} output, drag an arrow into the \texttt{action}'s input (left side)
+        \item Execute the action that would run the trigger and observe the effect!
     \end{enumerate}
     \begin{center}
-        \includegraphics[width=0.8\linewidth]{pictures/usage-1.png}
+        \includegraphics[width=0.7\linewidth]{pictures/triggers.png}
     \end{center}
     \begin{center}
         \includegraphics[width=0.50\linewidth]{pictures/editor-1.png}
@@ -225,6 +269,31 @@
     \end{itemize}
     \begin{center}
         \includegraphics[width=0.7\linewidth]{pictures/editor-not-allowed-1.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Working with the editor}
+    Operations not allowed:
+    \begin{itemize}
+        \item Multiple connections from the same output
+        \begin{itemize}
+            \item Execution order not guaranted and confusing for users
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.7\linewidth]{pictures/editor-not-allowed-2.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Working with the editor}
+    Operations showing a warning:
+    \begin{itemize}
+        \item \textbf{Blocking} modules after a \textbf{concurrent tasks} module
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/editor-warning-1.png}
     \end{center}
 \end{frame}
 
@@ -252,17 +321,6 @@
     \end{center}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Module filtering}
-    \begin{itemize}
-        \item Some action module accept \texttt{module filtering} conditions
-        \item For example, the \texttt{enrich-event} module will only perform the enrichment on Attribute having a \texttt{tlp:white} tag
-    \end{itemize}
-    \begin{center}
-        \includegraphics[width=0.7\linewidth]{pictures/module-filtering.png}
-    \end{center}
-\end{frame}
-
 \begin{frame}[fragile]
     \frametitle{Hash path filtering}
     \begin{itemize}
@@ -278,10 +336,27 @@ $users = [
 $ids = Hash::extract($users, $path_expression);
 // => $ids will be [123, 245]
 \end{lstlisting}
+\begin{center}
+    \includegraphics[width=0.4\linewidth]{pictures/module-if-generic.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Module filtering}
+    \begin{itemize}
+        \item Some action modules accept \textbf{filtering} conditions
+        \item E.g. the \texttt{enrich-event} module will only perform the enrichment on Attributes having a \texttt{tlp:white} Tag
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.7\linewidth]{pictures/module-filtering.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
     \frametitle{Data format in Workflows}
+    \begin{center}
+        \includegraphics[width=0.7\linewidth]{pictures/workflow-trigger.png}
+    \end{center}
     \begin{itemize}
         \item All triggers will inject data in a workflow
         \item In some cases, there is no format (e.g. User after-save)
@@ -299,10 +374,13 @@ $ids = Hash::extract($users, $path_expression);
 \begin{frame}
     \frametitle{Logic module: Concurrent Task}
     \begin{itemize}
-        \item Special type of \textbf{logic} module
-        \item Allows breaking the execution flow into a concurrent tasks to be executed later on by a background worker
-        \item As a side effect, blocking modules cannot cancel an ongoing operation anymore
+        \item Special type of \textbf{logic} module allowing multiple connections
+        \item Allows breaking the execution flow into a \textbf{concurrent tasks} to be executed later on by a background worker
+        \item As a side effect, blocking modules \textbf{cannot cancel} an ongoing operation anymore
     \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.45\linewidth]{pictures/module-concurrent.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -311,6 +389,9 @@ $ids = Hash::extract($users, $path_expression);
         \item Workflow execution is logged in the application logs: \texttt{/admin/logs/index}
         \item Or stored on disk in the following file: \texttt{/app/tmp/logs/workflow-execution.log}
     \end{itemize}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/workflow-debug.png}
+    \end{center}
 \end{frame}
 
 \section{Learning by examples}
