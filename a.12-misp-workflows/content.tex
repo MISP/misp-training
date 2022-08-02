@@ -386,8 +386,14 @@ $ids = Hash::extract($users, $path_expression);
 \begin{frame}
     \frametitle{Debugging Workflows}
     \begin{itemize}
-        \item Workflow execution is logged in the application logs: \texttt{/admin/logs/index}
-        \item Or stored on disk in the following file: \texttt{/app/tmp/logs/workflow-execution.log}
+        \item Workflow execution is logged in the application logs:
+        \begin{itemize}
+            \item \texttt{/admin/logs/index}
+        \end{itemize}
+        \item Or stored on disk in the following file:
+        \begin{itemize}
+            \item \texttt{/app/tmp/logs/workflow-execution.log}
+        \end{itemize}
     \end{itemize}
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/workflow-debug.png}
@@ -398,25 +404,29 @@ $ids = Hash::extract($users, $path_expression);
 \begin{frame}
     \frametitle{Workflow example 1}
     \begin{center}
-        \includegraphics[width=0.95\linewidth]{pictures/example-1.png}
+        \includegraphics[width=1.0\linewidth]{pictures/example-1a.png}
     \end{center}
 
-    \begin{itemize}
-        \item The \texttt{zmq} module will be run if at least one of the attribute has the \texttt{tlp:white} tag.
-    \end{itemize}
+    \begin{enumerate}
+        \item The \texttt{Event-Publish} trigger uses the MISP core format
+        \item The \texttt{IF::Tag} module checks if at least one of the Attribute has the \texttt{tlp:white} tag
+        \item If it does, the \texttt{Push-to-ZMQ} module will be executed
+    \end{enumerate}
 \end{frame}
 
 \begin{frame}
     \frametitle{Workflow example 2}
     \begin{center}
-        \includegraphics[width=0.95\linewidth]{pictures/example-2.png}
+        \includegraphics[width=1.0\linewidth]{pictures/example-2a.png}
     \end{center}
 
     \begin{itemize}
-        \item If an event has the \texttt{PAP:RED} tag or any of the attribute has it, the enrichment process will be cancelled
+        \item If an event has the \texttt{tlp:red} tag or any of the attribute has it, the publish process will be cancelled
     \end{itemize}
 \end{frame}
 
+
+\section{Extending the system}
 \begin{frame}
     \frametitle{Creating a new module in PHP}
     \begin{center}
@@ -427,11 +437,11 @@ $ids = Hash::extract($users, $path_expression);
         \item Module configuration are defined as public variables
         \item The \texttt{exec} function has to be implemented.
         \begin{itemize}
-            \item If it returns \texttt{true}, execution will proceed
-            \item If it returns \texttt{false}
+            \item If it returns \textbf{true}, execution will proceed
+            \item If it returns \textbf{false}
             \begin{itemize}
-                \item And the module is \texttt{blocking}, the execution will stop and the operation will be blocked
-                \item And the module is not \texttt{blocking}, the execution for the current path will stop
+                \item And the module is blocking, the execution will stop and the operation will be blocked
+                \item And the module is not blocking, the execution for the current path will be stopped
             \end{itemize}
         \end{itemize}
     \end{itemize}
@@ -441,7 +451,7 @@ $ids = Hash::extract($users, $path_expression);
 \begin{frame}
     \frametitle{Creating a new module in Python}
     \begin{center}
-        \includegraphics[width=0.6\linewidth]{pictures/custom-2.png}
+        \includegraphics[width=0.65\linewidth]{pictures/custom-2.png}
     \end{center}
 
     \begin{itemize}
