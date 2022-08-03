@@ -105,8 +105,7 @@
         \vspace{0.5em}
         \item {\bf Non-blocking}: Workflow execution outcome has no impact
         \begin{itemize}
-            \item \textbf{Blocking modules} become \textbf{non-blocking}
-            \item Execution proceed unless on exception
+            \item \textbf{Blocking modules} can still stop the execution
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -384,7 +383,7 @@ $ids = Hash::extract($users, $path_expression);
 \end{frame}
 
 \begin{frame}
-    \frametitle{Debugging Workflows}
+    \frametitle{Debugging Workflows: Log Entries}
     \begin{itemize}
         \item Workflow execution is logged in the application logs:
         \begin{itemize}
@@ -394,9 +393,32 @@ $ids = Hash::extract($users, $path_expression);
         \begin{itemize}
             \item \texttt{/app/tmp/logs/workflow-execution.log}
         \end{itemize}
+        \item Use the \texttt{webhook-listener.py} tool
+        \begin{itemize}
+            \item \texttt{/app/tools/misp-workflows/webhook-listener.py}
+        \end{itemize}
     \end{itemize}
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/workflow-debug.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Debugging Workflows: Debug mode}
+    \begin{itemize}
+        \item The \includegraphics[width=70px]{pictures/debug-mode.png} can be turned on for each workflows
+        \item Each nodes will send data to the provided URL
+        \begin{itemize}
+            \item Configure the setting: \texttt{Plugin.Workflow\_debug\_url}
+        \end{itemize}
+        \item Result can be visualized In
+        \begin{itemize}
+            \item \textbf{offline}: \texttt{tools/misp-workflows/webhook-listener.py}
+            \item \textbf{online}: \url{requestbin.com}
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.6\linewidth]{pictures/request-bin.png}
     \end{center}
 \end{frame}
 
