@@ -14,27 +14,24 @@
     \end{itemize}
 
     \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/overview.png}
+        \frame{\includegraphics[width=0.9\linewidth]{pictures/overview.png}}
     \end{center}
 \end{frame}
 
 \begin{frame}
     \frametitle{What problems are we trying to tackle}
     \begin{itemize}
-        \item Initial idea came from GeekWeek7.5\footnote{\href{https://cyber.gc.ca/en/events/geekweek-75}{Workshop organized by the Canadian Cyber Center}}
-        \begin{center}
-            \includegraphics[width=0.3\linewidth]{pictures/geekweek75.jpg}
-        \end{center}
+        \item Initial idea came during GeekWeek7.5\footnote{\href{https://cyber.gc.ca/en/events/geekweek-75}{Workshop organized by the Canadian Cyber Center}} \includegraphics[width=0.3\linewidth]{pictures/geekweek75.jpg}
         \item Needs:
         \begin{itemize}
             \item Prevent default MISP behaviors
-            \item Hook specific actions via callbacks
+            \item Hook specific actions to run callbacks
         \end{itemize}
         \item Use-cases:
         \begin{itemize}
             \item Prevent publication of events not meeting some criterias
             \item Prevent querying thrid-party services (e.g. virustotal) with sensitive information
-            \item Send a notification in a chat room
+            \item Send notifications in a chat rooms
             \item And much much more..
         \end{itemize}
     \end{itemize}
@@ -44,7 +41,7 @@
 \begin{frame}
     \frametitle{Simplistic overview of a Workflow in action}
     \begin{enumerate}
-        \item An \textbf{action} is performed in MISP
+        \item An \textbf{action} happens in MISP
         \item If there is an \textbf{enabled} Workflow for that \textbf{action}, run it
         \item If all went fine, MISP \textbf{continue} to perform the action
         \begin{itemize}
@@ -56,7 +53,7 @@
 \begin{frame}
     \frametitle{Terminology}
     \begin{itemize}
-        \item \textbf{workflow}: Sequence of all operations (nodes) to be executed. Basically the whole graph
+        \item \textbf{workflow}: Sequence of all operations (nodes) to be executed. Basically the whole graph.
         \item \textbf{execution path}: A path composed of nodes
         \item \textbf{trigger}: Starting point of a workflow. Triggers are called when specific actions happen in MISP
         \begin{itemize}
@@ -64,7 +61,7 @@
         \end{itemize}
     \end{itemize}
     \begin{center}
-        \includegraphics[width=1.0\linewidth]{pictures/simple-workflow.png}
+        \frame{\includegraphics[width=1.0\linewidth]{pictures/simple-workflow.png}}
     \end{center}
 \end{frame}
 
@@ -76,7 +73,7 @@
         \item The workflow associated to the trigger is ran
         \item Execution result?
         \begin{itemize}
-            \item \texttt{\color{green!50!black}success}: Proceed the action
+            \item \texttt{\color{green!50!black}success}: Continue the action
             \item \texttt{\color{red}failure} | \texttt{\color{blue}blocked}: Cancel the action
         \end{itemize}
     \end{enumerate}
@@ -86,7 +83,7 @@
         \item An Event is about to be published
         \item MISP executes the workflow listening to the \texttt{event-publish} trigger
         \begin{itemize}
-            \item {\bf\color{green!50!black}success}: Proceed the publishing action
+            \item {\bf\color{green!50!black}success}: Continue the publishing action
             \item {\bf\color{red}failure} | \texttt{\color{blue}blocked}: Stop publishing and log the reason
         \end{itemize}
     \end{enumerate}
@@ -97,7 +94,7 @@
     Currently 2 types of workflows:
     \vspace{0.5em}
     \begin{itemize}
-        \item {\bf Blocking}: Completion of the initial action can be prevented
+        \item {\bf Blocking}: Completion of the action can be prevented
         \begin{itemize}
             \item If a \textbf{blocking module} blocks the action
             \item If a \textbf{blocking module} raises an exception
@@ -131,7 +128,7 @@
     \end{center}
     3 classes of modules
     \begin{itemize}
-        \item \textbf{action}: Allow to executes actions, callbacks or scripts
+        \item \textbf{action}: Allow to executes functions, callbacks or scripts
         \begin{itemize}
             \item Can stop execution
             \item e.g. Webhook, block the execution, perform enrichments, ...
@@ -142,7 +139,7 @@
         \end{itemize}
         \item \textbf{blueprint}: Allow to reuse composition of modules
         \begin{itemize}
-            \item Can save subworkflows and their module's configuration
+            \item Can save subworkflows and its module's configuration
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -153,15 +150,16 @@
     \begin{itemize}
         \item Built-in \textbf{default} modules
         \begin{itemize}
-            \item Written in PHP
-            \item Can use MISP's built-in functionalities (restsearch, enrichment, push to zmq, ...)
-            \item Fast and easier to interact with for those having internal knowledge of MISP
-            \item \texttt{\scriptsize app/Model/WorkflowModules/action/[module\_name].php}
+            \item Part of the MISP codebase
+            \item \texttt{\scriptsize \textbf{app/Model/}WorkflowModules/action/[module\_name].php}
         \end{itemize}
         \item User-defined \textbf{custom} modules
         \begin{itemize}
+            \item Written in PHP
             \item Can extend existing default modules
-            \item \texttt{\scriptsize app/Lib/WorkflowModules/action/[module\_name].php}
+            \item Can use MISP's built-in functionalities (restsearch, enrichment, push to zmq, ...)
+            \item Faster and easier to implement new complex behaviors
+            \item \texttt{\scriptsize \textbf{app/Lib/}WorkflowModules/action/[module\_name].php}
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -173,10 +171,10 @@
         \item Modules from the \textbf{enrichment service}
         \begin{itemize}
             \item \textbf{Default} and \textbf{custom} modules
-            \item \texttt{From the misp-module service} \includegraphics[width=0.25\linewidth]{pictures/misp-module-icon.png}
+            \item From the \textit{misp-module} \includegraphics[width=0.25\linewidth]{pictures/misp-module-icon.png}
             \item Written in Python
             \item Can use any python libraries
-            \item New \texttt{misp-module} module type: \texttt{action}
+            \item New \textit{misp-module} module type: \texttt{action}
         \end{itemize}
     \end{itemize}
     \vspace{1em}
@@ -219,10 +217,11 @@
         \end{itemize}
         \item Restarted your \texttt{misp-module} application
     \end{itemize}
+    \vspace{1em}
     \begin{lstlisting}[language=text,firstnumber=1]
 # This command should show all `action` modules
-$ curl -s http://127.0.0.1:6677/modules | \
-jq '.[] | select(.meta."module-type"[] | contains("action")) |
+$ curl -s http://127.0.0.1:6666/modules | \
+jq '.[] | select(.meta."module-type"[] | contains("action")) | 
 {name: .name, version: .meta.version}'
     \end{lstlisting}
 \end{frame}
@@ -250,10 +249,10 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
         \item Execute the action that would run the trigger and observe the effect!
     \end{enumerate}
     \begin{center}
-        \includegraphics[width=0.7\linewidth]{pictures/triggers.png}
+        \frame{\includegraphics[width=0.7\linewidth]{pictures/triggers.png}}
     \end{center}
     \begin{center}
-        \includegraphics[width=0.50\linewidth]{pictures/editor-1.png}
+        \frame{\includegraphics[width=0.50\linewidth]{pictures/editor-1.png}}
     \end{center}
 \end{frame}
 
@@ -267,7 +266,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
         \end{itemize}
     \end{itemize}
     \begin{center}
-        \includegraphics[width=0.7\linewidth]{pictures/editor-not-allowed-1.png}
+        \frame{\includegraphics[width=0.7\linewidth]{pictures/editor-not-allowed-1.png}}
     \end{center}
 \end{frame}
 
@@ -281,7 +280,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
         \end{itemize}
     \end{itemize}
     \begin{center}
-        \includegraphics[width=0.7\linewidth]{pictures/editor-not-allowed-2.png}
+        \frame{\includegraphics[width=0.7\linewidth]{pictures/editor-not-allowed-2.png}}
     \end{center}
 \end{frame}
 
@@ -290,17 +289,18 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     Operations showing a warning:
     \begin{itemize}
         \item \textbf{Blocking} modules after a \textbf{concurrent tasks} module
+        \item \textbf{Blocking} modules in a \textbf{non-blocking} workflow
     \end{itemize}
     \begin{center}
-        \includegraphics[width=1.0\linewidth]{pictures/editor-warning-1.png}
+        \frame{\includegraphics[width=1.0\linewidth]{pictures/editor-warning-1.png}}
     \end{center}
 \end{frame}
 
 \begin{frame}
     \frametitle{Workflow blueprints}
     \begin{enumerate}
-        \item Blueprints allow to re-use parts of a workflow in another one
-        \item Blueprints can be saved, exported and shared
+        \item Blueprints allow to \textbf{re-use parts} of a workflow in another one
+        \item Blueprints can be saved, exported and \textbf{shared}
     \end{enumerate}
     \begin{center}
         \includegraphics[width=0.5\linewidth]{pictures/blueprint-debugging.png}
@@ -362,10 +362,10 @@ $ids = Hash::extract($users, $path_expression);
         \item In others, the format is \textbf{compliant with the MISP Core format}
         \item In addition to the RFC, the passed data has \textbf{additional properties}
         \begin{itemize}
-            \item Attributes are always encapsulated in the Event or Object
-            \item Additional key \texttt{\_AttributeFlattened}
-            \item Additional key \texttt{\_allTags}
-            \item Additional key \texttt{inherited} for Tags
+            \item Attributes are \textbf{always encapsulated} in the Event or Object
+            \item Additional key \textbf{\texttt{\_AttributeFlattened}}
+            \item Additional key \textbf{\texttt{\_allTags}}
+            \item Additional key \textbf{\texttt{inherited}} for Tags
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -374,11 +374,11 @@ $ids = Hash::extract($users, $path_expression);
     \frametitle{Logic module: Concurrent Task}
     \begin{itemize}
         \item Special type of \textbf{logic} module allowing multiple connections
-        \item Allows breaking the execution flow into a \textbf{concurrent tasks} to be executed later on by a background worker
-        \item As a side effect, blocking modules \textbf{cannot cancel} an ongoing operation anymore
+        \item Allows \textbf{breaking the execution} flow into a concurrent tasks to be executed later on by a background worker
+        \item As a side effect, blocking modules \textbf{cannot cancel} ongoing operations
     \end{itemize}
     \begin{center}
-        \includegraphics[width=0.45\linewidth]{pictures/module-concurrent.png}
+        \frame{\includegraphics[width=0.45\linewidth]{pictures/module-concurrent.png}}
     \end{center}
 \end{frame}
 
@@ -411,10 +411,10 @@ $ids = Hash::extract($users, $path_expression);
         \begin{itemize}
             \item Configure the setting: \texttt{Plugin.Workflow\_debug\_url}
         \end{itemize}
-        \item Result can be visualized In
+        \item Result can be visualized in
         \begin{itemize}
             \item \textbf{offline}: \texttt{tools/misp-workflows/webhook-listener.py}
-            \item \textbf{online}: \url{requestbin.com}
+            \item \textbf{online}: \url{requestbin.com} or similar websites
         \end{itemize}
     \end{itemize}
     \begin{center}
@@ -426,7 +426,7 @@ $ids = Hash::extract($users, $path_expression);
 \begin{frame}
     \frametitle{Workflow example 1}
     \begin{center}
-        \includegraphics[width=1.0\linewidth]{pictures/example-1a.png}
+        \frame{\includegraphics[width=1.0\linewidth]{pictures/example-1a.png}}
     \end{center}
 
     \begin{enumerate}
@@ -456,6 +456,7 @@ $ids = Hash::extract($users, $path_expression);
     \end{center}
 
     \begin{itemize}
+        \item \texttt{\small \textbf{app/Lib/}WorkflowModules/action/[module\_name].php}
         \item Module configuration are defined as public variables
         \item The \texttt{exec} function has to be implemented.
         \begin{itemize}
@@ -463,7 +464,6 @@ $ids = Hash::extract($users, $path_expression);
             \item If it returns \textbf{false}
             \begin{itemize}
                 \item And the module is blocking, the execution will stop and the operation will be blocked
-                \item And the module is not blocking, the execution for the current path will be stopped
             \end{itemize}
         \end{itemize}
     \end{itemize}
