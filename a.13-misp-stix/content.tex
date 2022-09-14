@@ -1,0 +1,123 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP \& STIX}
+    \begin{itemize}
+        \item{\bf Built-in integration}
+        \item Export \& Import features
+        \begin{itemize}
+            \item Export MISP Events collections
+            \item Import STIX files
+        \end{itemize}
+        \item Supported version
+        \begin{itemize}
+            \item STIX 1.1.1
+            \item STIX 2.0
+        \end{itemize}
+        \item Accessible via restSearch
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Limitations}
+    \begin{itemize}
+        \item Feature limitations
+        \begin{itemize}
+            \item Supported versions
+            \item Data type support
+        \end{itemize}
+        \item []
+        \item Practical limitations
+        \begin{itemize}
+            \item Export and import features only available via MISP rest client
+            \item {\bf Github}: STIX issues lost within the MISP core issues
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Handling the conversion with a python library}
+    \begin{itemize}
+        \item Revamp of the source code
+        \item Enable a standalone use of the python code
+        \begin{itemize}
+            \item MISP JSON  format -> STIX
+            \item Pass files with MISP JSON format -> get file with the export results in STIX
+        \end{itemize}
+        \item []
+        \item Possible integration within python code
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Key features}
+    \begin{itemize}
+        \item Support all the STIX versions
+        \begin{itemize}
+            \item {\bf STIX 2.1 Support}
+            \item 1.1.1, 1.2, 2.0 Support enhanced
+        \end{itemize}
+        \item Various MISP data collection supported
+        \item[]
+        \item {\bf Mapping documentation}
+        \item Package available on PyPI\footnote{https://pypi.org/project/misp-stix/}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Work in Progress \& Next improvements}
+    \begin{itemize}
+        \item WiP
+        \begin{itemize}
+            \item {\bf Implement the import feature}
+            \item Support of existing STIX objects libraries\footnote{https://github.com/mitre/cti}
+        \end{itemize}
+        \item Next features on the roadmap
+        \begin{itemize}
+            \item Extend the export feature to any kind of data collection
+            \item Support custom STIX format\footnote{Especially while importing STIX data, {\bf and as long as we can implement support of well defined versions}}
+        \end{itemize}
+        \item Continuous improvement
+        \begin{itemize}
+            \item Mapping improvement
+            \item More tests to avoid edge case issues
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{How to report bugs/issues}
+    \begin{itemize}
+        \item Github issues
+        \begin{itemize}
+            \item {\bf https://github.com/MISP/misp-stix/issues}
+            \item https://github.com/MISP/MISP/issues
+        \end{itemize}
+        \item []
+        \item Please provide details
+        \begin{itemize}
+            \item How did the issue happen
+            \item {\bf Recommandation}: provide samples
+        \end{itemize}
+        \item[]
+        \item Any feedback welcome
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{To get in touch with us}
+    \begin{itemize}
+        \item \url{https://github.com/MISP/misp-stix}
+        \item \url{https://github.com/MISP/misp-stix/tree/main/documentation}
+        \item []
+        \item \url{https://github.com/MISP}
+        \item \url{https://www.misp-project.org/}
+        \item \url{https://twitter.com/MISPProject}
+        \item \url{https://twitter.com/chrisred_68}
+    \end{itemize}
+\end{frame}
