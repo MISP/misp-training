@@ -15,6 +15,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | Slides (PDF) | Source Code |
 | ------------ | ----------- |
 | [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tree/main/0-misp-introduction-to-information-sharing) |
+| [MISP Data model overview (quick)](https://raw.githubusercontent.com/MISP/misp-training/477bdc9c71f77abd572f11c98f3ac8ecabe54310/complementary/other-slides/a.11.a-misp-data-model-overview.pdf) | |
 | [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1-misp-usage) |
 | [1.2-misp-integration](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2-misp-integration) |
 | [1.1-misp-viper-integration](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.1-misp-viper-integration) |
@@ -41,6 +42,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | [a.10-galaxy-2.0](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.10-galaxy-2.0) |
 | [a.11-misp-data-model](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.11-misp-data-model) |
 | [a.12-misp-workflows](https://www.misp-project.org/misp-training/a.12-misp-workflows.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.12-misp-workflows) |
+| [a.13-misp-stix](https://www.misp-project.org/misp-training/a.13-misp-stix.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.13-misp-stix) |
 | [a.a-widget-dev](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.a-widget-dev) |
 | [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.2-turning-data-into-actionable-intelligence) |
 | [4-misp-standard](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [source](https://github.com/MISP/misp-training/tree/main/4-misp-standard) |
@@ -70,6 +72,8 @@ given to the materials. We welcome contributions in order to improve the trainin
 
 Sample videos which can be used to understand how the training materials are used in companion with a live MISP demo instance.
 
+- [MISP Training Administration and Deployment of MISP software](https://youtu.be/sIHTRIwF-Mk) - 14th September 2022
+- [MISP Training Threat Intelligence Introduction for Analysts and Security Professional](https://youtu.be/sb36MMRTtLM) - 13th September 2022 
 - [Fundamentals MISP given FIRSTdotOrg 2021 Virtual Symposium African and Arab regions](https://www.youtube.com/watch?v=00jq7Gbqdz8) - 18th December 2021
 - [MISP General Usage Training - Part 1 of 2](https://www.youtube.com/watch?v=-NuODyh1YJE)
 - [MISP General Usage Training - Part 2 of 2](https://www.youtube.com/watch?v=LlKnh5b0bgw)
