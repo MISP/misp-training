@@ -24,19 +24,27 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Limitations}
+    \frametitle{STIX conversion usage in MISP}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Feature limitations}
     \begin{itemize}
-        \item Feature limitations
+        \item Supported versions
         \begin{itemize}
-            \item Supported versions
-            \item Data type support
+            \item 1.1.1 XML (\& JSON)
+            \item 2.0
         \end{itemize}
+        \item Data type support
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Practical limitations}
+    \begin{itemize}
+        \item Export and import features only available via MISP rest client
         \item []
-        \item Practical limitations
-        \begin{itemize}
-            \item Export and import features only available via MISP rest client
-            \item {\bf Github}: STIX issues lost within the MISP core issues
-        \end{itemize}
+        \item {\bf Github}: STIX issues lost within the MISP core issues
     \end{itemize}
 \end{frame}
 
@@ -45,20 +53,6 @@
     \begin{center}
         \includegraphics[scale=0.3]{images/solution.png}
     \end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Handling the conversion with a python library}
-    \begin{itemize}
-        \item Revamp of the source code
-        \item Enable a standalone use of the python code
-        \begin{itemize}
-            \item MISP JSON  format -> STIX
-            \item Pass files with MISP JSON format -> get file with the export results in STIX
-        \end{itemize}
-        \item []
-        \item Possible integration within python code
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -72,28 +66,81 @@
         \item Various MISP data collection supported
         \item[]
         \item {\bf Mapping documentation}
-        \item Package available on PyPI\footnote{https://pypi.org/project/misp-stix/}
+        
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Work in Progress \& Next improvements}
+    \frametitle{Handling the conversion with a python library}
     \begin{itemize}
-        \item WiP
+        \item Used in MISP built-in export modules
+        \item []
+        \item Enable a {\bf stand-alone} use of the python code (i.e command line)
         \begin{itemize}
-            \item {\bf Implement the import feature}
-            \item Support of existing STIX objects libraries\footnote{https://github.com/mitre/cti}
+            \item Pass filenames \& get the converted content written in 1 or more result file(s)
         \end{itemize}
-        \item Next features on the roadmap
+        \item Possible integration within python code
         \begin{itemize}
-            \item Extend the export feature to any kind of data collection
-            \item Support custom STIX format\footnote{Especially while importing STIX data, {\bf and as long as we can implement support of well defined versions}}
+            \item Give it a list of filenames
+            \item MISP standard format <-> STIX
+            \begin{itemize}
+                \item JSON or PyMISP
+            \end{itemize}
         \end{itemize}
-        \item Continuous improvement
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Library usage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mapping documentation}
+    \begin{itemize}
+        \item Mapping overview
         \begin{itemize}
-            \item Mapping improvement
-            \item More tests to avoid edge case issues
+            \item Quick overview on how MISP data structures are mapped with STIX objects
         \end{itemize}
+        \item Detailed mapping
+        \begin{itemize}
+            \item Extended explanation on how each granular data is mapped with STIX objects fields
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Work in Progress}
+    \begin{itemize}
+        \item {\bf STIX 2 -> MISP import feature}
+        \item Better support of Custom Galaxy clusters
+        \item []
+        \item Decisions on how to import non Indicator or Observable data
+        \begin{itemize}
+            \item Attack Patterns, Threat Actors, etc. are contextual data on MISP
+            \item Ongoing discussions to define whether we import those STIX objects as MISP Galaxy clusters or MISP Attribute / Object
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Continuous development}
+    \begin{itemize}
+        \item Better support of existing STIX objects libraries\footnote{https://github.com/mitre/cti}
+        \item Support custom STIX format\footnote{Especially while importing STIX data, {\bf and as long as we can implement support of well defined versions}}
+        \item []
+        \item Mapping improvement
+        \begin{itemize}
+            \item MISP object templates -> STIX
+            \item Improve the STIX 2 patterns \& Observable objects -> MISP
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{Next improvements}
+    \begin{itemize}
+        \item Extend the export feature to any kind of data collection
+        \item Add notes on any data structure
+        \item Sight any data
     \end{itemize}
 \end{frame}
 
@@ -117,7 +164,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{To get in touch with us}
+    \frametitle{Useful links}
     \begin{itemize}
         \item \url{https://github.com/MISP/misp-stix}
         \item \url{https://github.com/MISP/misp-stix/tree/main/documentation}
