@@ -6,6 +6,17 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Summary}
+    \begin{itemize}
+        \item Past \& current status
+        \item Recent changes
+        \item Continuous improvement \& future roadmap
+        \item Organisational \& philosophical aspects
+        \item Demo (?)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{MISP \& STIX}
     \begin{itemize}
         \item{\bf Built-in integration}
@@ -25,26 +36,73 @@
 
 \begin{frame}
     \frametitle{STIX conversion usage in MISP}
+    \centering
+    \includegraphics[scale=0.19]{images/simple_rest_query.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{STIX conversion usage in MISP}
+    \centering
+    \includegraphics[scale=0.2]{images/simple_rest_results.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{STIX conversion usage in MISP}
+    \centering
+    \includegraphics[scale=0.235]{images/simple_rest_curl.png} \\
+    \includegraphics[scale=0.235]{images/simple_rest_pymisp.png}
 \end{frame}
 
 \begin{frame}
     \frametitle{Feature limitations}
-    \begin{itemize}
-        \item Supported versions
+    \begin{minipage}{0.45\textwidth}
         \begin{itemize}
-            \item 1.1.1 XML (\& JSON)
-            \item 2.0
+            \item {\bf Supported versions}
+            \begin{itemize}
+                \item 1.1.1 XML (\& JSON)
+                \item 2.0
+            \end{itemize}
+            \item Data type support
         \end{itemize}
-        \item Data type support
-    \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{0.55\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/limited_version.jpg}
+    \end{minipage}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Practical limitations}
+    \frametitle{Feature limitations}
+    \begin{minipage}{0.5\textwidth}
+        \begin{itemize}
+            \item Supported versions
+            \begin{itemize}
+                \item 1.1.1 XML (\& JSON)
+                \item 2.0
+            \end{itemize}
+            \item {\bf Data type support}
+        \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/limited_data_type.jpg}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Practical \& Organisational limitations}
     \begin{itemize}
-        \item Export and import features only available via MISP rest client
+        \item Export and import features only available via MISP
+        \begin{itemize}
+            \item Need an automation key (and/or to deal with the UI)
+        \end{itemize}
         \item []
         \item {\bf Github}: STIX issues lost within the MISP core issues
+        \pause
+        \vspace{4em}
+        \begin{center}
+            \includegraphics[scale=0.4]{images/issues.png}
+        \end{center}
     \end{itemize}
 \end{frame}
 
@@ -66,7 +124,6 @@
         \item Various MISP data collection supported
         \item[]
         \item {\bf Mapping documentation}
-        
     \end{itemize}
 \end{frame}
 
@@ -75,7 +132,7 @@
     \begin{itemize}
         \item Used in MISP built-in export modules
         \item []
-        \item Enable a {\bf stand-alone} use of the python code (i.e command line)
+        \item Enable a {\bf stand-alone} use of the python code\footnote{i.e command line}
         \begin{itemize}
             \item Pass filenames \& get the converted content written in 1 or more result file(s)
         \end{itemize}
@@ -91,7 +148,15 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Library usage}
+    \frametitle{Library usage - Command line}
+    \centering
+    \includegraphics[scale=0.145]{images/stand_alone_usage.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Library usage - Python integration}
+    \centering
+    \includegraphics[scale=0.12]{images/python_usage.png}
 \end{frame}
 
 \begin{frame}
@@ -101,6 +166,7 @@
         \begin{itemize}
             \item Quick overview on how MISP data structures are mapped with STIX objects
         \end{itemize}
+        \item []
         \item Detailed mapping
         \begin{itemize}
             \item Extended explanation on how each granular data is mapped with STIX objects fields
@@ -136,11 +202,15 @@
     \end{itemize}
 \end{frame}
 
-\begin{Next improvements}
+\begin{frame}
+    \frametitle{Next improvements}
     \begin{itemize}
         \item Extend the export feature to any kind of data collection
+        \item []
         \item Add notes on any data structure
-        \item Sight any data
+        \item Sightings on context layers
+        \item []
+        \item Port the STIX 1 -> MISP import feature
     \end{itemize}
 \end{frame}
 
