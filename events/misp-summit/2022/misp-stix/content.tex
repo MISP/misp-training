@@ -215,6 +215,63 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Minding the gap between formats}
+    \begin{itemize}
+        \item From a sharing platform to an threat intelligence exchange format
+        \begin{itemize}
+            \item Custom STIX objects
+            \item Custom fields in existing objects
+        \end{itemize}
+        \item Handling the infinite possibilities of a patterning language
+        \begin{itemize}
+            \item Importing STIX 2 patterns in separate MISP objects
+        \end{itemize}
+    \end{itemize}
+    \pause
+    \vspace{1em}
+    \includegraphics[scale=0.15]{images/patterns.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Handling different STIX content creation designs}
+    \begin{minipage}{0.6\textwidth}
+        \begin{itemize}
+            \item Impossible to control the content created by external parties
+            \item We want to keep UUIDs
+            \pause
+            \item []
+            \item Facing UUIDs validation issues
+            \begin{itemize}
+                \item Loading error
+            \end{itemize}
+        \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{0.4\textwidth}
+        \includegraphics[scale=0.25]{images/two_buttons_dilemna.jpg}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{An easy fix: a STIX 2 python library fork\footnote{https://github.com/MISP/cti-python-stix2 \& https://pypi.org/project/misp-lib-stix2/}}
+    \begin{minipage}{0.62\textwidth}
+        \begin{itemize}
+            \item No change on the content validation
+            \begin{itemize}
+                \item Differs only on the UUIDs validation process
+            \end{itemize}
+            \item MISP has now the same UUIDs requirements
+            \begin{itemize}
+                \item We keep a reference to the initial UUID
+                \item A UUID v5 is generated
+            \end{itemize}
+        \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{0.38\textwidth}
+        \includegraphics[scale=0.25]{images/two_buttons_solution.jpg}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
     \frametitle{How to report bugs/issues}
     \begin{itemize}
         \item Github issues
@@ -244,4 +301,10 @@
         \item \url{https://twitter.com/MISPProject}
         \item \url{https://twitter.com/chrisred_68}
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Demo time}
+    \centering
+    \includegraphics[scale=0.45]{images/demo.jpg}
 \end{frame}
