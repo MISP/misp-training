@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.14)  10 OCT 2022 11:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.14)  14 OCT 2022 15:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1237,108 +1237,347 @@ LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
  [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./misp.pdf>]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./misp.pdf>] [2
+
+]
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/b/n' in size <10.95> not availa
 ble
 (Font)              Font shape `T1/FiraSans-OsF/bold/n' tried instead on input 
-line 24.
+line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
-(Font)              scaled to size 10.95pt on input line 24.
+(Font)              scaled to size 10.95pt on input line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <10> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 24.
+ut line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 10.0pt on input line 24.
+(Font)              scaled to size 10.0pt on input line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <7> not available
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 24.
+ut line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 7.0pt on input line 24.
+(Font)              scaled to size 7.0pt on input line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <5> not available
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 24.
+ut line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 5.0pt on input line 24.
+(Font)              scaled to size 5.0pt on input line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <10> not availabl
 e
 (Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 24.
+put line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 10.0pt on input line 24.
+(Font)              scaled to size 10.0pt on input line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <7> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 24.
+put line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 7.0pt on input line 24.
+(Font)              scaled to size 7.0pt on input line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <5> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 24.
+put line 35.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 5.0pt on input line 24.
- [2
-
-]
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/b/n' in size <10> not available
-
-(Font)              Font shape `T1/FiraSans-OsF/bold/n' tried instead on input 
-line 41.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
-(Font)              scaled to size 10.0pt on input line 41.
+(Font)              scaled to size 5.0pt on input line 35.
  [3
 
 ]
-<images/solution.png, id=53, 862.22125pt x 632.3625pt>
-File: images/solution.png Graphic file (type png)
-<use images/solution.png>
-Package pdftex.def Info: images/solution.png  used on input line 48.
-(pdftex.def)             Requested size: 258.66837pt x 189.7102pt.
- [4
+<images/simple_rest_query.png, id=53, 1025.8325pt x 1254.6875pt>
+File: images/simple_rest_query.png Graphic file (type png)
+<use images/simple_rest_query.png>
+Package pdftex.def Info: images/simple_rest_query.png  used on input line 41.
+(pdftex.def)             Requested size: 194.9102pt x 238.3931pt.
 
- <./images/solution.png>] [5
+Overfull \vbox (14.93687pt too high) detected at line 41
+ []
 
-]
+[4
+
+ <./images/simple_rest_query.png>]
+<images/simple_rest_results.png, id=61, 2364.835pt x 1136.245pt>
+File: images/simple_rest_results.png Graphic file (type png)
+<use images/simple_rest_results.png>
+Package pdftex.def Info: images/simple_rest_results.png  used on input line 47.
+
+(pdftex.def)             Requested size: 472.95863pt x 227.24496pt.
+
+Overfull \hbox (151.44238pt too wide) in paragraph at lines 47--47
+ [][] 
+ []
+
+
+Overfull \vbox (3.78874pt too high) detected at line 47
+ []
+
+[5
+
+ <./images/simple_rest_results.png>]
+<images/simple_rest_curl.png, id=68, 904.37875pt x 351.3125pt>
+File: images/simple_rest_curl.png Graphic file (type png)
+<use images/simple_rest_curl.png>
+Package pdftex.def Info: images/simple_rest_curl.png  used on input line 54.
+(pdftex.def)             Requested size: 212.52904pt x 82.55844pt.
+<images/simple_rest_pymisp.png, id=69, 902.37125pt x 606.265pt>
+File: images/simple_rest_pymisp.png Graphic file (type png)
+<use images/simple_rest_pymisp.png>
+Package pdftex.def Info: images/simple_rest_pymisp.png  used on input line 54.
+(pdftex.def)             Requested size: 212.05727pt x 142.47229pt.
+
+Overfull \vbox (2.57451pt too high) detected at line 54
+ []
+
+[6
+
+ <./images/simple_rest_curl.png> <./images/simple_rest_pymisp.png>]
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <10.95> not avail
 able
 (Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 77.
+put line 72.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 10.95pt on input line 77.
+(Font)              scaled to size 10.95pt on input line 72.
+<images/limited_version.jpg, id=77, 501.875pt x 501.875pt>
+File: images/limited_version.jpg Graphic file (type jpg)
+<use images/limited_version.jpg>
+Package pdftex.def Info: images/limited_version.jpg  used on input line 72.
+(pdftex.def)             Requested size: 176.83492pt x 176.8382pt.
+ [7
+
+ <./images/limited_version.jpg>]
+<images/limited_data_type.jpg, id=84, 501.875pt x 711.65875pt>
+File: images/limited_data_type.jpg Graphic file (type jpg)
+<use images/limited_data_type.jpg>
+Package pdftex.def Info: images/limited_data_type.jpg  used on input line 90.
+(pdftex.def)             Requested size: 160.75812pt x 227.95264pt.
+
+Overfull \vbox (4.49641pt too high) detected at line 90
+ []
+
+[8
+
+ <./images/limited_data_type.jpg>]
+<images/issues.png, id=90, 384.43625pt x 114.4275pt>
+File: images/issues.png Graphic file (type png)
+<use images/issues.png>
+Package pdftex.def Info: images/issues.png  used on input line 107.
+(pdftex.def)             Requested size: 153.77177pt x 45.77019pt.
+ [9
+
+ <./images/issues.png>]
+File: images/issues.png Graphic file (type png)
+<use images/issues.png>
+Package pdftex.def Info: images/issues.png  used on input line 107.
+(pdftex.def)             Requested size: 153.77177pt x 45.77019pt.
+ [10
+
+]
+<images/solution.png, id=102, 862.22125pt x 632.3625pt>
+File: images/solution.png Graphic file (type png)
+<use images/solution.png>
+Package pdftex.def Info: images/solution.png  used on input line 114.
+(pdftex.def)             Requested size: 258.66837pt x 189.7102pt.
+ [11
+
+ <./images/solution.png>]
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/b/n' in size <10> not available
+
+(Font)              Font shape `T1/FiraSans-OsF/bold/n' tried instead on input 
+line 128.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
+(Font)              scaled to size 10.0pt on input line 128.
+ [12
+
+]
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <9> not available
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 77.
+ut line 148.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 9.0pt on input line 77.
+(Font)              scaled to size 9.0pt on input line 148.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <9> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 77.
+put line 148.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 9.0pt on input line 77.
- [6
+(Font)              scaled to size 9.0pt on input line 148.
+ [13
 
 ]
+<images/stand_alone_usage.png, id=120, 2300.595pt x 849.1725pt>
+File: images/stand_alone_usage.png Graphic file (type png)
+<use images/stand_alone_usage.png>
+Package pdftex.def Info: images/stand_alone_usage.png  used on input line 154.
+(pdftex.def)             Requested size: 333.59529pt x 123.13333pt.
+
+Overfull \hbox (12.07904pt too wide) in paragraph at lines 154--154
+ [][] 
+ []
+
+[14
+
+ <./images/stand_alone_usage.png>]
+<images/python_usage.png, id=127, 2564.58125pt x 1215.54124pt>
+File: images/python_usage.png Graphic file (type png)
+<use images/python_usage.png>
+Package pdftex.def Info: images/python_usage.png  used on input line 160.
+(pdftex.def)             Requested size: 307.73648pt x 145.85866pt.
+ [15
+
+ <./images/python_usage.png>] [16
+
+]
+<images/surprise.jpg, id=139, 579.16376pt x 434.62375pt>
+File: images/surprise.jpg Graphic file (type jpg)
+<use images/surprise.jpg>
+Package pdftex.def Info: images/surprise.jpg  used on input line 196.
+(pdftex.def)             Requested size: 115.83069pt x 86.9232pt.
+
+[17
+
+ <./images/surprise.jpg>]
+File: images/surprise.jpg Graphic file (type jpg)
+<use images/surprise.jpg>
+Package pdftex.def Info: images/surprise.jpg  used on input line 196.
+(pdftex.def)             Requested size: 115.83069pt x 86.9232pt.
+ [18
+
+]
+LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <9> not available
+
+(Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
+put line 210.
+LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
+(Font)              scaled to size 9.0pt on input line 210.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/b/n' in size <9> not available
 (Font)              Font shape `T1/FiraSans-OsF/bold/n' tried instead on input 
-line 98.
+line 210.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
-(Font)              scaled to size 9.0pt on input line 98.
- [7
+(Font)              scaled to size 9.0pt on input line 210.
+ [19
 
-] [8
+] [20
+
+]
+<images/two_buttons_dilemna.jpg, id=162, 501.875pt x 758.835pt>
+File: images/two_buttons_dilemna.jpg Graphic file (type jpg)
+<use images/two_buttons_dilemna.jpg>
+Package pdftex.def Info: images/two_buttons_dilemna.jpg  used on input line 241
+.
+(pdftex.def)             Requested size: 125.46843pt x 189.70828pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
+ []|\T1/FiraSans-OsF/regular/sc/14.4 Handling dif-fer-ent STIX con-tent cre-ati
+on 
+ []
+
+[21
+
+ <./images/two_buttons_dilemna.jpg>]
+File: images/two_buttons_dilemna.jpg Graphic file (type jpg)
+<use images/two_buttons_dilemna.jpg>
+Package pdftex.def Info: images/two_buttons_dilemna.jpg  used on input line 241
+.
+(pdftex.def)             Requested size: 125.46843pt x 189.70828pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
+ []|\T1/FiraSans-OsF/regular/sc/14.4 Handling dif-fer-ent STIX con-tent cre-ati
+on 
+ []
+
+[22
+
+]
+<images/two_buttons_solution.jpg, id=174, 501.875pt x 758.835pt>
+File: images/two_buttons_solution.jpg Graphic file (type jpg)
+<use images/two_buttons_solution.jpg>
+Package pdftex.def Info: images/two_buttons_solution.jpg  used on input line 26
+1.
+(pdftex.def)             Requested size: 125.46843pt x 189.70828pt.
+
+Overfull \hbox (3.2907pt too wide) in paragraph at lines 261--261
+[][] 
+ []
+
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <14.4> not availa
+ble
+(Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
+put line 261.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
+(Font)              scaled to size 14.4pt on input line 261.
+[23
+
+ <./images/two_buttons_solution.jpg>]
+<images/patterns.png, id=182, 2115.905pt x 147.55125pt>
+File: images/patterns.png Graphic file (type png)
+<use images/patterns.png>
+Package pdftex.def Info: images/patterns.png  used on input line 280.
+(pdftex.def)             Requested size: 317.37206pt x 22.13173pt.
+ [24
+
+ <./images/patterns.png>]
+File: images/patterns.png Graphic file (type png)
+<use images/patterns.png>
+Package pdftex.def Info: images/patterns.png  used on input line 280.
+(pdftex.def)             Requested size: 317.37206pt x 22.13173pt.
+ [25
+
+]
+<images/challenges.png, id=195, 1129.21875pt x 686.565pt>
+File: images/challenges.png Graphic file (type png)
+<use images/challenges.png>
+Package pdftex.def Info: images/challenges.png  used on input line 285.
+(pdftex.def)             Requested size: 321.83069pt x 195.67305pt.
+
+Overfull \hbox (0.31444pt too wide) in paragraph at lines 285--285
+[][]  
+ []
+
+[26
+
+ <./images/challenges.png>]
+<images/oasis.png, id=202, 1003.75pt x 200.75pt>
+File: images/oasis.png Graphic file (type png)
+<use images/oasis.png>
+Package pdftex.def Info: images/oasis.png  used on input line 310.
+(pdftex.def)             Requested size: 100.38087pt x 20.07617pt.
+ [27
+
+ <./images/oasis.png>]
+LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/b/n' in size <10> not availabl
+e
+(Font)              Font shape `T1/FiraMono-TOsF/bold/n' tried instead on input
+ line 329.
+LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/bold/n' will be
+(Font)              scaled to size 10.0pt on input line 329.
+LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <10> not availabl
+e
+(Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
+put line 329.
+LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
+(Font)              scaled to size 10.0pt on input line 329.
+ [28
 
 ]
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <10.95> not avail
 able
 (Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
-put line 130.
+put line 342.
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
-(Font)              scaled to size 10.95pt on input line 130.
- [9
+(Font)              scaled to size 10.95pt on input line 342.
+ [29
 
-])
+]
+<images/demo.jpg, id=229, 501.875pt x 501.875pt>
+File: images/demo.jpg Graphic file (type jpg)
+<use images/demo.jpg>
+Package pdftex.def Info: images/demo.jpg  used on input line 348.
+(pdftex.def)             Requested size: 225.84166pt x 225.84166pt.
+
+Overfull \vbox (2.38544pt too high) detected at line 348
+ []
+
+[30
+
+ <./images/demo.jpg>])
 \tf@nav=\write5
 \openout5 = `slide.nav'.
 
@@ -1354,25 +1593,26 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 30182 strings out of 480247
- 621733 string characters out of 5896151
- 870524 words of memory out of 5000000
- 47458 multiletter control sequences out of 15000+600000
- 867316 words of font info for 115 fonts, out of 8000000 for 9000
+ 30432 strings out of 480247
+ 627080 string characters out of 5896151
+ 869710 words of memory out of 5000000
+ 47647 multiletter control sequences out of 15000+600000
+ 884629 words of font info for 127 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 128i,16n,122p,424b,877s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_iln36p.enc}{/usr/shar
-e/texlive/texmf-dist/fonts/enc/dvips/fira/fir_d4q673.enc}{/usr/share/texlive/te
+ 128i,16n,122p,424b,883s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_d4q673.enc}{/usr/shar
+e/texlive/texmf-dist/fonts/enc/dvips/fira/fir_iln36p.enc}{/usr/share/texlive/te
 xmf-dist/fonts/enc/dvips/fira/fir_2mfh3o.enc}</usr/share/texlive/texmf-dist/fon
-ts/type1/public/fira/FiraMono-Regular.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/fira/FiraSans-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/symbols/msam10.pfb>
-Output written on slide.pdf (9 pages, 1374151 bytes).
+ts/type1/public/fira/FiraMono-Bold.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/fira/FiraMono-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/fira/FiraSans-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fir
+a/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/symbols/msam10.pfb>
+Output written on slide.pdf (30 pages, 3370847 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
- 19 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 284 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
+ 61 named destinations out of 1000 (max. 500000)
+ 133 words of extra memory for PDF output out of 10000 (max. 10000000)
 
