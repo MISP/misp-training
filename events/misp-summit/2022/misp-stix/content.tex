@@ -178,14 +178,21 @@
     \frametitle{Work in Progress}
     \begin{itemize}
         \item {\bf STIX 2 -> MISP import feature}
-        \item Better support of Custom Galaxy clusters
         \item []
-        \item Decisions on how to import non Indicator or Observable data
-        \begin{itemize}
-            \item Attack Patterns, Threat Actors, etc. are contextual data on MISP
-            \item Ongoing discussions to define whether we import those STIX objects as MISP Galaxy clusters or MISP Attribute / Object
-        \end{itemize}
+        \item New MISP object templates \& Galaxy clusters
+        \item []
+        \item Better support for Custom Galaxy clusters
+        \item []
     \end{itemize}
+    \pause
+    \begin{minipage}{0.5\textwidth}
+        \begin{itemize}
+            \item {\bf TAXII integration}
+        \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \includegraphics[scale=0.2]{images/surprise.jpg}
+    \end{minipage}
 \end{frame}
 
 \begin{frame}
@@ -212,24 +219,6 @@
         \item []
         \item Port the STIX 1 -> MISP import feature
     \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Minding the gap between formats}
-    \begin{itemize}
-        \item From a sharing platform to an threat intelligence exchange format
-        \begin{itemize}
-            \item Custom STIX objects
-            \item Custom fields in existing objects
-        \end{itemize}
-        \item Handling the infinite possibilities of a patterning language
-        \begin{itemize}
-            \item Importing STIX 2 patterns in separate MISP objects
-        \end{itemize}
-    \end{itemize}
-    \pause
-    \vspace{1em}
-    \includegraphics[scale=0.15]{images/patterns.png}
 \end{frame}
 
 \begin{frame}
@@ -269,6 +258,55 @@
     \begin{minipage}{0.38\textwidth}
         \includegraphics[scale=0.25]{images/two_buttons_solution.jpg}
     \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Minding the gap between formats}
+    \begin{itemize}
+        \item From a sharing platform to an threat intelligence exchange format
+        \begin{itemize}
+            \item Custom STIX objects
+            \item Custom fields in existing objects
+            \item STIX extensions
+        \end{itemize}
+        \item Handling the infinite possibilities of a patterning language
+        \begin{itemize}
+            \item Importing STIX 2 patterns in separate MISP objects
+        \end{itemize}
+    \end{itemize}
+    \pause
+    \vspace{1em}
+    \includegraphics[scale=0.15]{images/patterns.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mapping challenges}
+    \includegraphics[scale=0.285]{images/challenges.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Evolution perspectives}
+    \begin{center}
+        \includegraphics[scale=0.1]{images/oasis.png}
+    \end{center}
+    \vspace{1em}
+    \begin{itemize}
+        \item Members of the Oasis CTI TC
+        \begin{itemize}
+            \item Our involvement
+            \begin{itemize}
+                \item Participating to the development process
+            \end{itemize}
+            \item []
+            \item Our proposal: Go for the open source way
+            \begin{itemize}
+                \item Make the contribution process more accessible \\
+                => Bring more contributers / contributions
+                \item Easier access to the resources \\
+                => More visibility
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
