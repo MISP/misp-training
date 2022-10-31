@@ -31,7 +31,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{What problems are we trying to tackle}
+    \frametitle{What problems are we trying to tackle?}
     \begin{itemize}
         \item \textbf{Prevent} default MISP behaviors to happen
         \item \textbf{Hook} specific actions to run callbacks
@@ -128,7 +128,7 @@
         \item ...
     \end{itemize}
     \vspace*{1em}
-    In MISP Workflow terminology, these are called \textbf{Triggers}
+    In MISP Workflow terminology, supported events are called \textbf{Triggers}
 \end{frame}
 
 \begin{frame}
@@ -176,7 +176,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Workflow for Event publish}
+    \frametitle{Workflow execution for Event publish}
     \begin{itemize}
         \setlength\itemsep{1em}
         \item[] \hspace*{-2em}\includegraphics[width=16px]{pictures/sc-event-icon.png} \hspace*{0.25em} An Event is about to be published
@@ -444,14 +444,15 @@
     \frametitle{Working with the editor}
     Cases showing a warning:
     \begin{itemize}
+        \item \textbf{Blocking} modules \includegraphics[width=10px]{pictures/blocking-module.png} in a \textbf{non-blocking} workflow \includegraphics[width=0.12\linewidth]{pictures/time-machine.png}
         \item \textbf{Blocking} modules \includegraphics[width=10px]{pictures/blocking-module.png} after a \textbf{concurrent tasks} module
         \begin{center}
             \frame{\includegraphics[width=1.0\linewidth]{pictures/editor-warning-1.png}}
         \end{center}
-        \item \textbf{Blocking} modules \includegraphics[width=10px]{pictures/blocking-module.png} in a \textbf{non-blocking} workflow \includegraphics[width=0.12\linewidth]{pictures/time-machine.png}
     \end{itemize}
 \end{frame}
 
+\section{Advanced usage}
 \begin{frame}
     \frametitle{Workflow blueprints}
     \hspace*{0.9\textwidth}\includegraphics[width=32px]{pictures/blueprint-32.png}

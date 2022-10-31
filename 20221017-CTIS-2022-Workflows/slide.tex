@@ -4,6 +4,11 @@
 \definecolor{textcolor}{RGB}{128, 128, 128}
 \definecolor{background}{RGB}{240, 247, 255}
 
+% \usepackage{pgfpages}
+% \setbeameroption{show notes on second screen=right}
+\usepackage[draft]{pdfcomment}
+\newcommand{\pdfnote}[1]{\marginnote{\pdfcomment[icon=note]{#1}}}
+
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
 \usepackage{listings}
