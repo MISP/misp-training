@@ -1,0 +1,601 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Automation in MISP: What already exists?}
+    \includegraphics[valign=m,width=16px]{pictures/python-logo.png}\hspace*{0.5em} \textbf{MISP API / PyMISP}
+    \begin{itemize}
+        \item Needs CRON Jobs in place
+        \item Heavy for the server
+        \item Not realtime
+    \end{itemize}
+    \vspace*{1em}
+    \includegraphics[valign=m,width=16px]{pictures/zeromq.png}\hspace*{0.5em} \textbf{PubSub channels}
+    \begin{itemize}
+        \item After the actions happen: No feedback to MISP
+        \item Tougher to put in place \& to share
+        \item Full integration amounts to develop a new tool
+    \end{itemize}
+    \vspace*{0.5em}
+    $\rightarrow$ No way to \textbf{prevent} behavior\\
+    $\rightarrow$ Difficult to setup \textbf{hooks} to execute callbacks
+\end{frame}
+
+\begin{frame}
+    \frametitle{What type of use-cases are we trying to support?}
+    \begin{itemize}
+        \item \textbf{Prevent} default MISP behaviors to happen
+        \begin{itemize}
+            \item Prevent \textbf{publication of events} not passing sanity checks
+            \item Prevent \textbf{querying} thrid-party \textbf{services} with sensitive information
+            \item $\cdots$
+        \end{itemize}
+        \vspace*{1.0em}
+        \item \textbf{Hook} specific actions to run callbacks
+        \begin{itemize}
+            \item \textbf{Automatically run} enrichment services
+            \item Modify data on-the-fly: False positives, enable CTI-Pipeline
+            \item Send notifications in a chat rooms
+            \item $\cdots$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Simple automation in MISP made easy}
+    \begin{center}
+        \includegraphics[width=0.3\linewidth]{pictures/automation.png}
+    \end{center}
+    \begin{itemize}
+        \item Why?
+        \begin{itemize}
+            \item Everyone loves \textbf{simple automation}
+            \item \textbf{Visual} dataflow programming
+            \item Users want \textbf{more control}
+        \end{itemize}
+        \item How?
+        \begin{itemize}
+            \item \textbf{Drag \& Drop} editor
+            \item Prevent actions \textbf{before they happen}
+            \item Flexible \textbf{Plug \& Play} system
+            \item \textbf{Share} workflows, \textbf{debug} and \textbf{replay}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Content of the presentation}
+    \begin{itemize}
+        \item MISP Workflows fundamentals
+        \item Demo by examples
+        \item Using the system
+        \item How it can be extended
+    \end{itemize}
+
+    \vspace*{1em}
+    \begin{center}
+        \frame{\includegraphics[width=0.7\linewidth]{pictures/overview.png}}
+    \end{center}
+\end{frame}
+
+\section{Workflow - Fundamentals}
+\begin{frame}
+    \frametitle{How does it work}
+    \begin{center}
+        \frame{\includegraphics[width=0.6\linewidth]{pictures/event-condition-action.png}}
+    \end{center}
+    \begin{enumerate}
+        \item An \textbf{event} happens in MISP
+        \item Check if all \textbf{conditions} are satisfied
+        \item Execute all \textbf{actions}
+        \begin{itemize}
+            \item May prevent MISP to complete its original event
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{What kind of events?}
+    \includegraphics[width=60px]{pictures/sc-event.png}
+    \vspace*{0.5em}
+    \begin{itemize}
+        \item New MISP Event
+        \item Attribute has been saved
+        \item New discussion post
+        \item New user created
+        \item Query against third-party services
+        \item ...
+    \end{itemize}
+    \vspace*{1em}
+    {\Large \faIcon{question-circle}} Supported events in MISP are called \textbf{Triggers}\\
+    {\Large \faIcon{question-circle}} A \textbf{Trigger} is associated with \textbf{1-and-only-1 Workflow}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Triggers currently available}
+    Currently 10 triggers can be hooked. 3 being \includegraphics[width=36px]{pictures/blocking-workflow.png}.
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/triggers.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{What kind of conditions?}
+    \vspace*{0.25em}
+    \includegraphics[width=70px]{pictures/sc-condition.png}
+    \vspace*{0.25em}
+    \begin{itemize}
+        \item An MISP Event is tagged with \texttt{tlp:red}
+        \item The distribution an Attribute is a sharing group
+        \item The creator organisation is \texttt{circl.lu}
+        \item Or any other \textbf{generic} conditions
+    \end{itemize}
+
+    \vspace*{0.5em}
+    {\Large \faIcon{question-circle}} These are also called \textbf{Logic modules}
+    \begin{center}
+        \includegraphics[width=0.43\textwidth]{pictures/logic-module.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Workflow - Logic modules}
+    \begin{itemize}
+        \item \includegraphics[width=12px]{pictures/sc-condition-icon.png} \textbf{logic} modules: Allow to redirect the execution flow.
+        \begin{itemize}
+            \item IF conditions
+            \item Delay execution
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/logic-module-index.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{What kind of actions?}
+    \vspace*{0.25em}
+    \includegraphics[width=60px]{pictures/sc-action.png}
+    \vspace*{0.25em}
+    \begin{itemize}
+        \item Send an email notification
+        \item Perform enrichments
+        \item Send a chat message on MS Teams
+        \item Attach a local tag
+        \item ...
+    \end{itemize}
+
+    \vspace*{0.5em}
+    {\Large \faIcon{question-circle}} These are also called \textbf{Action modules}
+    \begin{center}
+        \includegraphics[width=0.43\textwidth]{pictures/action-module.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Workflow - Action modules}
+    \begin{itemize}
+        \item \includegraphics[width=12px]{pictures/sc-action-icon.png} \textbf{action} modules: Allow to executes operations
+        \begin{itemize}
+            \item Tag operations
+            \item Send notifications
+            \item Webhooks
+            \item Custom scripts
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/action-module-index.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{What is a MISP Workflow?}
+    \begin{itemize}
+        \item Sequence of all nodes to be executed in a specific order
+        \item Workflows can be enabled / disabled
+        \item A Workflow is associated to \textbf{1-and-only-1 trigger}
+    \end{itemize}
+    \vspace*{0.5em}
+    \begin{center}
+        \frame{\includegraphics[width=1.0\linewidth]{pictures/simple-workflow.png}}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Workflow execution for Event publish}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item[] \hspace*{-2em}\includegraphics[width=16px]{pictures/sc-event-icon.png} \hspace*{0.25em} An Event is about to be published
+        \begin{itemize}
+            \item The workflow for the \texttt{event-publish} trigger starts
+        \end{itemize}
+        \item[] \hspace*{-2em}\includegraphics[width=16px]{pictures/sc-condition-icon.png} \hspace*{0.25em} Conditions are evaluated
+        \begin{itemize}
+            \item They might change the path taken during the execution
+        \end{itemize}
+        \item[] \hspace*{-2em}\includegraphics[width=16px]{pictures/sc-action-icon.png} \hspace*{0.25em} Actions are executed
+        \begin{itemize}
+            \setlength\itemsep{0.75em}
+            \item {\bf\color{green!50!black}success}: Continue the publishing action
+            \hspace*{-4em}\includegraphics[width=1.0\textwidth]{pictures/log-entry-publish-success.png}
+            \item {\bf\color{red}failure} | \texttt{\color{red}blocked}: Stop publishing and log the reason
+            \hspace*{-4em}\includegraphics[width=1.0\textwidth]{pictures/log-entry-publish-blocked.png}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Blocking and non-blocking}
+    Two types of workflows:
+    \vspace{0.5em}
+    \begin{itemize}
+        \item[] \hspace*{-2em}\includegraphics[valign=m,width=48px]{pictures/blocking-workflow.png} Workflows
+        \begin{itemize}
+            \item Can prevent / block the original event to happen
+            \item If a \textbf{blocking module}\includegraphics[valign=b,width=12px]{pictures/blocking-module.png} blocks the action
+        \end{itemize}
+        \vspace{0.5em}
+        \item[] \hspace*{-2em}\includegraphics[valign=b,width=56px]{pictures/non-blocking-workflow.png} Workflows execution outcome has no impact
+        \begin{itemize}
+            \item No way to prevent something that happened in the past
+        \end{itemize}
+        \begin{center}
+            \includegraphics[width=0.4\linewidth]{pictures/time-machine.png}
+        \end{center}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sources of Workflow modules (0)}
+    \begin{itemize}
+        \item \textbf{Trigger} module: MISP Source code \textbf{only}
+        \begin{itemize}
+            \item Get in touch if you want more
+        \end{itemize}
+        \item \textbf{Logic} module: MISP Source code \& \textbf{custom}
+        \item \textbf{Action} module: MISP Source code \& \textbf{custom}
+    \end{itemize}
+    \vspace*{2.0em}
+    \begin{itemize}
+        \item MISP Source code $\rightarrow$ Built-in \textbf{text} module
+        \item Custom $\rightarrow$ Write your own at 2 places
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sources of Workflow modules (1)}
+    \begin{itemize}
+        \item Built-in \textbf{default} modules
+        \begin{itemize}
+            \item Part of the MISP codebase
+            \item Get in touch if you want us to increase the selection!
+        \end{itemize}
+    \end{itemize}
+    \vspace*{0.5em}
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{pictures/module-buffet.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sources of Workflow modules (2)}
+    User-defined \textbf{custom} modules
+    \vspace*{0.5em}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Written in PHP
+                \item Extend existing modules
+                \item MISP code reuse
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[width=1.0\linewidth]{pictures/php-joke.jpg}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sources of Workflow modules (3)}
+    Modules from the \includegraphics[width=0.20\linewidth]{pictures/misp-module-icon.png} \textbf{enrichment service}
+    \vspace*{0.5em}
+    \begin{columns}
+        \begin{column}{0.50\textwidth}
+            \begin{itemize}
+                \item Written in Python
+                \item Can use any python libraries
+                \item Plug \& Play
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.50\textwidth}
+            \includegraphics[width=1.0\linewidth]{pictures/python-joke.png}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Demo by examples}
+    \begin{enumerate}
+        \item[WF-1.] Send an email to \textbf{all} when a new event has been pulled
+        \vspace*{2em}
+        \item[WF-2.] Block queries on 3rd party services when \textbf{tlp:red} or \textbf{PAP:red}
+        \begin{itemize}
+            \item \textbf{tlp:red}: For the eyes and ears of individual recipients only
+            \item \textbf{PAP:RED}: Only passive actions that are not detectable from the outside
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\section{Workflow - Getting started}
+\begin{frame}
+    \frametitle{Getting started with workflows (1)}
+    \begin{center}
+        \includegraphics[width=0.9\linewidth]{pictures/workflow-release.png}
+    \end{center}
+    \begin{enumerate}
+        \item Update your MISP server
+        \item Update all your sub-modules
+    \end{enumerate}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{pictures/upgrade-people.jpeg}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Getting started with workflows (4)}
+    \centering
+    {\Large Everything is ready?}\\
+    \vspace*{3em}
+    {\LARGE Let's see how to build a workflow!}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Creating a workflow with the editor}
+    \begin{enumerate}
+        \item Prevent event publication if \textbf{tlp:red} tag
+        \item Send a mail to \texttt{admin@admin.test} about potential data leak
+        \item Otherwise, send a notification on Mattermost
+    \end{enumerate}
+\end{frame}
+
+\section{Considerations when working with workflows}
+\begin{frame}
+    \frametitle{Working with the editor - Operations not allowed}
+    Execution loop are not authorized
+    \vspace*{1em}
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            \frame{\includegraphics[width=1.0\linewidth]{pictures/editor-not-allowed-1.png}}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \frame{\includegraphics[width=1.0\linewidth]{pictures/infinite-loop.jpg}}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Recursive workflows}
+    \frame{\includegraphics[width=1.0\linewidth]{pictures/recursive-workflow.png}}
+    \danger Recursion: If an action re-run the workflow
+\end{frame}
+
+\begin{frame}
+    \frametitle{Working with the editor - Operations not allowed}
+    Multiple connections from the same output
+    \vspace*{1em}
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            \frame{\includegraphics[width=1.0\linewidth]{pictures/editor-not-allowed-2.png}}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \frame{\includegraphics[width=1.0\linewidth]{pictures/two-paths.jpeg}}
+        \end{column}
+    \end{columns}
+    \begin{itemize}
+        \item Execution order not guaranted
+        \item Confusing for users
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Working with the editor}
+    Cases showing a warning:
+    \begin{itemize}
+        \item \textbf{Blocking} modules \includegraphics[width=10px]{pictures/blocking-module.png} in a \includegraphics[valign=b,width=56px]{pictures/non-blocking-workflow.png} workflow \includegraphics[width=0.12\linewidth]{pictures/time-machine.png}
+        \item \textbf{Blocking} modules \includegraphics[width=10px]{pictures/blocking-module.png} after a \textbf{concurrent tasks} module
+        \begin{center}
+            \frame{\includegraphics[width=1.0\linewidth]{pictures/editor-warning-1.png}}
+        \end{center}
+    \end{itemize}
+\end{frame}
+
+\section{Advanced usage}
+\begin{frame}
+    \frametitle{Workflow blueprints}
+    \hspace*{0.9\textwidth}\includegraphics[width=32px]{pictures/blueprint-32.png}
+    \vspace*{-2em}
+    \begin{enumerate}
+        \item Blueprints allow to \textbf{re-use parts} of a workflow in another one
+        \item Blueprints can be saved, exported and \textbf{shared}
+    \end{enumerate}
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{pictures/blueprint-debugging.png}
+    \end{center}
+    Blueprints sources:
+    \begin{enumerate}
+        \item Created or imported by users
+        \item From the \texttt{MISP/misp-workflow-blueprints} repository\footnote{\scriptsize https://github.com/MISP/misp-workflow-blueprints}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Data format in Workflows}
+    \begin{center}
+        \includegraphics[width=0.7\linewidth]{pictures/workflow-trigger.png}
+    \end{center}
+    \begin{itemize}
+        \item In most cases, the format is the \textbf{MISP Core format}
+        \begin{itemize}
+            \item Attributes are \textbf{always encapsulated} in the Event or Object
+        \end{itemize}
+        \item But has \textbf{additional properties}
+        \begin{itemize}
+            \item Additional key \textbf{\texttt{\_AttributeFlattened}}
+            \item Additional key \textbf{\texttt{\_allTags}}
+            \item Additional key \textbf{\texttt{inherited}} for Tags
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Logic module: Concurrent Task}
+    \begin{itemize}
+        \item Logic module allowing \textbf{multiple output} connections
+        \item \textbf{Postpone the execution} for remaining modules
+        \item Convert \includegraphics[valign=b,width=44px]{pictures/blocking-workflow.png} \faIcon{long-arrow-alt-right} \includegraphics[valign=b,width=56px]{pictures/non-blocking-workflow.png}
+    \end{itemize}
+    \begin{center}
+        \frame{\includegraphics[width=0.5\linewidth]{pictures/module-concurrent.png}}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Debugging options}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \begin{itemize}
+                \item Workflow \textbf{execution and outcome}
+                \item Module \textbf{execution and outcome}
+                \item \textbf{Live} workflow debugging with module inspection
+                \item \textbf{Re-running/testing} workflows with custom data
+                \item \textbf{Stateless} module execution
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \includegraphics[width=1.0\linewidth]{pictures/enough-debugging.jpg}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Extending the system}
+\begin{frame}
+    \frametitle{Creating a new module in PHP}
+    \begin{center}
+        \includegraphics[scale=0.07]{pictures/PHP-logo.png}
+    \end{center}
+    \vspace*{2em}
+    \begin{itemize}
+        \item \texttt{\small \textbf{app/Lib/}WorkflowModules/action/[module\_name].php}
+        \item Designed to be easilty extended
+        \begin{itemize}
+            \item Helper functions
+            \item Module configuration as variables
+            \item Implement runtime logic
+        \end{itemize}
+        \item Main benefits
+        \begin{itemize}
+            \item Fast
+            \item Re-use existing functionalities
+            \item No need for misp-modules
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Creating a new module in PHP}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/custom-1.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Creating a new module in Python}
+    \begin{center}
+        \includegraphics[scale=0.03]{pictures/python-logo.png}
+    \end{center}
+    \begin{itemize}
+        \item Similar to how other \texttt{misp-modules} are implemented
+        \begin{itemize}
+            \item Helper functions
+            \item Module configuration as variables
+            \item Implement runtime logic
+        \end{itemize}
+        \item Main benefits
+        \begin{itemize}
+            \item Easier than PHP
+            \item Lots of libraries for integration
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Creating a new module in Python}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/custom-2.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{More ideas}
+    \begin{itemize}
+        \item Notification when new users join an instance
+        \item Trigger on any action generating log entries
+        \item Extend existing MISP behavior: Push correlation in another system
+        \item Sanity check to block publishing
+        \item ...
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Under development}
+    Ease data manipulation with \textbf{filtering modules}
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{pictures/filtering-modules.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Future works}
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+            \begin{itemize}
+                \item More \includegraphics[width=12px]{pictures/sc-action-icon.png} modules
+                \item More \includegraphics[width=12px]{pictures/sc-condition-icon.png} modules
+                \item More \includegraphics[width=12px]{pictures/sc-event-icon.png} triggers
+                \item More documentation
+                \item Recursion prevention system
+                \item On-the-fly data override?
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=1.0\linewidth]{pictures/future-works.jpeg}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Final words}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \begin{itemize}
+                \item Designed to \textbf{quickly} and \textbf{cheaply} integrate MISP in CTI pipelines
+                \item \underline{\textbf{Beta}} Feature unlikely to change. But still..
+                \item Waiting for feedback!
+                \begin{itemize}
+                    \item New triggers?
+                    \item New modules?
+                    \item ...
+                \end{itemize}
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \includegraphics[width=1.0\linewidth]{pictures/feeling-of-power.jpg}
+        \end{column}
+    \end{columns}
+    \vspace*{0.5em}
+\end{frame}
+
