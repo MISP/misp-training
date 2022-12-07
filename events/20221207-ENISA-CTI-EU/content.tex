@@ -20,7 +20,7 @@
 \begin{frame}[plain,c]
     \begin{center}
     {\Huge Two years from now, threat intelligence will be easy.\\}
-        {\it Bill Gates if he did work in threat intelligence}
+        {\it Bill Gates had he worked in threat intelligence}
     \end{center}
 \end{frame}
 
@@ -28,7 +28,7 @@
 \begin{frame}
   \frametitle{The aim of this presentation}
   \begin{itemize}
-      \item {\Large Showing the {\bf evolution of threat intelligence}\footnote{based on our empirical view from users using/integrating MISP} and 
+      \item {\Large Showing the {\bf evolution of threat intelligence}\footnote{based on our empirical view from users using/integrating with MISP} and 
       \item {\bf data-driven threat hunting} over the past years}
       \item {\Large What can we expect in {\bf the future}?}
   \end{itemize}
@@ -37,11 +37,11 @@
 \begin{frame}
   \frametitle{From standalone indicator to advanced object data models}
   \begin{itemize}
-    \item In early 2010, MISP supported basic indicators sharing with a limited set of types
+    \item In early 2012, MISP supported basic indicators sharing with a limited set of types
     \item In 2022, MISP integrates a dynamic object model with advanced custom relationships 
-    \item Why such evolution?
+    \item Why did it evolve this way?
         \begin{itemize}
-            \item {\bf Increase of intelligence usage in different sectors}. From threat-hunting\footnote{With different types of threat hunts including TTP-driven, intelligence-driven, asset-driven...} to risk assessment or strategic decisions
+            \item {\bf Increase in the use of intelligence across different sectors}. From threat-hunting\footnote{With different types of threat hunts, including TTP-driven, intelligence-driven, asset-driven...} to risk assessment and strategic decision making
             \item {\bf Increased diversity\footnote{MISP object public store include 296 templates in 2022.} among analysts}
         \end{itemize}
   \end{itemize}
@@ -51,22 +51,22 @@
   \frametitle{Multitude of intelligence models}
   \begin{itemize}
      \item Chains, triangles, circles, diamonds, arrows, a mix or even a multi-layer matrix
-     \item There is {\bf no perfect intelligence models}
-     \item Organisations invent their model, reuse existing ones or are even more creative
+     \item There are {\bf no perfect intelligence models}
+     \item Organisations invent their models, reuse existing ones or are even more creative
      \item Showing {\bf how diverse\footnote{Embrace the diversity of models, taxonomies. 146 taxonomies are available in MISP taxonomies.} our societies are}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{But some models can be a game changer}
+  \frametitle{But some models can be game changers}
   \begin{itemize}
       \item With the introduction of {\bf MITRE ATT\&CK(tm)} in 2013, this was a game changer. What makes it a successful model?
      \begin{itemize}
-        \item Based on real and actual data\footnote{FMX - Fort Meade Experiment}, not just theoritical
+        \item Based on real and actual data\footnote{FMX - Fort Meade Experiment}, not just theory
         \item {\bf Continuous updates} were performed on ATT\&CK
         \item Embraced and recommended by many communities (e.g. EU ATT\&CK community)
-        \item Change in usage and practices take time\footnote{On a MISP community, 1\% of ATT\&CK techniques attached in 2013. In 2022, it's 72\%.}
-        \item {\bf Percolate} to other models (e.g. reusing the same matrix-like format)
+        \item Change in usage and practices takes time\footnote{On a MISP community, 1\% of ATT\&CK techniques attached in 2013. In 2022, it's 72\%.}
+        \item {\bf Percolation} to other models (e.g. reusing the same matrix-like format)
      \end{itemize}
   \end{itemize}
 \end{frame}
@@ -76,11 +76,11 @@
   \begin{itemize}
       \item {\bf Building narratives is critical in threat intelligence}
         \begin{itemize}
-            \item Intelligence narrative can be described in structured format (e.g. course-of-action)
-            \item Or written in natural language used to describe higher-level  (e.g. assesment, executive summary or strategic information) 
+            \item Intelligence narratives can be described in structured format (e.g. course-of-action)
+            \item Or written in natural language, used to describe higher-level structures (e.g. assesment, executive summary or strategic information) 
         \end{itemize}
-      \item For years, many thought that narrative and structured intelligence were separated.
-      \item Accepting that {\bf structured and unstructed can be together\footnote{Mixed free-text Markdown reports with graph-oriented intelligence sharing in MISP increased during the past year.}} became critical.
+      \item For years, many thought that the narrative and structured intelligence were separated.
+      \item Accepting that {\bf structured and unstructed belong together\footnote{Mixed free-text Markdown reports with graph-oriented intelligence sharing in MISP increased during the past year.}} became critical.
   \end{itemize}
 \end{frame}
 
@@ -89,9 +89,9 @@
   \begin{itemize}
       \item {\bf Sharing detection engineering} information became more prevalent
               \begin{itemize}
-                    \item Sharing only the resulting analysis (indicators) is the bare minimal requirement in various sharing communities
+                    \item Sharing only the resulting analysis (indicators) is the bare minimum requirement in various sharing communities
                     \item Sharing the complete detection process\footnote{Detection rules, scripts and playbooks} increases\footnote{New object template to support advanced detection engineering or intelligene pipelines.}
-                    \item Reproducible {\bf workflows and playbooks} play an important to {\bf actionable intelligence}\footnote{MISP worflow blueprints} 
+                    \item Reproducible {\bf workflows and playbooks} play an important role in {\bf actionable intelligence}\footnote{MISP worflow blueprints} 
               \end{itemize}
   \end{itemize}
 \end{frame}
@@ -99,7 +99,7 @@
 \begin{frame}
   \frametitle{What's the future?}
   \begin{itemize}
-      \item {\bf Sharing more} without disclosing the actual information\footnote{Grow of research about PSI (private set intersection) and an increased usage of MISP feed caching}
+      \item {\bf Sharing more} without disclosing the actual information\footnote{Growth of research about PSI (private set intersection) and an increased usage of MISP feed caching}
       \item {\bf Automatic data modeling} on unstructured intelligence 
       \item Advanced sighting and {\bf feedback on engineering detection rules}\footnote{Sharing back training-sets or dataset with the actual false-positive detection}
       \item Automation and sharing of the threat intelligence pipelines framework. 
