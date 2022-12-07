@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.14)  6 DEC 2022 22:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.14)  7 DEC 2022 07:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1353,189 +1353,25 @@ LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
 ]
 [8
 
-]
-<images/blueprints2.png, id=85, 457.71pt x 287.57437pt>
-File: images/blueprints2.png Graphic file (type png)
-<use images/blueprints2.png>
-Package pdftex.def Info: images/blueprints2.png  used on input line 83.
-(pdftex.def)             Requested size: 274.62813pt x 172.54594pt.
- [9
+] [9
 
- <./images/blueprints2.png (PNG copy)>] [10
+] [10
 
 ]
-<images/signing1.png, id=96, 677.53125pt x 342.27875pt>
-File: images/signing1.png Graphic file (type png)
-<use images/signing1.png>
-Package pdftex.def Info: images/signing1.png  used on input line 98.
-(pdftex.def)             Requested size: 338.76479pt x 171.13895pt.
-
-Overfull \hbox (17.24854pt too wide) in paragraph at lines 98--98
-[][]  
- []
-
-[11
-
- <./images/signing1.png>]
-<images/signing2.png, id=104, 677.53125pt x 334.24875pt>
-File: images/signing2.png Graphic file (type png)
-<use images/signing2.png>
-Package pdftex.def Info: images/signing2.png  used on input line 103.
-(pdftex.def)             Requested size: 338.76479pt x 167.12396pt.
-
-Overfull \hbox (17.24854pt too wide) in paragraph at lines 103--103
-[][]  
- []
-
-[12
-
- <./images/signing2.png>]
-<images/signing3.png, id=111, 345.54094pt x 112.16907pt>
-File: images/signing3.png Graphic file (type png)
-<use images/signing3.png>
-Package pdftex.def Info: images/signing3.png  used on input line 109.
-(pdftex.def)             Requested size: 207.32616pt x 67.30194pt.
-<images/signing4.png, id=112, 460.72125pt x 79.04532pt>
-File: images/signing4.png Graphic file (type png)
-<use images/signing4.png>
-Package pdftex.def Info: images/signing4.png  used on input line 109.
-(pdftex.def)             Requested size: 276.43488pt x 47.42754pt.
- [13
-
- <./images/signing3.png (PNG copy)> <./images/signing4.png (PNG copy)>] [14
-
-] [15
-
-]
-<images/security.png, id=129, 657.2053pt x 340.27126pt>
-File: images/security.png Graphic file (type png)
-<use images/security.png>
-Package pdftex.def Info: images/security.png  used on input line 133.
-(pdftex.def)             Requested size: 262.87746pt x 136.10608pt.
- [16
-
- <./images/security.png (PNG copy)>]
-[17
-
-]
-<images/warnings.png, id=140, 1157.07281pt x 167.87718pt>
-File: images/warnings.png Graphic file (type png)
-<use images/warnings.png>
-Package pdftex.def Info: images/warnings.png  used on input line 148.
-(pdftex.def)             Requested size: 347.12453pt x 50.36354pt.
-
-Overfull \hbox (25.60828pt too wide) in paragraph at lines 148--148
-[][]  
- []
-
-[18
-
- <./images/warnings.png (PNG copy)>]
 LaTeX Font Info:    Trying to load font information for T1+FiraMono-TOsF on inp
-ut line 160.
-
-(/usr/share/texlive/texmf-dist/tex/latex/fira/T1FiraMono-TOsF.fd
+ut line 120.
+ (/usr/share/texlive/texmf-dist/tex/latex/fira/T1FiraMono-TOsF.fd
 File: T1FiraMono-TOsF.fd 2019/10/10 (autoinst) Font definitions for T1/FiraMono
 -TOsF.
 )
-LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <9> not available
-
-(Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
-put line 160.
-LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
-(Font)              scaled to size 9.0pt on input line 160.
- [19
-
-] [20
-
-]
-[21
-
-]
-<images/timelining.png, id=165, 1728.4575pt x 826.08624pt>
-File: images/timelining.png Graphic file (type png)
-<use images/timelining.png>
-Package pdftex.def Info: images/timelining.png  used on input line 183.
-(pdftex.def)             Requested size: 345.68538pt x 165.21431pt.
-
-Overfull \hbox (24.16913pt too wide) in paragraph at lines 183--183
-[][]  
- []
-
-[22
-
- <./images/timelining.png>] [23
-
-] [24
-
-] [25
-
-] [26
-
-]
-<images/workflows1.png, id=194, 1769.61125pt x 1102.1175pt>
-File: images/workflows1.png Graphic file (type png)
-<use images/workflows1.png>
-Package pdftex.def Info: images/workflows1.png  used on input line 234.
-(pdftex.def)             Requested size: 353.91599pt x 220.41959pt.
-
-Overfull \hbox (32.39973pt too wide) in paragraph at lines 234--234
-[][]  
- []
-
-[27
-
- <./images/workflows1.png>]
-<images/workflows2.png, id=201, 1809.76125pt x 734.745pt>
-File: images/workflows2.png Graphic file (type png)
-<use images/workflows2.png>
-Package pdftex.def Info: images/workflows2.png  used on input line 239.
-(pdftex.def)             Requested size: 361.94585pt x 146.9464pt.
-
-Overfull \hbox (40.4296pt too wide) in paragraph at lines 239--239
-[][]  
- []
-
-[28
-
- <./images/workflows2.png>] [29
-
-] [30
-
-]
-<images/cerebrate.png, id=219, 509.5035pt x 500.1084pt>
-File: images/cerebrate.png Graphic file (type png)
-<use images/cerebrate.png>
-Package pdftex.def Info: images/cerebrate.png  used on input line 268.
-(pdftex.def)             Requested size: 203.79778pt x 200.03981pt.
- [31
-
- <./images/cerebrate.png>] [32
-
-]
-[33
-
-] [34
-
-] [35
-
-]
-LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <10.95> not avail
-able
-(Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
-put line 315.
-LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
-(Font)              scaled to size 10.95pt on input line 315.
- [36
-
-]
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <10> not availabl
 e
 (Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
-put line 338.
+put line 120.
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
-(Font)              scaled to size 10.0pt on input line 338.
- [37
+(Font)              scaled to size 10.0pt on input line 120.
+
+[11
 
 ])
 \tf@nav=\write5
@@ -1554,11 +1390,11 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 27208 strings out of 481239
- 549426 string characters out of 5920376
- 801773 words of memory out of 5000000
- 41712 multiletter control sequences out of 15000+600000
- 946469 words of font info for 117 fonts, out of 8000000 for 9000
+ 27005 strings out of 481239
+ 546503 string characters out of 5920376
+ 800773 words of memory out of 5000000
+ 41575 multiletter control sequences out of 15000+600000
+ 945678 words of font info for 114 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,16n,95p,811b,874s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_d4q673.enc}{/usr/shar
@@ -1569,10 +1405,10 @@ type1/public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/fira/FiraSans-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/symbols/msam10.pfb>
-Output written on slide.pdf (37 pages, 1126878 bytes).
+Output written on slide.pdf (11 pages, 218818 bytes).
 PDF statistics:
- 311 PDF objects out of 1000 (max. 8388607)
- 233 compressed objects within 3 object streams
- 75 named destinations out of 1000 (max. 500000)
- 108 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 135 PDF objects out of 1000 (max. 8388607)
+ 101 compressed objects within 2 object streams
+ 23 named destinations out of 1000 (max. 500000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
