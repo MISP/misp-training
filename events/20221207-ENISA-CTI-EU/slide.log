@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.14)  7 DEC 2022 07:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.14)  7 DEC 2022 08:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1405,7 +1405,7 @@ type1/public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/fira/FiraSans-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/symbols/msam10.pfb>
-Output written on slide.pdf (11 pages, 218818 bytes).
+Output written on slide.pdf (11 pages, 218758 bytes).
 PDF statistics:
  135 PDF objects out of 1000 (max. 8388607)
  101 compressed objects within 2 object streams
