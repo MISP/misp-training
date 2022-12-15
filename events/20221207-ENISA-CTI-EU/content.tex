@@ -1,0 +1,120 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{What is MISP?}
+\begin{itemize}
+       \item MISP is a {\bf threat information sharing} platform that is free \& open source software
+       \item A tool that {\bf collects} information from partners, your analysts, your tools, feeds
+       \item Normalises, {\bf correlates}, {\bf enriches} and {\bf connects} the data
+       \item Allows teams and communities to {\bf collaborate} and {\bf share}
+       \item {\bf Feeds} automated protective tools and analyst tools with the output
+       \item MISP is a {\bf complete threat intelligence platform} with strong sharing capabilities and extendability
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain,c]
+    \begin{center}
+    {\Huge Two years from now, threat intelligence will be easy.\\}
+        {\it Bill Gates had he worked in threat intelligence}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The aim of this presentation}
+  \begin{itemize}
+      \item {\Large Showing the {\bf evolution of threat intelligence}\footnote{based on our empirical view from users using/integrating with MISP} and 
+      \item {\bf data-driven threat hunting} over the past years}
+      \item {\Large What can we expect in {\bf the future}?}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{From standalone indicator to advanced object data models}
+  \begin{itemize}
+    \item In early 2012, MISP supported basic indicators sharing with a limited set of types
+    \item In 2022, MISP integrates a dynamic object model with advanced custom relationships 
+    \item Why did it evolve this way?
+        \begin{itemize}
+            \item {\bf Increase in the use of intelligence across different sectors}. From threat-hunting\footnote{With different types of threat hunts, including TTP-driven, intelligence-driven, asset-driven...} to risk assessment and strategic decision making
+            \item {\bf Increased diversity\footnote{MISP object public store include 296 templates in 2022.} among analysts}
+        \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Multitude of intelligence models}
+  \begin{itemize}
+     \item Chains, triangles, circles, diamonds, arrows, a mix or even a multi-layer matrix
+     \item There are {\bf no perfect intelligence models}
+     \item Organisations invent their models, reuse existing ones or are even more creative
+     \item Showing {\bf how diverse\footnote{Embrace the diversity of models, taxonomies. 146 taxonomies are available in MISP taxonomies.} our societies are}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{But some models can be game changers}
+  \begin{itemize}
+      \item With the introduction of {\bf MITRE ATT\&CK(tm)} in 2013, this was a game changer. What makes it a successful model?
+     \begin{itemize}
+        \item Based on real and actual data\footnote{FMX - Fort Meade Experiment}, not just theory
+        \item {\bf Continuous updates} were performed on ATT\&CK
+        \item Embraced and recommended by many communities (e.g. EU ATT\&CK community)
+        \item Change in usage and practices takes time\footnote{On a MISP community, 1\% of ATT\&CK techniques attached in 2013. In 2022, it's 72\%.}
+        \item {\bf Percolation} to other models (e.g. reusing the same matrix-like format)
+     \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Unstructured versus structured intelligence}
+  \begin{itemize}
+      \item {\bf Building narratives is critical in threat intelligence}
+        \begin{itemize}
+            \item Intelligence narratives can be described in structured format (e.g. course-of-action)
+            \item Or written in natural language, used to describe higher-level structures (e.g. assesment, executive summary or strategic information) 
+        \end{itemize}
+      \item For years, many thought that the narrative and structured intelligence were separated.
+      \item Accepting that {\bf structured and unstructed belong together\footnote{Mixed free-text Markdown reports with graph-oriented intelligence sharing in MISP increased during the past year.}} became critical.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Automation processes - "playbooks"}
+  \begin{itemize}
+      \item {\bf Sharing detection engineering} information became more prevalent
+              \begin{itemize}
+                    \item Sharing only the resulting analysis (indicators) is the bare minimum requirement in various sharing communities
+                    \item Sharing the complete detection process\footnote{Detection rules, scripts and playbooks} increases\footnote{New object template to support advanced detection engineering or intelligene pipelines.}
+                    \item Reproducible {\bf workflows and playbooks} play an important role in {\bf actionable intelligence}\footnote{MISP worflow blueprints} 
+              \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What's the future?}
+  \begin{itemize}
+      \item {\bf Sharing more} without disclosing the actual information\footnote{Growth of research about PSI (private set intersection) and an increased usage of MISP feed caching}
+      \item {\bf Automatic data modeling} on unstructured intelligence 
+      \item Advanced sighting and {\bf feedback on engineering detection rules}\footnote{Sharing back training-sets or dataset with the actual false-positive detection}
+      \item Automation and sharing of the threat intelligence pipelines framework. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Contact}
+  \begin{itemize}
+      \item Contact CIRCL / MISP Project
+    \begin{itemize}
+        \item \url{mailto:info@circl.lu} - \url{mailto:info@misp-project.org}
+      \item \url{https://www.misp-project.org/}
+      \item \url{https://www.circl.lu/}
+      \item Mastodon {\it @circl@social.circl.lu - @misp@misp-community.org}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
