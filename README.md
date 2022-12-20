@@ -72,6 +72,8 @@ given to the materials. We welcome contributions in order to improve the trainin
 
 Sample videos which can be used to understand how the training materials are used in companion with a live MISP demo instance.
 
+- [MISP Workflow](https://www.youtube.com/watch?v=OyLE2g4zii0) - 16th December 2022
+- [MISP Best Practices for encoding threat intelligence (3 hours - online)](https://www.youtube.com/watch?v=JIeiwzY7Fvs) - 15th December 2022
 - [MISP Training Administration and Deployment of MISP software](https://youtu.be/sIHTRIwF-Mk) - 14th September 2022
 - [MISP Training Threat Intelligence Introduction for Analysts and Security Professional](https://youtu.be/sb36MMRTtLM) - 13th September 2022 
 - [Fundamentals MISP given FIRSTdotOrg 2021 Virtual Symposium African and Arab regions](https://www.youtube.com/watch?v=00jq7Gbqdz8) - 18th December 2021
