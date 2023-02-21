@@ -16,6 +16,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | ------------ | ----------- |
 | [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tree/main/0-misp-introduction-to-information-sharing) |
 | [MISP Data model overview (quick)](https://raw.githubusercontent.com/MISP/misp-training/477bdc9c71f77abd572f11c98f3ac8ecabe54310/complementary/other-slides/a.11.a-misp-data-model-overview.pdf) | |
+| [MISP Ten Commandments](https://github.com/MISP/misp-training/blob/main/complementary/other-slides/MISP%2010%20Commandments%20-%20Recommendations%20and%20Best%20Practices%20when%20encoding%20data.pdf)||
 | [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1-misp-usage) |
 | [1.2-misp-integration](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2-misp-integration) |
 | [1.1-misp-viper-integration](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.1-misp-viper-integration) |
