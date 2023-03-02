@@ -13,7 +13,9 @@ for slide in ${slidedecks[@]}; do
         cd ${slide}
         if test -f "slide_nl.tex"; then
                 pdflatex slide_nl.tex
-                pdflatex slide_nl.tex
+        fi
+        if test -f "slide_es.tex"; then
+                pdflatex slide_es.tex
         fi
         pdflatex slide.tex
         pdflatex slide.tex
@@ -29,6 +31,10 @@ for slide in ${slidedecks[@]}; do
         if test -f "slide_nl.tex"; then
                 cp slide_nl.pdf ../output/${slide}_nl.pdf
                 rm slide_nl.pdf
+        fi
+        if test -f "slide_es.tex"; then
+                cp slide_es.pdf ../output/${slide}_es.pdf
+                rm slide_es.pdf
         fi
         cd ..
         echo "--- Finished building ${slide}"
