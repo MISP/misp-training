@@ -161,6 +161,18 @@
     \includegraphics[scale=0.2]{./images/highlight2.png}
 \end{frame}
 
+\begin{frame}
+\frametitle{MISP modules}
+    \begin{itemize}
+        \item MISP modules are companion to expansion, export, import for external services or tooling
+        \item Extended to support the {\bf MISP workflow actions}
+        \item New modules include new import {\bf extract\_url\_components}
+        \item New expansion modules include {\bf Crowdsec}, {\bf ipinfo.io}
+        \item Improved expansion modules  {\bf greynoise}, {\bf VarIOT}
+        \item Improved modules to support the MISP standard format
+    \end{itemize}
+\end{frame}
+
 \section{Ongoing rework}
 
 \begin{frame}
@@ -196,7 +208,7 @@
      \begin{itemize}
          \item We will include scripts that will install MISP3 side-by-side of MISP2 and ingest all of your MISP 2 data
          \item The process will not be automatic and will need administrator intervention
-         \item Some new requirements (more modern PHP for example, new framework version's requirements)
+         \item Some {\bf new requirements} (more modern PHP for example, new framework version's requirements)
          \item Database migration is included in the process
      \end{itemize}
      \item Versions following 3.0 will go back to a similar one-click update process for the lifecycle of 3.x
@@ -208,17 +220,17 @@
   \frametitle{Improvements to the database structure}
   \begin{itemize}
      \item Rework of schema for more performance
-     \item Relational constraints moved to the database for consistency and performance
-     \item Modernised unicode handling
+     \item {\bf Relational constraints moved to the database} for consistency and performance
+     \item Modernised {\bf unicode handling}
      \item Fixes of some legacy mistakes (reserved keyword field use for example)
-     \item DB improvements that were outcomes of research from Cerebrate incorporated (tags, metadata)
+     \item {\bf DB improvements} that were outcomes of research from Cerebrate incorporated (tags, metadata)
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Better file structure}
   \begin{itemize}
-     \item Clearer separation of concerns (software codebase vs data vs logs)
+     \item {\bf Clearer separation} of concerns (software codebase vs data vs logs)
      \begin{itemize}
          \item Easier containerisation of MISP
          \item Saner file permission management
@@ -233,10 +245,10 @@
   \frametitle{UX rework}
   \begin{itemize}
      \item More harmonised UI
-     \item Modern look and feel
+     \item {\bf Modern look and feel}
      \item Easier to use interactions
      \item Menues and actions reworked to be more use-case focused
-     \item UI customisation for users
+     \item UI customisation for users including custom themes
   \end{itemize}
 \end{frame}
 
@@ -269,7 +281,7 @@
 \begin{frame}
   \frametitle{To sum it all up...}
   \begin{itemize}
-     \item The MISP {\bf developer community} continues to grow and stay active
+     \item The MISP {\bf developer/contributor community} continues to grow and is very active
      \item The main focus the past year was on the following
      \begin{itemize}
           \item Performance, security, UX improvements
