@@ -206,6 +206,26 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{MISP objects}
+    \begin{itemize}
+        \item New {\bf ai-chat-prompt} to share AI chat prompt in MISP
+        \item New {\bf greynoise-intelligence}, {\bf risk-assessment-report}, {\bf transport-ticket}, {\bf AIS}, {\bf typosquatting}, {\bf telegram-bot} objects
+        \item Many improvements to existing objets to align with STIX 2.1 and updates
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+     \frametitle{MISP stix}
+     \begin{itemize}
+        \item misp-stix\footnote{\url{https://github.com/MISP/misp-stix}} is standalone Python library support MISP standard format and all the STIX version (1.1.1, 1.2, 2.0 and 2.1)
+        \item Two people from CIRCL are {\bf co-sharing the OASIS Cyber Threat Intelligence (CTI) TC and CTI STIX subcommittee}
+        \item Ensuring alignment between the standards, interoperability and an open source standard library
+        \item Improvement in misp-stix such as STIX 2.0 and 2.1 patterning and {\bf generic way to support observable objects}
+        \item Import in MISP added for STIX 2
+     \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{Cerebrate}
     \begin{itemize}
         \item New documentation for Cerebrate\footnote{\url{https://doc.cerebrate-project.org/}}
@@ -327,6 +347,16 @@
     \item Covering all the activity such {\bf detecting, reacting and analysing}
     \item Documentation in Markdown format and code in Python all in {\bf Jupyter notebooks}
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP guard}
+    \begin{itemize}
+        \item misp-guard\footnote{\url{https://github.com/MISP/misp-guard}} is a mitmproxy addon that inspects the synchronization traffic (via PUSH or PULL) between different MISP instances and applies a set of customizable rules defined in a JSON file
+        \item {\bf Simple code base for doing complementary filtering} between different MISPs for sensitive or classified networks
+        \item misp-guard doesn't depend on MISP to apply the filtering
+        \item Next step code review and evaluate the different option for certification (ideas are welcome)
+    \end{itemize}
 \end{frame}
 
 \section{Conclusions}
