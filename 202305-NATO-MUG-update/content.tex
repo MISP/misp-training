@@ -140,7 +140,7 @@
   \frametitle{Security fixes and other improvements}
   \begin{itemize}
      \item Long list of security fixes based on multiple external penetration tests
-     \item {\bf CVEs} continuously reported for issues small and large
+     \item {\bf CVEs}\footnote{\url{https://www.misp-project.org/security/}} continuously reported for issues small and large
      \begin{itemize}
          \item Make sure you're up to date!
      \end{itemize}
@@ -149,13 +149,25 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Taxonomy highlight}
+\begin{itemize}
+    \item Many different taxonomies are used frequently in various organisations
+    \item A new feature to highlight the important taxonomy in a MISP instance (community) is available
+    \item Site admin user can select the {\bf highlighted taxonomies}
+    \item The taxonomy namespace will be highlight in a box on the index/event views
+\end{itemize}
+    \includegraphics[scale=0.2]{./images/highlight.png}
+    \includegraphics[scale=0.2]{./images/highlight2.png}
+\end{frame}
+
 \section{Ongoing rework}
 
 \begin{frame}
   \frametitle{MISP 3}
   \begin{itemize}
      \item Largest ongoing work is the work on {\bf MISP3}
-     \item Already announced long ago, development is now underway
+     \item Already announced long ago, development is now underway\footnote{\url{https://github.com/MISP/MISP/tree/3.x}}
      \item New {\bf tech stack} based on Cerebrate's advances (CakePHP 4.x+, PHP 8.2+, Bootstrap 5+)
      \item Longer project, will bring long needed improvements
   \end{itemize}
