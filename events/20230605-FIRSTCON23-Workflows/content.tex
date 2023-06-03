@@ -22,7 +22,7 @@
     \hspace*{0.25em}
     \begin{itemize}
         \item Needs CRON Jobs in place
-        \item Heavy for the server
+        \item Potentially heavy for the server
         \item Not realtime
     \end{itemize}
     \vspace*{1em}
@@ -1005,12 +1005,31 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 \end{frame}
 
 \begin{frame}
+    \frametitle{Should I migrate to MISP Workflows}
+    I have automation in place using the API / ZMQ. Should I move to Workflows?
+    \vspace{1em}
+    \begin{itemize}
+        \item I (have/am planning to create) a curation pipeline using the API, should I port them to workflows?
+        \begin{itemize}
+            \item \textbf{No} in general, but WF can be used to start the curation process
+        \end{itemize}
+        \item What if I want to \textbf{block} some actions
+        \begin{itemize}
+            \item Put the blocking logic in the WF, the remaining outside
+        \end{itemize}
+        \item Currently, workflows with \textbf{ lots of node are not encouraged}
+        \item Bottom line is \textbf{Keep it simple}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{More ideas}
     \begin{itemize}
         \item Notification when new users join an instance
-        \item Trigger on any action generating log entries
         \item Extend existing MISP behavior: Push correlation in another system
         \item Sanity check to block publishing
+        \item Automated alerts for high-priority IOCs
+        \item Assign tasks and notify incident response team members
         \item ...
     \end{itemize}
 \end{frame}
@@ -1045,7 +1064,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
                 \begin{itemize}
                     \item New triggers?
                     \item New modules?
-                    \item ...
+                    \item What's acheivable
                 \end{itemize}
             \end{itemize}
         \end{column}
