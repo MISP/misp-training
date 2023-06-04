@@ -446,7 +446,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \begin{enumerate}
         \item Prevent event publication if \textbf{tlp:red} tag
         \item Send a mail to \texttt{admin@admin.test} about potential data leak
-        \item Otherwise, send a notification on Mattermost
+        \item Otherwise, send a notification on \textbf{Mattermost}, \textbf{MS Teams}, \textbf{Telegram}, ...
     \end{enumerate}
 \end{frame}
 
@@ -545,6 +545,19 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
         \item Created or imported by users
         \item From the \texttt{MISP/misp-workflow-blueprints} repository\footnote{\scriptsize https://github.com/MISP/misp-workflow-blueprints}
     \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Workflow blueprints}
+    \hspace*{0.9\textwidth}\includegraphics[width=32px]{pictures/blueprint-32.png}
+    \vspace*{-2em}
+    Currently, 4 blueprints available
+    \begin{itemize}
+        \item Attach the \texttt{tlp:clear} tag on elements having the \texttt{tlp:white} tag
+        \item Block actions if any attributes have the \texttt{PAP:RED} or \texttt{tlp:red} tag
+        \item Disable \texttt{to_ids} flag for existing hash in \textit{hashlookup}
+        \item Set tag based on \textit{BGP Ranking} maliciousness level
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
