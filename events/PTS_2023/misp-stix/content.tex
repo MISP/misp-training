@@ -28,11 +28,46 @@
 \begin{frame}
     \frametitle{Summary}
     \begin{itemize}
-        \item From an ocean of unknown errors...
-        \item ... To a more \& more accurate support
-        \item \emph{misp-stix} - The Holy Grail for MISP \& STIX
+        \item From an ocean of unknown errors...\linebreak $\Rightarrow$ the difficulty to parse STIX content
+        \item ... To a more \& more accurate support\linebreak $\Rightarrow$ \emph{misp-stix} - The Holy Grail for MISP \& STIX
+        \item ... And even further\linebreak $\Rightarrow$ Evolution \& improvement perspectives
         \item The magic word: \emph{interoperability}
-        \item Evolution perspectives
         \item Demo (?)
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{STIX - Quick recap}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{images/LOGO_STIX.pdf}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.45]{images/LOGO_TAXII.pdf}
+    \end{minipage}
+    \vspace{1em}
+    \begin{itemize}
+        \item \textbf{S}tructured \textbf{T}hreat \textbf{I}ntelligence E\textbf{x}pression
+        \begin{itemize}
+            \item Focused on \textbf{Threat Intelligence} exchange
+            \item 2 major versions with different formats
+            \begin{itemize}
+                \item 1.x - \emph{mostly} XML
+                \item 2.x - JSON
+            \end{itemize}
+        \end{itemize}
+        \item \textbf{T}rusted \textbf{A}utomated E\textbf{x}change of \textbf{I}ntelligence \textbf{I}nformation
+        \begin{itemize}
+            \item Exchange Protocol
+            \item Specifically designed to support the exchange of \textbf{CTI} represented in STIX
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\emph{misp-stix} - The Holy Grail for MISP \& STIX interactions}
+    \centering
+    \includegraphics[scale=0.3]{images/solution.png}\footnote{Python 3.8 required}
+    \setcounter{footnote}{0}
 \end{frame}
