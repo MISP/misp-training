@@ -66,8 +66,123 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{STIX 1.x - a tough beast to handle}
+    \centering
+    \includegraphics[scale=0.54]{images/xml.jpg}
+\end{frame}
+
+\begin{frame}
+    \frametitle{STIX 1.x - a tough beast to handle}
+    \begin{itemize}
+        \item Excessive complexity in certain advanced XML constructs
+        \begin{itemize}
+            \item Difficult to implement \& parse
+        \end{itemize}
+        \item A plethora of different objects
+        \begin{itemize}
+            \item Only a common subset of capabilities widely used
+            \item Many others poorly understood and in many cases never used 
+        \end{itemize}
+        \item Multiple ways to represent an information
+        \begin{itemize}
+            \item Challenging for interoperability
+        \end{itemize}
+        \item A majority of optional properties
+        \begin{itemize}
+            \item Parsing challenges for consumers of STIX 1 content
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{STIX 2.x - an improvement}
+    \centering
+    \includegraphics[scale=0.45]{images/json.jpg}
+\end{frame}
+
+\begin{frame}
+    \frametitle{STIX 2.x - an improvement}
+    \begin{itemize}
+        \item Lightweight \& flattened representation of the objects
+        \item More required properties
+        \begin{itemize}
+            \item Easier to parse
+        \end{itemize}
+        \item Extension definitions
+        \begin{itemize}
+            \item More flexibility
+        \end{itemize}
+        \item []
+        \item []\hspace{1em} \linebreak \hspace{1em}  \linebreak \hspace{1em}
+        \item []\hspace{1em} \linebreak \hspace{1em}  \linebreak \hspace{1em}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{STIX 2.x - the (still not perfect) improvement}
+    \begin{itemize}
+        \item Lightweight \& flattened representation of the objects
+        \item More required properties
+        \begin{itemize}
+            \item Easier to parse
+        \end{itemize}
+        \item Extension definitions
+        \begin{itemize}
+            \item More flexibility
+        \end{itemize}
+        \item []
+        \item Number of objects reduced to a set of well-understood features
+        \linebreak \faPlusCircle \hspace{0.3em} Clearer for everyone
+        \linebreak \faMinusCircle \hspace{0.3em} Some definitions lost in the process
+        \item Introduction of patterns within Indicator objects
+        \linebreak \faPlusCircle \hspace{0.3em} Ability to use different patterning languages (STIX 2.1)
+        \linebreak \faMinusCircle \hspace{0.3em} Observations and Indicators need distinct parsing
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The reality about STIX parsing}
+    \centering
+    \includegraphics[scale=0.45]{images/hell.png}
+\end{frame}
+
+\begin{frame}
     \frametitle{\emph{misp-stix} - The Holy Grail for MISP \& STIX interactions}
     \centering
     \includegraphics[scale=0.3]{images/solution.png}\footnote{Python 3.8 required}
     \setcounter{footnote}{0}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\emph{misp-stix} - The Holy Grail for MISP \& STIX interactions}
+    \begin{minipage}{0.7\textwidth}
+        \begin{itemize}
+            \item A python library \footnotemark[1]
+            \item Used in MISP
+            \begin{itemize}
+                \item Conversion only
+            \end{itemize}
+            \item Can be used as a \textbf{stand-alone} tool \footnotemark[2]
+            \begin{itemize}
+                \item Converting input file(s), saving results in output file(s)
+            \end{itemize}
+            \item Enabling automation with python code
+            \begin{itemize}
+                \item Handles both conversion and input(s)/output(s)
+                \item Supports all the available input formats
+                \begin{itemize}
+                    \item file names, JSON, PyMISP, STIX Packages or Bundles
+                \end{itemize}
+            \end{itemize}
+        \item []
+        \item A complete mapping documentation\footnotemark[3]
+        \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[scale=0.2]{images/LOGO_MISP_STIX.png}
+    \end{minipage}
+    \footnotetext[1]{https://github.com/MISP/misp-stix - https://pypi.org/project/misp-stix/}
+    \footnotetext[2]{i.e Command line}
+    \footnotetext[3]{https://github.com/MISP/misp-stix/tree/main/documentation}
 \end{frame}
