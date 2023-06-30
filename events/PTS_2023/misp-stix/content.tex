@@ -15,7 +15,7 @@
             \item []
             \item Interoperability Wizard @ CIRCL
             \item MISP core development team
-            \item STIX WG co-chair
+            \item STIX SC co-chair
             \item []
             \item \faCat \vspace{1em} \& \faCamera \vspace{1em} enthusiast
         \end{itemize}
@@ -130,13 +130,13 @@
         \begin{itemize}
             \item More flexibility
         \end{itemize}
-        \item []
         \item Number of objects reduced to a set of well-understood features
         \linebreak \faPlusCircle \hspace{0.3em} Clearer for everyone
         \linebreak \faMinusCircle \hspace{0.3em} Some definitions lost in the process
         \item Introduction of patterns within Indicator objects
         \linebreak \faPlusCircle \hspace{0.3em} Ability to use different patterning languages (STIX 2.1)
         \linebreak \faMinusCircle \hspace{0.3em} Observations and Indicators need distinct parsing
+        \item Still multiple ways to represent the same data
     \end{itemize}
 \end{frame}
 
@@ -147,9 +147,74 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Struggling with various STIX pattern creation designs}
+    \begin{itemize}
+        \item Handling the multiple ways of reprensenting the \emph{same} concept
+        \includegraphics[scale=0.3]{images/pattern1.png}
+        \item Understanding the meaning of data
+        \includegraphics[scale=0.3]{images/pattern2.png}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Struggling with various STIX pattern creation designs}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.25]{images/generate_indicators.png}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \includegraphics[scale=0.3]{images/stix2_validator.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The constant validation issues}
+    \begin{minipage}{0.7\textwidth}
+        \begin{itemize}
+            \item We want to \textbf{keep UUIDs} for referencing
+            \item []
+            \item Not everyone validates their content properly
+            \pause
+            \item []
+            \item Issues with UUIDs validation
+            \begin{itemize}
+                \item Unable to load content
+            \end{itemize}
+        \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{0.3\textwidth}
+        \includegraphics[scale=0.25]{images/two_buttons_dilemna.jpg}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{An easy fix - Making the UUIDs validation more flexible}
+    \begin{minipage}{0.7\textwidth}
+        \begin{itemize}
+            \item STIX 2 python library fork\footnotemark[1]
+            \begin{itemize}
+                \item No change on the content validation
+                \item Differs only on the UUIDs validation
+            \end{itemize}
+            $\Rightarrow$ Same UUIDs requirements on MISP \& STIX
+            \item[]
+            \item Handling the "\emph{worst}" UUIDs
+            \begin{itemize}
+                \item Generating a v5 UUID to be used as new identifier
+                \item Keeping a reference to the initial UUID
+            \end{itemize}
+        \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{0.3\textwidth}
+        \includegraphics[scale=0.25]{images/two_buttons_solution.jpg}
+    \end{minipage}
+    \footnotetext[1]{\url{https://github.com/MISP/cti-python-stix2}\hspace{1em}-\hspace{1em}\url{https://pypi.org/project/misp-lib-stix2/}}
+\end{frame}
+
+\begin{frame}
     \frametitle{\emph{misp-stix} - The Holy Grail for MISP \& STIX interactions}
     \centering
-    \includegraphics[scale=0.3]{images/solution.png}\footnote{Python 3.8 required}
+    \includegraphics[scale=0.3]{images/solution.png}\footnote{\url{https://github.com/MISP/misp-stix}\hspace{1em}-\hspace{1em}\url{https://pypi.org/project/misp-stix/}}
     \setcounter{footnote}{0}
 \end{frame}
 
@@ -157,12 +222,11 @@
     \frametitle{\emph{misp-stix} - The Holy Grail for MISP \& STIX interactions}
     \begin{minipage}{0.7\textwidth}
         \begin{itemize}
-            \item A python library \footnotemark[1]
             \item Used in MISP
             \begin{itemize}
                 \item Conversion only
             \end{itemize}
-            \item Can be used as a \textbf{stand-alone} tool \footnotemark[2]
+            \item Can be used as a \textbf{stand-alone} tool \footnotemark[1]
             \begin{itemize}
                 \item Converting input file(s), saving results in output file(s)
             \end{itemize}
@@ -175,14 +239,13 @@
                 \end{itemize}
             \end{itemize}
         \item []
-        \item A complete mapping documentation\footnotemark[3]
+        \item A complete mapping documentation\footnotemark[2]
         \end{itemize}
     \end{minipage}%
     \begin{minipage}{0.3\textwidth}
         \centering
         \includegraphics[scale=0.2]{images/LOGO_MISP_STIX.png}
     \end{minipage}
-    \footnotetext[1]{https://github.com/MISP/misp-stix - https://pypi.org/project/misp-stix/}
-    \footnotetext[2]{i.e Command line}
-    \footnotetext[3]{https://github.com/MISP/misp-stix/tree/main/documentation}
+    \footnotetext[1]{i.e Command line}
+    \footnotetext[2]{\url{https://github.com/MISP/misp-stix/tree/main/documentation}}
 \end{frame}
