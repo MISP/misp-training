@@ -168,6 +168,11 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{The unbearable weight of a massive mess}
+    \includegraphics[scale=0.28]{images/nicolas_and_pedro.png}
+\end{frame}
+
+\begin{frame}
     \frametitle{The constant validation issues}
     \begin{minipage}{0.7\textwidth}
         \begin{itemize}
@@ -212,6 +217,26 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{The infinite madness of empty references}
+    \begin{minipage}{0.5\textwidth}
+        \begin{itemize}
+            \item TAXII is made to give STIX objects
+            \item A STIX file can include any kind of information
+            \item No check on the references
+            \begin{itemize}
+                \item The TAXII server doesn't need to know
+                \item Neither does a STIX file
+            \end{itemize}
+            \item []
+            \item MISP needs to get the information from the data we ingest
+        \end{itemize}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \includegraphics[scale=0.25]{images/missing_reference.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
     \frametitle{\emph{misp-stix} - The Holy Grail for MISP \& STIX interactions}
     \centering
     \includegraphics[scale=0.3]{images/solution.png}\footnote{\url{https://github.com/MISP/misp-stix}\hspace{1em}-\hspace{1em}\url{https://pypi.org/project/misp-stix/}}
@@ -248,4 +273,57 @@
     \end{minipage}
     \footnotetext[1]{i.e Command line}
     \footnotetext[2]{\url{https://github.com/MISP/misp-stix/tree/main/documentation}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Magic Word}
+    \centering
+    \includegraphics[scale=0.41]{images/magic_word.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Continuous work}
+    \begin{center}
+        \includegraphics[scale=0.2]{images/oasis.png}
+    \end{center}
+    \begin{itemize}
+        \item Members of the OASIS CTI TC
+        \begin{itemize}
+            \item Co-chairing
+            \begin{itemize}
+                \item Supported changes to make the TC go for the open source way
+            \end{itemize}
+            \item Participating to the development process
+            \begin{itemize}
+                \item Working Groups
+            \end{itemize}
+            \item More visibility \& easier to contribute
+        \end{itemize}
+        \item Collaboration with STIX users/producers
+        \begin{itemize}
+            \item Get feedback \& provide support
+            \item Fill the mapping gaps
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Thank you for your attention}
+    \begin{itemize}
+        \item How to report issues / ask questions?
+        \begin{itemize}
+            \item {\bf\url{https://github.com/MISP/misp-stix/issues}}
+            \item {\url{https://github.com/MISP/MISP/issues}}
+        \end{itemize}
+        \item More information
+        \begin{itemize}
+            \item {\bf\url{https://github.com/MISP/misp-stix/tree/main/documentation}}
+            \item \url{https://www.misp-project.org/blog/}
+        \end{itemize}
+        \item Follow updates on MISP
+        \begin{itemize}
+            \item \faMastodon : \url{https://misp-community.org/@misp}
+            \item \faTwitter : \url{https://twitter.com/MISPProject}
+        \end{itemize}
+    \end{itemize}
 \end{frame}
