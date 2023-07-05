@@ -16,6 +16,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 | ------------ | ----------- |
 | [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tree/main/0-misp-introduction-to-information-sharing) |
 | [MISP Data model overview (quick)](https://raw.githubusercontent.com/MISP/misp-training/477bdc9c71f77abd572f11c98f3ac8ecabe54310/complementary/other-slides/a.11.a-misp-data-model-overview.pdf) | |
+| [MISP Ten Commandments](https://github.com/MISP/misp-training/blob/main/complementary/other-slides/MISP%2010%20Commandments%20-%20Recommendations%20and%20Best%20Practices%20when%20encoding%20data.pdf)||
 | [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1-misp-usage) |
 | [1.2-misp-integration](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2-misp-integration) |
 | [1.1-misp-viper-integration](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.1-misp-viper-integration) |
@@ -72,6 +73,8 @@ given to the materials. We welcome contributions in order to improve the trainin
 
 Sample videos which can be used to understand how the training materials are used in companion with a live MISP demo instance.
 
+- [MISP Workflow](https://www.youtube.com/watch?v=OyLE2g4zii0) - 16th December 2022
+- [MISP Best Practices for encoding threat intelligence (3 hours - online)](https://www.youtube.com/watch?v=JIeiwzY7Fvs) - 15th December 2022
 - [MISP Training Administration and Deployment of MISP software](https://youtu.be/sIHTRIwF-Mk) - 14th September 2022
 - [MISP Training Threat Intelligence Introduction for Analysts and Security Professional](https://youtu.be/sb36MMRTtLM) - 13th September 2022 
 - [Fundamentals MISP given FIRSTdotOrg 2021 Virtual Symposium African and Arab regions](https://www.youtube.com/watch?v=00jq7Gbqdz8) - 18th December 2021
