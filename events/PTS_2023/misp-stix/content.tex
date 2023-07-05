@@ -28,11 +28,12 @@
 \begin{frame}
     \frametitle{Summary}
     \begin{itemize}
+        \item A quick recap
         \item From an ocean of unknown errors...\linebreak $\Rightarrow$ the difficulty to parse STIX content
         \item ... To a more \& more accurate support\linebreak $\Rightarrow$ \emph{misp-stix} - The Holy Grail for MISP \& STIX
         \item ... And even further\linebreak $\Rightarrow$ Evolution \& improvement perspectives
         \item The magic word: \emph{interoperability}
-        \item Demo (?)
+        \item Examples
     \end{itemize}
 \end{frame}
 
@@ -53,8 +54,8 @@
             \item Focused on \textbf{Threat Intelligence} exchange
             \item 2 major versions with different formats
             \begin{itemize}
-                \item 1.x - \emph{mostly} XML
-                \item 2.x - JSON
+                \item 1.x - \emph{mainly} XML
+                \item 2.x - \emph{mostly} JSON
             \end{itemize}
         \end{itemize}
         \item \textbf{T}rusted \textbf{A}utomated E\textbf{x}change of \textbf{I}ntelligence \textbf{I}nformation
@@ -78,16 +79,16 @@
         \begin{itemize}
             \item Difficult to implement \& parse
         \end{itemize}
+        \item Multiple ways to represent information
+        \begin{itemize}
+            \item Challenging for interoperability
+        \end{itemize}
         \item A plethora of different objects
         \begin{itemize}
             \item Only a common subset of capabilities widely used
             \item Many others poorly understood and in many cases never used 
         \end{itemize}
-        \item Multiple ways to represent an information
-        \begin{itemize}
-            \item Challenging for interoperability
-        \end{itemize}
-        \item A majority of optional properties
+        \item A majority of properties are optional
         \begin{itemize}
             \item Parsing challenges for consumers of STIX 1 content
         \end{itemize}
@@ -135,7 +136,7 @@
         \linebreak \faMinusCircle \hspace{0.3em} Some definitions lost in the process
         \item Introduction of patterns within Indicator objects
         \linebreak \faPlusCircle \hspace{0.3em} Ability to use different patterning languages (STIX 2.1)
-        \linebreak \faMinusCircle \hspace{0.3em} Observations and Indicators need distinct parsing
+        \linebreak \faMinusCircle \hspace{0.3em} Observations and Indicators require alternate parsing implementations
         \item Still multiple ways to represent the same data
     \end{itemize}
 \end{frame}
@@ -201,11 +202,11 @@
                 \item No change on the content validation
                 \item Differs only on the UUIDs validation
             \end{itemize}
-            $\Rightarrow$ Same UUIDs requirements on MISP \& STIX
+            $\Rightarrow$ Same UUID requirements on MISP \& STIX
             \item[]
             \item Handling the "\emph{worst}" UUIDs
             \begin{itemize}
-                \item Generating a v5 UUID to be used as new identifier
+                \item Generating a v5 UUID to be used as the new identifier
                 \item Keeping a reference to the initial UUID
             \end{itemize}
         \end{itemize}
@@ -220,8 +221,8 @@
     \frametitle{The infinite madness of empty references}
     \begin{minipage}{0.5\textwidth}
         \begin{itemize}
-            \item TAXII is made to give STIX objects
-            \item A STIX file can include any kind of information
+            \item TAXII is designed to give STIX objects
+            \item A STIX file can include a wide variety of information
             \item No check on the references
             \begin{itemize}
                 \item The TAXII server doesn't need to know
@@ -276,12 +277,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{The Magic Word}
-    \centering
-    \includegraphics[scale=0.41]{images/magic_word.png}
-\end{frame}
-
-\begin{frame}
     \frametitle{Continuous work}
     \begin{center}
         \includegraphics[scale=0.2]{images/oasis.png}
@@ -304,6 +299,26 @@
             \item Get feedback \& provide support
             \item Fill the mapping gaps
         \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Magic Word}
+    \centering
+    \includegraphics[scale=0.41]{images/magic_word.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Examples - Command line help}
+    \includegraphics[scale=0.16]{images/command_line_help.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Examples - Command line usage}
+    \begin{itemize}
+        \item Conversion of STIX files
+        \includegraphics[scale=0.13]{images/stix_import_results.png}
+        \item The MISP OSINT feed converted in STIX 2.1 format: \url{https://codeberg.org/adulau/misp-circl-feed}
     \end{itemize}
 \end{frame}
 
