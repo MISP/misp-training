@@ -1,0 +1,16 @@
+\frametitle{Getting started with workflows (4)}
+    If you wish to use action modules from \texttt{misp-module}, make sure to have:
+    \begin{itemize}
+        \item The latest update of \texttt{misp-module}
+        \begin{itemize}
+            \item There should be an \texttt{action\_mod} module type in \url{misp-modules/misp\_modules/modules}
+        \end{itemize}
+        \item Restarted your \texttt{misp-module} application
+    \end{itemize}
+    \vspace{1em}
+    \begin{lstlisting}[language=text,firstnumber=1]
+# This command should show all `action` modules
+$ curl -s http://127.0.0.1:6666/modules | \
+jq '.[] | select(.meta."module-type"[] | contains("action")) |
+{name: .name, version: .meta.version}'
+    \end{lstlisting}
