@@ -46,9 +46,6 @@
 \begin{frame}
     \frametitle{
         \huge
-        \linebreak
-        \linebreak
-        \linebreak
         MISP API / PyMISP - Fundamentals
         \vspace{1em}
     }
@@ -69,9 +66,6 @@
 \begin{frame}
     \frametitle{
         \huge
-        \linebreak
-        \linebreak
-        \linebreak
         PubSub channels (ZeroMQ) - Fundamentals
         \vspace{1em}
     }
@@ -95,9 +89,6 @@
 \begin{frame}
     \frametitle{
         \huge
-        \linebreak
-        \linebreak
-        \linebreak
         MISP Workflows - Fundamentals
         \vspace{1em}
     }
@@ -200,9 +191,6 @@
 \begin{frame}
     \frametitle{
         \huge
-        \linebreak
-        \linebreak
-        \linebreak
         Workflow - Fundamentals
         \vspace{1em}
     }
@@ -461,9 +449,6 @@
 \begin{frame}
     \frametitle{
         \huge
-        \linebreak
-        \linebreak
-        \linebreak
         Workflow - Getting started
         \vspace{1em}
     }
@@ -555,9 +540,6 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 \begin{frame}
     \frametitle{
         \huge
-        \linebreak
-        \linebreak
-        \linebreak
         Considerations when working with workflows
         \vspace{1em}
     }
@@ -621,9 +603,6 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 \begin{frame}
     \frametitle{
         \huge
-        \linebreak
-        \linebreak
-        \linebreak
         Advanced usage
         \vspace{1em}
     }
@@ -855,6 +834,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \end{enumerate}
 \end{frame}
 
+
 \begin{frame}[fragile]
     \frametitle{Hash path filtering - Exercise (4)}
 
@@ -882,7 +862,39 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \begin{enumerate}
         \setcounter{enumi}{3}
         \item Access all Tags attached to Attributes and from the Event
-        \pause
+        \begin{itemize}
+            \item Hint: Use \texttt{\bf \_allTags} to access {\bf all} tags
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Hash path filtering - Exercise (4)}
+
+\begin{lstlisting}[language=javascript,firstnumber=1]
+{
+    "Event": {
+        "Tag": [
+            {
+                "name": "tlp:green", ...
+            }
+        ], ...
+        "Attribute": [
+            {
+                "value": "8.8.8.8",
+                "Tag": [
+                    {
+                        "name": "PAP:AMBER", ...
+                    }
+                ], ...
+            }
+        ],
+    }
+}
+\end{lstlisting}
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+        \item Access all Tags attached to Attributes and from the Event
         \begin{itemize}
             \item \texttt{Event.Attribute.\{n\}.\_allTags.\{n\}.name}
         \end{itemize}
@@ -1051,9 +1063,6 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 \begin{frame}
     \frametitle{
         \huge
-        \linebreak
-        \linebreak
-        \linebreak
         Extending the system
         \vspace{1em}
     }
