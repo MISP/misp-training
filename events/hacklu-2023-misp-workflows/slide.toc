@@ -1,0 +1,2 @@
+\beamer@sectionintoc {1}{Exercices}{59}{0}{1}
+\beamer@sectionintoc {2}{Debugging}{61}{0}{2}

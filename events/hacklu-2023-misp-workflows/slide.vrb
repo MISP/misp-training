@@ -1,0 +1,30 @@
+\frametitle{Hash path filtering - Exercise (4)}
+
+\begin{lstlisting}[language=javascript,firstnumber=1]
+{
+    "Event": {
+        "Tag": [...],
+        "Attribute": [
+            {
+                "value": "8.8.8.8",
+                "_allTags": [
+                    {
+                        "name": "tlp:green",
+                        "inherited": true, ...
+                    },
+                    {
+                        "name": "PAP:AMBER",
+                        "inherited": false, ...
+                    }
+                ],
+            }
+        ...
+}
+\end{lstlisting}
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+        \item Access all Tags attached to Attributes and from the Event
+        \begin{itemize}
+            \item \texttt{Event.Attribute.\{n\}.\_allTags.\{n\}.name}
+        \end{itemize}
+    \end{enumerate}
