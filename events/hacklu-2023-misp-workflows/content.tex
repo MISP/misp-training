@@ -606,9 +606,10 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \end{center}
     \pause
     \vspace{1em}
-    All Attributes get their \texttt{to\_ids} turned off.\\
+    \underline{\bf All Attributes} get their \texttt{to\_ids} turned off.\\
     \vspace{1em}
-    How could we force that action only on Attribute of type \texttt{comment}?
+    {\Large \faIcon{question-circle}} How could we force that action, only on Attribute of type \texttt{comment}?    
+    \pause
     \begin{center}
         $\rightarrow$ Hash path filtering!
     \end{center}
@@ -616,7 +617,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 
 \begin{frame}[fragile]
     \frametitle{Hash path filtering}
-    Hash path filtering can be used to \textbf{filter} data \textbf{on the node} it is passed to or on the \textbf{execution path}.
+    Hash path filtering can be used to \textbf{filter} data \textbf{on a node} or on the \textbf{execution path}.
     \begin{center}
         \includegraphics[width=0.58\linewidth]{pictures/node-filtering.png}
         \includegraphics[width=0.4\linewidth]{pictures/node-generic-filter.png}
