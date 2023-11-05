@@ -43,7 +43,7 @@
             \item End of Security Support in {\bf June 2021}
             \item Maintained fork github.com:MISP/cakephp.git
         \end{itemize}
-        \item CakePHP supports PHP version {\bf <7.4}
+        \item CakePHP supports PHP version {\bf <=7.4}
         \begin{itemize}
             \item End of Security Support in {\bf November 2022}
         \end{itemize}
@@ -61,8 +61,8 @@
     \vspace{1em}
     \begin{minipage}{0.7\textwidth}
         \begin{itemize}
-            \item MISP catters to a wide range of use cases
-            \item Lots of features clutter the interface
+            \item MISP supports a wide range of use cases...
+            \item ... meaning loads of feature-clutter the interface
             \item All options visible regardless of the user profile
             \item Lack of coherent page navigation
         \end{itemize}
@@ -81,13 +81,15 @@
     \frametitle{Shortcomings due to initial design choices}
     To list a few..
     \begin{itemize}
-        \item Bad database structure
+        \item Sub-optimal database structure
+        \item Start with something small, build it out has its disadvantages
         \begin{itemize}
             \item Attribute \texttt{type}, \texttt{value} not a first-class citizen
             \item Logs all in one place
-            \item Indexing??
+            \item Indexing rework (performance and moving validation to the DB)
         \end{itemize}
-        \item Files
+        \item Confusing mess of multiple graphing interfaces
+        \item Files - Especially tricky with dockerised and load balanced setups
         \item Tagging
     \end{itemize}
     \begin{center}
@@ -107,6 +109,7 @@
             \item Database updates
             \item Front-end libraries (Bootstrap, Graphing, ...)
             \item Background jobs \& Scheduled tasks
+            \item Purging old libraries
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -116,9 +119,9 @@
     \begin{minipage}{0.7\textwidth}
         \begin{itemize}
             \item Populate using the templating system
-        \item Deprecated export functionalities
-        \item Discussion / Posts
-        \item $\cdots$
+            \item Deprecated export functionalities
+            \item Discussion / Posts
+            \item $\cdots$
         \end{itemize}
     \end{minipage}%
     \begin{minipage}{0.3\textwidth}
@@ -129,27 +132,28 @@
     
 \end{frame}
 
-\section{Step I - Preparing the ground}
+\section{Step I - Preparing the grounds}
 \begin{frame}
-    \frametitle{Step I - Preparing the ground}
+    \frametitle{Step I - Preparing the grounds}
     \begin{itemize}
         \item Refactoring the codebase for improved portability using factories
         \begin{itemize}
             \item Framework-agnostic
             \item Reusable code for front and back-end
+            \item Extracting and encapsulating specialised functionalities into libraries
         \end{itemize}
     \end{itemize}
 
-    \vspace{2em}
+    \vspace{1em}
     \begin{minipage}{0.85\textwidth}
         \begin{itemize}
             \item Setting the stage with Cerebrate
             \begin{itemize}
-                \item Development started in May 2020
-                \item Application built on top of MISP ported libraries
+                \item Dev started in May 2020, built on MISP3's stack
+                \item Application built on top of ported MISP libraries
                 \item New UI laying the foundation for MISP 3
                 \item Streamlined integration of new features into MISP3
-                \vspace{-1em}
+                \vspace{-0.5em}
                 \begin{itemize}
                     \item Tagging, Inbox system, Settings, $\cdots$
                 \end{itemize}
@@ -220,7 +224,7 @@
     \begin{minipage}{0.62\textwidth}
         \begin{itemize}
             \item Around \textbf{27 tables} have been moved
-            \item Some partially, other completely
+            \item Some partially, others completely
         \end{itemize}
     \end{minipage}%
     \begin{minipage}{0.33\textwidth}
@@ -241,7 +245,7 @@
         \includegraphics[width=1\linewidth]{pictures/catering-to-2.4.png}
     \end{center}
     \begin{itemize}
-        \item Even while catering and improving \texttt{2.4}
+        \item Even while supporting and improving \texttt{2.4}
     \end{itemize}
 \end{frame}
 
@@ -334,9 +338,10 @@
     \begin{itemize}
         \item Indicator centric perspective
         \begin{itemize}
-            \item Unified view of everything we know about the Indicator
-            \item Allows to take better decisions
+            \item Unified view of everything we know about a given Indicator
+            \item Allows us to take better decisions
             \item Enable users to manage their IoC working set
+            \item Start an investigation more easily from a single indicator
         \end{itemize}
     \end{itemize}
     \begin{center}
@@ -351,7 +356,8 @@
         \begin{itemize}
             \item Code deduplication
             \item Streamlined way to search for data
-            \item Translation layer to known format
+            \item Opening up the full power of the API searches to UI users
+            \item Translation layer for the deprecated endpoints
         \end{itemize}
     \end{itemize}
     \begin{center}
@@ -365,7 +371,8 @@
         \item Refactor the Event view
         \begin{itemize}
             \item Key Elements at first glance
-            \item Emphasis on the context (Taxonomies, Galaxies, Correlation, $\cdot$)
+            \item Emphasis on the context (Insights, Taxonomies, Galaxies, Correlation, $\cdot$)
+            \item Massive performance gains by moving to the composition of separate atomic endpoints
             \item Sneak peak ? \faIcon{smile}
         \end{itemize}
     \end{itemize}
@@ -397,8 +404,8 @@
 \begin{frame}
     \frametitle{API Compatibility}
     \begin{itemize}
-        \item The aim is to achieve a \textbf{near 100\% match} with the old API
-        \item Partially due to functionalities removed as a result of deprecation.
+        \item The aim is to achieve a \textbf{near 100\% compatibility} with the old API
+        \item "Near" only due to the functionalities removed as a result of deprecation.
         \item Strategy: Mapping with a translation layer
     \end{itemize}
     \begin{center}
@@ -422,7 +429,7 @@
         \end{itemize}
         \item MISP \textbf{3} $\rightarrow$ \textbf{2.4}
         \begin{itemize}
-            \item Lossy when sharing new datapoint
+            \item Lossy when sharing new types of datapoints
             \item E.g: Tags on Objects
         \end{itemize}
     \end{itemize}
@@ -453,10 +460,10 @@
         \begin{itemize}
             \item No one-click update; manual script execution required
             \item Migration tools will be included in MISP 3 to help you
-            \item Allow us to make underlaying changes such as
+            \item This allows us to make underlaying changes such as
             \begin{itemize}
                 \item Database changes
-                \item Libraries changes (e.g supervisor in favor of cake-resque)
+                \item Libraries changes (e.g supervisor in favour of cake-resque)
             \end{itemize}
         \end{itemize}
     \end{itemize}
@@ -466,7 +473,7 @@
     \frametitle{Installation for new instances}
     \begin{minipage}{0.52\textwidth}
         \begin{itemize}
-            \item \textbf{Simplified} installation based on package manager
+            \item \textbf{Simplified} installation based on package managers
             \item Upstream Docker installer
             \item OS targerts: \textbf{Ubuntu} and \textbf{RHEL}
         \end{itemize}
@@ -479,7 +486,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Our expectations from the FIRST community}
+    \frametitle{Our hopes and expectations for the FIRST community}
     \begin{itemize}
         \item We will list features marked for culling
         \begin{itemize}
