@@ -33,7 +33,7 @@
 
 \section{Why MISP 3?}
 \begin{frame}
-    \frametitle{An outdated version of the framework}
+    \frametitle{> An outdated version of the framework}
     \begin{center}
         \includegraphics[width=0.3\linewidth]{pictures/cakephp.png}
     \end{center}
@@ -57,7 +57,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Tacked on mechanics}
+    \frametitle{> Tacked on mechanics}
     \vspace{1em}
     \begin{minipage}{0.7\textwidth}
         \begin{itemize}
@@ -78,7 +78,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Shortcomings due to initial design choices}
+    \frametitle{> Shortcomings due to initial design choices}
     To list a few..
     \begin{itemize}
         \item Sub-optimal database structure
@@ -98,7 +98,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{The \underline{ongoing} plan forward}
+    \frametitle{> The \underline{ongoing} plan forward}
     \begin{itemize}
         \item Port of the codebase to a new stack
         \begin{itemize}
@@ -115,7 +115,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Pruning unused / dead end functionalities}
+    \frametitle{> Pruning unused / dead end functionalities}
     \begin{minipage}{0.7\textwidth}
         \begin{itemize}
             \item Populate using the templating system
@@ -135,36 +135,32 @@
 \section{Step I - Preparing the grounds}
 \begin{frame}
     \frametitle{Step I - Preparing the grounds}
+    Refactoring the codebase for improved portability using factories
     \begin{itemize}
-        \item Refactoring the codebase for improved portability using factories
+        \item Framework-agnostic
+        \item Reusable code for front and back-end
+        \item Extracting and encapsulating specialised functionalities into libraries
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Step I - Preparing the grounds}
+    \vspace{-2em}
+    \begin{center}
+        \includegraphics[width=0.2\linewidth]{pictures/cerebrate.png}
+    \end{center}
+    Setting the stage with Cerebrate
+    \begin{itemize}
+        \item Dev started in May 2020, built on MISP3's stack
+        \item Application built on top of ported MISP libraries
+        \item New UI laying the foundation for MISP 3
+        \item Streamlined integration of new features into MISP3
+        \vspace{-0.5em}
         \begin{itemize}
-            \item Framework-agnostic
-            \item Reusable code for front and back-end
-            \item Extracting and encapsulating specialised functionalities into libraries
+            \item Tagging, Inbox system, Settings, $\cdots$
         \end{itemize}
     \end{itemize}
-
-    \vspace{1em}
-    \begin{minipage}{0.85\textwidth}
-        \begin{itemize}
-            \item Setting the stage with Cerebrate
-            \begin{itemize}
-                \item Dev started in May 2020, built on MISP3's stack
-                \item Application built on top of ported MISP libraries
-                \item New UI laying the foundation for MISP 3
-                \item Streamlined integration of new features into MISP3
-                \vspace{-0.5em}
-                \begin{itemize}
-                    \item Tagging, Inbox system, Settings, $\cdots$
-                \end{itemize}
-            \end{itemize}
-        \end{itemize}
-    \end{minipage}%
-    \begin{minipage}{0.15\textwidth}
-        \begin{center}
-            \;\includegraphics[width=0.8\linewidth]{pictures/cerebrate.png}
-        \end{center}
-    \end{minipage}
 \end{frame}
 
 \begin{frame}
@@ -178,14 +174,14 @@
 
 \section{Step II - Porting the codebase}
 \begin{frame}
-    \frametitle{Step II - Roadmap for a 3-wave porting}
+    \frametitle{> Step II - Roadmap for a 3-wave porting}
     \begin{center}
         \includegraphics[width=0.99\linewidth]{pictures/misp3-github-project.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Step II - Roadmap for a 3-wave porting}
+    \frametitle{> Step II - Roadmap for a 3-wave porting}
     \begin{itemize}
         \setlength\itemsep{1em}
         \item[] \textbf{\color{main}Wave 1} Least complex/inter-connected models
@@ -204,7 +200,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Step II - Test driven development}
+    \frametitle{> Step II - Test driven development}
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/phpunit.png}
     \end{center}
@@ -216,7 +212,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Codebase Migration: Where We Stand I}
+    \frametitle{> Codebase Migration: Where We Stand I}
     Migration officially started in January 2023
     \begin{center}
         \includegraphics[width=1\linewidth]{pictures/status-2023-10-03.png}
@@ -234,7 +230,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Codebase Migration: Where We Stand II}
+    \frametitle{> Codebase Migration: Where We Stand II}
     \begin{center}
         \includegraphics[width=1\linewidth]{pictures/ramping-up.png}
     \end{center}
@@ -249,6 +245,7 @@
     \end{itemize}
 \end{frame}
 
+\section{Look and Feel}
 \begin{frame}
     \frametitle{Codebase Migration: Look and Feel I}
     \begin{itemize}
@@ -320,7 +317,7 @@
 
 \section{Step III - The TODOs}
 \begin{frame}
-    \frametitle{Redefine how we interact with data I}
+    \frametitle{> Redefine how we interact with data I}
     \begin{itemize}
         \item Indicator centric perspective
         \begin{itemize}
@@ -336,7 +333,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Redefine how we interact with data II}
+    \frametitle{> Redefine how we interact with data II}
     \begin{itemize}
         \item Unified search mechanics
         \begin{itemize}
@@ -352,7 +349,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Redefine how we interact with data III}
+    \frametitle{> Redefine how we interact with data III}
     \begin{itemize}
         \item Refactor the Event view
         \begin{itemize}
@@ -374,7 +371,7 @@
 
 \section{Considerations}
 \begin{frame}
-    \frametitle{MISP Core format}
+    \frametitle{> MISP Core format}
     \vspace{-5em}
     \begin{center}
         \includegraphics[width=0.35\linewidth]{pictures/misp-standard.png}
@@ -388,7 +385,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{API Compatibility}
+    \frametitle{> API Compatibility}
     \begin{itemize}
         \item The aim is to achieve a \textbf{near 100\% compatibility} with the old API
         \item "Near" only due to the functionalities removed as a result of deprecation.
@@ -400,7 +397,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Synchronisation compatibility}
+    \frametitle{> Synchronisation compatibility}
     \begin{itemize}
         \item API Compatibility means Synchronisation compatibility
         \item MISP 3 servers will be able to sync with MISP 2.4 and vice versa
@@ -422,7 +419,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Support for MISP 2.4}
+    \frametitle{> Support for MISP 2.4}
     \vspace{-1em}
     \begin{center}
         \includegraphics[width=0.7\linewidth]{pictures/support-for-2.jpeg}
@@ -438,27 +435,23 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Migration support for 2.4 $\rightarrow$ 3}
+    \frametitle{> Migration support for 2.4 $\rightarrow$ 3}
     \begin{center}
-        \includegraphics[width=0.35\linewidth]{pictures/update}
+        \includegraphics[width=0.40\linewidth]{pictures/update}
     \end{center}
     \begin{itemize}
-        \item MISP 2.4 will be \textbf{supported for a limited time}
-        \item \textbf{6 months} support post MISP 3 release
+        \item No one-click update; manual script execution required
+        \item Migration tools will be included in MISP 3 to help you
+        \item This allows us to make underlaying changes such as
         \begin{itemize}
-            \item No one-click update; manual script execution required
-            \item Migration tools will be included in MISP 3 to help you
-            \item This allows us to make underlaying changes such as
-            \begin{itemize}
-                \item Database changes
-                \item Libraries changes (e.g supervisor in favour of cake-resque)
-            \end{itemize}
+            \item Database changes
+            \item Libraries changes (e.g supervisor in favour of cake-resque)
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Installation for new instances}
+    \frametitle{> Installation for new instances}
     \begin{minipage}{0.52\textwidth}
         \begin{itemize}
             \item \textbf{Simplified} installation based on package managers
@@ -480,7 +473,10 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Our hopes and expectations for the FIRST community}
+    \frametitle{> Our hopes and expectations for the FIRST community}
+    \begin{center}
+        \includegraphics[width=0.50\linewidth]{pictures/apes-together-strong.jpeg}
+    \end{center}
     \begin{itemize}
         \item We will list features marked for culling
         \begin{itemize}
