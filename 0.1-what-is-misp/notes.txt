@@ -1,0 +1,50 @@
+What is MISP?
+
+# SUBSECTION 1: intro
+
+## what is MISP?
+- tisp
+- oss
+- ecosystem of tools and libraries
+- a set of formats
+
+## Who are we and why does CIRCL develop it?
+- national CSIRT
+- central tool for our activities
+  - information dissemination
+  - incident handling
+  - collaboration
+  - data fusion
+
+## How does a TISP such as MISP do?
+- graph showing the main functionalities
+
+
+# SUBSECTION 2: ingestion
+
+## Manual data creation
+
+## Synchronisation from other communities
+
+## Feed ingestion
+
+## Ingestion from tools / sensors
+
+
+# SUBSECTION 3: managing data and collaboration
+
+## 
+
+
+# SUBSECTION 4: Dissemination
+
+## Synchronisation
+## Feed generation
+## Automation
+## dashboarding
+## Reporting
+
+
+
+
+# 
