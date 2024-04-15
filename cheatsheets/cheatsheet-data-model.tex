@@ -137,3 +137,55 @@
             \end{itemize}
         }
 \end{multicols*}
+
+\newpage
+
+\begin{multicols*}{3}
+    % Analyst Note
+    \cheatbox[\faicon{sticky-note}]
+        [Share and add an analysis to any MISP data]
+        [Describe information about specific details, annotate elements]
+        [\distributable \synchronisable]
+        [Text element that can be attached to many element]
+        {\linkdest{note}Analyst Notes}
+        {
+            $\blacktriangleright$ Any user can attach \notes to data they don't own.
+            For example: \events, \attributes, \clusters, $\cdots$\\
+            $\blacktriangleright$ The note is actually attached to the target's UUID
+        }
+
+    % Analyst Opinion
+    \cheatbox[\faicon{gavel}]
+        [Share and add an opinion to any MISP data]
+        [Provide feedback to third-parties, Coordinate and Collaborate]
+        [\distributable \synchronisable]
+        [Text element with a numerical opinion that can be attached to many element]
+        {\linkdest{opinion}Analyst Opinions}
+        {
+            $\blacktriangleright$ Basically the same as a \note\\
+            $\blacktriangleright$ The numerical value of the \opinion is $\in [0, 100]$. where $50$ is the neutral point. Any values $<50$ are considered negatives, values $>50$ are considered positives.
+        }
+
+    % Analyst Relationship
+    \cheatbox[\faicon{arrow-up}]
+        [Create a relationship between elements]
+        [Manually create correlation link, add similarities]
+        [\distributable \synchronisable]
+        [Link between two entities using a verb]
+        {\linkdest{opinion}Analyst Relationships}
+        {
+            $\blacktriangleright$ Basically the same as a \note but includes the target element\\
+            $\blacktriangleright$ Example could be an \event $\rightarrow$ \event relationship where one is \textit{Suspected to be part of the same campaign based on HUMINT sources}
+        }
+
+    % Element Collection
+    \cheatbox[\faicon{object-group}]
+        [Allow groupping multiple elements into a single collection]
+        [Grouping \events together if they are part of the same campaing]
+        [\distributable]
+        [Group element into collection]
+        {\linkdest{collection}Element Collection}
+        {
+        }
+
+\end{multicols*}
