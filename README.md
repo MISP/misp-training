@@ -64,6 +64,7 @@ given to the materials. We welcome contributions in order to improve the trainin
 - [MISP Book](https://github.com/MISP/misp-book/) - [PDF](https://www.circl.lu/doc/misp/book.pdf) [ePub](https://www.circl.lu/doc/misp/book.epub) [Kindle mobi](https://www.circl.lu/doc/misp/book.mobi) [HTML](https://www.circl.lu/doc/misp/)
 - [Best Practices in Threat Intelligence](https://github.com/MISP/best-practices-in-threat-intelligence) [PDF](https://www.misp-project.org/best-practices-in-threat-intelligence.pdf) [HTML](https://www.misp-project.org/best-practices-in-threat-intelligence.html)
 - [MISP Galaxy (HTML)](https://www.misp-project.org/galaxy.html) - [PDF](https://www.misp-project.org/galaxy.pdf)
+- [MISP Galaxy dedicated website](https://www.misp-galaxy.org/)
 - [MISP Taxonomies (HTML)](https://www.misp-project.org/taxonomies.html) - [PDF](https://www.misp-project.org/taxonomies.pdf)
 - [MISP Objects template (HTML)](https://www.misp-project.org/objects.html) - [PDF](https://www.misp-project.org/objects.pdf)
 - [Guidelines to setting up an information sharing community such as an ISAC or ISAO](https://github.com/MISP/misp-compliance/blob/master/setting-up-ISACs/guidelines_to_set-up_an_ISAC.md) - [PDF](https://www.x-isac.org/assets/images/guidelines_to_set-up_an_ISAC.pdf)
