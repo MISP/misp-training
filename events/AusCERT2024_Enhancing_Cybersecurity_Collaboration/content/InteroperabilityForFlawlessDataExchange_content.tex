@@ -1,0 +1,183 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Plan for this session}
+	\begin{itemize}
+		\item Standards
+        \begin{itemize}
+            \item Generic format
+            \item Support of focused specific formats (Yara, STIX, ...)
+        \end{itemize}
+		\item Interoperability mechanisms
+		\begin{itemize}
+            \item import/export modules
+            \item APIs
+        \end{itemize}
+        \item Data feeding mechanisms
+        \begin{itemize}
+            \item Filtered APIs
+            \item Message queues
+            \item Feed generation
+            \item syncing / caching
+        \end{itemize}
+        \item Workflows
+        \begin{itemize}
+            \item Additional filtering on data
+        \end{itemize}
+	\end{itemize}
+\end{frame}
+
+\section{A generic Data Format}
+
+\begin{frame}
+    \frametitle{MISP standard format}
+    \begin{itemize}
+        \item \textbf{JSON} format
+        \item Designed for \textbf{flexibility} and \textbf{extensibility}
+        \item []
+        \item A combination of meta-models with \textbf{generic field names} to describe data structures
+        \begin{itemize}
+            \item Flexible to allow the description of any kind of information in a structured manner
+            \item Adaptable to easily extend the format to new use-cases
+        \end{itemize}
+        \item []
+        \item Ensuring \textbf{interoperability} with existing MISP software and other Threat Intelligence Platforms and tools
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP standard format}
+    \begin{itemize}
+        \item Events as simple containers for embedded information
+        \begin{itemize}
+            \item Can be an incident, a security analysis, a threat intelligence report, or anything else
+            \item No semantic meaning attached to the event itself
+            \item Meaning of an Event only \textbf{depends on the embedded information}
+        \end{itemize}
+        \item []
+        \item Attributes as the granular pieces of information to describe IoCs
+        \begin{itemize}
+            \item Made up of a \textbf{category} - \textbf{type} - \textbf{value} triplet
+            \item Category and type give meaning to the value
+            \item Difference between IoCs and observed data relies on a flag
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP object templates}
+    \begin{itemize}
+        \item \textbf{Simple containers} grouping MISP Attributes to describe more complex data points
+        \begin{itemize}
+            \item JSON format with generic meta information, such as the \texttt{name} and \texttt{meta-category}
+            \item The meaning of each Attribute within the object is defined by the \texttt{object relation}
+        \end{itemize}
+        \item A generic templating system
+        \begin{itemize}
+            \item Commonly used templates are provided by default
+            \item Easily \textbf{extensible} to new use-cases
+            \item Users can create \textbf{their own templates}
+        \end{itemize}
+        \item Include a vocabulary to describe the various \textbf{inter object and object to attribute relationships}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Taxonomies and Galaxies}
+    \begin{itemize}
+        \item Taxonomies are ensuring the \textbf{consistency} of the tags used in MISP
+        \begin{itemize}
+            \item Providing a \textbf{global classification} of data
+            \item \textbf{Reused by other tools} interacting with MISP
+        \end{itemize}
+        \item []
+        \item MISP Galaxies provide a way to attach \textbf{more complex structures} to MISP data
+        \begin{itemize}
+            \item They basically are tags with meta information
+            \item Describing known threat actors, malware, techniques or other collections of \textbf{contextual information}
+            \item MISP uses the tag name derived from the Galaxy Cluster
+            \item Support for \textbf{custom} Galaxy Clusters
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{The support of focused specific formats}
+
+\begin{frame}
+    \frametitle{Supporting several patterning languages \& \\ signature formats}
+    \begin{itemize}
+        \item Including:
+        \begin{itemize}
+            \item Yara \& Sigma signatures
+            \item Snort / Suricata \& Zeek (previously Bro) rules
+            \item STIX patterns
+        \end{itemize}
+        \item []
+        \item Each of these formats is a \textbf{specific attribute type} in MISP
+        \item Given rules, patterns and signatures can be extracted from MISP and \textbf{used to feed the respective tools}
+        \item Provides information on how data has been detected/extracted in addition to the actual data
+    \end{itemize}
+\end{frame}
+
+\section{Several automation tools to \\ support interoperability}
+
+\begin{frame}
+    \frametitle{RESTfull APIs / PyMISP}
+    \begin{itemize}
+        \item Export \textbf{data collections} from MISP
+        \begin{itemize}
+            \item Enabled for several data structures - Events, Attributes, Galaxies, etc.
+            \item Default format is \textbf{MISP standard - JSON}
+            \item Supports a wide range of other formats, including \texttt{CSV}, \texttt{XML}, \texttt{Yara}, etc.
+            \item \textbf{Advanced filtering capabilities}
+            \item RESTfull API queries can be \textbf{automated} with \textit{curl} commands or \textit{Python} scripts using \textbf{PyMISP}
+        \end{itemize}
+        \item []
+        \item Import data into MISP Events
+        \begin{itemize}
+            \item \textbf{Lossless} MISP JSON Events ingestion
+            \item \textbf{PyMISP} can parse different formats too and convert data into MISP format
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Import/Export modules}
+    \begin{itemize}
+        \item \textbf{Simple Python scripts} to automate the import/export of data
+        \item Extending the range of supported formats
+        \item Allows anyone to build their own module to either:
+        \begin{itemize}
+            \item Populate MISP Events with data from external sources/formats
+            \item Extract and convert data from MISP Events
+        \end{itemize}
+        \item []
+        \item \textbf{Not as powerful} as built-in modules though
+        \begin{itemize}
+            \item Future plan is to rework the modules system
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{An advanced STIX conversion feature}
+    \begin{itemize}
+        \item Works as a \textbf{built-in module}
+        \begin{itemize}
+            \item Convert any data collection to STIX
+            \item Import STIX files into MISP
+        \end{itemize}
+        \item Supporting all STIX versions
+        \begin{itemize}
+            \item STIX 1.x - XML
+            \item STIX 2.x - JSON
+        \end{itemize}
+        \item Continuous development on STIX 2.x to \textbf{improve the conversion capacities} following evolutions on the STIX standards as well as the extensions of the MISP standard format
+        \item Filling the mapping gaps over time to \textbf{improve interoperability} between MISP and other tools supporting STIX, such as TAXII, or STIX feeds producers
+    \end{itemize}
+\end{frame}
