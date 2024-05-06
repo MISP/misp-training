@@ -6,33 +6,57 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Plan for this session}
+	\frametitle{Agenda}
 	\begin{itemize}
-		\item Standards
-        \begin{itemize}
-            \item Generic format
-            \item Support of focused specific formats (Yara, STIX, ...)
-        \end{itemize}
+        \item The pivotal role of interoperability in threat intelligence sharing
+		\item MISP Standard format: designed for interoperability
 		\item Interoperability mechanisms
-		\begin{itemize}
-            \item import/export modules
-            \item APIs
-        \end{itemize}
         \item Data feeding mechanisms
-        \begin{itemize}
-            \item Filtered APIs
-            \item Message queues
-            \item Feed generation
-            \item syncing / caching
-        \end{itemize}
-        \item Workflows
-        \begin{itemize}
-            \item Additional filtering on data
-        \end{itemize}
 	\end{itemize}
 \end{frame}
 
-\section{A generic Data Format}
+\section{Interoperability in threat \\ intelligence sharing}
+
+\begin{frame}
+    \frametitle{The pivotal role of interoperability in threat intelligence sharing}
+    \begin{itemize}
+        \item Ensuring a \textbf{seamless flow of information} between tools
+        \begin{itemize}
+            \item Efficiency in information sharing
+            \item Enables faster dissemination of threat intelligence
+        \end{itemize}
+        \item Enabling the scalability of the CTI pipeline with the integration of more tools
+        \begin{itemize}
+            \item Flexibility in the choice of tools
+            \item More comprehensive view of threats
+        \end{itemize}
+        \item Fostering \textbf{collaboration}
+        \begin{itemize}
+            \item Encouraging the sharing of information
+            \item Can lead to faster response to threats
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Important features improving interoperability}
+    \begin{itemize}
+        \item \textbf{Standardisation is key}
+        \begin{itemize}
+            \item Relying on \textbf{standard formats} is mandatory
+            \item \textbf{Wide adoption} of these formats is highly encouraged
+            \item \textbf{Conversion mechanisms} between formats are essential
+        \end{itemize}
+        \item Taking advantages of \textbf{automation tools}
+        \begin{itemize}
+            \item \textbf{Efficiency in detection and response} is highly dependent on automation
+            \item \textbf{Automated conversion} between formats included in your CTI pipeline is crucial
+            \item Providing automation mechanisms to all users is a vector for \textbf{more collaboration}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{A generic Data Format designed for interoperability}
 
 \begin{frame}
     \frametitle{MISP standard format}
@@ -179,5 +203,81 @@
         \end{itemize}
         \item Continuous development on STIX 2.x to \textbf{improve the conversion capacities} following evolutions on the STIX standards as well as the extensions of the MISP standard format
         \item Filling the mapping gaps over time to \textbf{improve interoperability} between MISP and other tools supporting STIX, such as TAXII, or STIX feeds producers
+    \end{itemize}
+\end{frame}
+
+\section{Data feeding mechanisms}
+
+\begin{frame}
+    \frametitle{Synchronisation between MISP instances}
+    \begin{itemize}
+        \item \textbf{Synchronisation is the default communication mechanism between MISP instances}
+        \begin{itemize}
+            \item Exchance of MISP standard format
+            \item \textbf{Bidirectional} communication
+            \item \textbf{Filtering} capabilities
+        \end{itemize}
+        \item Multiple data structures can be synchronised
+        \begin{itemize}
+            \item \textbf{Events are synchronised by default} with their \textbf{Attributes} \& \textbf{Objects}
+            \item Synchronisation of Galaxy Clusters, Analyst Data \& Sightings can be enabled/disabled
+        \end{itemize}
+    \end{itemize}
+\end {frame}
+
+\begin{frame}
+    \frametitle{Syncing / caching}
+    \begin{itemize}
+        \item \textbf{2-Step} process when Pulling Events
+        \begin{itemize}
+            \item Caching of the data
+            \begin{itemize}
+                \item Lookup of the Events in the remote instance
+                \item Correlations with the Attributes in my instance
+            \end{itemize}
+            \item Fecthing data
+            \begin{itemize}
+                \item Pulling the Events with their content on my instance
+            \end{itemize}
+        \end{itemize}
+        \item Automated pushing mechanism
+        \begin{itemize}
+            \item \textbf{Published Events} and their content are pushed to the remote instance(s)
+            \item Users can manually push Events
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Feeds}
+    \begin{itemize}
+        \item MISP Feeds provide a way to:
+        \begin{itemize}
+            \item \textbf{Exchange information via any transport method} (HTTP, TLP, USB key, etc.)
+            \item Preview events along with their attributes, objects
+            \item Select and import events
+            \item \textbf{Correlate attributes using caching}
+        \end{itemize}
+        \item []
+        \item Feeds work without the need of MISP synchronisation
+        \item \textbf{Feeds can be produced without the need of a MISP instance}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{References}
+    \begin{itemize}
+        \item References on the presented topics
+        \begin{itemize}
+            \item MISP Standards: \url{https://www.misp-standard.org/standards/}
+            \item MISP Concepts Cheat sheet: \url{https://www.misp-project.org/misp-training/cheatsheet.pdf}
+            \item MISP Feeds: \url{https://www.misp-project.org/misp-training/a.3-misp-feed.pdf}
+        \end{itemize}
+        \item More details on MISP
+        \begin{itemize}
+            \item Contact: \url{info@circl.lu}
+            \item Visit our website: \url{https://www.misp-project.org}
+            \item \url{https://github.com/MISP}
+        \end{itemize}
     \end{itemize}
 \end{frame}
