@@ -18,7 +18,7 @@
 
 \begin{frame}
 \frametitle{about CIRCL}
-The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven initiative designed to provide a systematic response facility to computer security threats and incidents. CIRCL is the CERT for the private sector, communes and non-governmental entities in Luxembourg and is operated by securitymadein.lu g.i.e.
+    The Computer Incident Response Center Luxembourg (CIRCL)\footnote{\url{https://www.circl.lu/}} is a government-driven initiative designed to provide a systematic response facility to computer security threats and incidents. CIRCL is the CERT for the private sector, communes and non-governmental entities in Luxembourg and is operated by Luxembourg House of Cybersecurity (LHC) g.i.e.
 \end{frame}
 
 \begin{frame}
@@ -32,7 +32,7 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
 \end{frame}
 
 \begin{frame}
-\frametitle{What is MISP?}
+    \frametitle{What is MISP? (core software)}
 \begin{itemize}
        \item MISP is a {\bf threat information sharing} platform that is free \& open source software
        \item A tool that {\bf collects} information from partners, your analysts, your tools, feeds
@@ -40,6 +40,11 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
        \item Allows teams and communities to {\bf collaborate}
        \item {\bf Feeds} automated protective tools and analyst tools with the output
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{MISP Project Overview}
+        \includegraphics[scale=0.35]{misp-overview-simplified.pdf}
 \end{frame}
 
 \begin{frame}
@@ -57,12 +62,12 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{MISP model of governance}
-\begin{center}
-\includegraphics[scale=0.2]{governance.png}
-\end{center}
-\end{frame}
+%\begin{frame}
+%\frametitle{MISP model of governance}
+%\begin{center}
+%\includegraphics[scale=0.2]{governance.png}
+%\end{center}
+%\end{frame}
 
 \begin{frame}
 \frametitle{Many objectives from different user-groups}
@@ -96,10 +101,48 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
  \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{NATO and MISP Communities}
+  \begin{center}
+      \includegraphics[scale=0.5]{misp-flows.png}
+  \end{center}
+\end{frame}
 
 \begin{frame}
-        \frametitle{MISP Project Overview}
-        \includegraphics[scale=0.35]{misp-overview-simplified.pdf}
+  \frametitle{Evolving Military Use Cases with MISP}
+  \begin{itemize}
+      \item MISP's versatile standard\footnote{\url{https://www.misp-standard.org/}} seamlessly integrates with military protocols, enhancing interoperability.
+      \item Supports diverse intelligence inputs, including {\bf HUMINT} (Human Intelligence), {\bf SIGINT} (Signals Intelligence), and {\bf OSINT} (Open Source Intelligence), within the MISP framework.
+  \end{itemize}                                                                                                                                             
+\end{frame}
+
+\begin{frame}
+    \frametitle{SIGINT - MISP Integration with SigMF}
+  \begin{itemize}
+      \item MISP has added support for the Signal Metadata Format Specification (SigMF)\footnote{\url{https://www.misp-project.org/2023/08/23/MISP_now_supports_Signal_Metadata_Format_Specification_SigMF.html/}}, used widely in {\bf software-defined radio and signal processing}.
+    \item New SigMF-related object templates introduced:
+      \begin{itemize}
+        \item SigMF Recording
+        \item SigMF Archive
+        \item SigMF Expanded Recording
+      \end{itemize}
+    \item Enrichment features in MISP allow expansion of SigMF recordings, aiding in data analysis and integration of signal metadata into MISP attributes.
+    \item This integration facilitates improved search capabilities and data analysis within MISP.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{SIGINT - MISP Integration with SigMF}
+\begin{center}
+    \includegraphics[scale=0.3]{waterfall.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{HUMINT - MISP versatible objects}
+\begin{center}
+    \includegraphics[scale=0.3]{gru-1.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -114,6 +157,7 @@ The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven 
         \item Support for multi-MISP internal enclaves
     \end{itemize}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{Information quality management}

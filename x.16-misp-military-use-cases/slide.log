@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.16)  7 MAY 2024 14:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.16)  7 MAY 2024 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1214,10 +1214,45 @@ LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
 (Font)              scaled to size 10.95pt on input line 17.
  [2
 
-] [3
+]
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <10.95> not avail
+able
+(Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
+put line 22.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
+(Font)              scaled to size 10.95pt on input line 22.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <9> not available
+(Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
+ut line 22.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
+(Font)              scaled to size 9.0pt on input line 22.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <5> not available
+(Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
+ut line 22.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
+(Font)              scaled to size 5.0pt on input line 22.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <9> not available
+
+(Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
+put line 22.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
+(Font)              scaled to size 9.0pt on input line 22.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <5> not available
+
+(Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
+put line 22.
+LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
+(Font)              scaled to size 5.0pt on input line 22.
+LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <9> not available
+
+(Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
+put line 22.
+LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
+(Font)              scaled to size 9.0pt on input line 22.
+ [3
 
 ]
-<en_cef.png, id=51, 258.0039pt x 36.8577pt>
+<en_cef.png, id=52, 258.0039pt x 36.8577pt>
 File: en_cef.png Graphic file (type png)
 <use en_cef.png>
 Package pdftex.def Info: en_cef.png  used on input line 32.
@@ -1228,81 +1263,87 @@ Package pdftex.def Info: en_cef.png  used on input line 32.
 [5
 
 ]
+<misp-overview-simplified.pdf, id=65, 808.84355pt x 420.47614pt>
+File: misp-overview-simplified.pdf Graphic file (type pdf)
+<use misp-overview-simplified.pdf>
+Package pdftex.def Info: misp-overview-simplified.pdf  used on input line 48.
+(pdftex.def)             Requested size: 283.09949pt x 147.16884pt.
+ [6
+
+ <./misp-overview-simplified.pdf>]
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <10> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 58.
+ut line 63.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 10.0pt on input line 58.
+(Font)              scaled to size 10.0pt on input line 63.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <7> not available
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 58.
+ut line 63.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 7.0pt on input line 58.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <5> not available
-(Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 58.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 5.0pt on input line 58.
+(Font)              scaled to size 7.0pt on input line 63.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <10> not availabl
 e
 (Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 58.
+put line 63.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 10.0pt on input line 58.
+(Font)              scaled to size 10.0pt on input line 63.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <7> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 58.
+put line 63.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 7.0pt on input line 58.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <5> not available
-
-(Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 58.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 5.0pt on input line 58.
+(Font)              scaled to size 7.0pt on input line 63.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/b/n' in size <10> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/bold/n' tried instead on input 
-line 58.
+line 63.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
-(Font)              scaled to size 10.0pt on input line 58.
- [6
-
-]
-<governance.png, id=70, 1276.77pt x 945.5325pt>
-File: governance.png Graphic file (type png)
-<use governance.png>
-Package pdftex.def Info: governance.png  used on input line 65.
-(pdftex.def)             Requested size: 255.34947pt x 189.10315pt.
+(Font)              scaled to size 10.0pt on input line 63.
  [7
 
- <./governance.png>]
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <10.95> not avail
-able
-(Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 84.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 10.95pt on input line 84.
- [8
+] [8
 
 ] [9
 
 ]
-<misp-overview-simplified.pdf, id=89, 808.84355pt x 420.47614pt>
-File: misp-overview-simplified.pdf Graphic file (type pdf)
-<use misp-overview-simplified.pdf>
-Package pdftex.def Info: misp-overview-simplified.pdf  used on input line 103.
-(pdftex.def)             Requested size: 283.09949pt x 147.16884pt.
+<misp-flows.png, id=103, 596.2275pt x 408.52625pt>
+File: misp-flows.png Graphic file (type png)
+<use misp-flows.png>
+Package pdftex.def Info: misp-flows.png  used on input line 109.
+(pdftex.def)             Requested size: 298.11302pt x 204.26262pt.
  [10
 
- <./misp-overview-simplified.pdf>]
+ <./misp-flows.png>]
 [11
 
 ] [12
 
-] [13
+]
+<waterfall.png, id=123, 881.2925pt x 692.5875pt>
+File: waterfall.png Graphic file (type png)
+<use waterfall.png>
+Package pdftex.def Info: waterfall.png  used on input line 139.
+(pdftex.def)             Requested size: 264.38979pt x 207.77785pt.
+ [13
+
+ <./waterfall.png>]
+<gru-1.png, id=131, 837.1275pt x 845.1575pt>
+File: gru-1.png Graphic file (type png)
+<use gru-1.png>
+Package pdftex.def Info: gru-1.png  used on input line 146.
+(pdftex.def)             Requested size: 251.14018pt x 253.54921pt.
+
+Overfull \vbox (38.09299pt too high) detected at line 146
+ []
+
+[14
+
+ <./gru-1.png>] [15
+
+] [16
+
+] [17
 
 ])
 \tf@nav=\write5
@@ -1325,11 +1366,11 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 26147 strings out of 481239
- 531157 string characters out of 5920377
+ 26216 strings out of 481239
+ 532371 string characters out of 5920377
  787434 words of memory out of 5000000
- 40754 multiletter control sequences out of 15000+600000
- 869937 words of font info for 94 fonts, out of 8000000 for 9000
+ 40807 multiletter control sequences out of 15000+600000
+ 901131 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,16n,95p,811b,874s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_iln36p.enc}{/usr/shar
@@ -1341,10 +1382,10 @@ public/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/symbols/msam10.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qhvr.pf
 b>
-Output written on slide.pdf (13 pages, 432639 bytes).
+Output written on slide.pdf (17 pages, 619054 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
- 27 named destinations out of 1000 (max. 500000)
- 63 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 186 PDF objects out of 1000 (max. 8388607)
+ 136 compressed objects within 2 object streams
+ 35 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
