@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.16)  7 MAY 2024 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.16)  7 MAY 2024 17:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1327,23 +1327,27 @@ Package pdftex.def Info: waterfall.png  used on input line 139.
 (pdftex.def)             Requested size: 264.38979pt x 207.77785pt.
  [13
 
- <./waterfall.png>]
-<gru-1.png, id=131, 837.1275pt x 845.1575pt>
+ <./waterfall.png>] [14
+
+]
+<gru-1.png, id=137, 837.1275pt x 845.1575pt>
 File: gru-1.png Graphic file (type png)
 <use gru-1.png>
-Package pdftex.def Info: gru-1.png  used on input line 146.
+Package pdftex.def Info: gru-1.png  used on input line 155.
 (pdftex.def)             Requested size: 251.14018pt x 253.54921pt.
 
-Overfull \vbox (38.09299pt too high) detected at line 146
+Overfull \vbox (38.09299pt too high) detected at line 155
  []
 
-[14
+[15
 
- <./gru-1.png>] [15
-
-] [16
+ <./gru-1.png>] [16
 
 ] [17
+
+] [18
+
+] [19
 
 ])
 \tf@nav=\write5
@@ -1366,10 +1370,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 26216 strings out of 481239
- 532371 string characters out of 5920377
+ 26229 strings out of 481239
+ 532505 string characters out of 5920377
  787434 words of memory out of 5000000
- 40807 multiletter control sequences out of 15000+600000
+ 40816 multiletter control sequences out of 15000+600000
  901131 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,16n,95p,811b,874s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1382,10 +1386,10 @@ public/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/symbols/msam10.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qhvr.pf
 b>
-Output written on slide.pdf (17 pages, 619054 bytes).
+Output written on slide.pdf (19 pages, 622276 bytes).
 PDF statistics:
- 186 PDF objects out of 1000 (max. 8388607)
- 136 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
+ 202 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
+ 39 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
