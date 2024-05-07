@@ -1,0 +1,28 @@
+% !TEX program = XeLaTeX
+\documentclass{beamer}
+\usetheme[numbering=progressbar]{focus}
+\definecolor{main}{RGB}{47, 161, 219}
+\definecolor{textcolor}{RGB}{128, 128, 128}
+\definecolor{background}{RGB}{240, 247, 255}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{listings}
+\usetikzlibrary{positioning}
+\usepackage{pgfpages}
+\setbeameroption{show notes on second screen=right}
+\usetikzlibrary{shapes,arrows}
+
+
+\title{An Introduction to Cybersecurity Information Sharing}
+\subtitle{MISP - Threat Sharing}
+\author{\small{\input{../includes/authors.txt}}}
+\date{\input{../includes/location.txt}}
+\titlegraphic{\includegraphics[scale=0.85]{misp.pdf}}
+\institute{MISP Project \\ \url{https://www.misp-project.org/}}
+
+
+\begin{document}
+\include{content}
+\end{document}
+

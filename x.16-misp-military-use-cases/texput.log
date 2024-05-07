@@ -1,0 +1,21 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.16)  7 MAY 2024 14:10
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**mai
+
+! Emergency stop.
+<*> mai
+       
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 4 strings out of 481239
+ 107 string characters out of 5920377
+ 236563 words of memory out of 5000000
+ 15373 multiletter control sequences out of 15000+600000
+ 532338 words of font info for 24 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 0i,0n,0p,8b,6s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
