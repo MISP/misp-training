@@ -70,7 +70,7 @@
             \item Adaptable to easily extend the format to new use-cases
         \end{itemize}
         \item []
-        \item Ensuring \textbf{interoperability} with existing MISP software and other Threat Intelligence Platforms and tools
+        \item Ensuring \textbf{long term interoperability} with existing MISP software and other Threat Intelligence Platforms and tools
     \end{itemize}
 \end{frame}
 
@@ -171,24 +171,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Import/Export modules}
-    \begin{itemize}
-        \item \textbf{Simple Python scripts} to automate the import/export of data
-        \item Extending the range of supported formats
-        \item Allows anyone to build their own module to either:
-        \begin{itemize}
-            \item Populate MISP Events with data from external sources/formats
-            \item Extract and convert data from MISP Events
-        \end{itemize}
-        \item []
-        \item \textbf{Not as powerful} as built-in modules though
-        \begin{itemize}
-            \item Future plan is to rework the modules system
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
     \frametitle{An advanced STIX conversion feature}
     \begin{itemize}
         \item Works as a \textbf{built-in module}
@@ -203,6 +185,61 @@
         \end{itemize}
         \item Continuous development on STIX 2.x to \textbf{improve the conversion capacities} following evolutions on the STIX standards as well as the extensions of the MISP standard format
         \item Filling the mapping gaps over time to \textbf{improve interoperability} between MISP and other tools supporting STIX, such as TAXII, or STIX feeds producers
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP modules}
+    \begin{itemize}
+        \item \textbf{Simple Python scripts} to automate the \textbf{import/export} of data
+        \begin{itemize}
+            \item Extending the range of supported formats
+            \item Allows anyone to build their own module to either:
+            \begin{itemize}
+                \item Populate MISP Events with data from external sources/formats
+                \item Extract and convert data from MISP Events
+            \end{itemize}
+        \end{itemize}
+        \item Enrichment modules
+        \begin{itemize}
+            \item Use-case examples:
+            \begin{itemize}
+                \item \textbf{enrich} data with additional context
+                \item \textbf{cross-reference} data with external sources
+                \item \textbf{validate} data
+            \end{itemize}
+            \item Can be triggered automatically by \textbf{Workflows}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Workflows}
+    \begin{itemize}
+        \item Needs that Workflows can address:
+        \begin{itemize}
+            \item Prevent default MISP behaviors
+            \item Trigger specific actions to run callbacks
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \frame{\includegraphics[width=1.0\linewidth]{../images/workflow.png}}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{PubSub channels}
+    \begin{itemize}
+        \item ZeroMQ channels
+        \begin{itemize}
+            \item N-to-N Asynchronous message-processing tasks
+            \item Publisher(MISP) and consumer (scripts)
+        \end{itemize}
+        \item []
+        \item \textbf{Streaming data as it is created in MISP}
+        \item Advantage is the subscriber can \textbf{automatically use the published data}
+        \item Be careful though with data being \textbf{republished}
+        \item Also, there is \textbf{no access control} on the data that is streamed
     \end{itemize}
 \end{frame}
 
