@@ -6,7 +6,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Plan for this session}
+	\frametitle{Agenda}
 	\begin{itemize}
 		\item CIRCL, MISP and ISACs
 		\item []
@@ -95,12 +95,12 @@
 \begin{frame}
 	\frametitle{Usual sharing scenarios for ISACs}
 	\begin{itemize}
-		\item Exchange of \textbf{insights from monitoring}
+		\item Exchange of \textbf{IOCs} and \textbf{TTPs}
 		\item Sharing the outcomes of \textbf{incidents}
 		\item Information on the \textbf{attackers, techniques used}
 		\item \textbf{Remediation} information / \textbf{prevention} information
 		\item \textbf{Vulnerability} pre-disclosure
-		\item Supporitng \textbf{tools} / \textbf{scripts}
+		\item Supporting \textbf{tools} / \textbf{scripts}
 	\end{itemize}
 \end{frame}
 
@@ -111,6 +111,7 @@
 		\item \textbf{Law enforcement} / Border control specific sharing
 		\item \textbf{Disinformation} sharing
 		\item \textbf{Health} related information sharing
+		\item \textbf{Telecommunication} threat sharing
 	\end{itemize}
 \end{frame}
 
@@ -120,7 +121,7 @@
 		\item Different use-cases have conflicting requirements for the data shared
 		\begin{itemize}
 			\item \textbf{False positive} appetite
-			\item \textbf{Maturity} levels
+			\item \textbf{Capability}/\textbf{Maturity} levels
 			\item \textbf{Topical} interests
 			\item \textbf{Detection rules} vs \textbf{threat intel} vs \textbf{remediation/prevention} support
 		\end{itemize}
@@ -217,22 +218,12 @@
 \section{Managing your sharing \\ community}
 
 \begin{frame}
-	\frametitle{Managing sub-communities}
-	\begin{itemize}
-		\item Consider compartmentalisation - does it make sense to move a secret squirrel club to their own sharing hub to avoid accidental leaks?
-		\item Use your \textbf{best judgement} to decide which communities should be separated from one another
-		\item Create sharing hubs with \textbf{manual data transfer} if needed
-		\item Some organisations will even have their data air-gapped - Feed system
-		\item \textbf{Create guidance} on what should be shared outside of their bubbles - organisations often lack the insight / experience to decide how to get going. Take the initiative!
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
 \frametitle{What counts as valuable data?}
 \begin{itemize}
 	\item Sharing comes in many shapes and sizes
 	\begin{itemize}
 		\item Sharing results / reports is the classical example
+		\item Sighting of indicators
 		\item Sharing enhancements to existing data
 		\item Validating data / flagging false positives
 		\item Asking for support from the community
@@ -252,6 +243,8 @@
 		\item Organisations losing access are the ones who would possibily benefit the most from it
 		\item You lose organisations that might turn into valuable contributors in the future
 	\end{itemize}
+	\item []
+	\item Constituents have access to and can \textbf{use the data}
 \end{itemize}
 \end{frame}
 
@@ -300,6 +293,30 @@
 	\end{itemize}
 	\item For more information: https://www.misp-project.org/compliance/
 \end{itemize}
+\end{frame}
+
+\section{The tough choice of separating a community}
+
+\begin{frame}
+	\frametitle{Managing sub-communities}
+	\begin{itemize}
+		\item Often within a community \textbf{smaller bubbles of information sharing will form}
+		\item For example: Within a national private sector sharing community, specific community for financial institutions
+		\item Sharing groups serve this purpose mainly
+		\item As an ISAC running a national community, consider bootstraping these sharing communities
+		\item Organisations can of course self-organise, but you are the ones with the know-how to get them started
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Managing sub-communities}
+	\begin{itemize}
+		\item Consider compartmentalisation - does it make sense to move a secret squirrel club to their own sharing hub to avoid accidental leaks?
+		\item Use your \textbf{best judgement} to decide which communities should be separated from one another
+		\item Create sharing hubs with \textbf{manual data transfer} if needed
+		\item Some organisations will even have their data air-gapped - Feed system
+		\item \textbf{Create guidance} on what should be shared outside of their bubbles - organisations often lack the insight / experience to decide how to get going. Take the initiative!
+	\end{itemize}
 \end{frame}
 
 \section{Interesting visual features \\ for analysts}
@@ -352,7 +369,6 @@
 	\end{itemize}
 \end{itemize}
 \end{frame}
-
 
 \begin{frame}
 \frametitle{Shared libraries of meta-information (Galaxies)}
@@ -414,17 +430,6 @@
 	\item Use the tools provided to eliminate obvious false positives instead and limit your data-set to the most relevant sets
 \end{itemize}
 \centering\includegraphics[scale=0.8]{../images/false-positive.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Managing sub-communities}
-\begin{itemize}
-    \item Often within a community \textbf{smaller bubbles of information sharing will form}
-	\item For example: Within a national private sector sharing community, specific community for financial institutions
-	\item Sharing groups serve this purpose mainly
-	\item As an ISAC running a national community, consider bootstraping these sharing communities
-	\item Organisations can of course self-organise, but you are the ones with the know-how to get them started
-\end{itemize}
 \end{frame}
 
 \section{Conclusion}
