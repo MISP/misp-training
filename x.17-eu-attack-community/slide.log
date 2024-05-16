@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.9)  16 MAY 2024 16:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.9)  16 MAY 2024 21:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1346,45 +1346,80 @@ LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
 [4
 
 ]
-<./screenshots/timeline.png, id=59, 2606.73875pt x 1196.47pt>
+<./screenshots/timeline.png, id=59, 2606.73875pt x 1116.17pt>
 File: ./screenshots/timeline.png Graphic file (type png)
 <use ./screenshots/timeline.png>
-Package pdftex.def Info: ./screenshots/timeline.png  used on input line 45.
-(pdftex.def)             Requested size: 338.88794pt x 155.54655pt.
- [5
+Package pdftex.def Info: ./screenshots/timeline.png  used on input line 46.
+(pdftex.def)             Requested size: 417.08673pt x 178.59085pt.
+
+Overfull \hbox (4.52176pt too wide) in paragraph at lines 46--46
+ [] 
+ []
+
+[5
 
  <./screenshots/timeline.png>] [6
 
-] [7
-
 ]
+<./screenshots/uuid-extraction.png, id=72, 528.97626pt x 61.22874pt>
+File: ./screenshots/uuid-extraction.png Graphic file (type png)
+<use ./screenshots/uuid-extraction.png>
+Package pdftex.def Info: ./screenshots/uuid-extraction.png  used on input line 
+87.
+(pdftex.def)             Requested size: 158.69409pt x 18.36876pt.
+<./screenshots/uuid-generation.png, id=73, 668.4975pt x 144.54pt>
+File: ./screenshots/uuid-generation.png Graphic file (type png)
+<use ./screenshots/uuid-generation.png>
+Package pdftex.def Info: ./screenshots/uuid-generation.png  used on input line 
+87.
+(pdftex.def)             Requested size: 200.5508pt x 43.36232pt.
+ [7
+
+ <./screenshots/uuid-extraction.png> <./screenshots/uuid-generation.png>]
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <10.95> not avail
 able
 (Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
-put line 100.
+put line 105.
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
-(Font)              scaled to size 10.95pt on input line 100.
-<./screenshots/rel-gen-example.png, id=78, 1160.335pt x 256.96pt>
+(Font)              scaled to size 10.95pt on input line 105.
+<./screenshots/rel-gen-example.png, id=82, 1160.335pt x 256.96pt>
 File: ./screenshots/rel-gen-example.png Graphic file (type png)
 <use ./screenshots/rel-gen-example.png>
 Package pdftex.def Info: ./screenshots/rel-gen-example.png  used on input line 
-100.
-(pdftex.def)             Requested size: 232.06288pt x 51.39108pt.
-<./screenshots/rel-gen-help.png, id=79, 735.74875pt x 224.84pt>
-File: ./screenshots/rel-gen-help.png Graphic file (type png)
-<use ./screenshots/rel-gen-help.png>
-Package pdftex.def Info: ./screenshots/rel-gen-help.png  used on input line 100
-.
-(pdftex.def)             Requested size: 147.14714pt x 44.9672pt.
+105.
+(pdftex.def)             Requested size: 406.12334pt x 89.93733pt.
  [8
 
- <./screenshots/rel-gen-example.png> <./screenshots/rel-gen-help.png>] [9
+ <./screenshots/rel-gen-example.png>]
+<./screenshots/new-uuids-everywhere.png, id=89, 1487.5575pt x 208.78pt>
+File: ./screenshots/new-uuids-everywhere.png Graphic file (type png)
+<use ./screenshots/new-uuids-everywhere.png>
+Package pdftex.def Info: ./screenshots/new-uuids-everywhere.png  used on input 
+line 123.
+(pdftex.def)             Requested size: 446.27069pt x 62.63448pt.
 
-] [10
+Overfull \hbox (33.70572pt too wide) in paragraph at lines 123--123
+ [] 
+ []
 
-] [11
+[9
 
-] [12
+ <./screenshots/new-uuids-everywhere.png>] [10
+
+]
+<./screenshots/misp-galaxy-website.png, id=101, 1408.26125pt x 915.42pt>
+File: ./screenshots/misp-galaxy-website.png Graphic file (type png)
+<use ./screenshots/misp-galaxy-website.png>
+Package pdftex.def Info: ./screenshots/misp-galaxy-website.png  used on input l
+ine 150.
+(pdftex.def)             Requested size: 281.64726pt x 183.08075pt.
+
+Overfull \vbox (41.93419pt too high) detected at line 150
+ []
+
+[11
+
+ <./screenshots/misp-galaxy-website.png>] [12
 
 ] [13
 
@@ -1392,9 +1427,9 @@ Package pdftex.def Info: ./screenshots/rel-gen-help.png  used on input line 100
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <10> not availabl
 e
 (Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
-put line 175.
+put line 186.
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
-(Font)              scaled to size 10.0pt on input line 175.
+(Font)              scaled to size 10.0pt on input line 186.
  [14
 
 ])
@@ -1407,27 +1442,27 @@ LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
 \tf@snm=\write7
 \openout7 = `slide.snm'.
 
-
-(./slide.aux (./content.aux)) ) 
+ (./slide.aux
+(./content.aux)) ) 
 Here is how much of TeX's memory you used:
- 31109 strings out of 478287
- 639468 string characters out of 5849290
- 888720 words of memory out of 5000000
- 48605 multiletter control sequences out of 15000+600000
+ 31134 strings out of 478287
+ 640338 string characters out of 5849290
+ 890126 words of memory out of 5000000
+ 48627 multiletter control sequences out of 15000+600000
  836424 words of font info for 107 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,16n,122p,424b,877s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/f
-ira/fir_iln36p.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_d4q6
-73.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_2mfh3o.enc}</usr
-/share/texlive/texmf-dist/fonts/type1/public/fira/FiraMono-Regular.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/fira/FiraSans-Bold.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/fira/FiraSans-Regular.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on slide.pdf (14 pages, 524632 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_iln36
+p.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_d4q673.enc}{/usr/
+share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_2mfh3o.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/fira/FiraMono-Regular.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on slide.pdf (14 pages, 854602 bytes).
 PDF statistics:
- 156 PDF objects out of 1000 (max. 8388607)
+ 162 PDF objects out of 1000 (max. 8388607)
  111 compressed objects within 2 object streams
  29 named destinations out of 1000 (max. 500000)
- 63 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 78 words of extra memory for PDF output out of 10000 (max. 10000000)
 
