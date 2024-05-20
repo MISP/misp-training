@@ -1,0 +1,186 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+        \frametitle{Who is Who}
+        \begin{itemize}
+            \item Alexandre Dulaunoy\footnote{\url{https://github.com/adulau}} (CIRCL, MISP, etc.)
+            \item Christophe Vandeplas\footnote{\url{https://github.com/cvandeplas}} (Consultant \& Reservist, MISP, Sysdiagnose (EU), etc.)
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What is a MISP Galaxy?}
+  \begin{itemize}
+	  \item MISP Galaxy is a feature in MISP and a MISP standard\footnote{\url{https://www.misp-standard.org/}} format to create {\bf contextualization libraries}.
+    \begin{itemize}
+      \item There are two main types: \textbf{combined list} or \textbf{matrix-like list}.
+    \end{itemize}
+    \item The first historical matrix-like galaxy was MITRE ATT\&CK\footnote{Presented at the first EU ATT\&CK community meeting in Luxembourg}.
+    \item Galaxies contain intelligence that can be \textbf{structured} in a matrix-like format. Relationships between models can be created, and implementation such as in MISP allows for the \textbf{forking and sharing of information}. This is typically attached to intelligence in threat intelligence platforms to add context.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+   \frametitle{Origins and Evolution}
+   \begin{itemize}
+       \item Seeing the success of the ATT\&CK framework in MISP gave rise to a host of matrix-based models:
+       \begin{itemize}
+           \item Inflation? We don’t think so.
+           \item There are {\bf different models} because there are many {\bf different use cases to be represented}.
+           \item We found this to be good as long as those models are maintained.
+       \end{itemize}
+   \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{MISP galaxies over time}
+	\begin{center}
+	\includegraphics[scale=0.16]{./screenshots/timeline.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+        \frametitle{What Leads to Starting New Frameworks?}
+        \begin{itemize}
+	\item New frameworks try to {\bf fill gaps}.
+            \item New ideas in different areas/domains.
+            \item Small vs. large initiatives.
+	    \item {\bf Collaboration is not always easy}.
+                \begin{itemize}
+                    \item Small contributors vs. large organizations.
+                    \item Absence of guidance to contribute.
+                    \item Closed models.
+                \end{itemize}
+            \item Research \& publication vs. practical use.
+            \item Need for timely new data in a continuously evolving threat landscape.
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Conversion (or the Dirty Part)}
+        \begin{itemize}
+            \item Understand the topic.
+            \item Understand the users and their use cases.
+            \item Map to Matrix / Kill Chain.
+            \item Handle \textbf{various formats}:
+                \begin{itemize}
+                    \item JSON, XLS, PDF, DOCX, Markdown, CSV, web scraping, Python, etc.
+                \end{itemize}
+            \item Reverse engineer the data model.
+            \item Manage UUIDs: existing vs. generating new.
+            \item Handle duplicate values\footnote{In other words, many organizations didn’t machine-validate their own model.}:
+                \begin{itemize}
+                    \item Interaction with the framework owner.
+                \end{itemize}
+            \item Create the conversion script, or do by hand.
+        \end{itemize}
+        \begin{center}
+            \includegraphics[scale=0.3]{./screenshots/uuid-extraction.png}
+            \includegraphics[scale=0.3]{./screenshots/uuid-generation.png}
+        \end{center}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Relations (Where Are the Overlaps?)}
+        \begin{itemize}
+            \item Example relations: \texttt{similar}, \texttt{contains}, or lifecycle: \texttt{revoked-by}.
+            \item Frameworks might contain internal relations.
+            \item Relations between different frameworks:
+            \begin{itemize}
+                \item \textbf{Native relationships}
+                \item \textbf{3rd party contributions}
+            \end{itemize}
+            \item Create specific tooling to help or partially automate the creation of relations.
+        \end{itemize}
+        \begin{center}
+        \includegraphics[scale=0.35]{./screenshots/rel-gen-example.png}
+        % \includegraphics[scale=0.3]{./screenshots/rel-technique-re-search.png}
+        \end{center}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Maintenance (Anyone on the Line?)}
+        \begin{itemize}
+		\item {\bf Frameworks have a lifecycle} - evolution of the model.
+            \item Know when there is an update.
+	    \item {\bf Deprecate, revoke, delete entries}.
+            \item Change of UUID (UUIDv4 or UUIDv5) / value - may impact UUID.
+                \begin{itemize}
+                    \item Breaks relationships with UUIDs.
+                \end{itemize}
+            \item Conversion script breaks.
+            \item Keeping contributed relationships.
+        \end{itemize}
+        \begin{center}
+            \includegraphics[scale=0.3]{./screenshots/new-uuids-everywhere.png}
+        \end{center}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Opportunities (How Can It Help Me?)}
+        \begin{itemize}
+		\item Structure new models: {\bf Understand existing ones to identify gaps} and raise feature requests or pull requests on \texttt{misp-galaxy}.
+            \item MISP Galaxy:
+                \begin{itemize}
+                    \item Open standard.
+		    \item Data is CC0 - {\bf reusable in any software}.
+                \end{itemize}
+            \item Extend frameworks: Use one framework as a core library and build additional layers on top.
+	    \item Marketing and promotion: The more tools that use it, the {\bf more widely the framework is adopted}.
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Way Ahead for MISP Galaxy}
+        \begin{itemize}
+            \item Add {\bf more} frameworks and taxonomies.
+            \item {\bf Better mark revoked and deprecated} clusters in the galaxy.
+            \item Automate the ingestion of updated third-party threat matrices.
+            \item Improve the library for managing conversions to MISP Galaxy.
+        \end{itemize}
+	\begin{center}
+	 	\includegraphics[scale=0.2]{./screenshots/misp-galaxy-website.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+        \frametitle{10 Golden Rules for Framework Creators (Technical)}
+        \begin{itemize}
+            \item 1. Use a machine-readable format (JSON is preferred).
+            \item 2. Ensure fixed and unique UUIDs.
+            \item 3. Revoke entries, do not delete them.
+            \item 4. Relate to UUIDs with relationship types.
+            \item 5. Allow outbound relationships.
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{10 Golden Rules for Framework Creators (Community)}
+        \begin{itemize}
+            \item 6. Publish and communicate.
+            \item 7. Update regularly.
+            \item 8. Encourage third-party contributions.
+            \item 9. Expand existing frameworks.
+            \item 10. Collaborate with other framework creators.
+        \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Get in touch if you have any questions}
+  \begin{itemize}
+    \item MISP galaxy website \url{https://www.misp-galaxy.org/}
+    \item Contact MISPProject
+    \begin{itemize}
+      \item \url{https://github.com/MISP}
+      \item \url{https://gitter.im/MISP/MISP}
+      \item \url{https://twitter.com/MISPProject}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
