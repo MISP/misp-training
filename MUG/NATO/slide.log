@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.9)  3 JUN 2024 22:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.9)  3 JUN 2024 22:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1549,7 +1549,7 @@ LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
 Here is how much of TeX's memory you used:
  31617 strings out of 478287
  644792 string characters out of 5849290
- 930938 words of memory out of 5000000
+ 930590 words of memory out of 5000000
  49047 multiletter control sequences out of 15000+600000
  836098 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1561,7 +1561,7 @@ r/share/texlive/texmf-dist/fonts/type1/public/fira/FiraMono-Regular.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/fira/FiraSans-Bold.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/fira/FiraSans-Regular.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on slide.pdf (38 pages, 2554894 bytes).
+Output written on slide.pdf (38 pages, 2554728 bytes).
 PDF statistics:
  354 PDF objects out of 1000 (max. 8388607)
  261 compressed objects within 3 object streams
