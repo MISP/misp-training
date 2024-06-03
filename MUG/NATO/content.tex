@@ -11,26 +11,60 @@
 \section{Give you a brief update over the highlights}
 
 \begin{frame}
-  \frametitle{A topical listing of the new major features}
+  \frametitle{A Topical Listing of the New Major Features}
   \begin{itemize}
-      \item {\bf Workflow} improvements
-      \item {\bf STIX 2.1} improvements along with TAXII integration
-      \item {\bf Freetext} import modernisation
-      \item {\bf Logging} and {\bf security} improvements
-      \item {\bf Dashboard} rework
-      \item {\bf Security fixes} and other improvements
+      \item Improved data model in MISP to support \textbf{analyst data} including analyst notes, opinions, and relationships
+      \item \textbf{Workflow} improvements and changes to support use-cases
+      \item \textbf{STIX 2.1} improvements along with MISP galaxy 2.0 support
+      \item Performance improvements including in the MISP sighting, synchronization, and ReST queries
+      \item \textbf{Logging/Monitoring} and \textbf{security} improvements
+      \item \textbf{MISP modules} are now autonomous
+      \item \textbf{Security fixes} and other improvements
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Analyst Data}
+  \begin{itemize}
+       \item The Analyst Data feature\footnote{Extending the MISP standard format} is an extended and shareable set of capabilities that allows analysts \textbf{to share and add their own analysis to any MISP event}.
+       \item The Analyst Data feature comprises three main components:
+       \begin{itemize}
+             \item Adding an \textbf{Analyst Note} to any element in MISP, such as Event, Event Report, Object, Attribute, or Galaxy Cluster.
+             \item Adding an \textbf{Analyst Opinion} with a rating (between 0 and 100) to any element in MISP, such as Event, Event Report, Object, Attribute, Galaxy Cluster, or Analyst Note.
+             \item Adding an \textbf{Analyst Relationship} from/to any element in MISP with a specified relationship type.
+       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+   \frametitle{Analyst Opinion and Note View}
+   \begin{itemize}
+        \item Showing/editing opinion on a MISP event or a MISP galaxy cluster
+   \end{itemize}
+   \begin{center}
+        \includegraphics[scale=0.2]{opinion.png}
+        \hspace{1cm}
+        \includegraphics[scale=0.19]{note.png}
+   \end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Analyst Relationship}
+	\begin{itemize}
+	          \item Showing/editing a relationship between a MISP galaxy cluster and another element
+	\end{itemize}
+	\begin{center}
+	\includegraphics[scale=0.2]{relationship.png}
+	\end{center}
+\end{frame}
 
 \begin{frame}
   \frametitle{Workflows}
   \begin{itemize}
-     \item Continuous ongoing work
-     \item Further addition of {\bf logic nodes} for more advanced {\bf branching} decision trees
-     \item Additional {\bf action nodes} (such as e-mailing improvements)
-     \item The inclusion of new {\bf triggers} based on community feedback
-     \item {\bf Filtered data} paths within workflows (e.g. Only execute this set of actions on a subset of the workflow's input data)
+     \item Additional \textbf{action nodes} like Slack added as action module in MISP modules
+     \item Inclusion of new \textbf{triggers} based on community feedback
+     \item Distribution-if module now includes sharing-group
+     \item Various workflow bugs fixed following community feedback
   \end{itemize}
 \end{frame}
 
@@ -42,136 +76,99 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Freetext import improvements}
+  \frametitle{Performance and Sightings}
   \begin{itemize}
-      \item The {\bf freetext import} has been a powerful way of creating {\bf attributes} parsed out of text
-      \item Since 2.4.167, it can also be used to {\bf create MISP objects }
-      \item {\bf Proposes} valid object {\bf templates} for the given data-points
-      \item New UI elements and parsing logic added
-      \item Objects in general encouraged over flat attributes
-      \item Goes hand-in-hand with new {\bf object template} development
+     \item Fast API authentication allowing the storage of hashed API keys in Redis (optional)
+     \item Option to disable the loading of sightings via the API
+     \item Support for a sighting policy (\texttt{getLastSighting}) and blocking sighting sync per organisation
+     \item Attribute fetch refactored to simplify conditions and limit the loading of ACL
+     \item Attribute search reworked for performance improvement
+     \item New benchmarking suite added, collecting metrics, all accessible in the dashboard widget
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Freetext import improvements}
-\begin{center}
-\includegraphics[scale=0.40]{images/freetext_objects.png}
-\end{center}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Logging rework}
-  \begin{itemize}
-     \item {\bf Logging concerns separated} into optional separate mechanisms
-     \begin{itemize}
-         \item Separate Application, Audit, Access logs (thanks to Jakub Onderka)
-     \end{itemize}
-     \item New user sanity checks on {\bf prior authentications} and {\bf associated IPs} (thanks to Christophe Vandeplas)
-     \begin{itemize}
-         \item Allows users to audit their accounts' actions to catch abuse
-     \end{itemize}
-     \item New internal logging of {\bf authentication frequency}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Dashboard rework}
-  \begin{itemize}
-     \item {\bf Overhaul} of the {\bf widget toolkit} for instance visibility
-     \item New widgets to highlight {\bf trends, community interactions and statistics}
-     \item Focus on {\bf customisation} and {\bf bucketing} of organisation groups
-     \begin{itemize}
-         \item Use Organisation meta-data, such as country, sector, org type
-     \end{itemize}
-     \item Better defined {\bf reporting periods}
-     \begin{itemize}
-         \item Show data of current day, month, year or since an arbitrary date
-     \end{itemize}
-     \item Rework of some existing widgets to be much more {\bf performant}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-
-\frametitle{Dashboard example}
-\begin{center}
-\includegraphics[scale=0.14]{images/dashboard_example.png}
-\end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Security fixes and other improvements}
+  \frametitle{Security Fixes and Other Improvements}
   \begin{itemize}
      \item Long list of security fixes based on multiple external penetration tests
-     \item {\bf CVEs}\footnote{\url{https://www.misp-project.org/security/}} continuously reported for issues small and large
+     \item \textbf{CVEs}\footnote{\url{https://www.misp-project.org/security/}} continuously reported for issues small and large
      \begin{itemize}
-         \item Make sure you're up to date!
+         \item Make sure you're up to date and have TOTP active on your MISP instance.
      \end{itemize}
-     \item {\bf Zigrin security}'s research funded by the {\bf Luxembourg army} has been a massive help
-     \item Long list of other improvements, quality of life changes, performance tuning
+     \item Research by \textbf{Zigrin Security}, funded by the \textbf{Luxembourg Army}, has been a massive help along with recent pentests from NATO
+     \item Long list of other improvements, quality of life changes, and performance tuning
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Taxonomy highlight}
-\begin{itemize}
-    \item Many different taxonomies are used frequently in various organisations
-    \item A new feature to highlight the important taxonomy in a MISP instance (community) is available
-    \item Site admin user can select the {\bf highlighted taxonomies}
-    \item The taxonomy namespace will be highlight in a box on the index/event views
-\end{itemize}
-    \includegraphics[scale=0.2]{./images/highlight.png}
-    \includegraphics[scale=0.2]{./images/highlight2.png}
-\end{frame}
 
 \begin{frame}
-\frametitle{MISP modules}
+\frametitle{MISP Modules}
     \begin{itemize}
-        \item MISP modules are companion to expansion, export, import for external services or tooling
-        \item Extended to support the {\bf MISP workflow actions}
-        \item New modules include new import {\bf extract\_url\_components}
-        \item New expansion modules include {\bf Crowdsec}, {\bf ipinfo.io}
-        \item Improved expansion modules  {\bf greynoise}, {\bf VarIOT}
-        \item Improved modules to support the MISP standard format
+        \item MISP modules\footnote{\url{https://github.com/MISP/misp-modules/}} are companions for expansion, export, and import for external services or tooling
+	\item New modules added, such as the {\bf Google Threat Intelligence expansion module}
+        \item New workflow action modules added, such as Slack, with improvements to the Mattermost module
+        \item Many improvements and fixes to all the modules
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{MISP taxonomies}
+\frametitle{MISP Modules are Now Standalone}
     \begin{itemize}
-        \item 149 ready-to-use are now available in MISP taxonomies (used in MISP and many other tools)
-        \item New {\bf information-origin} taxonomy to classify AI-generated content with LLMs
-        \item New {\bf aviation} taxonomy developed by Eurocontrol to support labelling in the aviation sector
-        \item New Microsoft {\bf sentinel} taxonomy to support the MISP sentinel integration developed by Koen Van Impe
-        \item Various fixes and improvement to taxonomies (e.g. the dark-web taxonomy due to updates in AIL 5.0)
+        \item MISP Modules\footnote{\url{https://www.misp-project.org/2024/03/12/Introducing.standalone.MISP.modules.html/}} can now function independently of the MISP platform.
+        \item A versatile web interface is now available where you can query different modules, keep a history, and facilitate pivoting.
+    \end{itemize}
+    \begin{center}
+        \includegraphics[scale=0.5]{all-modules.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Taxonomies}
+    \begin{itemize}
+        \item 149 ready-to-use taxonomies are now available in MISP\footnote{\url{https://github.com/MISP/misp-taxonomies/}} (used in MISP and many other tools)
+        \item Improved \textbf{dark-web} taxonomy to map the use of JRC with the AIL project\footnote{\url{https://www.ail-project.org/}}
+        \item Many improvements to the different taxonomies including \textbf{workflow}, \textbf{event-type}, and many others
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{MISP warning-lists}
+    \frametitle{MISP Warning-Lists}
     \begin{itemize}
-        \item New {\bf captive-portal} warning-list added
-        \item New known {\bf parking page infrastructure} warning-list added 
-        \item New {\bf google-chrome-crux-1million} warning-list added
-        \item New {\bf microsoft-azure-appid} warning-list added
+        \item New \textbf{check-host.net} warning-list added
+        \item New \textbf{link-in-bio} warning-list added (similar to URL shortener)
+        \item New \textbf{find-ip} known hostname used for querying your source IP (collected from our Passive DNS)
+        \item Many updates in the existing warning-lists such as the \textbf{URL shortener}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{MISP galaxy}
     \begin{itemize}
-        \item New {\bf sigma} galaxy added including relationships
-        \item Latest MITRE ATT\&CK version 13 updated for the MISP galaxy
-        \item New microsoft threat actor taxonomy added including relationships with previous activity group and {\bf threat-actor galaxy}
-        \item Alignment of {\bf ransomware galaxy} with the {\bf ransomlook.io} project
-        \item Major improvements in threat-actor galaxy including relationships with other galaxy clusters
+	\item New website for MISP galaxy\footnote{\url{https://www.misp-galaxy.org/}} is now online including inter-relationship between galaxies
+	\item Latest MITRE ATT\&CK version 15.1 updated for the MISP galaxy
+        \item New {\bf producer} galaxy to facilitate the link to security reports with their respective producers
+	\item New {\bf INTERPOL Dark Web and Virtual Assets Taxonomies}, {\bf UKHSA Culture Collections}, {\bf Threat Matrix for Storage Services}, {\bf Intel Agencies}, {\bf Tidal}
+	\item Major updates in {\bf Disarm}, {\bf threat-actor}, {\bf Surveillance Vendor} and {bf ransomware} galaxies
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{MISP objects}
+    \frametitle{Matrix-based MISP galaxy}
+    \begin{center}
+	    \includegraphics[scale=0.14]{timeline.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Objects}
+    \begin{itemize} 
+        \item Improvement in \textbf{cs-beacon-config} to map Shadow Server discovery service of CS
+        \item Improvement of \textbf{ransomware-group-post} to map other discovery services such as ransomlook.io
+        \item New objects to support Flowintel\footnote{\url{https://github.com/flowintel/flowintel-cm}} cases and tasks
+        \item New object \textbf{generalizing-persuasion-framework} requested for disinformation use-cases
+        \item Many improvements to existing objects, including fixes for STIX 2.1 or CERT.PL use-cases
+        \item Many new default relationships added to the MISP objects
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -237,12 +234,10 @@
 \begin{frame}
     \frametitle{Cerebrate}
     \begin{itemize}
-        \item New documentation for Cerebrate\footnote{\url{https://doc.cerebrate-project.org/}}
-        \item Many {\bf improvements and bugs fixed} following the feedback of different organisations deploying Cerebrate
-        \item Deployment of the {\bf PoC for NATO users is ongoing}
-        \item Software stack of MISP 3 is tested on Cerebrate
+        \item Cerebrate v1.19\footnote{\url{https://www.cerebrate-project.org/2024/05/15/Cerebrate-version-1.19-released.html}} released with several usability and functionality fixes (v1.20 is expected this week)
+        \item Many \textbf{improvements and bugs fixed} following feedback from various organizations deploying Cerebrate, such as the ENISA CSIRT network
+        \item Deployment of the \textbf{PoC for NATO users is ongoing} - Cerebrate instance will be available on 15th September 2024
     \end{itemize}
-
 \end{frame}
 
 \section{Ongoing rework}
@@ -337,42 +332,27 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml --env-file="./doc
 \end{frame}
 
 \begin{frame}
-  \frametitle{MISP playbooks}
+  \frametitle{MISP Airgap}
   \begin{itemize}
-    \item A new project called MISP playbooks\footnote{\url{https://www.github.com/MISP/misp-playbooks}} has started
-    \item MISP playbooks address {\bf common use-cases} encountereted by {\bf SOCs, CSIRTs and CTI teams}
-    \item Covering all the activity such {\bf detecting, reacting and analysing}
-    \item Documentation in Markdown format and code in Python all in {\bf Jupyter notebooks}
+    \item MISP Airgap\footnote{\url{https://www.misp-project.org/2024/01/12/MISP-airgap.html/}} is a solution designed to \textbf{deploy MISP in air-gapped or isolated networks}.
+    \item By leveraging the power of Linux containers (LXD), it ensures a secure, efficient, and manageable deployment of MISP instances.
+    \item Furthermore, it enables users to frequently update their MISP instance in an environment cut off from the internet.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{MISP guard}
-    \begin{itemize}
-        \item misp-guard\footnote{\url{https://github.com/MISP/misp-guard}} is a mitmproxy addon that inspects the synchronization traffic (via PUSH or PULL) between different MISP instances and applies a set of customizable rules defined in a JSON file
-        \item {\bf Simple code base for doing complementary filtering} between different MISPs for sensitive or classified networks
-        \item misp-guard doesn't depend on MISP to apply the filtering
-        \item Next step code review and evaluate the different option for certification (ideas are welcome)
-    \end{itemize}
-\end{frame}
-
-\section{Conclusions}
-
-\begin{frame}
-  \frametitle{To sum it all up...}
+  \frametitle{To Sum It All Up...}
   \begin{itemize}
-     \item The MISP {\bf developer/contributor community} continues to grow and is very active
-     \item The main focus the past year was on the following
+     \item The MISP \textbf{developer/contributor community} continues to grow and is very active.
+     \item The main focus over the past months has been:
      \begin{itemize}
-          \item Performance, security, UX improvements
-          \item Customisations of workflow processes
-          \item Better operationalisation of MISP (community management, integration, monitoring)
-          \item Fleshing out the documentation and supporting materials
+          \item Performance, security, and monitoring
+          \item Improved deployment of MISP via the new misp-docker or misp-airgap
+          \item Enhancing the documentation and supporting materials such as misp-playbooks
+          \item Improving the MISP ecosystem, including misp-galaxy, misp-modules, and interconnectivity with new tools such as Flowintel
      \end{itemize}
-     \item Cerebrate is aiming to fill the void of community/fleet management that we currently have
-     \item Definitely no lack of new ideas and improvements, if you want to participate, it's easy to {\bf get involved}
-     \item Prioritisation is hard. {\bf Let us know what you think we should focus on}!
-  \end{itemize}
+     \item There is definitely no lack of new ideas and improvements. If you want to participate, it's easy to \textbf{get involved}.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
