@@ -1,0 +1,12 @@
+\frametitle{3.x - New test suite}
+	\begin{itemize}
+		\item Automatic API schema tests on requests/responses against OpenAPI spec.
+		\item Code coverage.
+		\item Testing sync and complex features mocking external http requests.
+		\item Faster than previous PyMISP test suite.
+		\item Reproducible, same tests are run by GitHub Actions on each PR.
+		\item Easy to run, just one command:
+	\end{itemize}
+	\begin{lstlisting}[basicstyle=\ttfamily\small, breaklines=true,]
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml --env-file="./docker/.env.test" exec misp vendor/bin/phpunit
+	\end{lstlisting}

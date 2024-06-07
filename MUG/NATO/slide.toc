@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{What has happened since the last MUG}{2}{0}{1}
+\beamer@sectionintoc {2}{Give you a brief update over the highlights}{3}{0}{2}
+\beamer@sectionintoc {3}{Ongoing rework}{26}{0}{3}
+\beamer@sectionintoc {4}{MISP 3 Status}{28}{0}{4}
