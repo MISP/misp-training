@@ -1,3 +1,3 @@
 \begin{itemize}
-    \item Agenda and details available \url{https://hdoc.csirt-tooling.org/tq-qyvTQTLeZ0wy-OPXjiw?view}
+    \item Agenda and details available \url{https://tinyurl.com/CRI-MISP}
 \end{itemize}

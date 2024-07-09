@@ -124,7 +124,7 @@
 \begin{frame}[fragile]
         \frametitle{Finding available MISP modules}
         \begin{itemize}
-                \item curl -s http://127.0.0.1:6666/modules
+                \item curl -s http://127.0.0.1:6666/modules | jq .
         \end{itemize}
         \begin{adjustbox}{width=\textwidth,height=6cm,keepaspectratio}
         \begin{lstlisting}[language=json,firstnumber=1]
@@ -305,10 +305,12 @@
       \begin{lstlisting}[language=python]
         import json
         import dns.resolver
-        misperrors = {'error' : 'Error'}
-        mispattributes = {'input': ['hostname', 'domain'], 'output': ['ip-src', 'ip-dst']}
-        moduleinfo = {'version': '0.1', 'author': 'Alexandre Dulaunoy',
-                      'description': 'Simple DNS expansion service to resolve IP address from MISP attributes', 'module-type': ['expansion','hover']}
+        misperrors = {'error': 'Error'}
+        mispattributes = {'input': ['hostname', 'domain', 'domain|ip'], 'output': ['ip-src','ip-dst']}
+        moduleinfo = {'version': '0.3', 'author': 'Alexandre Dulaunoy','description': 'Simple DNS expansion service to resolve IP address from MISP attributes',
+                    'module-type': ['expansion', 'hover']}
+        moduleconfig = ['nameserver']
+
         def handler(q=False):
             if q is False:
                 return False
@@ -317,32 +319,38 @@
                 toquery = request['hostname']
             elif request.get('domain'):
                 toquery = request['domain']
+            elif request.get('domain|ip'):
+                toquery = request['domain|ip'].split('|')[0]
             else:
                 return False
             r = dns.resolver.Resolver()
             r.timeout = 2
             r.lifetime = 2
-            r.nameservers = ['8.8.8.8']
+
+            if request.get('config'):
+                if request['config'].get('nameserver'):
+                    nameservers = []
+                    nameservers.append(request['config'].get('nameserver'))
+                    r.nameservers = nameservers
+            else:
+                r.nameservers = ['8.8.8.8']
+
             try:
-                answer = r.query(toquery, 'A')
+                answer = r.resolve(toquery, 'A')
             except dns.resolver.NXDOMAIN:
                 misperrors['error'] = "NXDOMAIN"
                 return misperrors
-            except dns.exception.Timeout:
-                misperrors['error'] = "Timeout"
-                return misperrors
-            except:
-                misperrors['error'] = "DNS resolving error"
-                return misperrors
-            r = {'results': [{'types': mispattributes['output'], 'values':[str(answer[0])]}]}
-            return r
+            except ...
+
+            return {'results': [{'types': mispattributes['output'], 'values':[str(answer[0])]}]}
 
         def introspection():
             return mispattributes
 
         def version():
+            moduleinfo['config'] = moduleconfig
             return moduleinfo
-              \end{lstlisting}
+        \end{lstlisting}
         \end{adjustbox}
 \end{frame}
 
@@ -370,21 +378,28 @@
 \end{frame}
 
 \begin{frame}[fragile]
-      \frametitle{Code samples (Configuration)}
-      \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
-          \begin{lstlisting}[language=python]
-              # Configuration at the top
-              moduleconfig = ['username', 'password']
-              # Code block in the handler
-                  if request.get('config'):
-                      if (request['config'].get('username') is None) or (request['config'].get('password') is None):
-                          misperrors['error'] = 'CIRCL Passive SSL authentication is missing'
-                          return misperrors
+    \frametitle{Code samples (Configuration)}
+    \begin{adjustbox}{width=\textwidth,height=5cm,keepaspectratio}
+        \begin{lstlisting}[language=python]
+            # Configuration at the top
+            moduleconfig = ['username', 'password']
+
+            # Code block in the handler
+            if not request.get('config'):
+                return {'error': 'CIRCL Passive SSL authentication is missing.'}
+
+            if not request['config'].get('username') or not request['config'].get('password'):
+                return {'error': 'CIRCL Passive SSL authentication is incomplete, please provide your username and password.'}
+            authentication = (request['config']['username'], request['config']['password'])
+
+            if not request.get('attribute') or not check_input_attribute(request['attribute']):
+                return {'error': f'{standard_error_message}, which should contain at least a type, a value and an uuid.'}
+            attribute = request['attribute']
 -
-                  x = pypssl.PyPSSL(basic_auth=(request['config']['username'], request['config']['password']))
+            pssl_parser = PassiveSSLParser(attribute, authentication)
 
           \end{lstlisting}
-        \end{adjustbox}
+    \end{adjustbox}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -398,12 +413,12 @@
                 \item DNS resolver
                 \item DomainTools
                 \item eupi (checking url in phishing database)
-                \item IntelMQ (experimental)
                 \item ipasn
                 \item PassiveTotal - http://blog.passivetotal.org/misp-sharing-done-differently
                 \item sourcecache
                 \item Virustotal
                 \item Whois
+                \item ...
         \end{itemize}
 \end{frame}
 
@@ -660,8 +675,51 @@
 \end{frame}
 
 \begin{frame}[fragile]
-        \frametitle{New expansion \& import modules view (MISP 2.4.110}
+        \frametitle{New expansion \& import modules view (MISP 2.4.110)}
     \includegraphics[scale=0.2]{new_format_view.png}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{New - Standalone Functionality}
+    \begin{itemize}
+        \item Flexibility, no need to install MISP
+        \item User friendly interface
+        \item Easiest way to test new modules
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Web interface - Query}
+    \begin{itemize}
+        \item Add multiple entries
+        \item Choose different modules
+    \end{itemize}
+    \includegraphics[scale=0.23]{screenshots/misp_module_index.png}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Web interface - Results}
+    \begin{itemize}
+        \item Multiple tabs for visualization in different formats
+    \end{itemize}
+    \includegraphics[scale=0.23]{screenshots/misp_module_results.png}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Web interface - History}
+    \begin{itemize}
+        \item Save your researches and pivot from them
+    \end{itemize}
+    \includegraphics[scale=0.23]{screenshots/misp_module_history.png}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{itemize}
+        \item Export results to other tools. (Still in dev)
+    \end{itemize}
+    \frametitle{Web interface - External tools (Dev)}
+    \includegraphics[scale=0.23]{screenshots/misp_module_external_tools.png}
 \end{frame}
 
 \begin{frame}[fragile]

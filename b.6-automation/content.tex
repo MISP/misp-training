@@ -23,7 +23,7 @@
 
 \begin{frame}
     \frametitle{Automation in MISP: What already exists?}
-    \includegraphics[valign=m,width=16px]{pictures/python-logo.png}\hspace*{0.5em} \textbf{MISP API / PyMISP}
+    \includegraphics[valign=m,width=1em]{pictures/python-logo.png}\hspace*{0.5em} \textbf{MISP API / PyMISP}
     \hspace*{0.25em}
     \begin{itemize}
         \item Needs CRON Jobs in place
@@ -31,7 +31,7 @@
         \item Not realtime
     \end{itemize}
     \vspace*{1em}
-    \includegraphics[valign=m,width=16px]{pictures/zeromq.png}\hspace*{0.5em} \textbf{PubSub channels}
+    \includegraphics[valign=m,width=1em]{pictures/zeromq.png}\hspace*{0.5em} \textbf{PubSub channels}
     \hspace*{0.25em}
     \begin{itemize}
         \item After the actions happen: No feedback to MISP
@@ -97,7 +97,7 @@
 
 \begin{frame}
     \frametitle{Automation in MISP: What already exists?}
-    \includegraphics[valign=m,width=16px]{pictures/python-logo.png}\hspace*{0.5em} \textbf{MISP API / PyMISP}
+    \includegraphics[valign=m,width=1em]{pictures/python-logo.png}\hspace*{0.5em} \textbf{MISP API / PyMISP}
     \hspace*{0.25em}
     \begin{itemize}
         \item Needs CRON Jobs in place
@@ -105,7 +105,7 @@
         \item Not realtime
     \end{itemize}
     \vspace*{1em}
-    \includegraphics[valign=m,width=16px]{pictures/zeromq.png}\hspace*{0.5em} \textbf{PubSub channels}
+    \includegraphics[valign=m,width=1em]{pictures/zeromq.png}\hspace*{0.5em} \textbf{PubSub channels}
     \hspace*{0.25em}
     \begin{itemize}
         \item After the actions happen: No feedback to MISP
@@ -218,7 +218,7 @@
 
 \begin{frame}
     \frametitle{What kind of events?}
-    \includegraphics[width=60px]{pictures/sc-event.png}
+    \includegraphics[width=5em]{pictures/sc-event.png}
     \vspace*{0.5em}
     \begin{itemize}
         \item New MISP Event
@@ -235,7 +235,7 @@
 
 \begin{frame}
     \frametitle{Triggers currently available}
-    Currently 10 triggers can be hooked. 3 being \includegraphics[width=36px]{pictures/blocking-workflow.png}.
+    Currently 10 triggers can be hooked. 3 being \includegraphics[width=3em]{pictures/blocking-workflow.png}.
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/triggers.png}
     \end{center}
@@ -244,7 +244,7 @@
 \begin{frame}
     \frametitle{What kind of conditions?}
     \vspace*{0.25em}
-    \includegraphics[width=70px]{pictures/sc-condition.png}
+    \includegraphics[width=6em]{pictures/sc-condition.png}
     \vspace*{0.25em}
     \begin{itemize}
         \item A MISP Event is tagged with \texttt{tlp:red}
@@ -263,7 +263,7 @@
 \begin{frame}
     \frametitle{Workflow - Logic modules}
     \begin{itemize}
-        \item \includegraphics[width=12px]{pictures/sc-condition-icon.png} \textbf{logic} modules: Allow to redirect the execution flow.
+        \item \includegraphics[width=1em]{pictures/sc-condition-icon.png} \textbf{logic} modules: Allow to redirect the execution flow.
         \begin{itemize}
             \item IF conditions
             \item Delay execution
@@ -277,7 +277,7 @@
 \begin{frame}
     \frametitle{What kind of actions?}
     \vspace*{0.25em}
-    \includegraphics[width=60px]{pictures/sc-action.png}
+    \includegraphics[width=5em]{pictures/sc-action.png}
     \vspace*{0.25em}
     \begin{itemize}
         \item Send an email notification
@@ -297,7 +297,7 @@
 \begin{frame}
     \frametitle{Workflow - Action modules}
     \begin{itemize}
-        \item \includegraphics[width=12px]{pictures/sc-action-icon.png} \textbf{action} modules: Allow to executes operations
+        \item \includegraphics[width=1em]{pictures/sc-action-icon.png} \textbf{action} modules: Allow to executes operations
         \begin{itemize}
             \item Tag operations
             \item Send notifications
@@ -326,15 +326,15 @@
     \frametitle{Workflow execution for Event publish}
     \begin{itemize}
         \setlength\itemsep{1em}
-        \item[] \hspace*{-2em}\includegraphics[width=16px]{pictures/sc-event-icon.png} \hspace*{0.25em} An Event is about to be published
+        \item[] \hspace*{-2em}\includegraphics[width=1em]{pictures/sc-event-icon.png} \hspace*{0.25em} An Event is about to be published
         \begin{itemize}
             \item The workflow for the \texttt{event-publish} trigger starts
         \end{itemize}
-        \item[] \hspace*{-2em}\includegraphics[width=16px]{pictures/sc-condition-icon.png} \hspace*{0.25em} Conditions are evaluated
+        \item[] \hspace*{-2em}\includegraphics[width=1em]{pictures/sc-condition-icon.png} \hspace*{0.25em} Conditions are evaluated
         \begin{itemize}
             \item They might change the path taken during the execution
         \end{itemize}
-        \item[] \hspace*{-2em}\includegraphics[width=16px]{pictures/sc-action-icon.png} \hspace*{0.25em} Actions are executed
+        \item[] \hspace*{-2em}\includegraphics[width=1em]{pictures/sc-action-icon.png} \hspace*{0.25em} Actions are executed
         \begin{itemize}
             \setlength\itemsep{0.75em}
             \item {\bf\color{green!50!black}success}: Continue the publishing action
@@ -350,13 +350,13 @@
     Two types of workflows:
     \vspace{0.5em}
     \begin{itemize}
-        \item[] \hspace*{-2em}\includegraphics[valign=m,width=48px]{pictures/blocking-workflow.png} Workflows
+        \item[] \hspace*{-2em}\includegraphics[valign=m,width=4em]{pictures/blocking-workflow.png} Workflows
         \begin{itemize}
             \item Can prevent / block the original event to happen
-            \item If a \textbf{blocking module}\includegraphics[valign=b,width=12px]{pictures/blocking-module.png} blocks the action
+            \item If a \textbf{blocking module}\includegraphics[valign=b,width=1em]{pictures/blocking-module.png} blocks the action
         \end{itemize}
         \vspace{0.5em}
-        \item[] \hspace*{-2em}\includegraphics[valign=b,width=56px]{pictures/non-blocking-workflow.png} Workflows execution outcome has no impact
+        \item[] \hspace*{-2em}\includegraphics[valign=b,width=5em]{pictures/non-blocking-workflow.png} Workflows execution outcome has no impact
         \begin{itemize}
             \item No way to prevent something that happened in the past
         \end{itemize}
@@ -523,7 +523,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \vspace*{3em}
     {\LARGE Let's see how to build a workflow!}
     \begin{center}
-        \includegraphics[width=24px]{pictures/build-icon.png}
+        \includegraphics[width=2em]{pictures/build-icon.png}
     \end{center}
 \end{frame}
 
@@ -545,7 +545,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     }
     \textbf{Objective:} Overview of some common pitfalls
     \begin{center}
-        \includegraphics[width=24px]{pictures/radar.png}
+        \includegraphics[width=2em]{pictures/radar.png}
     \end{center}
 \end{frame}
 
@@ -591,8 +591,8 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \frametitle{Working with the editor}
     Cases showing a warning:
     \begin{itemize}
-        \item \textbf{Blocking} modules \includegraphics[width=10px]{pictures/blocking-module.png} in a \includegraphics[valign=b,width=56px]{pictures/non-blocking-workflow.png} workflow \includegraphics[width=0.12\linewidth]{pictures/time-machine.png}
-        \item \textbf{Blocking} modules \includegraphics[width=10px]{pictures/blocking-module.png} after a \textbf{concurrent tasks} module
+        \item \textbf{Blocking} modules \includegraphics[width=1em]{pictures/blocking-module.png} in a \includegraphics[valign=b,width=4em]{pictures/non-blocking-workflow.png} workflow \includegraphics[width=0.12\linewidth]{pictures/time-machine.png}
+        \item \textbf{Blocking} modules \includegraphics[width=1em]{pictures/blocking-module.png} after a \textbf{concurrent tasks} module
         \begin{center}
             \frame{\includegraphics[width=1.0\linewidth]{pictures/editor-warning-1.png}}
         \end{center}
@@ -611,7 +611,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 
 \begin{frame}
     \frametitle{Workflow blueprints}
-    \hspace*{0.9\textwidth}\includegraphics[width=32px]{pictures/blueprint-32.png}
+    \hspace*{0.9\textwidth}\includegraphics[width=3em]{pictures/blueprint-32.png}
     \vspace*{-2em}
     \begin{enumerate}
         \item Blueprints allow to \textbf{re-use parts} of a workflow in another one
@@ -644,7 +644,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \begin{itemize}
         \item Logic module allowing \textbf{multiple output} connections
         \item \textbf{Postpone the execution} for remaining modules
-        \item Convert \includegraphics[valign=b,width=44px]{pictures/blocking-workflow.png} \faIcon{long-arrow-alt-right} \includegraphics[valign=b,width=56px]{pictures/non-blocking-workflow.png}
+        \item Convert \includegraphics[valign=b,width=4em]{pictures/blocking-workflow.png} \faIcon{long-arrow-alt-right} \includegraphics[valign=b,width=5em]{pictures/non-blocking-workflow.png}
     \end{itemize}
     \begin{center}
         \frame{\includegraphics[width=0.5\linewidth]{pictures/module-concurrent.png}}
@@ -1004,7 +1004,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 \begin{frame}
     \frametitle{Debugging Workflows: Debug mode}
     \begin{itemize}
-        \item The \includegraphics[width=70px]{pictures/debug-mode.png} can be turned on for each workflows
+        \item The \includegraphics[width=6em]{pictures/debug-mode.png} can be turned on for each workflows
         \item Each nodes will send data to the provided URL
         \begin{itemize}
             \item Configure the setting: \texttt{Plugin.Workflow\_debug\_url}
@@ -1151,9 +1151,9 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \begin{columns}
         \begin{column}{0.55\textwidth}
             \begin{itemize}
-                \item More \includegraphics[width=12px]{pictures/sc-action-icon.png} modules
-                \item More \includegraphics[width=12px]{pictures/sc-condition-icon.png} modules
-                \item More \includegraphics[width=12px]{pictures/sc-event-icon.png} triggers
+                \item More \includegraphics[width=1em]{pictures/sc-action-icon.png} modules
+                \item More \includegraphics[width=1em]{pictures/sc-condition-icon.png} modules
+                \item More \includegraphics[width=1em]{pictures/sc-event-icon.png} triggers
                 \item More documentation
                 \item Recursion prevention system
                 \item On-the-fly data override?
