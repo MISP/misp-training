@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.9)  19 NOV 2024 16:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.9)  19 NOV 2024 17:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**slide.tex
+**slide
 (./slide.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21>
@@ -938,6 +938,266 @@ File: pgflibraryarrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\\' on input line 16.
 
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\setbox' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hbox' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 3.0pt
+(hyperref)                removed on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<def>-command' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beamer@current@colorhook' on input line 16
+.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\pdfcolorstack' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\main@pdfcolorstack' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\aftergroup' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beamer@lastskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lastskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<def>-command' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beamer@lastskiptexta' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\unskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\pdfcolorstack' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\main@pdfcolorstack' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\vskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beamer@lastskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 3.0pt
+(hyperref)                removed on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\dimen@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\ht' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\advance' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\dimen@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\fboxsep' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\ht' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\dimen@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\dimen@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\dp' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\advance' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\dimen@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\fboxsep' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\dp' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\dimen@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\color' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<def>-command' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beamer@current@colorhook' on input line 16
+.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\pdfcolorstack' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\main@pdfcolorstack' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\aftergroup' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beamer@lastskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lastskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<def>-command' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beamer@lastskiptexta' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\unskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\pdfcolorstack' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\main@pdfcolorstack' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\vskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beamer@lastskip' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hbox' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\vrule' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\wd' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\ht' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\dp' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hss' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\box' on input line 16.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 16.
+
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count349
@@ -1173,12 +1433,6 @@ File: misp.pdf Graphic file (type pdf)
 <use misp.pdf>
 Package pdftex.def Info: misp.pdf  used on input line 6.
 (pdftex.def)             Requested size: 163.54448pt x 119.85817pt.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/scit' in size <14.4> not avai
-lable
-(Font)              Font shape `T1/FiraSans-OsF/regular/scit' tried instead on 
-input line 6.
-LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/scit' will be
-(Font)              scaled to size 14.4pt on input line 6.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <12> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
@@ -1202,12 +1456,12 @@ LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./misp.pdf>]
-<misp-banner.png, id=38, 2104.86375pt x 300.12125pt>
+<misp-banner.png, id=37, 2104.86375pt x 300.12125pt>
 File: misp-banner.png Graphic file (type png)
 <use misp-banner.png>
 Package pdftex.def Info: misp-banner.png  used on input line 22.
 (pdftex.def)             Requested size: 412.56497pt x 58.82336pt.
-<circl.png, id=40, 210.7875pt x 78.2925pt>
+<circl.png, id=39, 210.7875pt x 78.2925pt>
 File: circl.png Graphic file (type png)
 <use circl.png>
 Package pdftex.def Info: circl.png  used on input line 22.
@@ -1235,6 +1489,10 @@ ble
 put line 22.
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
 (Font)              scaled to size 14.4pt on input line 22.
+
+Overfull \vbox (4.01161pt too high) detected at line 22
+ []
+
 [2
 
  <./misp-banner.png> <./circl.png>]
@@ -1320,25 +1578,25 @@ Package pdftex.def Info: contributors.png  used on input line 59.
 <misp-shodan.png, id=76, 433.62pt x 418.56375pt>
 File: misp-shodan.png Graphic file (type png)
 <use misp-shodan.png>
-Package pdftex.def Info: misp-shodan.png  used on input line 78.
+Package pdftex.def Info: misp-shodan.png  used on input line 79.
 (pdftex.def)             Requested size: 195.1272pt x 188.35193pt.
 <org-count-misppriv.png, id=77, 756.8275pt x 697.60625pt>
 File: org-count-misppriv.png Graphic file (type png)
 <use org-count-misppriv.png>
-Package pdftex.def Info: org-count-misppriv.png  used on input line 78.
+Package pdftex.def Info: org-count-misppriv.png  used on input line 79.
 (pdftex.def)             Requested size: 204.34615pt x 188.3562pt.
  [7
 
  <./misp-shodan.png> <./org-count-misppriv.png>] [8
 
 ]
-<galaxy-matrix.png, id=92, 863.225pt x 473.77pt>
+<galaxy-matrix.png, id=91, 863.225pt x 473.77pt>
 File: galaxy-matrix.png Graphic file (type png)
 <use galaxy-matrix.png>
-Package pdftex.def Info: galaxy-matrix.png  used on input line 101.
+Package pdftex.def Info: galaxy-matrix.png  used on input line 102.
 (pdftex.def)             Requested size: 412.56497pt x 226.43108pt.
 
-Overfull \vbox (28.04668pt too high) detected at line 101
+Overfull \vbox (28.04668pt too high) detected at line 102
  []
 
 [9
@@ -1346,18 +1604,18 @@ Overfull \vbox (28.04668pt too high) detected at line 101
  <./galaxy-matrix.png>] [10
 
 ]
-<misp-overview-simplified.pdf, id=104, 808.84355pt x 420.47617pt>
+<misp-overview-simplified.pdf, id=103, 808.84355pt x 420.47617pt>
 File: misp-overview-simplified.pdf Graphic file (type pdf)
 <use misp-overview-simplified.pdf>
-Package pdftex.def Info: misp-overview-simplified.pdf  used on input line 123.
+Package pdftex.def Info: misp-overview-simplified.pdf  used on input line 124.
 (pdftex.def)             Requested size: 350.68274pt x 182.30255pt.
  [11
 
  <./misp-overview-simplified.pdf>]
-<misp-infosharing.png, id=143, 1658.195pt x 675.52374pt>
+<misp-infosharing.png, id=142, 1658.195pt x 675.52374pt>
 File: misp-infosharing.png Graphic file (type png)
 <use misp-infosharing.png>
-Package pdftex.def Info: misp-infosharing.png  used on input line 131.
+Package pdftex.def Info: misp-infosharing.png  used on input line 132.
 (pdftex.def)             Requested size: 408.44157pt x 166.38606pt.
  [12
 
@@ -1366,10 +1624,10 @@ Package pdftex.def Info: misp-infosharing.png  used on input line 131.
 ] [14
 
 ]
-<curation.png, id=161, 1429.34pt x 810.02625pt>
+<curation.png, id=160, 1429.34pt x 810.02625pt>
 File: curation.png Graphic file (type png)
 <use curation.png>
-Package pdftex.def Info: curation.png  used on input line 169.
+Package pdftex.def Info: curation.png  used on input line 170.
 (pdftex.def)             Requested size: 346.55305pt x 196.38786pt.
  [15
 
@@ -1379,7 +1637,7 @@ Package pdftex.def Info: curation.png  used on input line 169.
 <wf-false-positive.png, id=173, 1860.9525pt x 613.29124pt>
 File: wf-false-positive.png Graphic file (type png)
 <use wf-false-positive.png>
-Package pdftex.def Info: wf-false-positive.png  used on input line 190.
+Package pdftex.def Info: wf-false-positive.png  used on input line 191.
 (pdftex.def)             Requested size: 408.44157pt x 134.59695pt.
  [17
 
@@ -1389,10 +1647,10 @@ Package pdftex.def Info: wf-false-positive.png  used on input line 190.
 <analyst-data.png, id=187, 768.8725pt x 439.6425pt>
 File: analyst-data.png Graphic file (type png)
 <use analyst-data.png>
-Package pdftex.def Info: analyst-data.png  used on input line 211.
+Package pdftex.def Info: analyst-data.png  used on input line 212.
 (pdftex.def)             Requested size: 350.68274pt x 200.52736pt.
 
-Overfull \vbox (2.14296pt too high) detected at line 211
+Overfull \vbox (2.14296pt too high) detected at line 212
  []
 
 [19
@@ -1401,39 +1659,49 @@ Overfull \vbox (2.14296pt too high) detected at line 211
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/b/n' in size <14.4> not availab
 le
 (Font)              Font shape `T1/FiraSans-OsF/bold/n' tried instead on input 
-line 239.
+line 240.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
-(Font)              scaled to size 14.4pt on input line 239.
+(Font)              scaled to size 14.4pt on input line 240.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <10> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 239.
+ut line 240.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 10.0pt on input line 239.
+(Font)              scaled to size 10.0pt on input line 240.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <7> not available
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 239.
+ut line 240.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 7.0pt on input line 239.
+(Font)              scaled to size 7.0pt on input line 240.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <10> not availabl
 e
 (Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 239.
+put line 240.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 10.0pt on input line 239.
+(Font)              scaled to size 10.0pt on input line 240.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/it' in size <7> not available
 
 (Font)              Font shape `T1/FiraSans-OsF/regular/it' tried instead on in
-put line 239.
+put line 240.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/it' will be
-(Font)              scaled to size 7.0pt on input line 239.
+(Font)              scaled to size 7.0pt on input line 240.
  [20
 
 ] [21
 
-] [22
-
 ]
+<opensource-csirt.png, id=206, 1188.44pt x 748.7975pt>
+File: opensource-csirt.png Graphic file (type png)
+<use opensource-csirt.png>
+Package pdftex.def Info: opensource-csirt.png  used on input line 257.
+(pdftex.def)             Requested size: 330.05322pt x 207.95943pt.
+
+Overfull \vbox (9.57503pt too high) detected at line 257
+ []
+
+[22
+
+ <./opensource-csirt.png>]
 LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/m/n' in size <10.95> not avail
 able
 (Font)              Font shape `T1/FiraMono-TOsF/regular/n' tried instead on in
@@ -1446,6 +1714,8 @@ LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
 
 ] [25
 
+] [26
+
 ])
 \tf@nav=\write5
 \openout5 = `slide.nav'.
@@ -1456,33 +1726,32 @@ LaTeX Font Info:    Font shape `T1/FiraMono-TOsF/regular/n' will be
 \tf@snm=\write7
 \openout7 = `slide.snm'.
 
- (./slide.aux
-(./content.aux))
+ (./slide.aux (./content.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 30337 strings out of 478287
- 624319 string characters out of 5849290
- 875717 words of memory out of 5000000
- 47821 multiletter control sequences out of 15000+600000
- 849746 words of font info for 109 fonts, out of 8000000 for 9000
+ 30345 strings out of 478287
+ 624425 string characters out of 5849290
+ 876334 words of memory out of 5000000
+ 47828 multiletter control sequences out of 15000+600000
+ 836424 words of font info for 107 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,16n,122p,424b,877s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 128i,16n,122p,420b,877s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_iln36p.enc}{/usr/shar
 e/texlive/texmf-dist/fonts/enc/dvips/fira/fir_d4q673.enc}{/usr/share/texlive/te
 xmf-dist/fonts/enc/dvips/fira/fir_2mfh3o.enc}</usr/share/texlive/texmf-dist/fon
 ts/type1/public/fira/FiraMono-Regular.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/fira/FiraSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/fira/FiraSans-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/symbols/msam10.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qhvr.pfb>
-Output written on slide.pdf (25 pages, 1848834 bytes).
+public/fira/FiraSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/symbols/msam10.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qhvr.pf
+b>
+Output written on slide.pdf (26 pages, 1879217 bytes).
 PDF statistics:
- 275 PDF objects out of 1000 (max. 8388607)
- 187 compressed objects within 2 object streams
- 51 named destinations out of 1000 (max. 500000)
- 108 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 281 PDF objects out of 1000 (max. 8388607)
+ 192 compressed objects within 2 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 113 words of extra memory for PDF output out of 10000 (max. 10000000)
 

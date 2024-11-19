@@ -8,21 +8,21 @@
 \begin{frame}
     \frametitle{\texttt{\$whoarewe} - MISP and CIRCL}
     \begin{center}
-            \includegraphics[width=1.0\textwidth]{misp-banner.png}
+        \includegraphics[width=1.0\textwidth]{misp-banner.png}
     \end{center}
     \begin{center}
-            \includegraphics[width=0.35\textwidth]{circl.png}
+        \includegraphics[width=0.35\textwidth]{circl.png}
     \end{center}
     \begin{itemize}
-            \item CIRCL is mandated by the Ministry of Economy
-            \item CIRCL leads the development of MISP.
-            \item {\bf CIRCL runs multiple large MISP communities performing active daily threat-intelligence sharing}.
-            \item Funding is from LU, several EU programs and partnerships (EU/US) agreements.
+        \item CIRCL is mandated by the Ministry of the Economy (under NIS 2).
+        \item CIRCL leads the development of MISP.
+        \item {\bf CIRCL manages multiple large MISP communities, enabling active daily threat intelligence sharing.}
+        \item Funding comes from Luxembourg, various EU programs, and partnerships under EU/US agreements.
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Plan of this session}
+    \frametitle{Plan of this Session}
     \begin{itemize}
         \item MISP Intro: What it is, and what it can do
         \item Current state and Future of MISP
@@ -37,7 +37,7 @@
 \begin{frame}
     \frametitle{What is MISP?}
     \begin{itemize}
-        \item MISP is a {\bf threat information sharing platform} ({\bf TISP}) that is free \& open source software
+        \item MISP\footnote{\url{https://www.misp-project.org/}} is a {\bf threat information sharing platform} ({\bf TISP}) that is free \& open source software
         \item Mature project that was started in 2012, and since then, has been following a community-driven development
     \end{itemize}
 
@@ -49,14 +49,15 @@
 \begin{frame}
     \frametitle{What is MISP?}
     \begin{itemize}
-        \item Used worldwide to share threat-related information
-        \item \textbf{Open-source commitment}: Users of MISP can rely on the tool never turning into closed source
+        \item Used worldwide to manage and share threat-related information and intelligence.
+	\item \textbf{Open-Source Commitment}: Users of MISP can rely on the tool remaining open source and never becoming closed source (autonomy of the users).
     \end{itemize}
 
     \begin{center}
         \includegraphics[width=0.99\linewidth]{contributors.png}
     \end{center}
 \end{frame}
+
 
 \begin{frame}
     \frametitle{What is MISP? (1)}
@@ -78,18 +79,18 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Who is using MISP? (2)}
-    {\bf Communities:} groups of users sharing within a set of common objectives/values.
-    \vspace{0.5em}
+    \frametitle{Who is Using MISP? (2)}
+    \textbf{Communities:} Groups of users sharing within a set of common objectives and values.
+    \vspace{1em}
     \begin{itemize}
-        \item {\bf Private sector} Financial, Manufacturing, Telecommunication
-        \item {\bf Military and international organizations} (NATO, military CSIRTs, n/g CERTs,...).
-        \item {\bf Security vendors} running their own communities (e.g. Fidelis) or interfacing with MISP communities (e.g. OTX).
-        \item {\bf Topical communities} set up to tackle individual specific issues (COVID-19 MISP)
-        \item {\bf ISACs} for many sectors (telecom, retail, aviations, ...) use MISP as a sharing mechanism
-        \item {\bf Trusted groups} running MISP communities in island mode (air gapped system) or partially connected mode.
-        \item {\bf LEA Agencies} EUROPOL, INTERPOL, MISP-LEA, $\cdots$
-        \item {\bf International groups} FIRST.org, MISP-Priv, $\cdots$
+        \item \textbf{Private Sector:} Financial, Manufacturing, Telecommunications.
+        \item \textbf{Military and International Organizations:} NATO, military CSIRTs, national and governmental CERTs, etc.
+        \item \textbf{Security Vendors:} Running their own communities or interfacing with MISP communities
+        \item \textbf{Topical Communities:} Set up to tackle specific issues (e.g., COVID-19 MISP).
+        \item \textbf{ISACs:} Serving various sectors such as Telecom, Retail, Aviation Traffic Control, etc.
+        \item \textbf{Trusted Groups:} Operating MISP communities in island mode (air-gapped systems) or partially connected modes.
+        \item \textbf{Law Enforcement Agencies (LEAs):} EUROPOL, INTERPOL, MISP-LEA, and more.
+        \item \textbf{International Groups:} FIRST.org, MISP-Priv, and others.
     \end{itemize}
 \end{frame}
 
@@ -239,40 +240,39 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Success/Failure stories in MISP communities}
-    TODO: To be added by alex
+    \frametitle{Success and Failure Stories in MISP Communities}
     \begin{itemize}
-        \item CSSA
-        \item Forced sharing as a requirement
+        \item We have supported various ISACs and sharing communities over the past years.
+	\item Success largely depends on {\bf the dynamics} within the sharing community and how the rules are defined.
+	\item Collaboration improves with {\bf contextualization practices} and {\bf well-established rules of operation}.
+        \item Successful ISACs use MISP as a tool, customizing it to fit their specific needs.
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Advantage of MISP being free and open-source}
-    TODO: To be added by alex
+    \frametitle{Incentives for Using Open Source}
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{opensource-csirt.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Future of MISP: What's ongoing}
+    \frametitle{Future of MISP: What's Ongoing}
     \begin{minipage}[t]{0.5\textwidth}
-    \textbf{Medium term:}
+    \textbf{Medium Term:}
     \begin{itemize}
-        \item We just release a minor version \texttt{2.4}
-        \item Support \texttt{2.4} until 6 months after \texttt{2.5}'s release
-        \item Full feature parity and compatibility
-        \item In progress: Installation/update scripts for alternate distros
+        \item We just released version \texttt{2.5}.
+        \item Support for \texttt{2.4} will continue until 6 months after \texttt{2.5}'s release.
+        \item Full feature parity and compatibility between \texttt{2.4} and \texttt{2.5}.
     \end{itemize}
     \end{minipage}%
     \begin{minipage}[t]{0.5\textwidth}
-    \textbf{Long term:} Major version \texttt{3.0}
+    \textbf{Long Term:} Major Version \texttt{3.0}
     \begin{itemize}
-        \item Purge old/unused functionalities
-        \item Port of the codebase to a new stack
-        \item Rework DB updates
-        \item Revamp front-end \& aesthetics
-        \item Analyst centric perspective
-        \item Improved search and trend 
-        \item Improved performance
+        \item Revamp front-end and aesthetics.
+        \item Analyst-centric perspective.
+        \item Improved search and analytics.
+        \item Enhanced performance.
     \end{itemize}
     \end{minipage}%
 \end{frame}
@@ -280,20 +280,20 @@
 \begin{frame}
     \frametitle{CIRCL's MISP Professional Services (MPS)}
     \begin{itemize}
-        \item We are confortably funded for the project to continue to prospere
-        \item MPS offers professional services \& supports the growth of the project
+        \item We are comfortably funded to ensure the project's continued prosperity.
+        \item MPS provides professional services and assists organizations seeking to secure support for MISP.
     \end{itemize}
     \vspace{1em}
-    CIRCL's Offering:
+    \textbf{CIRCL's Offering:}
     \begin{itemize}
-        \item \textbf{Support Contract} - Prioritized resolution of issues and guidance
-        \item \textbf{Training} - Adapted to the level of expertise of the participants
+        \item \textbf{Support Contract:} Prioritized issue resolution and expert guidance.
+        \item \textbf{Training:} Tailored to the expertise level of participants.
             \begin{itemize}
-                \item {\small Free onboarding MISP training for ISACs and it's member}
+                \item {\small Free onboarding MISP training for ISACs and their members.}
             \end{itemize}
-            \item \textbf{Hosting} - Hosted on our infrastructure (LU): Virtual or Dedicated
+        \item \textbf{Hosting:} Hosted on our infrastructure in Luxembourg (LU), available as virtual or dedicated instances.
             \begin{itemize}
-                \item {\small Maintenance of OS \& MISP, Early patching for security issues}
+                \item {\small OS and MISP maintenance, with early patching for security issues.}
             \end{itemize}
     \end{itemize}
 \end{frame}
@@ -301,11 +301,19 @@
 \begin{frame}
     \frametitle{Conclusion}
     \begin{itemize}
-            \item MISP is just a tool. What matters is your {\bf sharing practices}.
-            \item MISP strives to meet any community's use-cases.
-            \item MISP project combines {\bf open source softwares}, {\bf open standards \& best practices} to make information sharing a reality.
+        \item MISP is just a tool—what truly matters are your \textbf{sharing and analysis practices}.
+        \item MISP strives to meet the use cases of any community, from simple to complex ones.
+        \item The MISP project combines \textbf{open-source software}, \textbf{open standards}, and \textbf{best practices} to make information sharing and analysis a reality.
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}
+     \frametitle{Contact}
+     \begin{itemize}
+	     \item \url{info@circl.lu} - \url{info@misp-project.org}
+	     \item Open source software developed and used by CIRCL - \url{https://tinyurl.com/ISACTOOLING}
+     \end{itemize}
+\end{frame}
 
 
