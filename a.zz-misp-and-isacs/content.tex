@@ -70,7 +70,15 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Who is using MISP?}
+    \frametitle{Who is using MISP? (1)}
+    \begin{center}
+        \includegraphics[scale=0.45]{misp-shodan.png}
+        \includegraphics[scale=0.27]{org-count-misppriv.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Who is using MISP? (2)}
     {\bf Communities:} groups of users sharing within a set of common objectives/values.
     \vspace{0.5em}
     \begin{itemize}
@@ -83,6 +91,13 @@
         \item {\bf LEA Agencies} EUROPOL, INTERPOL, MISP-LEA, $\cdots$
         \item {\bf International groups} FIRST.org, MISP-Priv, $\cdots$
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{What is MISP? (2)}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{galaxy-matrix.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -117,13 +132,12 @@
 
 \begin{frame}
     \frametitle{Sharing in MISP (2)}
-    MISP offers a wide range of strategy to share information:
+    MISP offers a wide range of \textbf{strategy to share information}:
     \begin{itemize}
         \item Many {\bf distribution level} offering granularity
         \item Sharing via distribution lists - {\bf Sharing groups}
-        \item {\bf Delegation} for pseudo-anonymised information sharing
-        \item {\bf Proposals} and {\bf Extended events} for collaborated information sharing
-        \item Synchronisation, Feed system, air-gapped sharing
+        \item Incremental Synchronisation \& air-gapped sharing
+        \item Feed system for ingestion \& generation
         \item User defined {\bf filtered sharing} for all the above mentioned methods
         \item Cross-instance information {\bf caching} for quick lookups of large data-sets
         \item Support for multi-MISP \textbf{internal enclaves}
@@ -131,30 +145,41 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Information quality management}
+    \frametitle{Information Quality Management}
     MISP has many features to help you manage and curate the data:
     \begin{itemize}
         \item \textbf{Correlating} data
         \item Feedback loop from detections via {\bf Sightings}
         \item {\bf False positive management} via the warninglist system
         \item {\bf Enrichment system} via MISP-modules
-        \item {\bf workflow} system to review and control information publication
+        \item {\bf Workflow} system to review and control information publication
         \item {\bf Integrations} with a plethora of tools and formats
         \item Flexible {\bf API} and support {\bf libraries} such as PyMISP to ease integration
         \item {\bf Timelines} and giving information a temporal context
         \item Full chain for {\bf indicator life-cycle management}
+        \item {\bf Jupyter Notebooks} supporting common use-cases
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Integration and Automation ecosystem}
-    MISP has many features to help you integrate various tools, processes and workflows
+    MISP has many features to help you integrate various tools, processes and workflows:
     \begin{itemize}
-        \item REST-full API \& PyMISP
-        \item PubSub channels (ZeroMQ \& Kafka)
-        \item Enrichment \& Import/Export service through MISP-modules
-        \item Workflow system: Quick and easy automation based on trigger/conditions/actions blocks
+        \item REST-full \textbf{API} \& \textbf{PyMISP}
+        \item \textbf{PubSub channels} (ZeroMQ \& Kafka)
+        \item \textbf{Enrichment} \& \textbf{Import/Export} service through MISP-modules
+        \item \textbf{Workflow system}: Quick and easy automation based on trigger/conditions/actions blocks
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Information Quality Management}
+    \begin{center}
+        \includegraphics[width=0.99\linewidth]{wf-false-positive.png}
+    \end{center}
+    \begin{center}
+        \textbf{Blueprint library} available on Github\footnote{\url{https://github.com/MISP/misp-workflow-blueprints}}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -167,7 +192,15 @@
         \item Sightings
         \item Extended Events
         \item Sharing-Groups
+        \item $\cdots$
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Using the Power of the Community}
+    \begin{center}
+        \includegraphics[width=0.85\linewidth]{analyst-data.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
