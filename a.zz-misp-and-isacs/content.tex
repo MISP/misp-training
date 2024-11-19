@@ -6,434 +6,266 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Who we are - MISP and CIRCL}
-\begin{itemize}
-\item CIRCL is mandated by the Ministry of Economy and acting as the Luxembourg National CERT for private sector.
-\item {\bf CIRCL leads the development} of the Open Source MISP threat intelligence platform which is used by many military or intelligence communities, private companies, financial sector, National CERTs and LEAs globally.
-\item {\bf CIRCL runs multiple large MISP communities performing active daily threat-intelligence sharing}.
-\item Funding is shared between Luxembourg, several European Union programs and partnerships (EU/US) agreements.
-\end{itemize}
+    \frametitle{\texttt{\$whoarewe} - MISP and CIRCL}
+    \begin{center}
+            \includegraphics[width=1.0\textwidth]{misp-banner.png}
+    \end{center}
+    \begin{center}
+            \includegraphics[width=0.35\textwidth]{circl.png}
+    \end{center}
+    \begin{itemize}
+            \item CIRCL is mandated by the Ministry of Economy
+            \item CIRCL leads the development of MISP.
+            \item {\bf CIRCL runs multiple large MISP communities performing active daily threat-intelligence sharing}.
+            \item Funding is from LU, several EU programs and partnerships (EU/US) agreements.
+    \end{itemize}
 \end{frame}
+
 \begin{frame}
-	\frametitle{Plan}
-	\begin{itemize}
-		\item An introduction to the MISP project and how it supports ISACs.
+    \frametitle{Plan of this session}
+    \begin{itemize}
+        \item MISP Intro: What it is, and what it can do
+        \item Current state and Future of MISP
+        \item How can MISP supports ISACs and its members
+    \end{itemize}
+    \vspace{1em}
+    \begin{itemize}
         \item Building an information sharing community, lessons learnt and best practices\footnote{We published the complete guidelines in \url{https://www.x-isac.org/assets/images/guidelines_to_set-up_an_ISAC.pdf}}.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-        \frametitle{MISP Project Overview}
-        \includegraphics[scale=0.35]{misp-overview-simplified.pdf}
-\end{frame}
-
-\begin{frame}
-    \frametitle{MISP features}
-    \begin{itemize}
-            \item MISP project is an open source project developed the past 10-year with a large and active community.
-            \item A complete set of features in MISP to work as a {\bf threat intelligence platform} with a strong set of {\bf information sharing capabilities}. 
-            \item A {\bf flexible information sharing} model to support centralised, distributed or mixed model ISACs.
-            \item Integration and extensability functionalities allow MISP to support different use-cases (from cybersecurity to complex intelligence community requirements).
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{MISP feature - correlation}
+    \frametitle{What is MISP?}
     \begin{itemize}
-        \item MISP includes a {\bf powerful engine for correlation} which allows analysts to discover correlating values between attributes. 
-        \item Getting a direct benefit from shared information by other ISAC members.
+        \item MISP is a {\bf threat information sharing platform} ({\bf TISP}) that is free \& open source software
+        \item Mature project that was started in 2012, and since then, has been following a community-driven development
     \end{itemize}
-    \includegraphics[scale=0.20]{campaign.png}
+
+    \begin{center}
+        \includegraphics[width=0.99\linewidth]{release_overtime.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{MISP feature - event graph}
+    \frametitle{What is MISP?}
     \begin{itemize}
-        \item {\bf Analysts can create stories} based on graph relationships between objects, attributes.
-         \item ISACs users can directly understand the information shared.
+        \item Used worldwide to share threat-related information
+        \item \textbf{Open-source commitment}: Users of MISP can rely on the tool never turning into closed source
     \end{itemize}
-    \includegraphics[scale=0.20]{event-graph.png}
+
+    \begin{center}
+        \includegraphics[width=0.99\linewidth]{contributors.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{MISP feature - workflow}
+    \frametitle{What is MISP? (1)}
     \begin{itemize}
-        \item MISP can control publication steps via {\bf customised workflow} when publishing events, creating new users... 
-        \item ISACs can enforce specific policies and rules via workflows.  
+        \item MISP is a {\bf threat information sharing platform} ({\bf TISP}) that is free \& open source software
+        \item A tool that {\bf collects} information from partners, your analysts, your tools, feeds
+        \item Normalises, {\bf correlates}, {\bf enriches} the data
+        \item Allows teams and communities to {\bf collaborate}
+        \item {\bf Feeds} automated protective tools and analyst tools with the output
     \end{itemize}
-    \includegraphics[scale=0.20]{workflow.png}
 \end{frame}
 
 \begin{frame}
-    \frametitle{MISP feature - flexible data models} 
+    \frametitle{Who is using MISP?}
+    {\bf Communities:} groups of users sharing within a set of common objectives/values.
+    \vspace{0.5em}
     \begin{itemize}
-        \item MISP can be easily customised to support other data models (via {\bf object templates, taxonomies and galaxies}).
-        \item ISACs don't need to change their models, policies or structure.
-        \item A library of {\bf 290+ objects, 200+ taxonomies and many galaxies} (such as MITRE ATT\&CK) are available. 
+        \item {\bf Private sector} Financial, Manufacturing, Telecommunication
+        \item {\bf Military and international organizations} (NATO, military CSIRTs, n/g CERTs,...).
+        \item {\bf Security vendors} running their own communities (e.g. Fidelis) or interfacing with MISP communities (e.g. OTX).
+        \item {\bf Topical communities} set up to tackle individual specific issues (COVID-19 MISP)
+        \item {\bf ISACs} for many sectors (telecom, retail, aviations, ...) use MISP as a sharing mechanism
+        \item {\bf Trusted groups} running MISP communities in island mode (air gapped system) or partially connected mode.
+        \item {\bf LEA Agencies} EUROPOL, INTERPOL, MISP-LEA, $\cdots$
+        \item {\bf International groups} FIRST.org, MISP-Priv, $\cdots$
     \end{itemize}
-    \includegraphics[scale=0.12]{galaxy.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{What is MISP? (2)}
+    MISP is designed from the ground up to perform context-rich \textbf{threat intelligence}:
+    \vspace{0.5em}
+    \begin{itemize}
+           \item {\bf Enrich} information with context and metadata
+           \item Maps {\bf Threats and TTPs} (e.g MITRE ATT\&CK)
+           \item Supports many {\bf standardized classification} marking
+           \item Enables information {\bf curation} through automated quality checks
+           \item Offers visualisation of threat {\bf relationships} and \textbf{technique} used
+           \item Generates customizable {\bf threat reports}
+           \item Allows creation of {\bf Dashboard} for trend analysis
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Project Overview}
+    \begin{center}
+        \includegraphics[width=0.85\linewidth]{misp-overview-simplified.pdf}
+    \end{center}
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Communities operated by CIRCL}
-\begin{itemize}
-        \item As a CSIRT, CIRCL operates a wide range of communities
-        \item We use it as an {\bf internal tool} to cover various day-to-day activities
-        \item Whilst being the main driving force behind the development, we're also one of the largest consumers
-	\item Different communities have different needs and restrictions
-\end{itemize}
+    \frametitle{Sharing in MISP (1)}
+    \begin{center}
+        \includegraphics[width=0.99\linewidth]{misp-infosharing.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Communities operated by CIRCL}
-\begin{itemize}
-        \item Private sector community
-	\begin{itemize}
-		\item Our largest sharing community
-		\item Over {\bf +1500 organisations}
-		\item {\bf +4000 users}
-		\item Functions as a central hub for a lot of different sharing communities
-		\item Private organisations, researchers, various SoCs, some CSIRTs, etc
-	\end{itemize}
-	\item CSIRT community
-	\begin{itemize}
-		\item Tighter community
-		\item National CSIRTs, connections to international organisations, etc
-	\end{itemize}
-\end{itemize}
+    \frametitle{Sharing in MISP (2)}
+    MISP offers a wide range of strategy to share information:
+    \begin{itemize}
+        \item Many {\bf distribution level} offering granularity
+        \item Sharing via distribution lists - {\bf Sharing groups}
+        \item {\bf Delegation} for pseudo-anonymised information sharing
+        \item {\bf Proposals} and {\bf Extended events} for collaborated information sharing
+        \item Synchronisation, Feed system, air-gapped sharing
+        \item User defined {\bf filtered sharing} for all the above mentioned methods
+        \item Cross-instance information {\bf caching} for quick lookups of large data-sets
+        \item Support for multi-MISP \textbf{internal enclaves}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Communities co-operated and supported by CIRCL}
-\begin{itemize}
-	\item Financial sector community
-	\begin{itemize}
-		\item Banks, payment processors, etc.
-		\item Sharing of {\bf mule accounts} and {\bf non-cyber threat information}
-	\end{itemize}
-    \item X-ISAC\footnote{\url{https://www.x-isac.org/}}
-	\begin{itemize}
-		\item {\bf Bridging the gap} between the various sectorial and geographical ISACs
-		\item New, but ambitious initiative
-		\item Goal is to {\bf bootstrap the cross-sectorial sharing} along with building the infrastructure to enable sharing when needed
-	\end{itemize}
-\end{itemize}
+    \frametitle{Information quality management}
+    MISP has many features to help you manage and curate the data:
+    \begin{itemize}
+        \item \textbf{Correlating} data
+        \item Feedback loop from detections via {\bf Sightings}
+        \item {\bf False positive management} via the warninglist system
+        \item {\bf Enrichment system} via MISP-modules
+        \item {\bf workflow} system to review and control information publication
+        \item {\bf Integrations} with a plethora of tools and formats
+        \item Flexible {\bf API} and support {\bf libraries} such as PyMISP to ease integration
+        \item {\bf Timelines} and giving information a temporal context
+        \item Full chain for {\bf indicator life-cycle management}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Communities supported by CIRCL}
-\begin{itemize}
-        \item ISAC / specialised community MISPs
+    \frametitle{Integration and Automation ecosystem}
+    MISP has many features to help you integrate various tools, processes and workflows
+    \begin{itemize}
+        \item REST-full API \& PyMISP
+        \item PubSub channels (ZeroMQ \& Kafka)
+        \item Enrichment \& Import/Export service through MISP-modules
+        \item Workflow system: Quick and easy automation based on trigger/conditions/actions blocks
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Using the Power of the Community}
+    MISP has many features to foster collaboration. To name a few:
+    \begin{itemize}
+        \item Proposals
+        \item Analyst Data
+        \item Delegation
+        \item Sightings
+        \item Extended Events
+        \item Sharing-Groups
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Getting started: Joining/Running a sharing community using MISP}
+
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{center}
+            \bf \Large As a Member
+        \end{center}
         \begin{itemize}
-            \item Topical or community specific instances hosted or co-managed by CIRCL
-            \item Examples, GSMA, FIRST.org, CSIRT network, PISAX.org, etc
-            \item Often come with their {\bf own taxonomies and domain specific object definitions}
+            \item \textbf{Join} a "Hub" MISP instance
+            \item \textbf{Host your own} MISP instance and connect to a "Hub"
         \end{itemize}
-	\item FIRST.org's MISP community
-	\item Telecom and Mobile operators' such as GSMA T-ISAC community
-	\item Various ad-hoc communities for exercises for example
-	\begin{itemize}
-		\item The ENISA exercise for example
-         \item Locked Shields exercise
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Sharing Scenarios in MISP}
-\begin{itemize}
-	\item Sharing can happen for {\bf many different reasons}. Let's see what we believe are the typical CSIRT scenarios
-        \item We can generally split these activities into 4 main groups when we're talking about traditional CSIRT tasks:
-	\begin{itemize}
-		\item Core services
-		\item Proactive services
-		\item Advanced services
-		\item Sharing communities managed by CSIRTs for various tasks
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{CSIRT core services}
-\begin{itemize}
-	\item Incident response
-	\begin{itemize}
-		\item {\bf Internal storage} of incident response data
-		\item Sharing of indicators {\bf derived from incident response}
-		\item {\bf Correlating data} derived and using the built in analysis tools
-		\item {\bf Enrichment} services
-		\item {\bf Collaboration} with affected parties via MISP during IR
-		\item {\bf Co-ordination} and collaboration
-		\item {\bf Takedown} requests
-	\end{itemize}
-	\item Alerting of information leaks (integration with {\bf AIL}\footnote{\url{https://www.ail-project.org/}})
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{CSIRT proactive services}
-\begin{itemize}
-	\item {\bf Contextualising} both internal and external data
-	\item {\bf Collection} and {\bf dissimination} of data from various sources (including OSINT)
-	\item Storing, correlating and sharing own manual research ({\bf reversing, behavioural analysis})
-	\item Aggregating automated collection ({\bf sandboxing, honeypots, spamtraps, sensors})
-	\begin{itemize}
-		\item MISP allows for the creation of {\bf internal MISP "clouds"}
-		\item Store {\bf large specialised datasets} (for example honeypot data)
-		\item MISP has {\bf interactions with} a large set of such {\bf tools} (Cuckoo, Mail2MISP, etc)
-	\end{itemize}
-	\item {\bf Situational awareness} tools to monitor trends and adversary TTPs within my sector/geographical region (MISP-dashboard, built in statistics)
-\end{itemize}
-\end{frame}
-
-%\begin{frame}
-%\frametitle{CSIRT proactive services - MISP dashboard}
-%\includegraphics[scale=0.18]{screenshots/dashboard-live.png}
-%\end{frame}
-
-%\begin{frame}
-%\frametitle{CSIRT proactive services - MISP dashboard}
-%\includegraphics[scale=0.18]{screenshots/dashboard-trendings.png}
-%\end{frame}
-
-\begin{frame}
-\frametitle{CSIRT advanced services}
-\begin{itemize}
-	\item Supporting {\bf forensic analysts}
-	\item Collaboration with {\bf law enforcement}
-	\item {\bf Vulnerability} information sharing
-	\begin{itemize}
-		\item {\bf Notifications} to the constituency about relevant vulnerabilities
-		\item {\bf Co-ordinating} with vendors for notifications (*)
-		\item Internal / closed community sharing of pentest results
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{ISACs and CSIRT role in information sharing}
-\begin{itemize}
-	\item {\bf Reporting} non-identifying information about incidents (such as outlined in NISD)
-	\item {\bf Seeking} and engaging in {\bf collaboration} with CSIRT or other parties during an incident
-	\item Pre-sharing information to {\bf request for help} / additional information from the community
-	\item {\bf Pseudo-anonymised sharing} through 3rd parties to {\bf avoid attribution} of a potential target
-	\item Building processes for {\bf other types of sharing} to get the community engaged and acquainted with the methodologies of sharing (mule account information, disinformation campaigns, border control, etc)
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Compliance, legal framework and ISACs}
-\begin{itemize}
-	\item MISP project collaborated with legal advisory services
-	\begin{itemize}
-		\item Information sharing and cooperation {\bf enabled by GDPR};
-		\item How MISP enables stakeholders identified by the {\bf NISD} to perform key activities;
-        \item {\bf ISO/IEC 27010:2015} - Information security management for inter-sector and inter-organizational communications;
-        \item Guidelines to setting up an information sharing community such as an ISAC or ISAO;
-	\end{itemize}
-	\item For more information: https://www.misp-project.org/compliance/
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Getting started with building your own sharing community}
-\begin{itemize}
-	\item Starting a sharing community is {\bf both easy and difficult} at the same time
-    \item Many moving parts and most importantly, you'll be dealing with a {\bf diverse group of people}
-	\item Understanding and working with your constituents to help them face their challenges is key
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Running a sharing community using MISP - How to get going?}
-\begin{itemize}
-	\item Different models for constituents
-	\begin{itemize}
-        \item {\bf Connecting to} a MISP instance hosted by a ISAC 
-        \item {\bf Hosting} their own instance and connecting to ISAC's MISP
-        \item {\bf Becoming member} of a sectorial MISP community that is connected to ISAC's community
-	\end{itemize}
-	\item Planning ahead for future growth
-	\begin{itemize}
-		\item Estimating requirements
-		\item Deciding early on common vocabularies
-		\item Offering services through MISP
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Rely on our instincts to immitate over expecting adherence to rules}
-\begin{itemize}
-    \item {\bf Lead by example} - the power of immitation
-    \item Encourage {\bf improving by doing} instead of blocking sharing with unrealistic quality controls
-	\begin{itemize}
-		\item What should the information look like?
-		\item How should it be contextualise
-		\item What do you consider as useful information?
-		\item What tools did you use to get your conclusions?
-        \item How the information could be used by the ISAC members?
-	\end{itemize}
-\item Side effect is that you will end up {\bf raising the capabilities of your constituents}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{What counts as valuable data?}
-\begin{itemize}
-	\item Sharing comes in many shapes and sizes
-	\begin{itemize}
-		\item Sharing results / reports is the classical example
-		\item Sharing enhancements to existing data
-		\item Validating data / flagging false positives
-		\item Asking for support from the community
-	\end{itemize}
-\item {\bf Embrace all of them}. Even the ones that don't make sense right now, you never know when they come handy...
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{How to deal with organisations that only "leech"?}
-\begin{itemize}
-    \item From our own communities, only about {\bf 30\%} of the organisations {\bf actively share data}
-	\item We have come across some communities with sharing requirements
-	\item In our experience, this sets you up for failure because:
-	\begin{itemize}
-		\item Organisations losing access are the ones who would possibily benefit the most from it
-		\item Organisations that want to stay above the thresholds will start sharing junk / fake data
-		\item You lose organisations that might turn into valuable contributors in the future
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{So how does one convert the passive organisations into actively sharing ones?}
-\begin{itemize}
-    \item Rely on {\bf organic growth} and it takes time (+2 years is common)
-    \item {\bf Help} them increase their capabilities
-	\item As mentioned before, lead by example
-	\item Rely on the inherent value to one's self when sharing information (validation, enrichments, correlations)
-    \item {\bf Give credit} where credit is due, never steal the contributions of your community (that is incredibly demotivating)
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Dispelling the myths around blockers when it comes to information sharing}
+    \end{minipage}%
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{center}
+            \bf \Large As a ISAC
+        \end{center}
+        Plan ahead:
         \begin{itemize}
-                \item Sharing difficulties are not really technical issues but often it's a matter of {\bf social interactions} (e.g. {\bf trust}).
-		\begin{itemize}
-			\item You can play a role here: organise regular workshops, conferences, have face to face meetings
-		\end{itemize}
-                \item Legal restrictions
-                        \begin{itemize}
-                                \item "Our legal framework doesn't allow us to share information."
-                                \item "Risk of information leak is too high and it's too risky for our organization or partners."
-                        \end{itemize}
-                \item Practical restrictions
-                        \begin{itemize}
-                                \item "We don't have information to share."
-                                \item "We don't have time to process or contribute indicators."
-                                \item "Our model of classification doesn't fit your model."
-                                \item "Tools for sharing information are tied to a specific format, we use a different one."
-                        \end{itemize}
+            \item Estimate community \textbf{requirements and objectives}
+            \item Decide on \textbf{common vocabularies}
+            \item \textbf{Offer services} to your members
+            \begin{itemize}
+                \item Enrichment, Curation, $\cdots$
+            \end{itemize}
         \end{itemize}
+    \end{minipage}%
 \end{frame}
 
 \begin{frame}
-\frametitle{Contextualising the information}
-\begin{itemize}
-    \item Sharing {\bf technical information} is a {\bf great start}
-	\item However, to truly create valueable information for your community, always consider the context:
-	\begin{itemize}
-		\item Your IDS might not care why it should alert on a rule
-		\item But your analysts will be interested in the threat landscape and the "big picture"
-	\end{itemize}
-    \item Classify data to make sure your partners understand why it is {\bf important for you}, so they can see why it could be {\bf useful to them}
-    \item Massively important once an organisation has the maturity to filter the most critical {\bf subsets of information for their own defense}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Choice of vocabularies}
-\begin{itemize}
-    \item MISP has a verify {\bf versatile system} (taxonomies) for classifying and marking data
-	\item However, this includes different vocabularies with obvious overlaps
-    \item MISP allows you to {\bf pick and choose vocabularies} to use and enforce in a community
-	\item Good idea to start with this process early
-	\item If you don't find what you're looking for:
-	\begin{itemize}
-		\item Create your own (JSON format, no coding skills required)
-		\item If it makes sense, share it with us via a pull request for redistribution
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Conclusion}
+    \frametitle{Success/Failure stories in MISP communities}
+    TODO: To be added by alex
     \begin{itemize}
-        \item MISP is a complete and advanced open source stack available to create large international sharing communities (JP/US/EU).
-        \item Building and improving ISACs is critical to limit the impact of security threats.
-        \item We welcome partnerships in the field of information sharing.
+        \item CSSA
+        \item Forced sharing as a requirement
     \end{itemize}
 \end{frame}
 
-
 \begin{frame}
-\frametitle{Get in touch if you need some help to get started}
-\begin{itemize}
-\item Getting started with building a new community can be daunting. Feel free to get in touch with us if you have any questions!
-\item Contact: info@circl.lu
-\item \url{https://www.circl.lu/}
-\item \url{https://github.com/MISP}  \url{https://www.misp-project.org/}  \url{https://twitter.com/MISPProject}
-\end{itemize}
+    \frametitle{Advantage of MISP being free and open-source}
+    TODO: To be added by alex
 \end{frame}
 
 \begin{frame}
-\frametitle{Backup slides}
-{\center Backup slides}
+    \frametitle{Future of MISP: What's ongoing}
+    \begin{minipage}[t]{0.5\textwidth}
+    \textbf{Medium term:}
+    \begin{itemize}
+        \item We just release a minor version \texttt{2.4}
+        \item Support \texttt{2.4} until 6 months after \texttt{2.5}'s release
+        \item Full feature parity and compatibility
+        \item In progress: Installation/update scripts for alternate distros
+    \end{itemize}
+    \end{minipage}%
+    \begin{minipage}[t]{0.5\textwidth}
+    \textbf{Long term:} Major version \texttt{3.0}
+    \begin{itemize}
+        \item Purge old/unused functionalities
+        \item Port of the codebase to a new stack
+        \item Rework DB updates
+        \item Revamp front-end \& aesthetics
+        \item Analyst centric perspective
+        \item Improved search and trend 
+        \item Improved performance
+    \end{itemize}
+    \end{minipage}%
 \end{frame}
 
 \begin{frame}
-\frametitle{Shared libraries of meta-information (Galaxies)}
-\begin{itemize}
-    \item The MISPProject in co-operation with partners provides a {\bf curated list of galaxy information}
-	\item Can include information packages of different types, for example:
-	\begin{itemize}
-        \item Threat actor information (event different models or approaches)
-		\item Specialised information such as Ransomware, Exploit kits, etc
-		\item Methodology information such as preventative actions
-		\item Classification systems for methodologies used by adversaries - ATT\&CK
-	\end{itemize}
-	\item Consider improving the default libraries or contributing your own (simple JSON format)
-    \item If there is something you cannot share, run your own galaxies and {\bf share it out of bound} with partners
-	\item Pull requests are always welcome
-\end{itemize}
+    \frametitle{CIRCL's MISP Professional Services (MPS)}
+    \begin{itemize}
+        \item We are confortably funded for the project to continue to prospere
+        \item MPS offers professional services \& supports the growth of the project
+    \end{itemize}
+    \vspace{1em}
+    CIRCL's Offering:
+    \begin{itemize}
+        \item \textbf{Support Contract} - Prioritized resolution of issues and guidance
+        \item \textbf{Training} - Adapted to the level of expertise of the participants
+            \begin{itemize}
+                \item {\small Free onboarding MISP training for ISACs and it's member}
+            \end{itemize}
+            \item \textbf{Hosting} - Hosted on our infrastructure (LU): Virtual or Dedicated
+            \begin{itemize}
+                \item {\small Maintenance of OS \& MISP, Early patching for security issues}
+            \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{False-positive handling}
-\begin{itemize}
-	\item You might often fall into the trap of discarding seemingly "junk" data
-	\item Besides volume limitations (which are absolutely valid, fear of false-positives is the most common reason why people discard data) - Our recommendation:
-	\begin{itemize}
-		\item Be lenient when considering what to keep
-		\item Be strict when you are feeding tools
-	\end{itemize}
-\item MISP allows you to {\bf filter out the relevant data on demand} when feeding protective tools
-\item What may seem like {\bf junk to you may} be absolutely {\bf critical to other users}
-\end{itemize}
+    \frametitle{Conclusion}
+    \begin{itemize}
+            \item MISP is just a tool. What matters is your {\bf sharing practices}.
+            \item MISP strives to meet any community's use-cases.
+            \item MISP project combines {\bf open source softwares}, {\bf open standards \& best practices} to make information sharing a reality.
+    \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{False-positive handling}
-\begin{itemize}
-    \item {\bf Analysts} will often be interested in the {\bf modus operandi} of threat actors over {\bf long periods of time}
-	\item Even cleaned up infected hosts might become interesting again (embedded in code, recurring reuse)
-	\item Use the tools provided to eliminate obvious false positives instead and limit your data-set to the most relevant sets
-\end{itemize}
-\includegraphics[scale=0.8]{screenshots/false-positive.png}
-\end{frame}
 
 
