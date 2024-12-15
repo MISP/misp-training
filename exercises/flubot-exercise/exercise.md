@@ -60,7 +60,7 @@ We strongly believe that the seemingly random sequence of character at the end o
 
 This is how far we have gotten so far. Please be mindful that this is an ongoing investigation, we would like to avoid informing the attacker of the detection and kindly ask you to only use the contained information to protect your constituents.
 
-- Sample: [sample.apk](https://iglocska.eu/malicious.exe)
+- Sample: [sample.apk](https://cra.circl.lu/malicious.exe)
 
 ## Type of data extracted from evidences
 - Phishing SMS
@@ -86,7 +86,7 @@ Caller left you a message: https://evilprovider.com/r.php?e1525c0f
     - Phishing URL contained in the original SMS
 - `8.231.77.176`
     - Resolved IP address for the above domain
-- [sample.apk](https://iglocska.eu/malicious.exe)
+- [sample.apk](https://cra.circl.lu/malicious.exe)
     - Malicious APK infecting the device
 - `CVE-2022-27835`
     - CVE exploited by the malware
