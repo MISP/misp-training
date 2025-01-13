@@ -12,5 +12,5 @@
 > 
 > Best regards,
 
-- Sample 1: [malicious.exe](https://iglocska.eu/malicious.exe)
-- Sample 2: [this-is-not-malicious.exe](https://iglocska.eu/this-is-not-malicious.exe)
+- Sample 1: [malicious.exe](https://cra.circl.lu/malicious.exe)
+- Sample 2: [this-is-not-malicious.exe](https://cra.circl.lu/this-is-not-malicious.exe)
