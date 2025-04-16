@@ -22,7 +22,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Automation in MISP: What already exists?}
+    \frametitle{Automation in MISP: What is available?}
     \includegraphics[valign=m,width=1em]{pictures/python-logo.png}\hspace*{0.5em} \textbf{MISP API / PyMISP}
     \hspace*{0.25em}
     \begin{itemize}
@@ -37,6 +37,12 @@
         \item After the actions happen: No feedback to MISP
         \item Tougher to put in place \& to share
         \item Full integration amounts to develop a new tool
+    \end{itemize}
+    \vspace*{0.5em}
+    \includegraphics[valign=m,width=1em]{pictures/build-icon.png}\hspace*{0.5em} \textbf{MISP Workflow}
+    \begin{itemize}
+        \item Realtime and allows feedback
+        \item Easy to use and share but \textbf{can be dangerous}
     \end{itemize}
     \vspace*{0.5em}
 \end{frame}
@@ -235,7 +241,7 @@
 
 \begin{frame}
     \frametitle{Triggers currently available}
-    Currently 10 triggers can be hooked. 3 being \includegraphics[width=3em]{pictures/blocking-workflow.png}.
+    Currently 17 triggers can be hooked. 3 being \includegraphics[width=3em]{pictures/blocking-workflow.png}.
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/triggers.png}
     \end{center}
@@ -313,8 +319,6 @@
     \frametitle{What is a MISP Workflow?}
     \begin{itemize}
         \item Sequence of all nodes to be executed in a specific order
-        \item Workflows can be enabled / disabled
-        \item A Workflow is associated to \textbf{1-and-only-1 trigger}
     \end{itemize}
     \vspace*{0.5em}
     \begin{center}
@@ -356,9 +360,9 @@
             \item If a \textbf{blocking module}\includegraphics[valign=b,width=1em]{pictures/blocking-module.png} blocks the action
         \end{itemize}
         \vspace{0.5em}
-        \item[] \hspace*{-2em}\includegraphics[valign=b,width=5em]{pictures/non-blocking-workflow.png} Workflows execution outcome has no impact
+        \item[] \hspace*{-2em}\includegraphics[valign=b,width=5em]{pictures/non-blocking-workflow.png} Workflows execution doesn't block the request
         \begin{itemize}
-            \item No way to prevent something that happened in the past
+            \item Executed in the background \textbf{after the request}:\\ No way to prevent something that happened in the past
         \end{itemize}
         \begin{center}
             \includegraphics[width=0.3\linewidth]{pictures/time-machine.png}
@@ -368,15 +372,11 @@
 
 \begin{frame}
     \frametitle{Sources of Workflow modules (0)}
-    Currently 36 built-in modules.
+    Currently 43 built-in modules.
     \vspace{1em}
     \begin{itemize}
-        \item \textbf{Trigger} module (11): built-in \textbf{only}
-        \begin{itemize}
-            \item Get in touch if you want more
-        \end{itemize}
-        \item \textbf{Logic} module (10): built-in \& \textbf{custom}
-        \item \textbf{Action} module (15): built-in \& \textbf{custom}
+        \item \textbf{Logic} module (11): built-in \& \textbf{custom}
+        \item \textbf{Action} module (32): built-in \& \textbf{custom}
     \end{itemize}
     \vspace*{2.0em}
 \end{frame}
@@ -459,20 +459,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Getting started with workflows (1)}
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/workflow-release.png}
-    \end{center}
-    \begin{enumerate}
-        \item Update your MISP server
-        \item Update all your sub-modules
-    \end{enumerate}
-    \begin{center}
-        \includegraphics[width=0.6\textwidth]{pictures/upgrade-people.jpeg}
-    \end{center}
-\end{frame}
-
-\begin{frame}
     \frametitle{Getting started with workflows (2)}
     Review MISP settings:
     \begin{enumerate}
@@ -495,25 +481,6 @@
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/settings-1.png}
     \end{center}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Getting started with workflows (4)}
-    If you wish to use action modules from \texttt{misp-module}, make sure to have:
-    \begin{itemize}
-        \item The latest update of \texttt{misp-module}
-        \begin{itemize}
-            \item There should be an \texttt{action\_mod} module type in \url{misp-modules/misp\_modules/modules}
-        \end{itemize}
-        \item Restarted your \texttt{misp-module} application
-    \end{itemize}
-    \vspace{1em}
-    \begin{lstlisting}[language=text,firstnumber=1]
-# This command should show all `action` modules
-$ curl -s http://127.0.0.1:6666/modules | \
-jq '.[] | select(.meta."module-type"[] | contains("action")) | 
-{name: .name, version: .meta.version}'
-    \end{lstlisting}
 \end{frame}
 
 \begin{frame}
@@ -587,18 +554,6 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Working with the editor}
-    Cases showing a warning:
-    \begin{itemize}
-        \item \textbf{Blocking} modules \includegraphics[width=1em]{pictures/blocking-module.png} in a \includegraphics[valign=b,width=4em]{pictures/non-blocking-workflow.png} workflow \includegraphics[width=0.12\linewidth]{pictures/time-machine.png}
-        \item \textbf{Blocking} modules \includegraphics[width=1em]{pictures/blocking-module.png} after a \textbf{concurrent tasks} module
-        \begin{center}
-            \frame{\includegraphics[width=1.0\linewidth]{pictures/editor-warning-1.png}}
-        \end{center}
-    \end{itemize}
-\end{frame}
-
 % \section{Advanced usage}
 \begin{frame}
     \frametitle{
@@ -629,26 +584,17 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 
 \begin{frame}
     \frametitle{Workflow blueprints}
-    Currently, 4 blueprints available:
+    Currently, 13 blueprints available in the official repo:
     \vspace*{1em}
     \begin{itemize}
         \item Attach the \texttt{tlp:clear} tag on elements having the \texttt{tlp:white} tag
         \item Block actions if any attributes have the \texttt{PAP:RED} or \texttt{tlp:red} tag
         \item Disable \texttt{to\_ids} flag for existing hash in \textit{hashlookup}
         \item Set tag based on \textit{BGP Ranking} maliciousness level
+        \item $\cdots$
     \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Logic module: Concurrent Task}
-    \begin{itemize}
-        \item Logic module allowing \textbf{multiple output} connections
-        \item \textbf{Postpone the execution} for remaining modules
-        \item Convert \includegraphics[valign=b,width=4em]{pictures/blocking-workflow.png} \faIcon{long-arrow-alt-right} \includegraphics[valign=b,width=5em]{pictures/non-blocking-workflow.png}
-    \end{itemize}
-    \begin{center}
-        \frame{\includegraphics[width=0.5\linewidth]{pictures/module-concurrent.png}}
-    \end{center}
+    \vspace*{1em}
+    Built something cool? \textbf{Share you blueprints!}
 \end{frame}
 
 \begin{frame}
@@ -660,8 +606,9 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
         \item In most cases, the format is the \textbf{MISP Core format}
         \begin{itemize}
             \item Attributes are \textbf{always encapsulated} in the Event or Object
+            \item \faIcon{exclamation-triangle} Event data might be partial
         \end{itemize}
-        \item But has \textbf{additional properties}
+        \item And has \textbf{additional properties}
         \begin{itemize}
             \item Additional key \textbf{\texttt{\_AttributeFlattened}}
             \item Additional key \textbf{\texttt{\_allTags}}
@@ -670,38 +617,43 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Fitlering data on which to apply a module}
+    What happens when an Event is about to be published?
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{pictures/remove-ids-1.png}
+    \end{center}
+    \pause
+    \vspace{1em}
+    All Attributes get their \texttt{to\_ids} turned off.\\
+    \vspace{1em}
+    How could we force that action, only on Attribute of type \texttt{comment}?
+    \begin{center}
+        $\rightarrow$ Hash path filtering!
+    \end{center}
+\end{frame}
+
 \begin{frame}[fragile]
     \frametitle{Hash path filtering (1)}
     Filtering and checking conditions using hash path expression.
     \begin{lstlisting}[language=javascript,firstnumber=1]
-    $path_expression = '{n}[name=fred].id';
-    $users = [
-        {'id': 123, 'name': 'fred', 'surname': 'bloggs'},
-        {'id': 245, 'name': 'fred', 'surname': 'smith'},
-        {'id': 356, 'name': 'joe', 'surname': 'smith'},
-    ];
-    $ids = Hash::extract($users, $path_expression);
-    // => $ids will be [123, 245]
-    \end{lstlisting}
-    \begin{columns}
-        \begin{column}{0.6\textwidth}
-            \begin{center}
-                \includegraphics[width=0.7\linewidth]{pictures/attribute-json.png}
-            \end{center}
-        \end{column}
-        \begin{column}{0.4\textwidth}
-            \includegraphics[width=1.0\linewidth]{pictures/module-if-generic.png}
-        \end{column}
-    \end{columns}
-\end{frame}
+{
+    "person": { "name": "John" }
+}
+Hash Path 1 = 'person.name';
+Result will be 'John'
 
-\begin{frame}[fragile]
-    \frametitle{Hash path filtering (2)}
+[
+    {'id': 123, 'name': 'fred', 'surname': 'bloggs'},
+    {'id': 245, 'name': 'fred', 'surname': 'smith'},
+    {'id': 356, 'name': 'joe', 'surname': 'smith'},
+]
+Hash Path 2 = '{n}.name';
+Result will be ['fred', 'fred', 'joe']
+    \end{lstlisting}
+
+    \vspace{1em}
     Hash path filtering can be used to \textbf{filter} data \textbf{on the node} it is passed to or on the \textbf{execution path}.
-    \begin{center}
-        \includegraphics[width=0.58\linewidth]{pictures/node-filtering.png}
-        \includegraphics[width=0.4\linewidth]{pictures/node-generic-filter.png}
-    \end{center}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -719,10 +671,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
                 "type": "ip-src",
                 "value": "8.8.8.8", ...
             },
-            {
-                "type": "domain",
-                "value": "misp-project.org", ...
-            }
+            ...
         ],
         ...
     }
@@ -750,10 +699,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
                 "type": "ip-src",
                 "value": "8.8.8.8", ...
             },
-            {
-                "type": "domain",
-                "value": "misp-project.org", ...
-            }
+            ...
         ],
         ...
     }
@@ -776,8 +722,6 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 {
     "Event": {
         "uuid": ...
-        "distribution": 1,
-        "published": false,
         "Attribute": [
             {
                 "type": "ip-src",
@@ -811,14 +755,12 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     "Event": {
         "Attribute": [
             {
-                "type": "ip-src",
                 "value": "8.8.8.8",
                 "Tag": [
-                    {
-                        "name": "PAP:AMBER", ...
-                    }
+                    { "name": "PAP:AMBER", ... },
+                    { "name": "tlp:amber", ... },
                 ], ...
-            }
+            },
         ],
         ...
     }
@@ -826,7 +768,7 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
 \end{lstlisting}
     \begin{enumerate}
         \setcounter{enumi}{2}
-        \item Access all Tags attached to Attributes
+        \item Access all Tag names attached to Attributes
         \pause
         \begin{itemize}
             \item \texttt{Event.Attribute.\{n\}.Tag.\{n\}.name}
@@ -834,130 +776,20 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \end{enumerate}
 \end{frame}
 
-
-\begin{frame}[fragile]
-    \frametitle{Hash path filtering - Exercise (4)}
-
-\begin{lstlisting}[language=javascript,firstnumber=1]
-{
-    "Event": {
-        "Tag": [
-            {
-                "name": "tlp:green", ...
-            }
-        ], ...
-        "Attribute": [
-            {
-                "value": "8.8.8.8",
-                "Tag": [
-                    {
-                        "name": "PAP:AMBER", ...
-                    }
-                ], ...
-            }
-        ],
-    }
-}
-\end{lstlisting}
-    \begin{enumerate}
-        \setcounter{enumi}{3}
-        \item Access all Tags attached to Attributes and from the Event
-        \begin{itemize}
-            \item Hint: Use \texttt{\bf \_allTags} to access {\bf all} tags
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Hash path filtering - Exercise (4)}
-
-\begin{lstlisting}[language=javascript,firstnumber=1]
-{
-    "Event": {
-        "Tag": [
-            {
-                "name": "tlp:green", ...
-            }
-        ], ...
-        "Attribute": [
-            {
-                "value": "8.8.8.8",
-                "Tag": [
-                    {
-                        "name": "PAP:AMBER", ...
-                    }
-                ], ...
-            }
-        ],
-    }
-}
-\end{lstlisting}
-    \begin{enumerate}
-        \setcounter{enumi}{3}
-        \item Access all Tags attached to Attributes and from the Event
-        \begin{itemize}
-            \item \texttt{Event.Attribute.\{n\}.\_allTags.\{n\}.name}
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Hash path filtering - Exercise (4)}
-
-\begin{lstlisting}[language=javascript,firstnumber=1]
-{
-    "Event": {
-        "Tag": [...],
-        "Attribute": [
-            {
-                "value": "8.8.8.8",
-                "_allTags": [
-                    {
-                        "name": "tlp:green",
-                        "inherited": true, ...
-                    },
-                    {
-                        "name": "PAP:AMBER",
-                        "inherited": false, ...
-                    }
-                ],
-            }
-        ...
-}
-\end{lstlisting}
-    \begin{enumerate}
-        \setcounter{enumi}{3}
-        \item Access all Tags attached to Attributes and from the Event
-        \begin{itemize}
-            \item \texttt{Event.Attribute.\{n\}.\_allTags.\{n\}.name}
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-
 \begin{frame}
     \frametitle{Fitlering data on which to apply a module}
-    What happens when an Event is about to be published?
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{pictures/remove-ids-1.png}
-    \end{center}
-    \pause
-    \vspace{1em}
-    All Attributes get their \texttt{to\_ids} turned off.\\
-    \vspace{1em}
-    How could we force that action only on Attribute of type \texttt{comment}?
-    \begin{center}
-        $\rightarrow$ Hash path filtering!
+        \includegraphics[width=1.0\textwidth]{pictures/remove-ids-3.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
     \frametitle{Fitlering data on which to apply a module}
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{pictures/remove-ids-3.png}
+        \includegraphics[width=0.45\textwidth]{pictures/remove-ids-3.png}
     \end{center}
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{pictures/remove-ids-2.png}
+        \includegraphics[width=0.70\textwidth]{pictures/remove-ids-2.png}
     \end{center}
 \end{frame}
 
@@ -969,19 +801,29 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
     \end{center}
 \end{frame}
 
-\section{Exercices}
-\begin{frame}
-    \frametitle{Exercises}
-    Try to build it in the training instance. \textbf{Do not save it!}.
-    \vspace{0.5em}
-    \begin{enumerate}
-        \item PAP:RED and tlp:red blocking
-        \item Replace tlp:white by tlp:clear
-        \item Attach tag on attribute having a low value (<50) in bgp ranking
-        \item Remove to\_ids flag for attribute having a match in hashlookup
-    \end{enumerate}
+\begin{frame}[fragile]
+    \frametitle{Hash path filtering (2)}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{center}
+                \includegraphics[width=1.0\linewidth]{pictures/attribute-json.png}
+            \end{center}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[width=1.0\linewidth]{pictures/module-if-generic.png}
+        \end{column}
+    \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{Hash path filtering (3)}
+    \begin{center}
+        \includegraphics[width=0.58\linewidth]{pictures/node-filtering.png}
+        \includegraphics[width=0.4\linewidth]{pictures/node-generic-filter.png}
+    \end{center}
+\end{frame}
+
+\section{Exercices}
 \section{Debugging}
 \begin{frame}
     \frametitle{Debugging Workflows: Log Entries}
@@ -1156,7 +998,6 @@ jq '.[] | select(.meta."module-type"[] | contains("action")) |
                 \item More \includegraphics[width=1em]{pictures/sc-event-icon.png} triggers
                 \item More documentation
                 \item Recursion prevention system
-                \item On-the-fly data override?
             \end{itemize}
         \end{column}
         \begin{column}{0.45\textwidth}
