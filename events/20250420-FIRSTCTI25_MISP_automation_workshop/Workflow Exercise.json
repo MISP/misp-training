@@ -1,0 +1,691 @@
+{
+    "exercise": {
+        "name": "Workflow Exercise",
+        "namespace": "misp-workflow",
+        "description": "Workflow Exercise",
+        "meta": {
+            "author": "Sami Mokaddem",
+            "level": "expert",
+            "priority": 10
+        },
+        "uuid": "ff5e17cb-9234-4d02-893c-1772f968969f",
+        "version": "2025411"
+    },
+    "inject_flow": [
+        {
+            "inject_uuid": "0bd0e885-9eb0-41b1-a204-9bf9c40785cb",
+            "description": "",
+            "requirements": {},
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "startex",
+                    "periodic"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": 10
+            }
+        },
+        {
+            "inject_uuid": "4e4ea731-9be5-40b2-96ff-a6d52f7e214c",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "0bd0e885-9eb0-41b1-a204-9bf9c40785cb"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        },
+        {
+            "inject_uuid": "8126b80f-a0c7-4efd-b570-16ade7e5a353",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "4e4ea731-9be5-40b2-96ff-a6d52f7e214c"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        },
+        {
+            "inject_uuid": "bd0ee246-80a4-4863-a75a-3acfc4602303",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "8126b80f-a0c7-4efd-b570-16ade7e5a353"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        },
+        {
+            "inject_uuid": "24ae700e-7952-4538-8184-21d12977c8db",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "bd0ee246-80a4-4863-a75a-3acfc4602303"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        },
+        {
+            "inject_uuid": "644014c6-b39f-4d75-8be8-7ca1d6ccdf43",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "24ae700e-7952-4538-8184-21d12977c8db"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        },
+        {
+            "inject_uuid": "05f42195-dccf-447d-8f2d-bf0725e907e6",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "644014c6-b39f-4d75-8be8-7ca1d6ccdf43"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        },
+        {
+            "inject_uuid": "b177e518-b709-4eaf-8d85-8851fcbb20bc",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "05f42195-dccf-447d-8f2d-bf0725e907e6"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        },
+        {
+            "inject_uuid": "28bec3c6-c941-41d1-b67a-fb48131f0b11",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "b177e518-b709-4eaf-8d85-8851fcbb20bc"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        },
+        {
+            "inject_uuid": "47a70f62-f8ce-4c09-af63-f2d28fa4e6e9",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "28bec3c6-c941-41d1-b67a-fb48131f0b11"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        },
+        {
+            "inject_uuid": "699dd07b-b42f-423e-b23a-1b4f2f454d77",
+            "description": "",
+            "requirements": {
+                "inject_uuid": "47a70f62-f8ce-4c09-af63-f2d28fa4e6e9"
+            },
+            "sequence": {
+                "followed_by": [],
+                "trigger": [
+                    "manual"
+                ],
+                "completion_trigger": []
+            },
+            "timing": {
+                "triggered_at": null,
+                "periodic_run_every": null
+            }
+        }
+    ],
+    "inject_payloads": [],
+    "injects": [
+        {
+            "name": "Enable Your Workflow",
+            "action": "",
+            "target_tool": "MISP",
+            "uuid": "0bd0e885-9eb0-41b1-a204-9bf9c40785cb",
+            "description": "Make your workflow executable by enabling it",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            ". | map( select(.Workflow.name | contains(\"{{user_email}}\")) ) | map( select(.Workflow.enabled)  ) | .[].Workflow.name": {
+                                "extract_type": "all",
+                                "comparison": "count",
+                                "values": [
+                                    ">0"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "Workflow enabled",
+                    "evaluation_strategy": "query_search",
+                    "evaluation_context": {
+                        "request_is_rest": false,
+                        "query_context": {
+                            "url": "/workflows/adhoc/searchall:Workflow+of%20User/limit:300",
+                            "request_method": "GET",
+                            "payload": {}
+                        }
+                    },
+                    "score_range": [
+                        0,
+                        1
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "Ping",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "4e4ea731-9be5-40b2-96ff-a6d52f7e214c",
+            "description": "Send the Event for Validation",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "Event was sent for validation",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {},
+                    "score_range": [
+                        0,
+                        10
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "Attach Tag I",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "8126b80f-a0c7-4efd-b570-16ade7e5a353",
+            "description": "Attach the tag `misp-workflow:run=\"allowed\"` to the Event",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event.Tag[].name | select((contains(\"workflow-exercise:tag_1\")))": {
+                                "extract_type": "all",
+                                "comparison": "count",
+                                "values": [
+                                    "1"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {},
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "Enrich Event",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "bd0ee246-80a4-4863-a75a-3acfc4602303",
+            "description": "Enrich the Event with the provided enrichment module",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event.Attribute[] | select(.value == \"misptestluctvnzlxtsk2llvc3zjiqc3ej2ok3kezvbhp2vzov6aflid.onion\") | .Tag[].name": {
+                                "extract_type": "all",
+                                "comparison": "contains",
+                                "values": [
+                                    "dark-web:structure=\"test\""
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {},
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "Adapt Distribution",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "24ae700e-7952-4538-8184-21d12977c8db",
+            "description": "Change the distribution to \"All Communities\" if tlp:white is attached ",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event.Tag[].name | select((contains(\"tlp:white\")))": {
+                                "extract_type": "all",
+                                "comparison": "count",
+                                "values": [
+                                    "1"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event.distribution": {
+                                "comparison": "equals",
+                                "values": [
+                                    "3"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {},
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "Add a Note",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "644014c6-b39f-4d75-8be8-7ca1d6ccdf43",
+            "description": "Add a formatted Note using Jinja2",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            ".Event.Note[].note": {
+                                "extract_type": "first",
+                                "comparison": "contains",
+                                "values": [
+                                    "{{.webhook_data.Event.Object | length}}",
+                                    "{{.webhook_data.Event.attribute_count}}"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "misp_query_search",
+                    "evaluation_context": {
+                        "query_context": {
+                            "url": "/events/view/{{.webhook_data.Event.uuid}}.json",
+                            "request_method": "GET"
+                        }
+                    },
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "Replace tlp:white by tlp:clear",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "05f42195-dccf-447d-8f2d-bf0725e907e6",
+            "description": "Replace all tag tlp:white by tlp:clear",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event.Attribute | map( select(.value == \"8.8.8.8\" or .value == \"1.1.1.1\" or .value == \"9.9.9.9\" or .value == \"2.2.2.2\") ) |  map( if has (\"Tag\") then .Tag[].name else \"\" end ) | map( select(. == \"tlp:clear\") ) | length": {
+                                "comment": "if count is >3, more tlp tags were added, probably because of bad filtering. If <2, not enough were added",
+                                "extract_type": "all",
+                                "comparison": "count",
+                                "values": [
+                                    "3"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {},
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "Attach Tag II",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "b177e518-b709-4eaf-8d85-8851fcbb20bc",
+            "description": "Attach the tag `take-down` on all Attributes having the tag `active`",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event.Attribute | map(select(has(\"Tag\"))) | map( select(any(.Tag[]; .name==\"adversary:infrastructure-state=\\\"active\\\"\")) ) | map( .Tag[].name ) | map( select(contains(\"adversary:infrastructure-state=\\\"active\\\"\") or contains(\"adversary:infrastructure-action=\\\"take-down\\\"\")) ) | group_by(.) | map({name: .[0], count: length}) | .[0].count == .[1].count": {
+                                "comment": "Get All Attributes with the active tag then check if they also have the take-down tag attached",
+                                "extract_type": "first",
+                                "comparison": "equals",
+                                "values": [
+                                    "true"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {
+                        "option_1": {
+                            ".Event.Attribute | map(select(has(\"Tag\"))) | map( select(any(.Tag[]; .name==\"adversary:infrastructure-state=\\\"active\\\"\")) ) | map( .Tag[].name ) | map( select(contains(\"adversary:infrastructure-state=\\\"active\\\"\") or contains(\"adversary:infrastructure-action=\\\"take-down\\\"\")) ) | group_by(.) | map({name: .[0], count: length}) | .[0].count == .[1].count": "Get All Attributes with the active tag then check if they also have the take-down tag attached"
+                        },
+                        "option_2": {
+                            ".Event.Attribute | map(select(has(\"Tag\"))) | map( select(any(.Tag[]; .name==\"adversary:infrastructure-state=\\\"active\\\"\")) ) | map( .Tag[].name ) | map( select(contains(\"adversary:infrastructure-state=\\\"active\\\"\") or contains(\"adversary:infrastructure-action=\\\"take-down\\\"\")) ) | length / 2": {
+                                "comment": "Get all Attributes with the active tag then check if they all have the take-down tag attached"
+                            }
+                        }
+                    },
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "False Positive I",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "28bec3c6-c941-41d1-b67a-fb48131f0b11",
+            "description": "Remove the IDS flag of all Attributes of type onion-address",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event._AttributeFlattened | map( select(.type == \"onion-address\" and .to_ids==false) ) | length": {
+                                "extract_type": "first",
+                                "comparison": "equals",
+                                "values": [
+                                    "0"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {},
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "False Positive II",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "47a70f62-f8ce-4c09-af63-f2d28fa4e6e9",
+            "description": "Remove the IDS flag of all Attributes having hit on Warning lists",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event._AttributeFlattened | map( select(has(\"warnings\")) ) | map( select(any(.warnings[]; .warninglist_category==\"false_positive\"))) | map( select(.to_ids==false) ) | length": {
+                                "extract_type": "first",
+                                "comparison": "equals",
+                                "values": [
+                                    "0"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {},
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": null
+        },
+        {
+            "name": "Safe Sharing & Notification",
+            "action": "",
+            "target_tool": "webhook",
+            "uuid": "699dd07b-b42f-423e-b23a-1b4f2f454d77",
+            "description": "Restrict the sharing of very sensitive IoCs",
+            "inject_evaluation": [
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event._AttributeFlattened | map( select(.type == \"onion-address\") ) | map( select(has(\"enrichment\")) ) | map( select(any(.enrichment[].Attribute[0].Tag[]; .name==\"dark-web:topic=\\\"pornography-child-exploitation\\\"\"))) | map( select(.distribution != \"0\")  )": {
+                                "comment": "Filter all onions having the child-exploitation tag, then filter the ones not having distribution=0",
+                                "extract_type": "first",
+                                "comparison": "count",
+                                "values": [
+                                    "0"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event._AttributeFlattened | map( select(.type == \"onion-address\") ) | map( select(has(\"enrichment\")) ) | map( select(any(.enrichment[].Attribute[0].Tag[]; .name==\"infoleak:automatic-detection=\\\"credit-card\\\"\"))) | map(.Tag[].name) | map( select((contains(\"misp-workflow:action-taken=\\\"email-sent\\\"\"))) )": {
+                                "comment": "Filter all onions having the credit-card tag, then filter the ones having the tag email-sent",
+                                "extract_type": "first",
+                                "comparison": "count",
+                                "values": [
+                                    "1"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {},
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                },
+                {
+                    "parameters": [
+                        {
+                            "._secret": {
+                                "comparison": "equals",
+                                "values": [
+                                    "__secret_key__"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event._AttributeFlattened | map( select(.type == \"onion-address\") ) | map( select(any(.Tag[]; .name==\"dark-web:topic=\\\"pornography-child-exploitation\\\"\"))) | map( select(.distribution != \"0\")  )": {
+                                "comment": "Filter all onions having the child-exploitation tag, then filter the ones not having distribution=0",
+                                "extract_type": "first",
+                                "comparison": "count",
+                                "values": [
+                                    "0"
+                                ]
+                            }
+                        },
+                        {
+                            ".Event._AttributeFlattened | map( select(.type == \"onion-address\") ) | map( select(any(.Tag[]; .name==\"infoleak:automatic-detection=\\\"credit-card\\\"\"))) | map(.Tag[].name) | map( select((contains(\"misp-workflow:action-taken=\\\"email-sent\\\"\"))) )": {
+                                "comment": "Filter all onions having the credit-card tag, then filter the ones having the tag email-sent",
+                                "extract_type": "first",
+                                "comparison": "count",
+                                "values": [
+                                    "2"
+                                ]
+                            }
+                        }
+                    ],
+                    "result": "",
+                    "evaluation_strategy": "data_filtering",
+                    "evaluation_context": {},
+                    "score_range": [
+                        0,
+                        20
+                    ]
+                }
+            ],
+            "inject_evaluation_join_type": "OR"
+        }
+    ]
+}
