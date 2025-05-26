@@ -1,0 +1,199 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{What has happened since the last MUG}
+
+\begin{frame}
+  \frametitle{Some statistics}
+  \begin{itemize}
+      \item 11 Releases
+      \item 1007 commits
+      \item 118 received pull requests
+      \item 95 merged pull requests
+      \item 38 unique contributors
+  \end{itemize}
+\end{frame}
+
+
+\section{Give you a brief update over the highlights}
+
+\begin{frame}
+  \frametitle{A Topical Listing of the New Major Features}
+  \begin{itemize}
+      \item Improvements {\bf supporting analysts}
+      \item Further work on the {\bf workflows}
+      \item {\bf Administrative tooling} improvements
+      \item Improvements to {\bf information exchange}
+      \item New and improved {\bf authentication} systems
+      \item {\bf Interoperability} improvements
+      \item Fixes, {\bf Security fixes} and tuning
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Supporting analysts}
+  \begin{itemize}
+       \item Introduction of custom galaxies
+       \begin{itemize}
+           \item Added support for creating / sharing galaxies (not just clusters)
+       \end{itemize}
+       \item Improvements on report writing support capabilities
+       \begin{itemize}
+           \item Tag event reports
+           \item Export event reports as server generated PDF for consistency
+           \item Templating system for event reports
+       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Supporting analysts}
+  \begin{itemize}
+       \item Reimplemented attribute search
+       \begin{itemize}
+           \item Dropped the old session based engine
+           \item Better pagination
+           \item Simpler export of search results into any supported format
+       \end{itemize}
+       \item Galaxy matrix improvements
+       \begin{itemize}
+           \item Various fixes
+           \item Introduction of other attack like matrixes to the event view's representation
+           \item Templating system for event reports
+       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Workflow improvements}
+  \begin{itemize}
+       \item Ad-hoc triggers
+       \begin{itemize}
+           \item New option to create on-demand workflow execution
+           \item This will open up a great number of possibilities of custom actions in MISP across the board
+       \end{itemize}
+       \item New workflow modules added
+       \begin{itemize}
+           \item user_notification a powerful tool to interact with the user as part of the workflow
+           \item Workflow integration with analyst data
+           \item New tag based filtering module
+       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Administrator} support
+  \begin{itemize}
+       \item New RHEL installation in 2.5
+       \item Internal sync enhancements
+       \begin{itemize}
+           \item New, special sync user role permission for internal sync
+           \item Various fixes and improvements focusing on internal multi-cluster MISPs
+       \end{itemize}
+       \item Auditing tools
+       \begin{itemize}
+           \item User IP tools in the api for admins, allowing for quick identification of abusive users
+           \item Reworked log search with new fields shown, better pagination, etc
+       \end{itemize}
+       \item Overcorrelation management tooling, search the overcorrelations to find out if a value is problematic
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Authentication} system improvements
+  \begin{itemize}
+       \item Added new OIDC authentication, supporting IAM solutions
+       \begin{itemize}
+           \item This also means better support for communities using MISP with Cerebrate and an IAM system sych as Keycloak
+           \item Automatic user management based on IAM data
+       \end{itemize}
+       \item Reworked authentication system loading
+       \item Support for multiple simultaneous authentication systems
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Interoperability)
+  \begin{itemize}
+       \item Reworked Suricata export module bringing the system up to date
+       \begin{itemize}
+           \item Various performance improvements by better mapping to modern suricata syntax
+           \item Improved generation of https traffic alert rules
+       \end{itemize}
+       \item A long list of STIX2 improvements
+       \begin{itemize}
+           \item Support for analyst data
+           \item Better aligning to some tool producers such as AIS
+           \item Improved testing capabilities for debugging
+           \item General improvements of the mappings
+       \end{itemize}
+       \item OpenAPI updates to align it to support a host of new endpoints
+       \item Vulnerability type reworked to support the GCVE initiative as well as vulnerability-lookup
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Other) improvements
+  \begin{itemize}
+       \item Continuous performance improvements
+       \begin{itemize}
+           \item Working with multiple organisations with high volume use-cases to improve performance
+           \item Better integration with reporting tools allows us to better monitor performance bottlenecks
+       \end{itemize}
+       \item Many security fixes
+       \begin{itemize}
+           \item Make sure you update!
+           \item Thanks to all of the reporters, especially for Jeroen Pinoy for an unwavering constant flow or reports (even on Christmas day!)
+           \item For details, read the security advisories on the misp-project page
+       \end{itemize}
+       \item Many minor improvements and bug fixes
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{New Tools in the MISP ecosystem)
+  \begin{itemize}
+       \item SkillAegis
+       \begin{itemize}
+           \item A new training platform
+           \item Build and execute exercises using MISP
+           \item Generate machine parseabe exercises
+           \item Full integration with MISP apis for continuous monitoring of player progress
+       \end{itemize}
+       \item MISP fleet commander
+       \begin{itemize}
+           \item Manage multiple MISPs in one shot
+           \item User management, settings, synchronisation connecitons
+           \item Real time view on data exchange across your MISP fleet
+       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Get in touch if you have any questions}
+  \begin{itemize}
+    \item Contact CIRCL
+    \begin{itemize}
+      \item info@circl.lu
+      \item \url{https://social.circl.lu/@circl}
+      \item \url{https://www.circl.lu/}
+    \end{itemize}
+    \item Contact MISPProject 
+    \begin{itemize}
+      \item \url{https://github.com/MISP}
+      \item \url{https://gitter.im/MISP/MISP}
+      \item \url{https://misp-community.org/@misp}
+    \end{itemize}
+    \item Cerebrate project
+    \begin{itemize}
+      \item \url{https://github.com/cerebrate-project}
+      \item \url{https://github.com/cerebrate-project/cerebrate}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
