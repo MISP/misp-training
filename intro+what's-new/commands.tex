@@ -1,0 +1,183 @@
+
+% Place here your custom commands, it will be included in presentation.tex
+
+\newcommand{\normalurl}[1]{\href{#1}{#1}}
+
+\newcommand{\footnoteurl}[1]{\footnote{\scriptsize\url{#1}}}
+
+\newcommand{\rocketbox}[1]{%
+	\awesomebox[circlRed]{1pt}{\faRocket}{circlBlue}{#1}%
+}
+
+
+% =========================================================
+% STORY STATUS FOOTER
+% =========================================================
+%
+% Usage:
+%
+% 1. Put this in your preamble
+%
+% 2. Before each section, define the current phase:
+%
+%    \storyphase{Incident}
+%    \storyphase{Correlation}
+%    \storyphase{Monitoring}
+%    \storyphase{Operations}
+%    \storyphase{Governance}
+%
+% 3. The footer automatically highlights the current phase
+%
+% =========================================================
+
+% ---------------------------------------------------------
+% Current phase holder
+% ---------------------------------------------------------
+
+\definecolor{phaseactive}{RGB}{255,255,255}
+\definecolor{phaseinactive}{RGB}{220,220,220}
+
+\newcommand{\currentstoryphase}{}
+\newcommand{\allstoryphases}{}
+
+\newcommand{\storyphase}[1]{%
+    \gdef\currentstoryphase{#1}%
+    \hypertarget{#1}{}
+}
+
+\newcommand{\setphases}[1]{%
+    \gdef\allstoryphases{#1}%
+}
+
+\newcommand{\phasetag}[1]{%
+    \expandafter\ifstrequal\expandafter{\currentstoryphase}{#1}
+        {\color{phaseactive}\textbf{\scriptsize \hyperlink{#1}{#1}}}
+        {\color{phaseinactive}\hyperlink{#1}{#1}}%
+}
+
+% ---------------------------------------------------------
+% Render one phase
+% ---------------------------------------------------------
+% \newcommand{\phasetag}[1]{%
+%     \expandafter\ifstrequal\expandafter{\currentstoryphase}{#1}
+%         {\color{phaseactive}\textbf{#1}}
+%         {\color{phaseinactive}#1}%
+%     }
+
+
+% ---------------------------------------------------------
+% Render all phases
+% ---------------------------------------------------------
+% \newcommand{\renderphases}{%
+%     \foreach \x [count=\i] in \allstoryphases {%
+%         \phasetag{\x}%
+%         \ifnum\i<\foreachcount
+%             \hspace{1.2em}|\hspace{1.2em}%
+%         \fi }%
+%     }
+
+\newif\iffirstphase
+
+\newcommand{\renderphases}{%
+    \global\firstphasetrue
+    \foreach \x in \allstoryphases {%
+        \iffirstphase
+            \global\firstphasefalse
+        \else
+            \hspace{1.2em}|\hspace{1.2em}%
+        \fi
+        \expandafter\phasetag\expandafter{\x}%
+    }%
+}
+
+
+% ---------------------------------------------------------
+% Custom footer
+% ---------------------------------------------------------
+
+\setbeamertemplate{footline}
+{
+    \leavevmode%
+    \begin{beamercolorbox}[
+        wd=\paperwidth,
+        ht=3.2ex,
+        dp=1.2ex,
+        leftskip=1em,
+        rightskip=1em
+    ]{author in head/foot}
+    \tiny
+    \insertframenumber{} / \inserttotalframenumber
+    \hfill
+    \renderphases
+    \end{beamercolorbox}
+}
+
+% \setbeamertemplate{footline}
+% {
+%     \leavevmode%
+%     \begin{beamercolorbox}[
+%         wd=\paperwidth,
+%         ht=3.2ex,
+%         dp=1.2ex,
+%         leftskip=1em,
+%         rightskip=1em
+%     ]{author in head/foot}
+%     \tiny
+%     \insertframenumber{} / \inserttotalframenumber
+%     \hfill
+%     \phasetag{Incident}
+%     \hspace{1.2em}|\hspace{1.2em}
+%     \phasetag{Correlation}
+%     \hspace{1.2em}|\hspace{1.2em}
+%     \phasetag{Monitoring}
+%     \hspace{1.2em}|\hspace{1.2em}
+%     \phasetag{Operations}
+%     \hspace{1.2em}|\hspace{1.2em}
+%     \phasetag{Governance}
+%     \hspace{1.2em}
+%     \end{beamercolorbox}
+% }
+
+% Optional: remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Nice badge.
+% Usage:
+% \entitytag{border-color}{fill-color}{text-label}
+% \entitytag{blue!60!black}{blue!5}{Internal MISP}
+\newcommand{\entitytag}[3]{%
+\tikz[baseline=(X.base)]{
+    \node[
+        draw=#1,
+        fill=#2,
+        rounded corners=2pt,
+        inner xsep=1.5pt,
+        inner ysep=0pt
+    ] (X) {\strut #3};
+}}
+
+
+% Create a link button in the bottom-right corner that jump to the target
+% Usage:
+% \jumpto{hyperlinkID}{textlabel}
+\newcommand{\jumpto}[2]{%
+\begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south east]
+        at ([yshift=10pt]current page.south east)
+    {
+        \hyperlink{#1}{\beamergotobutton{#2}}
+    };
+    \end{tikzpicture}
+}
+% Create a link button in the bottom-right corner that return to the target
+% Usage:
+% \returnto{hyperlinkID}{textlabel}
+\newcommand{\returnto}[2]{%
+\begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south east]
+        at ([yshift=0pt]current page.south east)
+    {
+        \hyperlink{#1}{\beamerreturnbutton{#2}}
+    };
+    \end{tikzpicture}
+}

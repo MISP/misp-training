@@ -1,0 +1,174 @@
+\documentclass[10pt,aspectratio=169, colorlinks=true, linkcolor=circlBlue]{beamer}
+
+% tlp allowed values: clear, green, amber, amber+strict, red
+\usetheme[numbering=fraction, progressbar=frametitle]{circl}
+
+% for code highlighting
+\usepackage{minted}
+% to draw pingus
+\usepackage{tikzpingus}
+% to draw boxes to catch attention
+\usepackage{awesomebox}
+% For hyperlinks in the document and PDF metadata
+\usepackage{hyperref}
+% useful only if we want to customize minted background
+\usepackage{tcolorbox}
+
+\usepackage{multicol}
+
+\usepackage{appendixnumberbeamer}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usetikzlibrary{
+    positioning,
+    fit,
+    arrows.meta
+}
+
+% ---------------------------------------------------------
+% Colors
+% ---------------------------------------------------------
+
+\definecolor{phaseactive}{RGB}{220,220,220}
+\definecolor{phaseinactive}{RGB}{90,90,90}
+\definecolor{circlRed}{HTML}{EE2338}
+
+%
+% compile with -shell-escape in order to use minted
+% $ pdflatex  -interaction=nonstopmode -shell-escape presentation.tex
+%
+
+
+\hypersetup{
+    pdftitle={MISP Introduction},    % Title
+    pdfauthor={Sami Mokaddem, David Cruciani},               % Author
+    pdfsubject={Introduction and recent new features}, % Subject
+    pdfkeywords={MISP, CTI, Threat Intelligence}, % Keywords
+    colorlinks=false,                       % Color links instead of boxes
+    linkcolor=blue,                        % Color of internal links
+    citecolor=blue,                        % Color of citations
+    urlcolor=blue                          % Color of external links
+}
+
+% set the logo to put in the title page
+\titlegraphic{\noindent\hfill\includegraphics[width=0.25\textwidth]{img/logo-circl.pdf}}
+\title{MISP Introduction and recent new features}
+\subtitle{CIRCL - 2026}
+\date{\today}
+\author{}
+\institute{MISP Project \normalurl{https://misp-project.org}}
+% if set inserts a title link into the title page
+\titlelink{\faHome\space \normalurl{https://www.misp-project.org}}
+
+\begin{document}
+
+% include custom commands
+\include{commands.tex}
+\include{alerts.tex}
+\include{card.tex}
+
+% Set phases to be displayed on the footer
+\setphases{ Introduction, New Features }
+
+
+% Title page
+\begin{frame}
+	\titlepage%
+\end{frame}
+
+
+% =========================================================
+% INTRODUCTION
+% =========================================================
+
+\nosectionpage{Introduction}
+\storyphase{Introduction}
+
+\subsection{Workshop Goals}
+
+\begin{frame}{Workshop Overview}
+
+\textbf{Audience}
+\vspace{-0.5em}
+\begin{itemize}
+    \item \textbf{Primary}: Cyber Threat Intelligence Analysts
+    \item \textbf{Secondary}: SOC and Incident Response Teams
+    \item \textbf{Expected MISP Knowledge}: None
+    \item \textbf{Training level}: Basic
+\end{itemize}
+
+
+\textbf{Workshop Objectives}
+\vspace{-0.5em}
+\begin{itemize}
+    \item Understand how MISP supports \textbf{operational investigations}
+    \item Transform unstructured data \textbf{actionable intelligence}
+    \item \textbf{Correlate} incidents across teams and partners
+    \item \textbf{Enrich} data and \textbf{Collaborate}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Training Agenda}
+
+	\begin{itemize}
+	    \item \textbf{Presentation of MISP} {\small (1h)}
+	    \begin{itemize}
+	        \item Introduction {\small (30min)}
+	        \item Basic UI, Concept \& Terminology {\small (30min)}
+	    \end{itemize}
+	    \item \alert{\textbf{Break}} {\small (15min)}
+	    \item \textbf{Demonstration and Familiarization} {\small (1h30)}
+	    \begin{itemize}
+	        \item \textbf{Walkthrough on encoding data} {\small (30min)}
+	        \item \textbf{Faster encoding \& Enrichment} {\small (20min)}
+	        \item \textbf{Getting The Most Out Of Your Data} {\small (20min)}
+	        \item \textbf{Collaboration and Sharing} {\small (20min)}
+	    \end{itemize}
+	    \item \alert{\textbf{Lunch Break}} {\small (1h)}
+	    \item \textbf{Practical Activity} {\small (30min)}: \href{https://hdoc.cnw.circl.lu/IRaqn-VBT0aYCyj-5O80Jw}{Ransomware infection}
+	    \item \textbf{Brief on Global MISP instance} {\small (1h)}
+	\end{itemize}
+\end{frame}
+
+
+% =========================================================
+% INTRO
+% =========================================================
+\storyphase{Introduction}
+
+\begin{frame}
+    \frametitle{\texttt{\$whoarewe} - MISP and CIRCL}
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{./img/misp-banner.png}
+        \includegraphics[width=0.19\textwidth]{./img/circl.png}
+    \end{center}
+    \vspace{1em}
+    \begin{itemize}
+        \item CIRCL is mandated by the Ministry of the Economy (under NIS 2).
+        \item CIRCL leads the development of many OSS.
+        \item {\bf CIRCL manages multiple large MISP communities}, enabling active daily threat intelligence sharing.
+        \item Funding comes from Luxembourg, various EU programs, and partnerships under EU/US agreements.
+    \end{itemize}
+\end{frame}
+
+\subsection{MISP Introduction}
+% =========================================================
+% INTRO - MISP
+% =========================================================
+\input{content/misp-intro.tex}
+
+
+% =========================================================
+% New Features
+% =========================================================
+\storyphase{New Features}
+
+\nosectionpage{New features in the past few months}
+\subsection{MISP Highlights}
+
+\input{content/new-features.tex}
+
+\end{document}

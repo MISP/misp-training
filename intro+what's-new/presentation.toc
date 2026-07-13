@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Workshop Goals}{2}{0}{1}
+\beamer@subsectionintoc {1}{2}{MISP Introduction}{6}{0}{1}
+\beamer@sectionintoc {2}{New features in the past few months}{16}{0}{2}
+\beamer@subsectionintoc {2}{1}{MISP Highlights}{16}{0}{2}
