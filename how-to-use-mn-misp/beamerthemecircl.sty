@@ -1,0 +1,48 @@
+
+\ProvidesPackage{beamerouterthemecircl}[2017/01/23 Metropolis outer theme]
+\RequirePackage{geometry}
+
+% we wrap our theme around metropolis theme
+\input{beamerthememetropolis.sty}
+
+% CIRCL colors 
+\definecolor{circlBlue}{HTML}{456F84} % CIRCL Blue
+\definecolor{circlRed}{HTML}{EE2338} % CIRCL Red
+
+% One can change tlp background color
+\colorlet{tlpBg}{circlBlue}
+
+% We redifine mDarkTeal color used in theme
+% It is used for both font color and frame title background
+\colorlet{mDarkTeal}{circlBlue}
+
+\setbeamercolor{circlred text}{%
+	fg=circlRed
+}
+
+\setbeamercolor{progress bar}{%
+	use=circlred text,
+	fg=circlred text.fg,
+	bg=circlred text.fg!50!black!30
+}
+
+% specific command to include frame in TOC
+\newcommand{\tocinclude}{\subsection{\insertframetitle}}
+
+\setbeamertemplate{section in toc}{
+	\leavevmode\leftskip=2em%
+	\llap{\inserttocsectionnumber.\hskip0.5em}\inserttocsection\par\vspace{-0.5em}
+}
+
+\setbeamertemplate{subsection in toc}{
+	\leavevmode\leftskip=4em%
+	\llap{\inserttocsubsectionnumber.\hskip0.5em}\inserttocsubsection\par\vspace{-0.5em}
+}
+
+\newcommand{\nosectionpage}[1]{%
+    \metropolis@disablesectionpage
+    \section{#1}
+    \metropolis@enablesectionpage
+}
+
+\metropolis@enablesubsectionpage

@@ -1,0 +1,131 @@
+\documentclass[10pt,aspectratio=169, colorlinks=true, linkcolor=circlBlue]{beamer}
+
+% tlp allowed values: clear, green, amber, amber+strict, red
+\usetheme[numbering=fraction, progressbar=frametitle]{circl}
+
+% for code highlighting
+\usepackage{minted}
+% to draw pingus
+\usepackage{tikzpingus}
+% to draw boxes to catch attention
+\usepackage{awesomebox}
+% For hyperlinks in the document and PDF metadata
+\usepackage{hyperref}
+% useful only if we want to customize minted background
+\usepackage{tcolorbox}
+
+\usepackage{multicol}
+
+\usepackage{appendixnumberbeamer}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usetikzlibrary{
+    positioning,
+    fit,
+    arrows.meta
+}
+
+% ---------------------------------------------------------
+% Colors
+% ---------------------------------------------------------
+
+\definecolor{phaseactive}{RGB}{220,220,220}
+\definecolor{phaseinactive}{RGB}{90,90,90}
+\definecolor{circlRed}{HTML}{EE2338}
+
+%
+% compile with -shell-escape in order to use minted
+% $ pdflatex  -interaction=nonstopmode -shell-escape presentation.tex
+%
+
+
+\hypersetup{
+    pdftitle={How to Use the MN MISP Instance},    % Title
+    pdfauthor={CIRCL - MISP Project},               % Author
+    pdfsubject={Using and connecting to the MN MISP instance}, % Subject
+    pdfkeywords={MISP, CTI, Threat Intelligence, Synchronisation}, % Keywords
+    colorlinks=false,                       % Color links instead of boxes
+    linkcolor=blue,                        % Color of internal links
+    citecolor=blue,                        % Color of citations
+    urlcolor=blue                          % Color of external links
+}
+
+% set the logo to put in the title page
+\titlegraphic{\noindent\hfill\includegraphics[width=0.25\textwidth]{img/logo-circl.pdf}}
+\title{How to Use the MN MISP Instance}
+\subtitle{A practical guide for community members --- CIRCL 2026}
+\date{\today}
+\author{}
+\institute{MISP Project \normalurl{https://misp-project.org}}
+% if set inserts a title link into the title page
+\titlelink{\faHome\space \normalurl{https://www.misp-project.org}}
+
+\begin{document}
+
+% include custom commands
+\include{commands.tex}
+\include{alerts.tex}
+\include{card.tex}
+
+% Set phases to be displayed on the footer
+\setphases{ Capabilities, Connecting, Considerations }
+
+
+% Title page
+\begin{frame}
+	\titlepage%
+\end{frame}
+
+
+% =========================================================
+% OVERVIEW
+% =========================================================
+\nosectionpage{Overview}
+
+\begin{frame}
+    \frametitle{What this briefing covers}
+
+    \begin{center}
+        \includegraphics[width=0.55\textwidth]{./img/misp-banner.png}
+    \end{center}
+
+    \vspace{0.5em}
+
+    Three practical questions about the shared \textbf{MN MISP instance}:
+
+    \begin{itemize}
+        \item \textbf{What can I do} on the instance?
+        \item \textbf{How do I connect} my own instance to it?
+        \item \textbf{Why should I care} about how I connect?
+    \end{itemize}
+\end{frame}
+
+
+% =========================================================
+% CAPABILITIES
+% =========================================================
+\nosectionpage{What can I do on the instance?}
+\storyphase{Capabilities}
+
+\input{content/capabilities.tex}
+
+
+% =========================================================
+% CONNECTING
+% =========================================================
+\nosectionpage{Connecting your instance}
+\storyphase{Connecting}
+
+\input{content/connecting.tex}
+
+
+% =========================================================
+% CONSIDERATIONS
+% =========================================================
+\nosectionpage{Why should you care?}
+\storyphase{Considerations}
+
+\input{content/considerations.tex}
+
+\end{document}

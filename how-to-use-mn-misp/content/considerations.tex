@@ -1,0 +1,130 @@
+\begin{frame}
+    \frametitle{Why should you care?}
+
+    How you connect matters. Running and synchronising \textbf{your own instance} ---
+    rather than only querying the shared one --- buys you real advantages.
+
+    \vspace{0.5em}
+
+    \begin{center}
+        \begin{columns}[T]
+            \begin{column}{0.5\textwidth}
+                \card{\linewidth}{1.5em}{\faUserSecret \, \textbf{Confidentiality}}
+                    {Your searches can be very sensitive}
+            \end{column}
+            \hfill
+            \begin{column}{0.5\textwidth}
+                \card{\linewidth}{1.5em}{\faBolt \, \textbf{Availability}}
+                    {Don't depend on shared performance}
+            \end{column}
+        \end{columns}
+        \begin{columns}[T]
+            \begin{column}{0.5\textwidth}
+                \card{\linewidth}{1.5em}{\faTools \, \textbf{Capability}}
+                    {Host / admin-only features}
+            \end{column}
+            \hfill
+            \begin{column}{0.5\textwidth}
+                \card{\linewidth}{1.5em}{\faDatabase \, \textbf{Access}}
+                    {Your data --- even offline}
+            \end{column}
+        \end{columns}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Confidentiality of your searches}
+
+    Searches can be \textbf{very sensitive}, especially during active incidents.
+
+    \vspace{0.5em}
+
+    \begin{itemize}
+        \item The indicators you search for may \textbf{accidentally reveal} sensitive
+              information about the infrastructure you protect
+        \item You may want to limit the chance that your \textbf{knowledge of an ongoing
+              attack} leaks out during an incident
+    \end{itemize}
+
+    \vspace{0.5em}
+
+    \alertbox{danger}{Every query is a potential signal}{During an active incident, keep
+    sensitive lookups on infrastructure \emph{you} control --- not on a shared instance.}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Performance \& availability}
+
+    On a shared instance, you are \textbf{at the mercy of the community} for performance
+    and response times.
+
+    \vspace{0.5em}
+
+    \begin{itemize}
+        \item It would be very unfortunate if your tools could \textbf{not pull the latest
+              intel} exactly when you need it most \dots
+        \item \dots simply because the MN MISP instance is \textbf{overwhelmed} by an
+              unexpected amount of load from the community
+        \item A local, synchronised copy keeps your tooling \textbf{fast and independent}
+    \end{itemize}
+
+    \vspace{0.5em}
+
+    \alertbox{warning}{When it matters most}{Peak demand on the shared instance often
+    coincides with the incidents where you can least afford to wait.}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The power of your own instance}
+
+    Beyond confidentiality and availability, hosting your own instance unlocks more.
+
+    \vspace{0.5em}
+
+    \begin{center}
+        \begin{columns}[T]
+            \begin{column}{0.5\textwidth}
+                \card{\linewidth}{2.5em}
+                    {{\Large\faTools}\hspace{0.3em}\textbf{Extra capability}}
+                    {
+                        \begin{itemize}
+                            \item Functionality reserved for the \textbf{host organisation}
+                            \item Administrator-only features
+                        \end{itemize}
+                    }
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \card{\linewidth}{2.5em}
+                    {{\Large\faDatabase}\hspace{0.3em}\textbf{Own the data}}
+                    {
+                        \begin{itemize}
+                            \item Full access to the data
+                            \item Available \textbf{even offline}
+                        \end{itemize}
+                    }
+            \end{column}
+        \end{columns}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Key takeaways}
+
+    \begin{itemize}
+        \item \textbf{Capabilities} --- search, correlate, operationalise and collaborate
+              on the MN MISP instance
+        \item \textbf{Connecting} --- synchronise in either direction, cross-correlate via
+              caching, and filter to taste
+        \item \textbf{Considerations} --- your own instance means confidentiality,
+              availability, extra capability and offline access
+    \end{itemize}
+
+    \vspace{1em}
+
+    \alertbox{info}{Getting started}{Request a sync user from NCIA and decide whether you
+    want to \emph{ingest only} or also \emph{share back}.}
+\end{frame}

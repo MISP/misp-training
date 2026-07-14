@@ -1,0 +1,145 @@
+\begin{frame}
+    \frametitle{How do I connect my instance?}
+
+    You can interconnect your own MISP with the MN MISP instance in several ways ---
+    pick what matches your \textbf{operational posture}.
+
+    \vspace{0.5em}
+
+    \begin{itemize}
+        \item \textbf{Synchronisation} --- push and/or pull events between the two instances
+            \begin{itemize}
+                \item[] Initiated \textbf{by your instance}, or \textbf{by NCIA}
+            \end{itemize}
+        \item \textbf{Cross-correlation only} --- cache the remote data to spot overlaps,
+              without ingesting it
+        \item \textbf{Filtering} --- shape the flow so you only get what is relevant to you
+    \end{itemize}
+
+    \vspace{0.5em}
+
+    \alertbox{info}{These modes are not exclusive}{Most members combine synchronisation
+    with filtering to keep the flow under control.}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Two modes of synchronisation}
+
+    Synchronisation can be driven from either side of the link.
+
+    \vspace{0.5em}
+
+    \begin{center}
+        \begin{columns}[T]
+            \begin{column}{0.49\textwidth}
+                \card{\linewidth}{2.5em}
+                    {{\Large\faArrowRight}\hspace{0.3em}\textbf{You initiate}}
+                    {
+                        \begin{itemize}
+                            \item Your instance runs the \textbf{push / pull}
+                            \item You control scheduling and direction
+                            \item No inbound access to your instance required
+                        \end{itemize}
+                    }
+            \end{column}
+            \begin{column}{0.49\textwidth}
+                \card{\linewidth}{2.5em}
+                    {{\Large\faArrowLeft}\hspace{0.3em}\textbf{NCIA initiates}}
+                    {
+                        \begin{itemize}
+                            \item NCIA pushes to you
+                            \item \textbf{Real-time} on event publish
+                            \item Your instance must be reachable
+                        \end{itemize}
+                    }
+            \end{column}
+        \end{columns}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Mode 1 --- Your instance initiates (push / pull)}
+
+    You reach out to the MN MISP instance and decide when and what to synchronise.
+
+    \vspace{0.5em}
+
+    \begin{enumerate}
+        \item Ask NCIA for a \textbf{sync user} on the MN MISP instance
+        \item Add \textbf{their instance} as a server on \textbf{yours}
+        \item Decide your posture:
+            \begin{itemize}
+                \item[] \textbf{Ingest only} --- pull data down, keep quiet, \emph{or}
+                \item[] \textbf{Ingest \& share back} --- also push your own contributions
+            \end{itemize}
+    \end{enumerate}
+
+    \vspace{0.5em}
+
+    \alertbox{info}{You stay in full control}{Scheduling, direction and what leaves your
+    instance are all decided on your side.}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Mode 2 --- NCIA initiates the synchronisation}
+
+    You give NCIA a \textbf{sync user of your own}, letting them push into your instance.
+
+    \vspace{0.5em}
+
+    \begin{itemize}
+        \item Enables \textbf{real-time pushes} the moment an event is published by the
+              MN MISP community
+        \item Intel lands in your instance without waiting for your next pull cycle
+        \item Requires your instance to be \textbf{reachable} --- from the internet or via an uplink
+    \end{itemize}
+
+    \vspace{0.5em}
+
+    \alertbox{warning}{Reachability required}{Your instance must be exposed to NCIA ---
+    over the internet or a dedicated uplink --- for inbound pushes to work.}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Cross-correlation only mode}
+
+    Don't want to ingest the data at all? You can still benefit from it.
+
+    \vspace{0.5em}
+
+    \begin{itemize}
+        \item Enable \textbf{caching} of the MN MISP instance
+        \item Simply \textbf{see what NCIA holds} that may be relevant to you
+        \item Correlations light up \textbf{locally}, without copying the full dataset into
+              your own events
+    \end{itemize}
+
+    \vspace{0.5em}
+
+    \alertbox{info}{Minimal footprint}{A lightweight way to know \emph{whether} the community
+    has something on your indicators --- before deciding to pull it.}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Filtering --- staying in control of the flow}
+
+    Worried about being overwhelmed with data? \textbf{Filter} what you take in.
+
+    \vspace{0.5em}
+
+    \begin{itemize}
+        \item Constrain the pull by \textbf{tags, organisations, distribution}, \dots
+        \item You \emph{can} filter out extremely old data --- though we \textbf{recommend against it}
+    \end{itemize}
+
+    \vspace{0.5em}
+
+    \alertbox{warning}{On filtering out old data}{Operational use of 10+ year old events is
+    very low --- \emph{but} for threat analysts, watching a threat actor evolve over a decade
+    can be invaluable.}
+\end{frame}

@@ -1,0 +1,80 @@
+
+% =========================================================
+% Bootstrap-like Alert Component
+% =========================================================
+
+% ---------------------------------------------------------
+% Colors
+% ---------------------------------------------------------
+
+\definecolor{alertInfoBg}{HTML}{D1ECF1}
+\definecolor{alertInfoBorder}{HTML}{7FC6D1}
+\definecolor{alertInfoText}{HTML}{0C5460}
+
+\definecolor{alertWarningBg}{HTML}{FFF3CD}
+\definecolor{alertWarningBorder}{HTML}{E0C24F}
+\definecolor{alertWarningText}{HTML}{856404}
+
+\definecolor{alertDangerBg}{HTML}{F8D7DA}
+\definecolor{alertDangerBorder}{HTML}{D98C95}
+\definecolor{alertDangerText}{HTML}{721C24}
+
+% ---------------------------------------------------------
+% Internal style selector
+% ---------------------------------------------------------
+
+\newcommand{\alertboxsetup}[1]{%
+
+    % INFO
+    \ifstrequal{#1}{info}{
+        \colorlet{alertbg}{alertInfoBg}
+        \colorlet{alertborder}{alertInfoBorder}
+        \colorlet{alerttext}{alertInfoText}
+    }{}
+
+    % WARNING
+    \ifstrequal{#1}{warning}{
+        \colorlet{alertbg}{alertWarningBg}
+        \colorlet{alertborder}{alertWarningBorder}
+        \colorlet{alerttext}{alertWarningText}
+    }{}
+
+    % DANGER
+    \ifstrequal{#1}{danger}{
+        \colorlet{alertbg}{alertDangerBg}
+        \colorlet{alertborder}{alertDangerBorder}
+        \colorlet{alerttext}{alertDangerText}
+    }{}
+}
+
+% ---------------------------------------------------------
+% Alert command
+% ---------------------------------------------------------
+
+\newcommand{\alertbox}[3]{%
+
+    \alertboxsetup{#1}
+
+    \begin{center}
+    \begin{tikzpicture}
+
+    \node[
+        draw=alertborder,
+        fill=alertbg,
+        rounded corners=2pt,
+        line width=0.6pt,
+        inner sep=10pt,
+        text width=0.92\linewidth,
+        align=left
+    ] {
+
+        {\color{alerttext}\bfseries #2}
+
+        \vspace{0.35em}
+
+        {\color{alerttext}#3}
+    };
+
+    \end{tikzpicture}
+    \end{center}
+}

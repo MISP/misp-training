@@ -1,0 +1,26 @@
+% =========================================================
+% Generic capability card
+% =========================================================
+
+\newcommand{\card}[4]{
+\begin{tikzpicture}
+\node[
+    draw=black!20,
+    fill=black!3,
+    rounded corners=3pt,
+    minimum width=#1,
+    minimum height=#2,
+    inner sep=5pt,
+    align=left
+]{
+    \begin{minipage}{0.9\linewidth}
+        {\large #3}
+
+        \vspace{0.3em}
+
+        \small
+        #4
+    \end{minipage}
+};
+\end{tikzpicture}
+}
