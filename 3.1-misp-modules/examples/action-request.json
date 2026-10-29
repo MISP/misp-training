@@ -1,0 +1,11 @@
+{
+  "module": "osquery_pack_publish",
+  "params": {
+    "pack_name": "training",
+    "dry_run": "true",
+    "overwrite": "false"
+  },
+  "data": [{"Event": {"Attribute": [
+    {"type": "ip-dst", "value": "192.0.2.10", "to_ids": true}
+  ]}}]
+}

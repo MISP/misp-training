@@ -1,0 +1,14 @@
+{
+  "module": "zeek_intel_export",
+  "config": {"source": "MISP training"},
+  "data": [{
+    "Event": {
+      "uuid": "f1ef0409-c80a-4012-b401-b7d1050f4ed4",
+      "Attribute": [
+        {"type": "domain", "value": "EXAMPLE.org.", "to_ids": true},
+        {"type": "ip-dst", "value": "192.0.2.10", "to_ids": true},
+        {"type": "domain", "value": "not-selected.example", "to_ids": false}
+      ]
+    }
+  }]
+}

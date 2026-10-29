@@ -1,0 +1,8 @@
+{
+  "module": "extract_url_components",
+  "attribute": {
+    "type": "url",
+    "value": "https://portal.example.org/a?item=1",
+    "uuid": "13d8d18b-784a-42a0-9a58-a9cddbfda561"
+  }
+}
