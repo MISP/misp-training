@@ -58,6 +58,8 @@ def dict_handler(request):
     attribute = request.get("attribute")
     if not isinstance(attribute, dict) or attribute.get("type") not in mispattributes["input"]:
         return {"error": "A domain or hostname attribute is required."}
+    if "to_ids" in attribute and not isinstance(attribute["to_ids"], bool):
+        return {"error": "The source attribute to_ids flag must be a boolean."}
     source_uuid = attribute.get("uuid")
     if not isinstance(source_uuid, str):
         return {"error": "A valid source attribute UUID is required."}

@@ -62,6 +62,7 @@ normalization module upstream.
 | Bounds | At least two labels; each ASCII label 1–63 characters, alphanumeric ends and optional interior hyphens; full name at most 253 ASCII characters |
 | Rejections | Unsupported type, malformed fields/UUID, IP literals, wildcard, URL, empty/interior-empty labels and invalid boundaries |
 | Source | Preserve original UUID/value/comment and detection flag; do not mutate the caller's input |
+| Detection flag | A supplied `to_ids` must be JSON `true` or `false`; reject strings, integers, null and other non-booleans before PyMISP conversion |
 | Derived result | A PyMISP `domain-ip` object with a non-IDS domain attribute and a `derived-from` reference to the original UUID |
 | State | Fresh metadata and results across calls |
 | Effects | Local processing only; no lookup, submission, publication or runtime model service |
@@ -102,8 +103,9 @@ python3 examples/verify_module.py -v
 ```
 
 Expected: **8 unit tests**. The output explicitly states that HTTP checks were
-not requested. Tests cover normalization/IDNA, provenance, detection flags, input
-and state isolation, malformed-input subtests, both handler interfaces and metadata.
+not requested. Tests cover normalization/IDNA, provenance, both boolean detection
+flags, input and state isolation, malformed-input subtests (including non-boolean
+`to_ids` values), both handler interfaces and metadata.
 
 ### 3. Check the real service boundary
 
@@ -120,8 +122,9 @@ python3 examples/verify_module.py --url http://127.0.0.1:6666 -v
 ```
 
 Expected: **11 tests**, consisting of the eight unit tests and three HTTP tests.
-They verify discovery/format, OpenAPI, the structured result and a module error
-over HTTP 200. Select a different port and matching URL if needed.
+They verify discovery/format, OpenAPI, structured results with both boolean flags,
+and module errors for invalid names and detection flags over HTTP 200. Select a
+different port and matching URL if needed.
 
 Inspect the sample response yourself:
 

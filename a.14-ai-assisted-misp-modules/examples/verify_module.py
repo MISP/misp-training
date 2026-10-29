@@ -18,6 +18,7 @@ module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 FIXTURE = json.loads((HERE / "request.json").read_text())
 BASE_URL = None
+INVALID_FLAGS = ("false", "true", "0", "1", "", 0, 1, 0.0, 1.0, None, [], {}, [False])
 
 
 def output_name(result):
@@ -39,18 +40,22 @@ class ModuleContract(unittest.TestCase):
         self.assertEqual(output_name(module.dict_handler(deepcopy(FIXTURE))), "xn--bcher-kva.example")
 
     def test_source_reference_and_detection_flags(self):
-        result = module.dict_handler(deepcopy(FIXTURE))["results"]
-        source = result["Attribute"][0]
-        self.assertEqual(source["uuid"], FIXTURE["attribute"]["uuid"])
-        self.assertEqual(source["value"], FIXTURE["attribute"]["value"])
-        self.assertEqual(source["comment"], FIXTURE["attribute"]["comment"])
-        self.assertIs(source["to_ids"], True)
-        obj = result["Object"][0]
-        self.assertEqual(obj["name"], "domain-ip")
-        self.assertIs(obj["Attribute"][0]["to_ids"], False)
-        reference = obj["ObjectReference"][0]
-        self.assertEqual(reference["referenced_uuid"], source["uuid"])
-        self.assertEqual(reference["relationship_type"], "derived-from")
+        for flag in (False, True):
+            with self.subTest(to_ids=flag):
+                body = deepcopy(FIXTURE)
+                body["attribute"]["to_ids"] = flag
+                result = module.dict_handler(body)["results"]
+                source = result["Attribute"][0]
+                self.assertEqual(source["uuid"], FIXTURE["attribute"]["uuid"])
+                self.assertEqual(source["value"], FIXTURE["attribute"]["value"])
+                self.assertEqual(source["comment"], FIXTURE["attribute"]["comment"])
+                self.assertIs(source["to_ids"], flag)
+                obj = result["Object"][0]
+                self.assertEqual(obj["name"], "domain-ip")
+                self.assertIs(obj["Attribute"][0]["to_ids"], False)
+                reference = obj["ObjectReference"][0]
+                self.assertEqual(reference["referenced_uuid"], source["uuid"])
+                self.assertEqual(reference["relationship_type"], "derived-from")
 
     def test_input_is_not_mutated(self):
         body = deepcopy(FIXTURE)
@@ -90,9 +95,15 @@ class ModuleContract(unittest.TestCase):
         invalid_uuid = self.body()
         invalid_uuid["attribute"]["uuid"] = "not-a-uuid"
         bodies.extend([missing_uuid, invalid_uuid])
+        for flag in INVALID_FLAGS:
+            body = self.body()
+            body["attribute"]["to_ids"] = flag
+            bodies.append(body)
         for body in bodies:
             with self.subTest(body=body):
-                self.assertIn("error", module.dict_handler(body))
+                for result in (module.dict_handler(body), module.handler(json.dumps(body))):
+                    self.assertIn("error", result)
+                    self.assertNotIn("results", result)
         self.assertIn("error", module.handler("not JSON"))
         self.assertIs(module.handler(), False)
 
@@ -132,18 +143,32 @@ class ServiceContract(unittest.TestCase):
         self.assertIn("/query", self.request("/openapi.json")["paths"])
 
     def test_structured_query(self):
-        result = self.request("/query", deepcopy(FIXTURE))
-        self.assertEqual(output_name(result), "xn--bcher-kva.example")
-        self.assertEqual(
-            result["results"]["Object"][0]["ObjectReference"][0]["referenced_uuid"], FIXTURE["attribute"]["uuid"]
-        )
+        for flag in (False, True):
+            with self.subTest(to_ids=flag):
+                body = deepcopy(FIXTURE)
+                body["attribute"]["to_ids"] = flag
+                result = self.request("/query", body)
+                self.assertEqual(output_name(result), "xn--bcher-kva.example")
+                self.assertIs(result["results"]["Attribute"][0]["to_ids"], flag)
+                self.assertIs(result["results"]["Object"][0]["Attribute"][0]["to_ids"], False)
+                self.assertEqual(
+                    result["results"]["Object"][0]["ObjectReference"][0]["referenced_uuid"],
+                    FIXTURE["attribute"]["uuid"],
+                )
 
     def test_invalid_query_is_an_error_envelope(self):
         body = deepcopy(FIXTURE)
         body["attribute"]["value"] = "*.example.org"
-        result = self.request("/query", body)
-        self.assertIn("error", result)
-        self.assertNotIn("results", result)
+        bodies = [body]
+        for flag in INVALID_FLAGS:
+            body = deepcopy(FIXTURE)
+            body["attribute"]["to_ids"] = flag
+            bodies.append(body)
+        for body in bodies:
+            with self.subTest(body=body):
+                result = self.request("/query", body)
+                self.assertIn("error", result)
+                self.assertNotIn("results", result)
 
 
 if __name__ == "__main__":

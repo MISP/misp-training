@@ -65,6 +65,8 @@ fields, configuration, output envelope, references, failure handling and tests.
   or the caller's input.
 - Use PyMISP for structured objects and serialization. Preserve source UUIDs and
   valid references, original evidence and explicit detection flags.
+- Validate flag types before PyMISP conversion: a string such as `"false"` must
+  never silently enable `to_ids`. State and test any supported representations.
 - Do not promote contextual data to `to_ids=true` without an explicit requirement.
 - For remote I/O, use bounded timeouts and appropriate TLS verification. Handle
   authentication failures, rate limits, malformed responses and partial results

@@ -155,6 +155,8 @@
     \end{block}
     \note{Tests inspect real PyMISP output: source UUID, value/comment, references
     and detection flags. The derived attribute is non-IDS in this exercise.
+    Validate flags before PyMISP conversion: a nonempty string such as false can
+    otherwise become true. The exercise accepts only boolean flags when supplied.
     It is the full normalized name, not a guessed registrable domain.}
 \end{frame}
 
