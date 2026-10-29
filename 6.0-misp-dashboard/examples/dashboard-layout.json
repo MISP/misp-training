@@ -1,0 +1,86 @@
+[
+  {
+    "instance_id": "training_new",
+    "widget": "NewDataStatsWidget",
+    "config": {
+      "alias": "Training instance: new data",
+      "time_window": "P7D",
+      "country": "luxembourg",
+      "sector": "Education"
+    },
+    "position": {
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 3
+    }
+  },
+  {
+    "instance_id": "training_stream",
+    "widget": "EventStreamCardsWidget",
+    "config": {
+      "alias": "Training event triage",
+      "limit": 3,
+      "published": false
+    },
+    "position": {
+      "x": 0,
+      "y": 3,
+      "w": 7,
+      "h": 4
+    }
+  },
+  {
+    "instance_id": "training_trends",
+    "widget": "TrendingWidget",
+    "config": {
+      "alias": "Training vulnerability observations",
+      "dimension": "vulnerability",
+      "time_window": "P7D",
+      "threshold": 5,
+      "min_count": 1
+    },
+    "position": {
+      "x": 7,
+      "y": 3,
+      "w": 5,
+      "h": 4
+    }
+  },
+  {
+    "instance_id": "training_reports",
+    "widget": "RecentEventReportsWidget",
+    "config": {
+      "alias": "Training review reports",
+      "time_window": "P7D",
+      "limit": 3
+    },
+    "position": {
+      "x": 0,
+      "y": 7,
+      "w": 7,
+      "h": 4
+    }
+  },
+  {
+    "instance_id": "training_tags",
+    "widget": "TrendingTagsWidget",
+    "config": {
+      "alias": "Training classification labels",
+      "time_window": "P7D",
+      "threshold": 5,
+      "tag_filter": {
+        "include": [
+          "tlp:"
+        ],
+        "exclude": []
+      }
+    },
+    "position": {
+      "x": 7,
+      "y": 7,
+      "w": 5,
+      "h": 4
+    }
+  }
+]

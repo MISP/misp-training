@@ -14,6 +14,7 @@ recommendation to install or use a particular tool.
 | Material | Preserved here | Status |
 | --- | --- | --- |
 | Viper and MISP integration | [Course and original PDF](slide-decks/1.1-misp-viper-integration/README.md) | Retired from standard training on 29 October 2026 |
+| Standalone ZeroMQ dashboard | [Course and original PDF](slide-decks/6.0-misp-dashboard-zmq/README.md) | Replaced in standard training by the integrated MISP 2.5 dashboard course |
 | Legacy training-VM cheat sheet | [Source and VM context](supporting-material/compact-cheatsheet/README.md) | Historical companion with Viper-web details and MISP 2.4-era instructions |
 | Earlier combined training PDFs | [Publication snapshots](publications/combined-training/README.md) | Historical bundles that include the retired Viper course |
 

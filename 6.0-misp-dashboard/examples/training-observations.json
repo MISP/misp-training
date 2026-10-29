@@ -1,0 +1,45 @@
+{
+  "Event": {
+    "uuid": "0ce2be48-aee0-455d-a944-dc6ca235ca96",
+    "info": "Training: shared observations",
+    "date": "2026-10-29",
+    "distribution": 0,
+    "analysis": 2,
+    "threat_level_id": 3,
+    "published": false,
+    "Tag": [
+      {
+        "name": "tlp:amber"
+      },
+      {
+        "name": "misp:confidence-level=\"fairly-confident\""
+      }
+    ],
+    "Attribute": [
+      {
+        "type": "domain",
+        "category": "Network activity",
+        "value": "case-3.example",
+        "to_ids": false,
+        "disable_correlation": true,
+        "comment": "Synthetic dashboard training data."
+      },
+      {
+        "type": "vulnerability",
+        "category": "External analysis",
+        "value": "CVE-2021-44228",
+        "to_ids": false,
+        "disable_correlation": true,
+        "comment": "Public identifier used in a synthetic training observation."
+      },
+      {
+        "type": "vulnerability",
+        "category": "External analysis",
+        "value": "CVE-2024-3094",
+        "to_ids": false,
+        "disable_correlation": true,
+        "comment": "Public identifier used in a synthetic training observation."
+      }
+    ]
+  }
+}

@@ -46,7 +46,7 @@ find the same material in your checkout.
 | MISP modules | [PDF](https://www.misp-project.org/misp-training/3.1-misp-modules.pdf) | [Source](3.1-misp-modules/) |
 | MISP Galaxy | [PDF](https://www.misp-project.org/misp-training/3.2-misp-galaxy.pdf) | [Source](3.2-misp-galaxy/) |
 | Object templates | [PDF](https://www.misp-project.org/misp-training/3.3-misp-object-template.pdf) | [Source](3.3-misp-object-template/) |
-| MISP dashboard | [PDF](https://www.misp-project.org/misp-training/6.0-misp-dashboard.pdf) | [Source](6.0-misp-dashboard/) |
+| Integrated dashboard (MISP 2.5) | [PDF](https://www.misp-project.org/misp-training/6.0-misp-dashboard.pdf) | [Source](6.0-misp-dashboard/) |
 | PyMISP | [PDF](https://www.misp-project.org/misp-training/a.2-pymisp.pdf) | [Source](a.2-pymisp/) |
 | Feeds | [PDF](https://www.misp-project.org/misp-training/a.3-misp-feed.pdf) | [Source](a.3-misp-feed/) |
 | Decaying indicators | [PDF](https://www.misp-project.org/misp-training/a.5-decaying-indicators.pdf) | [Source](a.5-decaying-indicators/) |
