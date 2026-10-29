@@ -32,3 +32,7 @@
 | [4-misp-standard](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [source](https://github.com/MISP/misp-training/tree/main/4-misp-standard) |
 | [a.b-cli](https://www.misp-project.org/misp-training/a.b-cli.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.b-cli) |
 | [a.c-deployment](https://www.misp-project.org/misp-training/a.c-deployment.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.c-deployment) |
+| [a.12-misp-workflows](https://www.misp-project.org/misp-training/a.12-misp-workflows.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.12-misp-workflows) |
+| [a.12-misp-workflows-short](https://www.misp-project.org/misp-training/a.12-misp-workflows-short.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.12-misp-workflows-short) |
+| [a.13-misp-stix](https://www.misp-project.org/misp-training/a.13-misp-stix.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.13-misp-stix) |
+| [b.6-automation](https://www.misp-project.org/misp-training/b.6-automation.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.6-automation) |
