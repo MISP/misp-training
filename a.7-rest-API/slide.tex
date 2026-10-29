@@ -1,23 +1,38 @@
 \documentclass{beamer}
 \usetheme[numbering=progressbar]{misp}
 
-
 \usepackage[utf8]{inputenc}
-\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{array}
 \usepackage{listings}
-\usepackage{adjustbox}
-\usetikzlibrary{positioning}
-\usetikzlibrary{shapes,arrows}
-%\usepackage[T1]{fontenc}
-%\usepackage[scaled]{beramono}
+\usetikzlibrary{positioning,arrows.meta}
+\lstdefinestyle{dashboardcode}{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{mispBlue!5!white},
+    frame=single,
+    rulecolor=\color{mispBlue!30!white},
+    breaklines=true,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    numbers=none,
+    aboveskip=.6em,
+    belowskip=.6em
+}
+\lstdefinelanguage{json}{morestring=[b]",keywords={true,false,null},sensitive=true}
+\lstset{style=dashboardcode}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\sources}[1]{\par\vfill{\tiny\color{mispTeal}#1\par}}
+\newcommand{\screenshot}[1]{%
+    \centering\includegraphics[width=\textwidth,height=5.8cm,keepaspectratio]{#1}\par}
 
-\author{\small{\input{../includes/authors.txt}}}
+\title{Working with the MISP 2.5 REST API}
+\subtitle{Query, interpret and automate}
+\author{\small CIRCL / MISP Project}
+\institute{\url{https://www.misp-project.org/}}
+\date{Reference snapshot: 29 October 2026}
 
-\title{MISP restSearch API}
-\subtitle{An easy way to query, add and update your threat intelligence in MISP}
-\institute{MISP Project}
-\date{\input{../includes/location.txt}}
 \begin{document}
 \include{content}
 \end{document}
-

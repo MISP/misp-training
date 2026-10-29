@@ -1,0 +1,251 @@
+{
+  "info": {
+    "name": "MISP 2.5 REST API training — read-only",
+    "description": "Five bounded read-only requests. Fill base_url and api_key locally. Each search is one page, not a complete export. No keys or saved responses are included.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{api_key}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Instance version",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/servers/getVersion",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "servers",
+            "getVersion"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Version field\", function () { pm.expect(pm.response.json().version).to.be.a(\"string\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attribute JSON page",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/attributes/restSearch",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "attributes",
+            "restSearch"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"returnFormat\": \"json\",\n  \"type\": \"domain\",\n  \"value\": \"%.example\",\n  \"published\": [\n    0,\n    1\n  ],\n  \"to_ids\": [\n    0,\n    1\n  ],\n  \"includeEventUuid\": true,\n  \"includeEventTags\": true,\n  \"limit\": 100,\n  \"page\": 1,\n  \"order\": \"Attribute.id ASC\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Attribute envelope\", function () { pm.expect(pm.response.json().response.Attribute).to.be.an(\"array\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Event metadata page",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/events/restSearch",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "events",
+            "restSearch"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"returnFormat\": \"json\",\n  \"eventinfo\": \"%REST API training%\",\n  \"metadata\": true,\n  \"published\": [\n    0,\n    1\n  ],\n  \"limit\": 20,\n  \"page\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Event envelope\", function () { pm.expect(pm.response.json().response).to.be.an(\"array\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Detection-policy text page",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/attributes/restSearch",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "attributes",
+            "restSearch"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"returnFormat\": \"text\",\n  \"type\": \"domain\",\n  \"published\": 1,\n  \"to_ids\": 1,\n  \"tags\": {\n    \"AND\": [\n      \"tlp:clear\"\n    ],\n    \"NOT\": [\n      \"training:exclude\"\n    ]\n  },\n  \"enforceWarninglist\": true,\n  \"limit\": 100,\n  \"page\": 1,\n  \"value\": \"%.example\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Text response type\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attribute CSV page",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/attributes/restSearch",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "attributes",
+            "restSearch"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"returnFormat\": \"csv\",\n  \"type\": \"domain\",\n  \"value\": \"%.example\",\n  \"published\": [\n    0,\n    1\n  ],\n  \"to_ids\": [\n    0,\n    1\n  ],\n  \"includeEventUuid\": true,\n  \"includeEventTags\": true,\n  \"limit\": 100,\n  \"page\": 1,\n  \"order\": \"Attribute.id ASC\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Text response type\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text\"); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

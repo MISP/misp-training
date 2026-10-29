@@ -1,0 +1,11 @@
+{
+  "Attribute": {
+    "type": "domain",
+    "category": "Network activity",
+    "value": "workshop.example",
+    "to_ids": false,
+    "distribution": 5,
+    "disable_correlation": true,
+    "comment": "Synthetic REST API training data."
+  }
+}

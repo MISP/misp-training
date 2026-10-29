@@ -1,0 +1,18 @@
+{
+  "returnFormat": "text",
+  "type": "domain",
+  "published": 1,
+  "to_ids": 1,
+  "tags": {
+    "AND": [
+      "tlp:clear"
+    ],
+    "NOT": [
+      "training:exclude"
+    ]
+  },
+  "enforceWarninglist": true,
+  "limit": 100,
+  "page": 1,
+  "value": "%.example"
+}

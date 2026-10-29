@@ -1,0 +1,8 @@
+{
+  "returnFormat": "json",
+  "eventinfo": "%REST API training%",
+  "metadata": true,
+  "published": [0, 1],
+  "limit": 20,
+  "page": 1
+}

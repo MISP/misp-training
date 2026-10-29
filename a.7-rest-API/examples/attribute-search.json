@@ -1,0 +1,12 @@
+{
+  "returnFormat": "json",
+  "type": "domain",
+  "value": "%.example",
+  "published": [0, 1],
+  "to_ids": [0, 1],
+  "includeEventUuid": true,
+  "includeEventTags": true,
+  "limit": 100,
+  "page": 1,
+  "order": "Attribute.id ASC"
+}
