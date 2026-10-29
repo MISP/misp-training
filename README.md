@@ -117,7 +117,13 @@ bash build.sh
 
 The output directory will contain all the generated PDF files and the PDF file called `misp-training.pdf` which is the complete handout of all the slides.
 
-**Note**: In case the rendering is somewhat broken, it might be related to latex using the styles installed systemwide in `/usr/share/texlive/texmf-dist/tex/latex/beamertheme-focus`. Removing this directory will solve the problem.
+The first deck, `0-intro-shorter` (including its Spanish and Dutch variants), uses
+the MISP 2.0 visual identity. See [the reusable MISP theme and template](themes/README.md)
+for the official logo sources, palette, and commands to build individual decks.
+
+**Note**: Put this repository's `themes/` directory first in `TEXINPUTS` to use
+the bundled styles instead of a system-installed Focus theme. `build.sh` does
+this automatically.
 
 ## Dependencies
 
