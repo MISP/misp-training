@@ -1,65 +1,114 @@
+![MISP — Intelligence Sharing](themes/assets/misp-logo.svg)
+
 # MISP Training Materials
 
-This repository includes all the training materials in use such as
+**Learn MISP. Share intelligence. Build stronger communities.**
 
-- Core MISP (software and standard) trainings
-- Threat intelligence and OSINT training
-- Building information sharing communities workshop
+Open training materials for analysts, administrators, developers, and trainers.
+Explore threat intelligence and OSINT, practise with MISP, or adapt the LaTeX
+sources for your own workshops.
 
-All the materials are available with the complete LaTeX source code meant to assist in contributing or extending the training materials. A special attention is given to the open source licensing
-given to the materials. We welcome contributions in order to improve the training set for threat intelligence, intelligence gathering and analysis along with specific aspects of information sharing/exchange in information and national security.
+[Browse the slides](#slide-catalog) · [Try an exercise](#exercises-and-sample-data) · [Watch a recording](#training-videos) · [Build your own deck](#build-and-customize)
 
-## Materials
+## Start here
 
+| You want to… | Start with… |
+| --- | --- |
+| Learn the basics | [Short introduction](https://www.misp-project.org/misp-training/0-intro-shorter.pdf) and [MISP usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) |
+| Prepare a workshop | [Exercises](exercises/), [sample events](training-support/sample-events/README.md), and [trainer checklist](https://www.misp-project.org/misp-training/usage.pdf) |
+| Read the complete training | [Download the combined PDF](https://www.misp-project.org/misp-training/misp-training.pdf) |
+| Create or adapt slides | [MISP theme and template](themes/README.md) |
 
-| Slides (PDF) | Source Code |
-| ------------ | ----------- |
-| [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tree/main/0-misp-introduction-to-information-sharing) |
-| [MISP Data model overview (quick)](https://raw.githubusercontent.com/MISP/misp-training/477bdc9c71f77abd572f11c98f3ac8ecabe54310/complementary/other-slides/a.11.a-misp-data-model-overview.pdf) | |
-| [MISP Ten Commandments](https://github.com/MISP/misp-training/blob/main/complementary/other-slides/MISP%2010%20Commandments%20-%20Recommendations%20and%20Best%20Practices%20when%20encoding%20data.pdf)||
-| [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1-misp-usage) |
-| [1.2-misp-integration](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2-misp-integration) |
-| [1.1-misp-viper-integration](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.1-misp-viper-integration) |
-| [1.2.1-misp-integration-mail2misp](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2.1-misp-integration-mail2misp) |
-| [2-misp-administration](https://www.misp-project.org/misp-training/2-misp-administration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/2-misp-administration) |
-| [3-misp-taxonomy-tagging](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [source](https://github.com/MISP/misp-training/tree/main/3-misp-taxonomy-tagging) |
-| [3.1-misp-modules](https://www.misp-project.org/misp-training/3.1-misp-modules.pdf) | [source](https://github.com/MISP/misp-training/tree/main/3.1-misp-modules) |
-| [3.2-misp-galaxy](https://www.misp-project.org/misp-training/3.2-misp-galaxy.pdf) | [source](https://github.com/MISP/misp-training/tree/main/3.2-misp-galaxy) |
-| [3.3-misp-object-template](https://www.misp-project.org/misp-training/3.3-misp-object-template.pdf) | [source](https://github.com/MISP/misp-training/tree/main/3.3-misp-object-template) |
-| [6.0-misp-dashboard](https://www.misp-project.org/misp-training/6.0-misp-dashboard.pdf) | [source](https://github.com/MISP/misp-training/tree/main/6.0-misp-dashboard) |
-| [a.0-contributing](https://www.misp-project.org/misp-training/a.0-contributing.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.0-contributing) |
-| [a.1-devintro](https://www.misp-project.org/misp-training/a.1-devintro.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.1-devintro) |
-| [a.2-pymisp](https://www.misp-project.org/misp-training/a.2-pymisp.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.2-pymisp) |
-| [a.3-misp-feed](https://www.misp-project.org/misp-training/a.3-misp-feed.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.3-misp-feed) |
-| [a.4-best-practices](https://www.misp-project.org/misp-training/a.4-best-practices.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.4-best-practices) |
-| [a.5-decaying-indicators](https://www.misp-project.org/misp-training/a.5-decaying-indicators.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.5-decaying-indicators) |
-| [a.5-bis-decaying-indicators-light-version](https://www.misp-project.org/misp-training/a.5-bis-decaying-indicators-light-version.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.5-bis-decaying-indicators-light-version) |
-| [a.6-forensic](https://www.misp-project.org/misp-training/a.6-forensic.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.6-forensic) |
-| [a.7-rest-API](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.7-rest-API) |
-| [b.1-best-practices-in-threat-intelligence](https://www.misp-project.org/misp-training/b.1-best-practices-in-threat-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.1-best-practices-in-threat-intelligence) |
-| [b.5-turning-data-into-actionable-intelligence-training](https://www.misp-project.org/misp-training/b.5-turning-data-into-actionable-intelligence-training.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.5-turning-data-into-actionable-intelligence-training) |
-| [a.8-dev-hands-on](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.8-dev-hands-on) |
-| [a.9-restsearch-dev](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.9-restsearch-dev) |
-| [a.10-galaxy-2.0](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.10-galaxy-2.0) |
-| [a.11-misp-data-model](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.11-misp-data-model) |
-| [a.12-misp-workflows](https://www.misp-project.org/misp-training/a.12-misp-workflows.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.12-misp-workflows) |
-| [a.13-misp-stix](https://www.misp-project.org/misp-training/a.13-misp-stix.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.13-misp-stix) |
-| [a.a-widget-dev](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.a-widget-dev) |
-| [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.2-turning-data-into-actionable-intelligence) |
-| [4-misp-standard](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [source](https://github.com/MISP/misp-training/tree/main/4-misp-standard) |
-| [x.13-exercise-movie](https://www.misp-project.org/misp-training/x.13-exercise-movie.pdf) | [source](https://github.com/MISP/misp-training/tree/main/x.13-exercise-movie) |
-| [a.b-cli](https://www.misp-project.org/misp-training/a.b-cli.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.b-cli) |
-| [a.c-deployment](https://www.misp-project.org/misp-training/a.c-deployment.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.c-deployment) |
+## Slide catalog
 
-### Complementary materials
+Choose a topic below. Each deck includes a PDF for reading and LaTeX sources
+for adaptation. Folder prefixes are retained in the source links so you can
+find the same material in your checkout.
 
-| Slides (PDF) | Source Code |
-| ------------ | ----------- |
-| [complete slide desk in one PDF](https://www.misp-project.org/misp-training/misp-training.pdf) | [source](https://github.com/MISP/misp-training/) |
-| [MISP training cheat-sheet](https://www.misp-project.org/misp-training/cheatsheet.pdf) | [source](https://github.com/MISP/misp-training/tree/master/training-support/compact-cheatsheet) |
-| [MISP feature list (for the trainers)](https://www.misp-project.org/misp-training/usage.pdf) | [source](https://github.com/MISP/misp-training/tree/master/training-support/checklist) |
+### MISP fundamentals
 
-### Additional documentation
+| Topic | Slides | LaTeX source |
+| --- | --- | --- |
+| A short introduction to information sharing | [PDF](https://www.misp-project.org/misp-training/0-intro-shorter.pdf) | [Source](0-intro-shorter/) |
+| Introduction to cybersecurity information sharing | [PDF](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [Source](0-misp-introduction-to-information-sharing/) |
+| Using MISP | [PDF](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [Source](1-misp-usage/) |
+| Administration | [PDF](https://www.misp-project.org/misp-training/2-misp-administration.pdf) | [Source](2-misp-administration/) |
+| The MISP standard | [PDF](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [Source](4-misp-standard/) |
+| MISP best practices | [PDF](https://www.misp-project.org/misp-training/a.4-best-practices.pdf) | [Source](a.4-best-practices/) |
+
+### Integration and enrichment
+
+| Topic | Slides | LaTeX source |
+| --- | --- | --- |
+| Integrating MISP with other tools | [PDF](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [Source](1.2-misp-integration/) |
+| Viper integration | [PDF](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [Source](1.1-misp-viper-integration/) |
+| mail2misp | [PDF](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [Source](1.2.1-misp-integration-mail2misp/) |
+| Taxonomies and tagging | [PDF](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [Source](3-misp-taxonomy-tagging/) |
+| MISP modules | [PDF](https://www.misp-project.org/misp-training/3.1-misp-modules.pdf) | [Source](3.1-misp-modules/) |
+| MISP Galaxy | [PDF](https://www.misp-project.org/misp-training/3.2-misp-galaxy.pdf) | [Source](3.2-misp-galaxy/) |
+| Object templates | [PDF](https://www.misp-project.org/misp-training/3.3-misp-object-template.pdf) | [Source](3.3-misp-object-template/) |
+| MISP dashboard | [PDF](https://www.misp-project.org/misp-training/6.0-misp-dashboard.pdf) | [Source](6.0-misp-dashboard/) |
+| PyMISP | [PDF](https://www.misp-project.org/misp-training/a.2-pymisp.pdf) | [Source](a.2-pymisp/) |
+| Feeds | [PDF](https://www.misp-project.org/misp-training/a.3-misp-feed.pdf) | [Source](a.3-misp-feed/) |
+| Decaying indicators | [PDF](https://www.misp-project.org/misp-training/a.5-decaying-indicators.pdf) | [Source](a.5-decaying-indicators/) |
+| Decaying indicators — short version | [PDF](https://www.misp-project.org/misp-training/a.5-bis-decaying-indicators-light-version.pdf) | [Source](a.5-bis-decaying-indicators-light-version/) |
+| MISP for digital forensics | [PDF](https://www.misp-project.org/misp-training/a.6-forensic.pdf) | [Source](a.6-forensic/) |
+
+### Development and automation
+
+| Topic | Slides | LaTeX source |
+| --- | --- | --- |
+| Contributing to MISP | [PDF](https://www.misp-project.org/misp-training/a.0-contributing.pdf) | [Source](a.0-contributing/) |
+| Introduction to MISP development | [PDF](https://www.misp-project.org/misp-training/a.1-devintro.pdf) | [Source](a.1-devintro/) |
+| REST API | [PDF](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [Source](a.7-rest-API/) |
+| Core development — hands-on | [PDF](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [Source](a.8-dev-hands-on/) |
+| Developing a restSearch export module | [PDF](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [Source](a.9-restsearch-dev/) |
+| Galaxy 2.0 | [PDF](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [Source](a.10-galaxy-2.0/) |
+| The MISP data model | [PDF](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [Source](a.11-misp-data-model/) |
+| MISP workflows | [PDF](https://www.misp-project.org/misp-training/a.12-misp-workflows.pdf) | [Source](a.12-misp-workflows/) |
+| MISP workflows — short version | [PDF](https://www.misp-project.org/misp-training/a.12-misp-workflows-short.pdf) | [Source](a.12-misp-workflows-short/) |
+| MISP and STIX | [PDF](https://www.misp-project.org/misp-training/a.13-misp-stix.pdf) | [Source](a.13-misp-stix/) |
+| Building dashboard widgets | [PDF](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [Source](a.a-widget-dev/) |
+| Command-line tools | [PDF](https://www.misp-project.org/misp-training/a.b-cli.pdf) | [Source](a.b-cli/) |
+| Deployment | [PDF](https://www.misp-project.org/misp-training/a.c-deployment.pdf) | [Source](a.c-deployment/) |
+| Automation | [PDF](https://www.misp-project.org/misp-training/b.6-automation.pdf) | [Source](b.6-automation/) |
+
+### Threat intelligence practice
+
+| Topic | Slides | LaTeX source |
+| --- | --- | --- |
+| Best practices in threat intelligence | [PDF](https://www.misp-project.org/misp-training/b.1-best-practices-in-threat-intelligence.pdf) | [Source](b.1-best-practices-in-threat-intelligence/) |
+| Turning data into actionable intelligence | [PDF](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [Source](b.2-turning-data-into-actionable-intelligence/) |
+| Turning data into actionable intelligence — training | [PDF](https://www.misp-project.org/misp-training/b.5-turning-data-into-actionable-intelligence-training.pdf) | [Source](b.5-turning-data-into-actionable-intelligence-training/) |
+
+### Quick references
+
+| Resource | Read | Source |
+| --- | --- | --- |
+| Complete training collection | [PDF](https://www.misp-project.org/misp-training/misp-training.pdf) | [Build script](build.sh) |
+| Training cheat sheet | [PDF](https://www.misp-project.org/misp-training/cheatsheet.pdf) | [LaTeX](cheatsheets/) |
+| Trainer feature checklist | [PDF](https://www.misp-project.org/misp-training/usage.pdf) | [LaTeX](training-support/checklist/) |
+| Data model overview | [PDF](complementary/other-slides/a.11.a-misp-data-model-overview.pdf) | — |
+| MISP Ten Pillars | [PDF](<complementary/other-slides/MISP 10 Pillars.pdf>) | — |
+
+More presentations are available in [events](events/), [MUG](MUG/), and
+[complementary materials](complementary/).
+
+## Exercises and sample data
+
+Bring the training into a MISP instance with practical scenarios and example
+events. [Pre-built training VMs](https://vm.misp-project.org/) are available for
+workshops.
+
+| Material | What you can practise |
+| --- | --- |
+| [Exercise collection](exercises/) | Investigations, information sharing, and analysis |
+| [Human-operated ransomware exercise](exercises/hor-pivot-exercice/readme.md) | Pivoting between events and assessing attribution |
+| [Movie exercise](exercises/movie-exercise/) · [PDF](https://www.misp-project.org/misp-training/x.13-exercise-movie.pdf) | Exploring relationships through a fictional scenario |
+| [Sample events](training-support/sample-events/README.md) | Graphs, timelines, YARA tracking, and indicator decay |
+| [Common Exercise Format](exercises/common-exercise-format-cexf/README.md) | Structuring reusable exercises, injects, and scoring |
+
+## Documentation
 
 - [MISP Book](https://github.com/MISP/misp-book/) - [PDF](https://www.circl.lu/doc/misp/book.pdf) [ePub](https://www.circl.lu/doc/misp/book.epub) [Kindle mobi](https://www.circl.lu/doc/misp/book.mobi) [HTML](https://www.circl.lu/doc/misp/)
 - [Best Practices in Threat Intelligence](https://github.com/MISP/best-practices-in-threat-intelligence) [PDF](https://www.misp-project.org/best-practices-in-threat-intelligence.pdf) [HTML](https://www.misp-project.org/best-practices-in-threat-intelligence.html)
@@ -70,14 +119,15 @@ given to the materials. We welcome contributions in order to improve the trainin
 - [Guidelines to setting up an information sharing community such as an ISAC or ISAO](https://github.com/MISP/misp-compliance/blob/master/setting-up-ISACs/guidelines_to_set-up_an_ISAC.md) - [PDF](https://www.x-isac.org/assets/images/guidelines_to_set-up_an_ISAC.pdf)
 - [Official MISP Install Guides](https://misp.github.io/MISP/)
 
-### MISP Training videos
+## Training videos
 
-Sample videos which can be used to understand how the training materials are used in companion with a live MISP demo instance.
+Recorded sessions pair the slides with demonstrations in a live MISP instance.
+Dates identify the recordings; older sessions may show earlier interfaces.
 
 - [MISP Workflow](https://www.youtube.com/watch?v=OyLE2g4zii0) - 16th December 2022
 - [MISP Best Practices for encoding threat intelligence (3 hours - online)](https://www.youtube.com/watch?v=JIeiwzY7Fvs) - 15th December 2022
 - [MISP Training Administration and Deployment of MISP software](https://youtu.be/sIHTRIwF-Mk) - 14th September 2022
-- [MISP Training Threat Intelligence Introduction for Analysts and Security Professional](https://youtu.be/sb36MMRTtLM) - 13th September 2022 
+- [MISP Training Threat Intelligence Introduction for Analysts and Security Professional](https://youtu.be/sb36MMRTtLM) - 13th September 2022
 - [Fundamentals MISP given FIRSTdotOrg 2021 Virtual Symposium African and Arab regions](https://www.youtube.com/watch?v=00jq7Gbqdz8) - 18th December 2021
 - [MISP General Usage Training - Part 1 of 2](https://www.youtube.com/watch?v=-NuODyh1YJE)
 - [MISP General Usage Training - Part 2 of 2](https://www.youtube.com/watch?v=LlKnh5b0bgw)
@@ -87,78 +137,88 @@ Sample videos which can be used to understand how the training materials are use
 - [MISP Training Module 2 - General usage of MISP](https://www.youtube.com/watch?v=Jqp8CVHtNVk)
 - [MISP covid-19 sharing community - introduction](https://peertube.opencloud.lu/videos/watch/4f7acd4c-a909-4315-87aa-38ba95cceaf2)
 
-#### Passive DNS and MISP - Training videos
+### Passive DNS and MISP
 
 - [Farsight Passive DNS and MISP - Part I](https://vimeo.com/561877178/ac09629591)
 - [Farsight Passive DNS and MISP - Part II](https://vimeo.com/561903295/8af1d6692b)
 - [Farsight Passive DNS and MISP - Part III](https://vimeo.com/561908216/764a2e19e4)
 
-### MISP Training support videos
+### Short demonstrations
 
-Those are videos to support MISP trainings or demonstrations at large:
+Short recordings for demonstrations and self-paced practice:
 
 - [MISP Event graph demo](https://www.youtube.com/watch?v=NYvKLwoBYwc&t=8s)
-- [MISP Tutorial - Enablings Feeds](https://www.youtube.com/watch?v=k3l-CtOgQro)
+- [MISP Tutorial - Enabling Feeds](https://www.youtube.com/watch?v=k3l-CtOgQro)
 
+## Build and customize
 
-### MISP Training VMs
+All Beamer decks use the **MISP 2.0 visual identity**, with a shared logo,
+palette, and reusable template. Start with the [theme guide](themes/README.md)
+to build a single deck, add a partner logo, or create a presentation.
 
-Pre-built MISP training VMs are available at [https://vm.misp-project.org/](https://vm.misp-project.org/).
+For the complete publication workflow, run from the repository root:
 
-## Source Code
-
-The full source code of the training slide decks are available. You'll need to have an operating system with a recent installation of LaTeX including latex-beamer to work with them.
-
-To build the complete set of training materials:
-
-~~~~bash
+```sh
 bash build.sh
-~~~~
-
-The output directory will contain all the generated PDF files and the PDF file called `misp-training.pdf` which is the complete handout of all the slides.
-
-All Beamer decks, including translations, event presentations, and saved
-notes handouts, use the MISP 2.0 visual identity. See [the reusable MISP theme and template](themes/README.md)
-for the official logo sources, palette, and commands to build individual decks.
-
-**Note**: Put this repository's `themes/` directory first in `TEXINPUTS` to use
-the bundled styles instead of a system-installed Focus theme. `build.sh` does
-this automatically.
-
-## Dependencies
-
-[FiraMath Font](https://github.com/firamath/firamath/releases)
-
-XeLaTex, can be parametered in .tex header (works in TeXshop):
-
 ```
+
+The script writes individual PDFs and notes handouts under `output/` and creates
+`misp-training.pdf`. It also regenerates tracked publication files.
+See the [build validation report](themes/validation.md) for verified coverage
+and known errors in historical material.
+
+### Prerequisites
+
+Use a recent TeX Live installation with Beamer, TikZ, Fira Sans, and Fira Mono.
+The [theme guide](themes/README.md#repository-wide-builds) lists the additional
+TeX packages, font maps, and `minted` requirements used by the full collection.
+The publication script also uses `pdfunite` and `exiftool`.
+
+Put `themes/` first in `TEXINPUTS` when compiling manually; `build.sh` does this
+automatically. To select XeLaTeX in TeXShop, place an engine hint in the
+source header:
+
+```tex
 % !TEX TS-program = xelatex
 % !TEX encoding = UTF-8 Unicode
 ```
 
-## License, Attribution and Funding
+The [FiraMath font releases](https://github.com/firamath/firamath/releases) are
+also available for decks that use them.
 
-All the materials are dual-licensed under GNU Affero General Public License version 3 or later and
-the Creative Commons Attribution-ShareAlike 4.0 International. You can use either one of the licenses depending
-of your use case of the training materials.
+## Contribute
 
-The MISP project training materials are co-financed and supported by CIRCL Computer Incident Response Center Luxembourg[](https://www.circl.lu/) and co-financed by a CEF (Connecting Europe Facility) funding under CEF-TC-2016-3 - Cyber Security as *Improving MISP as building blocks for next-generation information sharing*.
+Improvements to explanations, examples, translations, and workshop materials
+are welcome. Edit the relevant LaTeX sources, build the affected deck, and open
+a pull request describing the change. See the [contributing slides](a.0-contributing/)
+for more about working with the MISP community.
 
-![](https://www.misp-project.org/assets/images/en_cef.png)
-![](https://www.circl.lu/assets/images/logo.png)
+## License, attribution, and funding
 
-All the source code is available at [https://www.github.com/MISP/misp-training](https://www.github.com/MISP/misp-training).
+Training materials are dual-licensed under **GNU Affero General Public License
+3.0 or later** and **Creative Commons Attribution-ShareAlike 4.0 International**.
+Choose the license that fits your use case and retain attribution when reusing
+the materials. Theme code and visual assets also carry their own notices; see
+[the theme guide](themes/README.md#assets-and-attribution).
 
-If you reuse the training materials, don't forget to include the above for attribution.
+The training materials are supported and co-financed by
+[CIRCL — Computer Incident Response Center Luxembourg](https://www.circl.lu/)
+and by the **Connecting Europe Facility (CEF)** under CEF-TC-2016-3 — Cyber
+Security, through *Improving MISP as building blocks for next-generation
+information sharing*.
 
-## Contributors in alphabetical order
+![Connecting Europe Facility funding](https://www.misp-project.org/assets/images/en_cef.png)
+![CIRCL](https://www.circl.lu/assets/images/logo.png)
 
-- Steve Clement [:house:](https://github.com/SteveClement)
-- Alexandre Dulaunoy [:house:](https://github.com/adulau)
-- Andras Iklody [:house:](https://github.com/iglocska)
-- Sami Mokaddem [:house:](https://github.com/mokaddem)
-- Sascha Rommelfangen [:house:](https://github.com/rommelfs)
-- Christian Studer [:house:](https://github.com/chrisr3d)
-- Raphaël Vinot [:house:](https://github.com/rafiot)
-- Gerard Wagener [:house:](https://github.com/haegardev)
+### Contributors
 
+In alphabetical order:
+
+- [Steve Clement](https://github.com/SteveClement)
+- [Alexandre Dulaunoy](https://github.com/adulau)
+- [Andras Iklody](https://github.com/iglocska)
+- [Sami Mokaddem](https://github.com/mokaddem)
+- [Sascha Rommelfangen](https://github.com/rommelfs)
+- [Christian Studer](https://github.com/chrisr3d)
+- [Raphaël Vinot](https://github.com/rafiot)
+- [Gerard Wagener](https://github.com/haegardev)
