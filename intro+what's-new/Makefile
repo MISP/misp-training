@@ -13,14 +13,16 @@ BIBTEX = bibtex
 all: $(MAIN_FILE).pdf
 
 # Compile the PDF from .tex file, including styles directory
-$(MAIN_FILE).pdf: $(MAIN_FILE).tex
+$(MAIN_FILE).pdf: $(MAIN_FILE).tex beamerthemecircl.sty ../themes/mispidentity.sty ../themes/misp-logo.pdf
 	@echo "Compiling LaTeX..."
-	TEXINPUTS=styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex
+	TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex
+	TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex
+	TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex
 	@if grep -q "Citation" $(MAIN_FILE).aux; then \
 	  echo "Running BibTeX..."; \
-	  TEXINPUTS=styles: $(BIBTEX) $(MAIN_FILE).aux; \
-	  TEXINPUTS=styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex; \
-	  TEXINPUTS=styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex; \
+	  TEXINPUTS=../themes:styles: $(BIBTEX) $(MAIN_FILE).aux; \
+	  TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex; \
+	  TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex; \
 	fi
 
 # Clean up auxiliary files
@@ -40,10 +42,12 @@ open: $(MAIN_FILE).pdf
 # Recompile slidedeck
 recompile:
 	@echo "Compiling LaTeX..."
-	TEXINPUTS=styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex
+	TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex
+	TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex
+	TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex
 	@if grep -q "Citation" $(MAIN_FILE).aux; then \
 	  echo "Running BibTeX..."; \
-	  TEXINPUTS=styles: $(BIBTEX) $(MAIN_FILE).aux; \
-	  TEXINPUTS=styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex; \
-	  TEXINPUTS=styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex; \
+	  TEXINPUTS=../themes:styles: $(BIBTEX) $(MAIN_FILE).aux; \
+	  TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex; \
+	  TEXINPUTS=../themes:styles: pdflatex $(LATEX_FLAGS) $(MAIN_FILE).tex; \
 	fi
