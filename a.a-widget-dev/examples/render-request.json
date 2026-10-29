@@ -1,0 +1,9 @@
+{
+  "widget": "TrainingLoginSummaryWidget",
+  "config": {
+    "lookback": "P7D",
+    "limit": 5,
+    "show_org": false,
+    "caption": "Recent sign-ins"
+  }
+}
