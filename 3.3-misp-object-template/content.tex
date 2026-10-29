@@ -1,173 +1,274 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
-\begin{frame}[t,plain]
+\begin{frame}
 \titlepage
 \end{frame}
 
-\begin{frame}
-\frametitle{Objects - or How We Learned to Stop Worrying and Love the Templates}
-\begin{itemize}
-   \item Attributes are a simple but powerful tool to describe data
-   \item Lacking the capability to create containers around attributes describing a common concept
-   \item The goal was to develop something semi-standardised, with the option to {\bf dynamically build templates}
-   \item We have considered a list of different solutions such as simple boolean operators, but found that the current implementation was superior.
-   \item The result is a simple template that uses the basic attriubte types as building blocks along with some meta data
-   \item The template does {\bf not have to be known} in order to use the constructed objects
-   \item What we maintain now is a set of common objects, but similarly to our other JSON formats, users can extend it with their own ideas.
-\end{itemize}
+\begin{frame}{Model meaning, not just a bag of values}
+  \begin{itemize}
+    \item Choose an existing model before inventing one.
+    \item Separate template identity from instance identity.
+    \item Validate definitions, instances and sharing policy.
+    \item Practise an offline example and a contribution workflow.
+  \end{itemize}
+  \note{Allow 35--45 minutes plus a 25--35 minute workshop. Reference MISP 2.5.50 and the pinned misp-objects checkout reviewed on 29 October 2026. Availability varies with installed templates and patch level. The README contains the source audit and precise commands.}
 \end{frame}
 
-\begin{frame}
-\frametitle{MISP Object Templates}
-\begin{itemize}
-\item Using a similar JSON format as the taxonomies, galaxies, warninglists.
-\item You can find the default set of object templates in the git repository\footnote{\url{https://www.github.com/MISP/misp-objects/}}.
-\item Some of the object templates capture objects from other standards or mimic the output of tools
-\item We tried to capture the most common use-cases coming from our own use-case as well as those of various partners that got involved
-\item Improvements or pull requests for new object templates are of course always welcome
-\end{itemize}
+\section{Understand the model}
+
+\begin{frame}{Attribute, object and template}
+  \begin{itemize}
+    \item An attribute is a typed observation with its own UUID.
+    \item An object groups attributes describing one entity or observation.
+    \item A template describes relation names, types and constraints.
+  \end{itemize}
+  \note{A template is a model definition, not an event or object instance. The same template can describe many instances, each with a different UUID. Object grouping should preserve a coherent source and time context rather than mixing unrelated observations merely because a tool emitted them together.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Existing Object examples}
-\begin{itemize}
-\item AIL-leak - {\bf AIL object, an example for an object catering to the output of another tool}
-\item Android permission - {\bf An object used to further contextualise another object}
-\item Bank account
-\item File {\bf Generic object to describe a file}
-\item Passive DNS
-\item Regex
-\item Sandbox report
-\item Vulnerability {\bf Enabling new use-cases such as pre-sharing of vulnerability information}
-\item x509
-\item Yara {\bf Verbatim sharing of rule sets along with meta-data}
-\end{itemize}
+\begin{frame}{Three identifiers with different jobs}
+  \begin{itemize}
+    \item \code{uuid}: the object instance.
+    \item \code{template_uuid}: the reusable model.
+    \item \code{template_version}: the revision used to construct it.
+  \end{itemize}
+  \note{Attributes also have UUIDs. References point to instance UUIDs, not the template UUID. Keep the recorded template revision in exports and do not assume a newer locally installed definition rewrites existing object data. Numeric template versions can appear as strings in serialised client output.}
 \end{frame}
 
-\colorlet{punct}{red!60!black}
-\definecolor{listingbackground}{HTML}{EEEEEE}
-\definecolor{delim}{RGB}{20,105,176}
-\colorlet{numb}{magenta!60!black}
-\lstdefinelanguage{json}{
-    basicstyle=\scriptsize,
-    numbers=left,
-    numberstyle=\scriptsize,
-    stepnumber=1,
-    numbersep=5pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{listingbackground},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
+\begin{frame}{Reuse the current repository}
+  \begin{itemize}
+    \item Inspect the actual definition, not just its name.
+    \item Look under \code{objects/<name>/definition.json}.
+    \item Compare the model with your source data and downstream consumers.
+  \end{itemize}
+  \note{The audited repository contains 454 definitions, spanning network, file, financial, vulnerability, detection and threat-hunting contexts. Counts are snapshots. The domain-ip definition is version 11, whereas an illustrative README example still shows version 8: the actual definition and schema are the implementation references.}
+\end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Object Template skeleton}
-\begin{lstlisting}[language=json,firstnumber=1]
+\begin{frame}{Current domain-ip: alternatives, not a mandatory pair}
+  \begin{itemize}
+    \item \code{requiredOneOf}: ip, domain or hostname.
+    \item Repeated domain and IP fields are supported.
+    \item Use separate instances for different observation contexts.
+  \end{itemize}
+  \note{The current definition no longer requires both domain and IP. The workshop uses one domain and two IPs to demonstrate repetition, not because all three are mandatory. Inspect first-seen/last-seen and other optional relations before adding a custom field. A relation named ip maps to the existing MISP type ip-dst.}
+\end{frame}
+
+\begin{frame}{Field relation is not a graph relationship}
+  \begin{itemize}
+    \item \code{ip}: a field relation inside an object.
+    \item \code{ip-dst}: the underlying MISP attribute type.
+    \item \code{related-to}: a directed reference between instances.
+  \end{itemize}
+  \note{ObjectReference, value correlation and analyst-data relationships are separate mechanisms. A generic related-to edge does not prove causality, and adding an edge does not automatically create an inverse reference. The relationships catalogue describes names, meanings and optional opposites.}
+\end{frame}
+
+\begin{frame}{Reference instances, not definitions}
+\centering
+\begin{tikzpicture}[node distance=1.5cm, box/.style={draw=mispTeal,rounded corners,fill=mispBlue!5,text width=3.0cm,align=center,minimum height=1.2cm,font=\small}]
+\node[box] (review) {Review instance A};
+\node[box,right=of review] (observation) {Observation instance B\\domain, ip, ip};
+\node[box,below=of observation] (template) {domain-ip template\\UUID + version 11};
+\draw[-{Stealth},thick,mispTeal] (review)--node[above,font=\scriptsize]{related-to}(observation);
+\draw[-{Stealth},dashed,mispTeal] (template)--node[right,font=\scriptsize]{describes}(observation);
+\end{tikzpicture}
+\note{The stored reference targets the UUID of instance B. The template UUID identifies the reusable model and cannot stand in for B. The dashed line is a conceptual modelling link, not an ObjectReference emitted by the exercise. Reference direction is deliberate; no inverse is automatically created.}
+\end{frame}
+
+\section{Build and validate}
+
+\begin{frame}[fragile]{A definition has its own identity}
+\begin{lstlisting}
 {
-  "requiredOneOf": [],
-  "required": [],
-  "attributes": {},
+  "name": "training-review",
+  "uuid": "<fresh template UUID>",
   "version": 1,
-  "description": "My description",
-  "meta-category": "Chosen meta category",
-  "uuid": "Object template uuid",
-  "name": "Object template name"
+  "meta-category": "misc",
+  "description": "Teaching-only review record",
+  "required": ["case-reference"],
+  "requiredOneOf": ["domain", "ip"],
+  "attributes": { "...": "relation definitions" }
 }
 \end{lstlisting}
+
+\note{Structural illustration only: the angle-bracket UUID and abbreviated attributes are not executable JSON definitions. The complete schema-valid teaching template is in examples/training-review.json. A new model needs a fresh UUID; an edit to an existing model keeps its UUID and increments version.}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Adding elements to an object template}
-\begin{lstlisting}[language=json,firstnumber=1]
-"regexp-type": {
-  "description": "Type of the regular expression syntax.",
-  "disable_correlation": true,
-  "ui-priority": 0,
+\begin{frame}[fragile]{A relation maps meaning to an existing type}
+\begin{lstlisting}
+"status": {
+  "description": "Review status.",
   "misp-attribute": "text",
-  "values_list": [
-    "PCRE",
-    "PCRE2",
-    "POSIX BRE",
-    "POSIX ERE"
-  ]
-},
+  "ui-priority": 1,
+  "values_list": ["pending", "reviewed"],
+  "to_ids": false,
+  "disable_correlation": true
+}
 \end{lstlisting}
+
+\note{This is a relation fragment from the teaching definition. Each relation requires description, misp-attribute and ui-priority. Types and meta-categories are enumerated in the current schema. JSON syntax validation alone does not prove that a new field has a useful or compatible meaning.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Attribute keys}
-\begin{itemize}
-\item Primary key: Object relation
-\item description: A description of the attribute in relation to the object
-\item disable\_correlation: You can disable correlations for attributes in the resulting object
-\item ui-priority: Not implemented yet, but the idea is to have a "quick view" of objects only showing certain prio levels
-\item misp-attribute: The misp attribute type used as as the building block
-\item values\_list: an optional list of values from which the user {\bf must} choose instead of entering a value manually
-\item sane\_defaults: an optional list of values from which the user {\bf may} choose instead of entering a value
-\item multiple: Allow the user to add {\bf more} than one of this attribute
-\end{itemize}
+\begin{frame}{Required fields and repeated fields}
+  \begin{itemize}
+    \item Every relation in required must be present.
+    \item At least one relation in requiredOneOf must be present.
+    \item Both rules can apply together; multiple permits repetition.
+  \end{itemize}
+  \note{The training review needs a case reference AND at least one domain or IP. A second case-reference is invalid because that relation is not repeatable; several domains or IPs are allowed. Requirement lists refer to relation names, not MISP attribute types. Check that every named requirement exists in attributes.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Enforcement of certain keys}
-\begin{itemize}
-\item The template also defines which of the added attributes are mandatory
-\item Requirements are pointed to via their {\bf object relations names}
-\item We differentiate between two types of rule sets:
-\begin{itemize}
-\item Required: Everything in this list has to be set in order for the object to validate
-\item Required One Of: Any of the attributes in this list will satisfy the requirements
-\end{itemize}
-\end{itemize}
+\begin{frame}{Vocabulary and suggestions are different}
+  \begin{itemize}
+    \item \code{values_list} drives a vocabulary selector.
+    \item \code{sane_default} offers suggestions plus manual input.
+    \item Validate vocabulary membership explicitly when your workflow requires it.
+  \end{itemize}
+  \note{The correct key is singular sane\_default. The schema rejects sane\_defaults. UI selection controls and server/client validation are different layers. Do not claim PyMISP strict validation universally enforces every vocabulary or application policy. The UI can encounter pre-existing values outside its list.}
 \end{frame}
 
-\begin{frame}
-\frametitle{What will the template actually do?}
-\begin{itemize}
-\item Templates create a form that can be used to populate an event
-\item When using templates, MISP will enforce everything according to the template rules
-\item However, these are only optional, users can avoid using the templates when creating events via the API
-\item The reason for this is that you do not need to have the template in order to create an object
-\item The limitation of this system: You {\bf cannot modify} objects that were created with unknown templates
-\end{itemize}
+\begin{frame}{UI priority is implemented in current MISP}
+  \begin{itemize}
+    \item Higher-priority relations are ordered first in current object views.
+    \item Low-priority fields can keep secondary details out of the main focus.
+    \item Priority is presentation metadata, not a requirement or access rule.
+  \end{itemize}
+  \note{The old lesson described ui-priority as future work. Current MispObject fieldOrderByTemplate uses the installed template definitions and sorts priorities descending. Specific themes and views can differ. Recommended is also optional metadata; its presence does not guarantee identical rendering in every consumer.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Templates as rendered in the UI}
-\includegraphics[scale=0.4]{template.png}
+\begin{frame}{Detection, correlation and visibility are separate}
+  \begin{itemize}
+    \item Choose \code{to_ids} from the observation and deployment purpose.
+    \item Choose correlation behaviour from the meaning of the value.
+    \item Review event/object/attribute distribution and sharing context.
+  \end{itemize}
+  \note{A template default is not a sharing policy or a guarantee of every resulting flag. The offline example explicitly passes to\_ids=False for each added attribute, since the official template may override a broad client default. The custom review disables correlation for local case references and annotations. Event distribution zero keeps the synthetic event organisation-only.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Templates as rendered in the UI}
-\includegraphics[scale=0.21]{object.png}
+\begin{frame}{Four validation layers}
+  \begin{itemize}
+    \item Definition schema: recognised fields and types.
+    \item Definition semantics: identity, requirements and compatibility.
+    \item Instance conformity: required and repeatable relations.
+    \item Attribute validity and policy: values, flags and permissions.
+  \end{itemize}
+  \note{The schema is not a complete semantic validator: its UUID property is a string, for example. The exercise separately checks UUID syntax/uniqueness and defined requirement names. The full upstream validator adds repository formatting, relationships tests and uniqueness checks. Valid JSON alone does not establish interoperability.}
 \end{frame}
 
-\begin{frame}[t,fragile] {Q\&A}
-\includegraphics[width=54.797pt]{misp-logo.pdf}
-\begin{itemize}
-        \item \url{https://github.com/MISP/MISP}
-        \item \url{https://github.com/MISP/misp-objects}
-        \item info@circl.lu (if you want to join one of the MISP community operated by CIRCL)
-        \item PGP key fingerprint: CA57 2205 C002 4E06 BA70 BE89 EAAD CFFC 22BD 4CD5
-\end{itemize}
-
+\begin{frame}{Template enforcement depends on the path}
+  \begin{itemize}
+    \item Template-backed object creation checks conformity.
+    \item Event capture, editing and synchronisation have different paths.
+    \item Strict client construction is useful evidence, not universal server enforcement.
+  \end{itemize}
+  \note{The source audit checks ObjectsController::add and ObjectTemplate::checkTemplateConformity. The latter checks required, requiredOneOf and repetition, while attribute validation happens separately. Avoid the old blanket statement that every rule is enforced through every import. Test the exact API/UI path your integration uses.}
 \end{frame}
 
+\begin{frame}[fragile]{Load the selected definition explicitly}
+\begin{lstlisting}
+definition = json.loads(definition_path.read_text())
+obj = MISPObject(
+    definition["name"], strict=True, standalone=False,
+    misp_objects_template_custom=definition,
+)
+obj.add_attribute("domain", value="workshop.example",
+                  to_ids=False)
+obj.to_json(strict=True)
+\end{lstlisting}
+
+\note{The real builder loads the official domain-ip definition from the supplied checkout, rather than silently using a bundled PyMISP revision. Strict serialisation checks requirements and repeated unique relations. This excerpt assumes imports and a suitable definition\_path; the complete executable file is provided in examples.}
+\end{frame}
+
+\begin{frame}{The offline workshop event}
+  \begin{itemize}
+    \item One domain/IP object: one domain, two IPs.
+    \item One teaching review: case reference, domain and review status.
+    \item A related-to edge points from review to observation.
+  \end{itemize}
+  \note{The builder generates fresh instance UUIDs on each run and uses reserved .example domains and documentation IPs. Both objects are validated before being attached to an unpublished organisation-only MISPEvent. standalone=False preserves references in the containing event. The output is bare event JSON, not an Event response envelope.}
+\end{frame}
+
+\begin{frame}[fragile]{Validate, then inspect the output}
+\begin{lstlisting}
+python examples/verify_examples.py /tmp/misp-objects-lab
+python examples/build_examples.py /tmp/misp-objects-lab \
+  > training-event.json
+\end{lstlisting}
+
+\note{Install the pinned requirements in a virtual environment and check out the reviewed misp-objects revision first; full commands are in the README. No API key or network calls are used by these scripts. Inspect object/template UUIDs, version, repeated relations, references and flags rather than treating successful serialisation as sufficient review.}
+\end{frame}
+
+\begin{frame}{Make failure cases part of the exercise}
+  \begin{itemize}
+    \item Remove the required case reference.
+    \item Remove all requiredOneOf alternatives.
+    \item Repeat a unique relation or add an unknown relation.
+    \item Misspell a schema field and observe the schema failure.
+  \end{itemize}
+  \note{The verifier exercises five negative cases using the real PyMISP and jsonschema libraries. Unknown-relation construction may fail as an attribute-type error rather than a conformity exception. It also verifies JSON round-trip, instance-reference targets, identity and explicit detection flags. These are offline checks, not HTTP/server tests.}
+\end{frame}
+
+\section{Deploy and contribute}
+
+\begin{frame}{Disk definitions and installed templates are separate}
+  \begin{itemize}
+    \item Update the selected Git checkout deliberately.
+    \item Import/update the template database through the operator workflow.
+    \item Confirm the intended UUID and revision are available to users.
+  \end{itemize}
+  \note{MISP reads definitions under app/files/misp-objects/objects. Updating the Git submodule alone does not establish database catalogue state. The operator template-update control imports templates and relationships. Admin updateObjectTemplates takes a user ID and reads disk; it does not fetch Git. Keep teaching-only templates away from unattended upstream updates.}
+\end{frame}
+
+\begin{frame}{Unknown templates and revision upgrades}
+  \begin{itemize}
+    \item Preserve the received attributes and template metadata.
+    \item Normal UI editing needs a suitable definition.
+    \item Review recovery/upgrade mappings and unmatched fields.
+  \end{itemize}
+  \note{The current controller has a recovery/force-update path when normal editing cannot locate the original definition. It is not accurate to claim objects with unknown templates can never be modified through any path. Recovery is not automatically safe: review transferable fields, preserve unmatched data and verify references before saving.}
+\end{frame}
+
+\begin{frame}{A controlled MISP lab}
+  \begin{itemize}
+    \item Use an unpublished organisation-only event and an authorised writer.
+    \item Add the official object, inspect fields and save.
+    \item Link instances and export/read back the event.
+    \item Test conformity through the actual UI/API path and clean up.
+  \end{itemize}
+  \note{The README describes this optional server exercise. No new live-server or screenshot validation is claimed in this update. The reviewed add API accepts event ID, template UUID and version; object restSearch is also available. Use the REST API course for authentication, TLS, request envelopes and ordinary-user boundaries.}
+\end{frame}
+
+\begin{frame}{Evolve a model without losing its identity}
+  \begin{itemize}
+    \item Existing model: retain UUID and increment version.
+    \item New model: fresh UUID and initial version.
+    \item Document changed semantics, requirements and consumer impact.
+  \end{itemize}
+  \note{Installing a new template revision does not silently migrate every object instance. A required field added to a model can invalidate older instances under the new definition. Renaming a relation or changing its type can break producers and consumers. Discuss a new model rather than reusing identity for incompatible meanings.}
+\end{frame}
+
+\begin{frame}{Contribute to the current repository}
+  \begin{itemize}
+    \item Explain why existing templates do not cover the use case.
+    \item Provide schema-valid JSON and synthetic positive/negative instances.
+    \item Check formatting, UUID uniqueness and relationship consistency.
+    \item Open a focused PR with compatibility and validation evidence.
+  \end{itemize}
+  \note{Definitions belong in objects/name/definition.json. Optional icons are sibling icon/icon.svg files, not arbitrary JSON properties. The schema currently includes threat-hunting as a meta-category; read the schema rather than copying an outdated enumeration from prose. The teaching template is not submitted upstream by this training PR.}
+\end{frame}
+
+\begin{frame}[fragile]{Follow the upstream validation workflow}
+\begin{lstlisting}
+./jq_all_the_things.sh
+# Review changes and commit normalised JSON.
+./validate_all.sh
+\end{lstlisting}
+
+\note{Use a disposable or dedicated contribution checkout with jq, moreutils/sponge, uuidparse and Python jsonschema installed. Normalisation rewrites JSON across the repository. validate\_all.sh checks a clean tree, schema validity, file modes, relationship opposites/tests and UUID uniqueness. Do not mistake the exercise verifier for the full upstream CI suite.}
+\end{frame}
+
+\begin{frame}{Make the result reviewable}
+  \begin{itemize}
+    \item Show the model, an instance and the intended relationship direction.
+    \item State the exact template and software revisions tested.
+    \item Explain validation limits and migration choices.
+    \item Keep real credentials and incident data out of examples.
+  \end{itemize}
+  \note{The course README pins MISP 2.5.50 and misp-objects 999ec328. Validation covers all 454 official definitions against the schema and the supplied offline exercises. It does not claim full upstream CI or live-server testing. The original deck, screenshots and published PDF remain available in the archive, outside standard training.}
+\end{frame}
