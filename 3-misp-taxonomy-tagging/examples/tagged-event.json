@@ -1,0 +1,44 @@
+{
+  "Event": {
+    "uuid": "7fb18198-5f8f-4fc3-8ea7-d2d791c2c0be",
+    "info": "Training only: classification and warninglist review",
+    "date": "2026-10-29",
+    "distribution": 0,
+    "analysis": 0,
+    "threat_level_id": 4,
+    "published": false,
+    "Tag": [
+      {
+        "name": "tlp:amber"
+      },
+      {
+        "name": "admiralty-scale:source-reliability=\"b\""
+      }
+    ],
+    "Attribute": [
+      {
+        "uuid": "b302313f-5118-4c33-88a7-2162d0ad3079",
+        "type": "domain",
+        "category": "Network activity",
+        "value": "login.example",
+        "to_ids": true,
+        "disable_correlation": true,
+        "comment": "Reserved training name; do not deploy as a detection.",
+        "Tag": [
+          {
+            "name": "misp:confidence-level=\"fairly-confident\""
+          }
+        ]
+      },
+      {
+        "uuid": "f349cd7e-d4d2-44f0-a968-85daf974f982",
+        "type": "ip-dst",
+        "category": "Network activity",
+        "value": "192.0.2.10",
+        "to_ids": true,
+        "disable_correlation": true,
+        "comment": "Documentation address; controlled warninglist example only."
+      }
+    ]
+  }
+}
