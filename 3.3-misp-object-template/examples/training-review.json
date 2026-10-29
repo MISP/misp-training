@@ -1,0 +1,58 @@
+{
+  "attributes": {
+    "case-reference": {
+      "description": "Local training case reference.",
+      "disable_correlation": true,
+      "misp-attribute": "text",
+      "to_ids": false,
+      "ui-priority": 1
+    },
+    "comment": {
+      "description": "Analyst explanation.",
+      "disable_correlation": true,
+      "misp-attribute": "text",
+      "recommended": false,
+      "to_ids": false,
+      "ui-priority": 0
+    },
+    "domain": {
+      "description": "Reviewed domain.",
+      "disable_correlation": true,
+      "misp-attribute": "domain",
+      "multiple": true,
+      "to_ids": false,
+      "ui-priority": 1
+    },
+    "ip": {
+      "description": "Reviewed IP address.",
+      "disable_correlation": true,
+      "misp-attribute": "ip-dst",
+      "multiple": true,
+      "to_ids": false,
+      "ui-priority": 1
+    },
+    "status": {
+      "description": "Review status.",
+      "disable_correlation": true,
+      "misp-attribute": "text",
+      "to_ids": false,
+      "ui-priority": 1,
+      "values_list": [
+        "pending",
+        "reviewed"
+      ]
+    }
+  },
+  "description": "Teaching-only review record for a synthetic observation. Prefer existing templates for operational use.",
+  "meta-category": "misc",
+  "name": "training-review",
+  "required": [
+    "case-reference"
+  ],
+  "requiredOneOf": [
+    "domain",
+    "ip"
+  ],
+  "uuid": "4455656c-11d3-48fa-acec-6f4eccc87986",
+  "version": 1
+}
