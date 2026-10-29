@@ -43,7 +43,7 @@ find the same material in your checkout.
 | Integrating MISP with other tools | [PDF](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [Source](1.2-misp-integration/) |
 | Viper integration | [PDF](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [Source](1.1-misp-viper-integration/) |
 | mail2misp | [PDF](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [Source](1.2.1-misp-integration-mail2misp/) |
-| Taxonomies and tagging | [PDF](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [Source](3-misp-taxonomy-tagging/) |
+| Taxonomies and tagging (MISP 2.5) | [PDF](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [Source](3-misp-taxonomy-tagging/) |
 | MISP modules | [PDF](https://www.misp-project.org/misp-training/3.1-misp-modules.pdf) | [Source](3.1-misp-modules/) |
 | MISP Galaxy | [PDF](https://www.misp-project.org/misp-training/3.2-misp-galaxy.pdf) | [Source](3.2-misp-galaxy/) |
 | Object templates | [PDF](https://www.misp-project.org/misp-training/3.3-misp-object-template.pdf) | [Source](3.3-misp-object-template/) |

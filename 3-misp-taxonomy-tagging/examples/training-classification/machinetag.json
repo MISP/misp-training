@@ -1,0 +1,27 @@
+{
+  "namespace": "training-classification",
+  "description": "Review state for a local exercise.",
+  "version": 1,
+  "predicates": [
+    {
+      "value": "review",
+      "expanded": "Review state",
+      "exclusive": true
+    }
+  ],
+  "values": [
+    {
+      "predicate": "review",
+      "entry": [
+        {
+          "value": "draft",
+          "expanded": "Draft"
+        },
+        {
+          "value": "reviewed",
+          "expanded": "Reviewed"
+        }
+      ]
+    }
+  ]
+}

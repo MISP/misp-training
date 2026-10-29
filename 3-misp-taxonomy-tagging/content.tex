@@ -1,286 +1,543 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
+% Included by slide.tex. Sources, exercise and build instructions: README.md.
 \begin{frame}[t,plain]
-\titlepage
+    \titlepage
 \end{frame}
 
-\begin{frame}
-\frametitle{From Tagging to Flexible Taxonomies}
-\includegraphics[scale=0.3]{tags.png}
-\begin{itemize}
-   \item Tagging is a simple way to attach a classification to an event or an attribute.
-   \item In the early version of MISP, tagging was local to an instance.
-   \item {\bf Classification must be globally used to be efficient}.
-   \item After evaluating different solutions of classification, we built a new scheme using the concept of machine tags.
-\end{itemize}
+\begin{frame}{Make four decisions with every classification}
+    \begin{enumerate}
+        \item Which vocabulary expresses the assessment?
+        \item Does it describe the event or one attribute?
+        \item Is it shared context or a local assessment?
+        \item How will people and tools use it?
+    \end{enumerate}
+    \begin{block}{By the end}
+        Apply canonical tags, interpret filters and review sharing intent.
+    \end{block}
+    \note{This is an operational course for the reviewed MISP 2.5.50 source.
+    The capabilities shown are available in that snapshot; they were not all
+    introduced in 2.5. Use the README's immutable sources to audit behavior.
+    Interface labels and permissions vary by theme, role and configuration.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Machine Tags}
-        \begin{itemize}
-                \item Triple tag, or machine tag, format was introduced in 2004 to extend geotagging on images.
-        \end{itemize}
-        {
-                \setlength{\fboxsep}{1pt}
-                \setlength{\fboxrule}{1pt}
-                \fbox{\includegraphics[scale=0.7]{machinetag.pdf}}
-        }
-        \begin{itemize}
-        \item A machine tag is just a tag expressed in way that allows systems to parse and interpret it.
-        \item Still have a human-readable version:\\
-        \begin{itemize}
-                \item admiralty-scale:source-reliability="Fairly reliable"
-        \end{itemize}
-        \end{itemize}
+\begin{frame}{Four concepts that answer different questions}
+    \small
+    \begin{tabular}{@{}P{2.2cm}P{4cm}P{4cm}@{}}
+        \toprule
+        Concept & Purpose & Example \\
+        \midrule
+        Taxonomy & Shared classification vocabulary. & Reliability, confidence, handling. \\
+        Tag & A label attached to data. & \code{tlp:amber} \\
+        Galaxy cluster & A described entity or concept with relationships. & A technique or threat actor. \\
+        Warninglist & Match values needing extra scrutiny. & Special-use IP ranges. \\
+        \bottomrule
+    \end{tabular}
+    \note{A custom free-text tag does not need a taxonomy, but it needs an agreed
+    meaning to interoperate. Galaxy clusters are attached through tags yet carry
+    richer structured knowledge. Warninglists compare observable values rather
+    than assigning an analyst's classification. These concepts complement each other.}
 \end{frame}
 
-\begin{frame}
-\frametitle{MISP Taxonomies}
-\begin{itemize}
-\item Taxonomies are implemented in a simple JSON format.
-\item Anyone can create their own taxonomy or reuse an existing one.
-\item The taxonomies are in an independent git repository\footnote{\url{https://www.github.com/MISP/misp-taxonomies/}}.
-\item These can be freely reused and integrated into other threat intel tools.
-\item Taxonomies are licensed under Creative Commons (public domain) except if the taxonomy author decided to use another license.
-\end{itemize}
+\begin{frame}{Read the machine tag, then its explanation}
+    \begin{block}{Canonical machine value}
+        \code{admiralty-scale:source-reliability="b"}
+    \end{block}
+    \small
+    \begin{tabular}{@{}P{3.9cm}P{6.3cm}@{}}
+        \toprule
+        Part & Meaning \\
+        \midrule
+        \code{admiralty-scale} & Namespace: which vocabulary? \\
+        \code{source-reliability} & Predicate: which question? \\
+        \code{"b"} & Value: the selected answer. Expanded label: Usually reliable. \\
+        \bottomrule
+    \end{tabular}
+    \medskip
+    Some tags have no value: \code{tlp:amber}.
+    \note{Namespace and predicate are required; a value is optional.
+    The old example used an expanded description as the machine value.
+    Copy the canonical tag supplied by the taxonomy rather than translating it,
+    changing its case or substituting the expanded label.
+    Keep quoted values in API JSON with proper JSON escaping.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Existing Taxonomies}
-\begin{itemize}
-\item NATO - {\bf Admiralty Scale}
-\item CIRCL Taxonomy - {\bf Schemes of Classification in Incident Response and Detection}
-\item eCSIRT and IntelMQ incident classification
-\item EUCI {\bf EU classified information marking}
-\item Information Security Marking Metadata from DNI (Director of National Intelligence - US)
-\item NATO Classification Marking
-\item OSINT {\bf Open Source Intelligence - Classification}
-\item TLP - {\bf Traffic Light Protocol}
-\item Vocabulary for Event Recording and Incident Sharing - {\bf VERIS}
-\item And many more like ENISA, Europol, or the draft FIRST SIG Information Exchange Policy.
-\end{itemize}
+\begin{frame}{Separate source reliability from information credibility}
+    \begin{block}{What do we know about the source?}
+        \code{admiralty-scale:source-reliability="b"}\\
+        Usually reliable.
+    \end{block}
+    \begin{block}{What supports this particular information?}
+        \code{admiralty-scale:information-credibility="2"}\\
+        Probably true.
+    \end{block}
+    \note{These are independent assessments, not an instruction to copy one score
+    into the other. Other useful vocabularies include misp confidence-level and
+    estimative-language. Numerical values are taxonomy metadata, not a universal
+    calibrated probability or an automatic detection decision.}
 \end{frame}
 
-\colorlet{punct}{red!60!black}
-\definecolor{listingbackground}{HTML}{EEEEEE}
-\definecolor{delim}{RGB}{20,105,176}
-\colorlet{numb}{magenta!60!black}
-\lstdefinelanguage{json}{
-    basicstyle=\scriptsize,
-    numbers=left,
-    numberstyle=\scriptsize,
-    stepnumber=1,
-    numbersep=5pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{listingbackground},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
+\section{Choose and prepare the vocabulary}
 
-\begin{frame}[fragile]
-\frametitle{Want to write your own taxonomy? 1/2}
-\begin{lstlisting}[language=json,firstnumber=1]
+\begin{frame}{Use the TLP 2.0 labels deliberately}
+    \small
+    \begin{tabular}{@{}P{3.5cm}P{6.7cm}@{}}
+        \toprule
+        Machine tag & Disclosure boundary, in brief \\
+        \midrule
+        \code{tlp:clear} & No limit on disclosure, subject to applicable rules. \\
+        \code{tlp:green} & Within the community; no public channels. \\
+        \code{tlp:amber} & Need-to-know within the organisation and its clients. \\
+        \code{tlp:amber+strict} & Need-to-know within the organisation only. \\
+        \code{tlp:red} & Individual recipients only; no further disclosure. \\
+        \bottomrule
+    \end{tabular}
+    \sources{FIRST TLP 2.0: \url{https://www.first.org/tlp/}}
+    \note{This is a teaching summary, not a replacement for FIRST's standard
+    or the source's restrictions. The MISP vocabulary retains legacy and
+    additional labels for compatibility; they are not all FIRST TLP 2.0 labels.
+    Use CLEAR for new TLP 2.0 classifications; do not silently relabel existing
+    information whose handling must first be reviewed.}
+\end{frame}
+
+\begin{frame}{A handling label does not set access controls}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{block}{Communicate intent}
+                TLP tells recipients the permitted disclosure boundary.
+            \end{block}
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{block}{Configure access}
+                Distribution, sharing groups and user permissions govern access in MISP.
+            \end{block}
+        \end{column}
+    \end{columns}
+    \medskip
+    Review both before publishing or synchronising.
+    \note{There is no universal one-to-one mapping between TLP labels and
+    MISP distribution levels. A warning is not an enforcement guarantee.
+    Tagging an event tlp:red does not automatically reduce its distribution
+    or revoke copies already shared. Validate the actual recipients and any
+    configured workflow or synchronisation rules.}
+\end{frame}
+
+\begin{frame}{Prepare a small, useful set of taxonomies}
+    \begin{enumerate}
+        \item Update the taxonomy files in the deployment.
+        \item Update the taxonomy library in MISP.
+        \item Enable the chosen taxonomy.
+        \item Enable all or selected tags from that vocabulary.
+    \end{enumerate}
+    \begin{block}{Check the result}
+        Find the exact tag in the event or attribute tag picker.
+    \end{block}
+    \note{List Taxonomies is available at /taxonomies/index in the reviewed
+    source; administrative actions require the corresponding permission.
+    The library update reads app/files/taxonomies from the local deployment,
+    not the latest GitHub revision on demand.
+    Enabling the taxonomy and materialising its selectable tags are separate.
+    Do not enable every vocabulary merely because it is available.}
+\end{frame}
+
+\begin{frame}{Use governance controls with their actual scope}
+    \small
+    \begin{tabular}{@{}P{2.5cm}P{7.7cm}@{}}
+        \toprule
+        Control & What to expect \\
+        \midrule
+        Exclusive & A taxonomy or predicate can disallow conflicting choices. \\
+        Required & An enabled taxonomy can be required in the UI publish check. \\
+        Highlighted & Surface selected taxonomy tags prominently in event views. \\
+        \bottomrule
+    \end{tabular}
+    \begin{alertblock}{For automation}
+        Validate classification explicitly; a UI check is not an API-wide gate.
+    \end{alertblock}
+    \note{Required checks inspect event tags for the configured namespace;
+    they do not prove the assessment is correct.
+    EventsController's reviewed prepare-for-publish check is inside a non-REST
+    branch. Do not advertise universal publishing enforcement.
+    Exclusivity is checked in interactive tag-attachment paths and
+    inconsistencies can be displayed. Recheck ingestion and automation paths;
+    do not promise every path rejects conflicts.}
+\end{frame}
+
+\section{Apply tags at the right scope}
+
+\begin{frame}{Event context and attribute context are separate}
+    \centering
+    \begin{tikzpicture}[
+        context/.style={draw=mispTeal,fill=mispBlue!5!white,rounded corners,
+            align=center,font=\small,minimum height=1.2cm},
+        flow/.style={-{Stealth},thick,draw=mispTeal}]
+        \node[context,text width=8.5cm] (event) at (0,2.2)
+            {Event: synthetic phishing report\\\code{tlp:amber}};
+        \node[context,text width=4.4cm] (domain) at (-2.65,0)
+            {Domain: \code{login.example}\\Attribute confidence tag};
+        \node[context,text width=4.4cm] (ip) at (2.65,0)
+            {IP: \code{192.0.2.10}\\No confidence tag};
+        \draw[flow] (event.south) -- (domain.north);
+        \draw[flow] (event.south) -- (ip.north);
+    \end{tikzpicture}
+    \par\medskip
+    Event tags are not copied onto each stored attribute.
+    \note{The arrows show containment, not propagation.
+    An object attribute is still an attribute when it is tagged.
+    Filters and exports can include event context, which is different from
+    an explicit attribute tag. Inspect the output envelope and options
+    before concluding where a label was originally attached.}
+\end{frame}
+
+\begin{frame}{Choose shared context or a local assessment}
+    \begin{block}{Shared attachment}
+        Context intended to travel with the data, subject to export and sync rules.
+    \end{block}
+    \begin{block}{Local attachment}
+        An instance's assessment; excluded from ordinary external synchronisation.
+    \end{block}
+    \medskip
+    Local does not mean private to one user.
+    \note{The local flag belongs to the event-tag or attribute-tag association.
+    The same label can be used with different attachment scope.
+    Permissions and ownership determine who can apply each kind.
+    Internal-server synchronisation can carry local tags, and local tags may
+    appear in API exports unless excluded. This is not a secrecy boundary.
+    The generic attachTagToObject route limits local tagging to the host organisation.}
+\end{frame}
+
+\begin{frame}{Three tag settings that are easy to confuse}
+    \small
+    \begin{tabular}{@{}P{2.7cm}P{7.5cm}@{}}
+        \toprule
+        Setting & Meaning \\
+        \midrule
+        \code{local_only} & The tag can only be attached as a local tag. \\
+        \code{exportable} & Whether the tag is eligible for export; other rules still apply. \\
+        Organisation / user restriction & Who may apply the tag, not who may read the event. \\
+        \bottomrule
+    \end{tabular}
+    \medskip
+    Inspect tag settings and the attachment's local flag separately.
+    \note{A Tag record's local-only and exportable fields do not replace the
+    association's local flag. Administrative privileges can change assignment
+    rules; UI and API routes enforce permissions.
+    includeAllTags and excludeLocalTags affect exported visibility.
+    Never use assignment restrictions as a substitute for distribution.}
+\end{frame}
+
+\begin{frame}{Use collections to apply a consistent starting set}
+    \begin{itemize}
+        \item A tag collection groups labels for reuse.
+        \item Select a collection from the tag picker.
+        \item Review its meaning and scope before applying it.
+        \item An administrator can configure a default event collection.
+    \end{itemize}
+    \begin{block}{A starting point still needs review}
+        A preset cannot know the source's handling restrictions.
+    \end{block}
+    \note{Collections can include taxonomy tags and Galaxy cluster tags.
+    Availability depends on collection sharing and member tag restrictions.
+    The reviewed default setting is \code{MISP.default_event_tag_collection}.
+    Applying a collection attaches its members; it is not a live policy link
+    that automatically retags past events when the collection changes.}
+\end{frame}
+
+\begin{frame}{Keep the classification's meaning in context}
+    \begin{itemize}
+        \item Event reports can also carry tags in the reviewed 2.5 source.
+        \item A tag attachment can carry a relationship type.
+        \item Use that annotation to explain how a label relates to its target.
+        \item Keep the canonical taxonomy value unchanged.
+    \end{itemize}
+    \note{TagsController modifyTagRelationship supports event, attribute and
+    event-report associations and checks modification permissions.
+    Relationship metadata is distinct from a taxonomy predicate or a
+    MISP object reference. Its availability in the interface and exports
+    depends on the selected path; inspect what downstream tools consume.
+    Analyst notes and opinions can record supporting reasoning.}
+\end{frame}
+
+\begin{frame}{An analyst's tagging sequence}
+    \begin{enumerate}
+        \item Read the evidence and the source's handling instructions.
+        \item Choose the event or the specific attribute.
+        \item Select canonical tags and the intended attachment scope.
+        \item Review conflicts, distribution and the resulting export.
+    \end{enumerate}
+    \note{Prefer a small agreed set over dozens of unmaintained labels.
+    Record uncertainty rather than inventing confidence.
+    A received event may allow local assessment but not global modification.
+    A label alone does not publish data or activate a workflow.}
+\end{frame}
+
+\begin{frame}{Worked example: classify a synthetic report}
+    \begin{block}{Event}
+        \code{tlp:amber}\\
+        \code{admiralty-scale:source-reliability="b"}
+    \end{block}
+    \begin{block}{Domain attribute: \code{login.example}}
+        \code{misp:confidence-level="fairly-confident"}
+    \end{block}
+    IP \code{192.0.2.10}: no attribute confidence tag.\\
+    Event: organisation only; unpublished.
+    \note{The full fixture is examples/tagged-event.json. All observables
+    are reserved training values, not live indicators.
+    This assessment does not equate source reliability with confidence.
+    Do not publish the training event or enrich its values.
+    The TLP label does not itself set distribution.}
+\end{frame}
+
+\section{Find, process and review the data}
+
+\begin{frame}{Make filter logic explicit}
+    \small
+    \begin{tabular}{@{}P{2cm}P{8.2cm}@{}}
+        \toprule
+        Operator & Meaning within the selected endpoint and scope \\
+        \midrule
+        \code{OR} & Match at least one of these labels. \\
+        \code{AND} & Match every required label. \\
+        \code{NOT} & Exclude data carrying a listed label. \\
+        \bottomrule
+    \end{tabular}
+    \begin{block}{Before interpreting a result}
+        Check the endpoint, attachment scope, permissions and other filters.
+    \end{block}
+    \note{MispAttribute dissectArgs accepts explicit OR, AND and NOT groups.
+    Simple unprefixed lists form OR groups, not AND.
+    Logic differs between event and attribute results; an event returned
+    due to a matching attribute can contain other attributes.
+    Prefer explicit groups over ambiguous string shorthand.}
+\end{frame}
+
+\begin{frame}[fragile]{Search for attributes with both classifications}
+    \small
+    \code{POST /attributes/restSearch}
+    \lstinputlisting[language=json]{examples/search-tags.json}
+    The domain matches event handling \emph{and} attribute confidence.
+    \note{Use the matching imported event UUID, not a global unbounded query.
+    The eventid filter accepts an event ID or UUID in the reviewed source.
+    In this attribute search, each positive tag may match the attribute or its
+    event. The IP lacks the confidence tag and should not match.
+    The README gives prerequisites. This request was source-checked,
+    not executed against a live MISP instance.}
+\end{frame}
+
+\begin{frame}{A matching attribute can use event context}
+    \begin{itemize}
+        \item Attribute tag searches can also match event tags.
+        \item Request event tags explicitly when you need that context.
+        \item Keep event and attribute provenance clear in consumers.
+        \item Check returned values, not just the number of events.
+    \end{itemize}
+    \begin{block}{In the example}
+        \code{includeEventTags: true} adds context to the response;
+        it does not change stored tags.
+    \end{block}
+    \note{Do not claim every endpoint has identical matching semantics.
+    The example uses attributes/restSearch with an AND group and explicit
+    event context. A local tag may influence searches on this instance;
+    excluding local tags from output is not a universal instruction to
+    ignore them during selection. Test the actual integration.}
+\end{frame}
+
+\begin{frame}{Tags help route work; configuration performs it}
+    \begin{itemize}
+        \item Use labels such as \code{workflow:todo="review"} to coordinate work.
+        \item Configure workflow conditions and actions for automation.
+        \item Configure sync push/pull rules for the intended partner.
+        \item Test a permitted and a rejected case before relying on the rule.
+    \end{itemize}
+    \note{A workflow taxonomy tag is a label, not an executable workflow.
+    A TLP tag does not automatically become a sync filter.
+    Push/pull rules supplement distribution and authorisation; they do not
+    expand access. Check event versus attribute filtering, local tags and
+    transformations on the actual route. The dedicated workflows course
+    covers configuration and execution.}
+\end{frame}
+
+\begin{frame}{A warninglist hit is a reason to investigate}
+    \begin{itemize}
+        \item Compare an observable against enabled reference lists.
+        \item Consider shared infrastructure, reserved values or common mistakes.
+        \item Read the matching list and why the value appears in it.
+        \item Keep legitimate evidence even when it should not become a detection.
+    \end{itemize}
+    \begin{alertblock}{Avoid a false conclusion}
+        A match does not prove that the observable is harmless.
+    \end{alertblock}
+    \note{Warninglists have their own repository, update process and enabled
+    state. A UI warning is not deletion or a taxonomy classification.
+    Detection intent is separately represented by \code{to_ids}.
+    The matching algorithm and applicable attribute types depend on the list.}
+\end{frame}
+
+\begin{frame}{Demonstrate a warning without using a live target}
+    \begin{block}{Training value}
+        \code{192.0.2.10} falls in \code{192.0.2.0/24}.
+    \end{block}
+    \begin{itemize}
+        \item The reviewed RFC 5735 list contains this documentation range.
+        \item Its matching types include \code{ip-dst}.
+        \item Enable that list before expecting a hit in the exercise.
+    \end{itemize}
+    \note{The current list is lists/rfc5735/list.json, a CIDR list.
+    Other enabled lists may also match the same value.
+    This proves a controlled training match, not maliciousness.
+    Do not contact, enrich or scan the address.}
+\end{frame}
+
+\begin{frame}{Choose warning visibility or result suppression}
+    \small
+    \code{POST /attributes/restSearch}
+    \medskip
+    \begin{tabular}{@{}P{4.8cm}P{5.4cm}@{}}
+        \toprule
+        Option & Behavior in the reviewed attribute search \\
+        \midrule
+        \code{includeWarninglistHits} & Set to \code{true}: return matches with warning details. \\
+        \code{enforceWarninglist} & Set to \code{true}: omit matches from enabled applicable lists. \\
+        \bottomrule
+    \end{tabular}
+    \medskip
+    Compare the two supplied request files and inspect the actual response.
+    \note{examples/search-warnings.json and search-enforced.json use the same
+    event and ip-dst scope. Enforcement removes matching result rows here;
+    it does not delete stored data. Ingestion and other exports can implement
+    different behavior. Enabled lists, changed filters and pagination can
+    explain differences. Do not generalise to every API.}
+\end{frame}
+
+\begin{frame}{Diagnose the cause before creating another tag}
+    \small
+    \begin{tabular}{@{}P{3.3cm}P{6.9cm}@{}}
+        \toprule
+        Symptom & Check first \\
+        \midrule
+        Tag missing in picker & Taxonomy, enabled terms, hidden tags and assignment restrictions. \\
+        Duplicate-looking labels & Canonical spelling, case and expanded display text. \\
+        Label missing downstream & Local/exportable flags, sync route and export options. \\
+        Unexpected search results & Endpoint, event versus attribute context and Boolean groups. \\
+        \bottomrule
+    \end{tabular}
+    \note{Do not invent a free-text spelling to replace a missing picker
+    entry from an existing taxonomy. Normalise or migrate only after
+    reviewing semantics and downstream filters.
+    Colour alone is not proof that labels have the same meaning.}
+\end{frame}
+
+\section{Maintain and practise}
+
+\begin{frame}[fragile]{A taxonomy definition starts with a clear question}
+\begin{lstlisting}[language=json]
 {
-  "namespace": "admiralty-scale",
-  "description": "The Admiralty Scale (also called the NATO System) is used to rank the reliability of a source and the credibility of an information.",
+  "namespace": "training-classification",
+  "description": "Review state for a local exercise.",
   "version": 1,
-  "predicates": [
-    {
-      "value": "source-reliability",
-      "expanded": "Source Reliability"
-    },
-    {
-      "value": "information-credibility",
-      "expanded": "Information Credibility"
-    }
-  ],
-....
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Want to write your own taxonomy? 2/2}
-\begin{lstlisting}[language=json,firstnumber=1]
-{
-  "values": [
-    {
-      "predicate": "source-reliability",
-      "entry": [
-        {
-          "value": "a",
-          "expanded": "Completely reliable"
-        },
-....
-\end{lstlisting}
-\begin{itemize}
-        \item Publishing your taxonomy is as easy as a simple git pull request on misp-taxonomies\footnote{\url{https://github.com/MISP/misp-taxonomies}}.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{How are taxonomies integrated in MISP?}
-        \includegraphics[scale=0.21]{tags-2-4-70.png}
-\begin{itemize}
-        \item MISP administrator can just import (or even cherry pick) the namespace or predicates they want to use as tags.
-\item Tags can be exported to other instances.
-\item Tags are also accessible via the MISP REST API.
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Filtering the distribution of events among MISP instances}
-\begin{itemize}
-\item Applying rules for distribution based on tags:
-\end{itemize}
-\includegraphics[scale=0.45]{tagspush.png}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Other use cases using MISP taxonomies}
-\begin{itemize}
-    \item Tags can be used to set events or attributes for {\bf further processing by external tools} (e.g. VirusTotal auto-expansion using Viper).
-    \item Ensuring a classification manager {\bf classifies the events before release} (e.g. release of information from air-gapped/classified networks).
-    \item {\bf Enriching IDS export} with tags to fit your NIDS deployment.
-    \item Using {\bf IntelMQ} and MISP together to process events (tags limited per organization introduced in MISP 2.4.49).
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Future functionalities related to MISP taxonomies}
-\begin{itemize}
-    \item {\bf Sighting} support (thanks to NCSC-NL) is integrated in MISP allowing to auto expire IOC based on user detection.
-        \item Adjusting taxonomies (adding/removing tags) based on their score or visibility via sighting.
-        \item Simple taxonomy editors to {\bf help non-technical users} to create their taxonomies.
-        \item {\bf Filtering mechanisms} in MISP to rename or replace taxonomies/tags at pull and push synchronisation.
-        \item More public taxonomies to be included.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-        \frametitle{PyTaxonomies}
-\begin{itemize}
-    \item {\bf Python module} to handle the taxonomies
-    \item {\bf Offline} and online mode (fetch the newest taxonomies from GitHub)
-    \item Simple {\bf search} to make tagging easy
-        \item Totally independent from MISP
-        \item {\bf No external dependencies} in offline mode
-        \item Python3 only
-        \item Can be used to create \& {\bf dump a new taxonomy}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-        \frametitle{PyTaxonomies}
-    \begin{lstlisting}[language=Python,basicstyle=\tiny]
-from pytaxonomies import Taxonomies
-taxonomies = Taxonomies()
-taxonomies.version
-# => '20160725'
-taxonomies.description
-# => 'Manifest file of MISP taxonomies available.'
-list(taxonomies.keys())
-# => ['tlp', 'eu-critical-sectors', 'de-vs', 'osint', 'circl', 'veris',
-# 	  'ecsirt', 'dhs-ciip-sectors', 'fr-classif', 'misp', 'admiralty-scale', ...]
-taxonomies.get('enisa').description
-# 'The present threat taxonomy is an initial version that has been developed on
-# the basis of available ENISA material. This material has been used as an ENISA-internal
-# structuring aid for information collection and threat  consolidation purposes.
-# It emerged in the time period 2012-2015.'
-print(taxonomies.get('circl'))
-# circl:incident-classification="vulnerability"
-# circl:incident-classification="malware"
-# circl:incident-classification="fastflux"
-# circl:incident-classification="system-compromise"
-# circl:incident-classification="sql-injection"
-# ....
-print(taxonomies.get('circl').machinetags_expanded())
-# circl:incident-classification="Phishing"
-# circl:incident-classification="Malware"
-# circl:incident-classification="XSS"
-# circl:incident-classification="Copyright issue"
-# circl:incident-classification="Spam"
-# circl:incident-classification="SQL Injection"
-
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}
-        \frametitle{The dilemma of false-positives}
-        \begin{itemize}
-            \item False-positives are a {\bf common issue} in threat intelligence sharing.
-                \item It's often a contextual issue:
-                \begin{itemize}
-                \item False-positives might be different per community of users sharing information.
-                \item Organizations might have their {\bf own view} on false-positives.
-                \end{itemize}
-        \item Based on the success of the MISP taxonomy model, we built misp-warninglists.
-        \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]
-        \frametitle{MISP warning lists}
-        \begin{itemize}
-            \item misp-warninglists are lists of {\b well-known indicators} that can be associated to potential false positives, errors, or mistakes.
-                \item Simple JSON files
-        \end{itemize}
-\begin{lstlisting}[language=json,firstnumber=1]
-{
-  "name": "List of known public DNS resolvers",
-  "version": 2,
-  "description": "Event contains one or more public DNS resolvers as attribute with an IDS flag set",
-  "matching_attributes": [
-    "ip-src",
-    "ip-dst"
-  ],
-  "list": [
-    "8.8.8.8",
-    "8.8.4.4",...]
+  "predicates": [{
+    "value": "review",
+    "expanded": "Review state",
+    "exclusive": true
+  }]
 }
 \end{lstlisting}
+    This header is extended by values in the complete example file.
+    \note{The header is valid JSON, not an excerpt with ellipses.
+    examples/training-classification/machinetag.json contains the complete
+    schema-valid definition. Exclusive is scoped to the review predicate.
+    This is a teaching vocabulary; do not contribute it upstream unchanged.
+    Search existing vocabularies such as workflow before creating a new one.}
 \end{frame}
 
-\begin{frame}[t,fragile]
-\frametitle{MISP warning lists}
-\begin{itemize}
-\item The warning lists are integrated in MISP to display an info/warning box at the event and attribute level.
-\item Enforceable via the API where all attributes that have a hit on a warninglist will be excluded.
-\item This can be enabled at MISP instance level.
-\item Default warning lists can be enabled or disabled like {\bf known public resolver}, {\bf multicast IP addresses}, {\bf hashes for empty values}, {\bf rfc1918}, {\bf TLDs} or {\bf known Google domains}.
-\item The warning lists can be expanded or added in JSON locally or via pull requests.
-\item Warning lists can be also used for {\bf critical or core infrastructure warning}, {\bf personally identifiable information}...
-\end{itemize}
+\begin{frame}[fragile]{Values connect machine codes to readable labels}
+\begin{lstlisting}[language=json]
+"values": [{
+  "predicate": "review",
+  "entry": [
+    {"value": "draft", "expanded": "Draft"},
+    {"value": "reviewed", "expanded": "Reviewed"}
+  ]
+}]
+\end{lstlisting}
+    \begin{block}{Resulting machine tag}
+        \code{training-classification:review="reviewed"}
+    \end{block}
+    \note{This is the values member inside the complete JSON object,
+    not a standalone JSON document. The predicate must match a declaration.
+    Stable codes support filters; expanded labels, descriptions and colours
+    explain their meaning. Do not casually rename a published machine value.}
 \end{frame}
 
-
-\begin{frame}[t,fragile] {Q\&A}
-\includegraphics[width=54.797pt]{misp-logo.pdf}
-\begin{itemize}
-        \item \url{https://github.com/MISP/MISP}
-        \item \url{https://github.com/MISP/misp-taxonomies}
-        \item \url{https://github.com/MISP/PyTaxonomies}
-        \item \url{https://github.com/MISP/misp-warninglists}
-        \item info@circl.lu (if you want to join one of the MISP community operated by CIRCL)
-        \item PGP key fingerprint: CA57 2205 C002 4E06 BA70 BE89 EAAD CFFC 22BD 4CD5
-\end{itemize}
-
+\begin{frame}{Contribute a vocabulary that others can maintain}
+    \begin{enumerate}
+        \item Establish a gap and cite authoritative definitions.
+        \item Reuse stable codes and document the intended scope.
+        \item Validate the schema, predicate links and generated manifest.
+        \item Submit a focused PR with examples and compatibility notes.
+    \end{enumerate}
+    \sources{\url{https://github.com/MISP/misp-taxonomies}}
+    \note{Increase the version when editing an existing taxonomy, following
+    the repository's workflow. Review references and applicable licensing.
+    The JSON license offers CC0 or the stated redistribution license;
+    do not make a blanket claim that all source vocabularies are public domain.
+    Formatting and validation scripts may rewrite files and expect clean Git state.}
 \end{frame}
 
+\begin{frame}{Use the vocabulary outside a MISP instance}
+    \begin{itemize}
+        \item Read the JSON vocabulary and its canonical values directly.
+        \item Use PyTaxonomies to load and search taxonomy libraries.
+        \item Validate against the current schema and repository checks.
+        \item Record the library revision used by your consumer.
+    \end{itemize}
+    \note{PyTaxonomies is separate; installing it does not enable a taxonomy
+    in MISP. Its local-manifest CLI is exercised by taxonomy repository CI.
+    The old 2016 output is removed rather than presented as current.
+    The README provides offline schema validation for the sample.}
+\end{frame}
+
+\begin{frame}{Workshop: classify, search, explain}
+    \begin{enumerate}
+        \item Import the synthetic event into a training instance.
+        \item Find its event tags and the domain's confidence tag.
+        \item Run the scoped tag and warninglist requests.
+        \item Explain scope, handling, detection intent and every warning.
+    \end{enumerate}
+    \begin{block}{Then review a local assessment}
+        If permitted, attach a local review label and inspect its local flag.
+    \end{block}
+    \note{Allow about 20 minutes after the presentation. The README gives
+    prerequisites, expected outcomes and a debrief.
+    The unpublished event has distribution zero and stays in training.
+    Local tagging depends on role and host-organisation rules.
+    Do not change sync configuration or publish to complete the exercise.}
+\end{frame}
+
+\begin{frame}{Before you share or automate}
+    \begin{enumerate}
+        \item Are labels canonical, justified and attached at the right scope?
+        \item Do distribution and recipients respect handling instructions?
+        \item Have local context and warninglist hits been reviewed?
+        \item Does the real consumer interpret returned data correctly?
+    \end{enumerate}
+    \note{Keep evidence and uncertainty visible. Separate assessment, access
+    control, detection intent and export selection in human review and
+    automation. Recheck after changing vocabularies, enabled lists, endpoint
+    options or partner routes. Validate the result.}
+\end{frame}
+
+\begin{frame}{References and the next practical steps}
+    \begin{itemize}
+        \item \href{https://www.misp-project.org/taxonomies.html}{Taxonomy reference}
+        and \href{https://www.first.org/tlp/}{FIRST TLP 2.0}.
+        \item \href{https://github.com/MISP/misp-taxonomies}{Taxonomy source}
+        and \href{https://github.com/MISP/PyTaxonomies}{PyTaxonomies}.
+        \item \href{https://github.com/MISP/misp-warninglists}{Warninglists}
+        and \href{https://github.com/MISP/MISP/tree/2.5}{MISP 2.5 source}.
+        \item This deck's \code{README.md}: exercise, build instructions,
+        pinned evidence and validation limits.
+    \end{itemize}
+    \note{Continue with the Galaxy, workflows and data-model courses in this
+    repository. The README maps technical claims to immutable evidence.
+    Live links here lead to current project entry points; later checkouts
+    may differ from this snapshot.}
+\end{frame}

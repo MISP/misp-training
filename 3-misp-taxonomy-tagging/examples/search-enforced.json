@@ -1,0 +1,6 @@
+{
+  "returnFormat": "json",
+  "eventid": "7fb18198-5f8f-4fc3-8ea7-d2d791c2c0be",
+  "type": "ip-dst",
+  "enforceWarninglist": true
+}
