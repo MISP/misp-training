@@ -1,8 +1,5 @@
 \documentclass[aspectratio=169]{beamer}
-\usetheme[numbering=progressbar]{focus}
-\definecolor{main}{RGB}{47, 161, 219}
-\definecolor{textcolor}{RGB}{128, 128, 128}
-\definecolor{background}{RGB}{240, 247, 255}
+\usetheme[numbering=progressbar]{misp}
 
 
 % \usepackage{pgfpages}
@@ -16,7 +13,8 @@
 \usepackage{listings}
 \usepackage{fontawesome5}
 \usepackage[export]{adjustbox}
-\usepackage{fourier-otf}
+% Match the handout and the pdfLaTeX pipeline in build.sh.
+\usepackage{fourier}
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes,arrows}
 
@@ -57,7 +55,6 @@
 \subtitle{Tutorial and Hands-On}
 \author{Alexandre Dulaunoy \& Sami Mokaddem}
 \date{}
-\titlegraphic{\vspace*{1em}\includegraphics[scale=0.3]{misp.pdf}\\}
 \institute{MISP Project \\ \url{https://www.misp-project.org/}}
 
 

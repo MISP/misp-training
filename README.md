@@ -117,8 +117,8 @@ bash build.sh
 
 The output directory will contain all the generated PDF files and the PDF file called `misp-training.pdf` which is the complete handout of all the slides.
 
-The first deck, `0-intro-shorter` (including its Spanish and Dutch variants), uses
-the MISP 2.0 visual identity. See [the reusable MISP theme and template](themes/README.md)
+All Beamer decks, including translations, event presentations, and saved
+notes handouts, use the MISP 2.0 visual identity. See [the reusable MISP theme and template](themes/README.md)
 for the official logo sources, palette, and commands to build individual decks.
 
 **Note**: Put this repository's `themes/` directory first in `TEXINPUTS` to use

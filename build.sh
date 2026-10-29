@@ -27,7 +27,8 @@ for slide in ${slidedecks[@]}; do
         # A third pass stabilizes remembered TikZ positions on fresh builds.
         pdflatex slide.tex
         rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
-        sed '12 i \\\\usepackage{pgfpages}\n\\setbeameroption{show notes on second screen=right}' slide.tex >slide_handout.tex
+        # Insert notes setup in the preamble, independent of deck header length.
+        awk '/\\begin\{document\}/ {print "\\usepackage{pgfpages}"; print "\\setbeameroption{show notes on second screen=right}"} {print}' slide.tex >slide_handout.tex
         pdflatex slide_handout.tex
         pdflatex slide_handout.tex
         pdflatex slide_handout.tex
