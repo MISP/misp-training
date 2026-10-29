@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "modules": {
+    "training_uppercase": {
+      "enabled": true,
+      "ttl_seconds": 300,
+      "max_entries": 128,
+      "max_bytes": 16777216
+    }
+  }
+}

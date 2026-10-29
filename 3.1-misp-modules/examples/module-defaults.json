@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "modules": {
+    "training_uppercase": {
+      "config": {"prefix": "LOCAL: "},
+      "fallback_when_empty": ["prefix"]
+    }
+  }
+}
