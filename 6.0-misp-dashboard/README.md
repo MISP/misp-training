@@ -8,6 +8,10 @@ interpreting the results.
 
 [Slides](slide.tex) · [Presenter notes](content.tex) · [Screenshots](images/misp25/README.md) · [Workshop](#workshop-build-inspect-restore) · [Source audit](#source-audit) · [Training home](../README.md)
 
+Want to extend the board? Continue with
+[Building dashboard widgets in MISP 2.5](../a.a-widget-dev/README.md) for a
+working PHP example, typed configuration, data access and cache isolation.
+
 ![Integrated MISP 2.5.50 dashboard with synthetic training data](images/misp25/dashboard-overview.png)
 
 ## What changed in this course
