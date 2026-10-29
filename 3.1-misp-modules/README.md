@@ -192,6 +192,13 @@ done
 Outputs are `slide.pdf` and `slide_handout.pdf`. The repository
 [publication script](../build.sh) also includes this deck.
 
+## Next: contribute with an AI agent
+
+The [companion course](../a.14-ai-assisted-misp-modules/README.md) explains how to
+brief a coding agent, preserve module contracts, verify generated code and prepare
+an upstream contribution. It includes a reusable agent brief and a tested local
+MISP-standard reference exercise.
+
 ## Source audit
 
 Evidence is pinned to the reviewed revision. Recheck it, runtime availability,

@@ -1,0 +1,433 @@
+% Included by slide.tex. Reusable task prompt: AGENT_BRIEF.md.
+\begin{frame}[t,plain]
+    \titlepage
+\end{frame}
+
+\begin{frame}{What a successful contribution contains}
+    \begin{itemize}
+        \item A module that fits existing discovery and execution.
+        \item Correct MISP inputs, outputs, configuration and provenance.
+        \item Tests that demonstrate behavior, not just Python syntax.
+        \item Useful metadata, documentation and a focused pull request.
+    \end{itemize}
+    \begin{block}{The agent assists development}
+        It is not a new module family or a reason to add a model service
+        to the runtime implementation.
+    \end{block}
+    \note{This companion assumes the MISP modules introduction.
+    It is provider-neutral and works with the coding assistant the contributor
+    already uses. The reference exercise requires no model credentials or agent SDK.}
+\end{frame}
+
+\begin{frame}{Keep ownership and evidence explicit}
+    \small
+    \begin{tabular}{@{}P{2.2cm}P{4cm}P{4cm}@{}}
+        \toprule
+        Contributor & Coding agent & Maintainer \\
+        \midrule
+        Defines the need and boundaries. &
+        Inspects code and prepares a plan and patch. &
+        Assesses fit and maintenance cost. \\
+        Checks contracts and reviews results. &
+        Runs permitted checks and reports actual outcomes. &
+        Reviews the patch and evidence. \\
+        Owns the submitted contribution. &
+        Identifies assumptions and limits. &
+        Decides whether to merge. \\
+        \bottomrule
+    \end{tabular}
+    \medskip
+    A confident explanation from an agent is not execution evidence.
+    \note{Agree on allowed network access and writes in the task brief.
+    Do not claim a provider was tested when only mocked responses ran.
+    Accountability remains with the contributor and maintainers.}
+\end{frame}
+
+\begin{frame}{A repeatable development loop}
+    \centering
+    \begin{tikzpicture}[
+        agentstep/.style={draw=mispTeal,fill=mispBlue!5!white,rounded corners,
+            align=center,text width=2.7cm,minimum height=1.3cm,font=\small},
+        flow/.style={-{Stealth},thick,draw=mispTeal}]
+        \node[agentstep] (brief) at (0,2) {1. Specify the gap\\and contract};
+        \node[agentstep] (inspect) at (3.7,2) {2. Read code,\\docs and tests};
+        \node[agentstep] (patch) at (7.4,2) {3. Implement\\a small patch};
+        \node[agentstep] (test) at (7.4,-.4) {4. Run unit and\\service checks};
+        \node[agentstep] (review) at (3.7,-.4) {5. Review output,\\diff and limits};
+        \node[agentstep] (pr) at (0,-.4) {6. Write docs\\and open a PR};
+        \draw[flow] (brief) -- (inspect);
+        \draw[flow] (inspect) -- (patch);
+        \draw[flow] (patch) -- (test);
+        \draw[flow] (test) -- (review);
+        \draw[flow] (review) -- (pr);
+    \end{tikzpicture}
+    \sources{Reference snapshot: misp-modules 3a903305cf37, reviewed 29 October 2026.}
+    \note{Repeat the relevant loop when a check reveals a defect.
+    Read the current target checkout: a training snapshot or agent memory is not
+    the authority for a later API. The README pins the reviewed evidence.}
+\end{frame}
+
+\section{Read the existing contract}
+
+\begin{frame}{Give the agent the right repository context}
+    \begin{itemize}
+        \item Contributor instructions, dependency declarations and CI.
+        \item Loader and dispatcher: \code{misp_modules/__init__.py}
+        and \code{__main__.py}.
+        \item A recent module of the \textbf{same family}, plus its tests.
+        \item Existing shared libraries and target-format builders.
+        \item Official API/schema documentation, version and examples.
+    \end{itemize}
+    \begin{block}{Is a new module needed?}
+        Search existing capabilities before implementing a duplicate integration.
+    \end{block}
+    \note{The agent should report the checkout revision and reference files.
+    A marketing description is not a wire contract. If official details are missing,
+    record the ambiguity and continue independent work rather than inventing behavior.}
+\end{frame}
+
+\begin{frame}{Select a family before writing code}
+    \small
+    \begin{tabular}{@{}P{2.5cm}P{2.3cm}P{5.4cm}@{}}
+        \toprule
+        Directory & Metadata type & Typical contract \\
+        \midrule
+        \code{expansion} & expansion / hover & Observable or attribute to enrichment results. \\
+        \code{import_mod} & import & File, paste or report to parsed MISP data. \\
+        \code{export_mod} & export & Supplied MISP data to an encoded artifact. \\
+        \code{action_mod} & action & Workflow data and parameters to an operation/result. \\
+        \bottomrule
+    \end{tabular}
+    \medskip
+    Match the specific module's schema; this is not one universal request format.
+    \note{The filename supplies the API identifier; the display name is separate.
+    Hover is an expansion capability, not a fifth directory.
+    Discovery scans valid Python files without a manual all-list registration.
+    Do not introduce a replacement loader.}
+\end{frame}
+
+\begin{frame}{Preserve the module interface}
+    \begin{itemize}
+        \item \code{introspection()}: supported input/output or family-specific setup.
+        \item \code{version()}: accurate capabilities, configuration and metadata.
+        \item \code{dict_handler(request=...)}: dictionary execution path.
+        \item \code{handler(q=...)}: supported legacy JSON execution path.
+        \item Return fresh result/error objects; keep request state local.
+    \end{itemize}
+    \begin{alertblock}{Read the fallback behavior}
+        The reviewed dispatcher catches \code{AttributeError} for legacy fallback.
+        Do not use that exception as input validation.
+    \end{alertblock}
+    \note{The reference implements both paths and compares semantic results.
+    Avoid mutable shared error dictionaries or metadata modified by a request.
+    Importing a module should not contact a provider or change a target system.}
+\end{frame}
+
+\begin{frame}{Write down the request and result schema}
+    \begin{itemize}
+        \item Supported attributes, event envelopes or file inputs?
+        \item Settings in \code{config}, \code{params} or import options?
+        \item Simplified expansion or \code{format: misp_standard}?
+        \item Attributes, objects, an encoded file or action status?
+        \item Missing data, empty results and partial failures?
+    \end{itemize}
+    \begin{block}{Use existing MISP semantics}
+        Map the provider's response into valid types, object templates
+        and the selected family's contract.
+    \end{block}
+    \note{Request and response mappings belong in the plan.
+    Export modules often return base64 data; actions commonly use params and data,
+    but these summaries do not replace reading actual contracts.
+    JSON-serializable output can still have the wrong MISP structure.}
+\end{frame}
+
+\begin{frame}{Keep provenance and detection intent}
+    \begin{itemize}
+        \item Preserve the source UUID and original evidence.
+        \item Use PyMISP to build and serialize structured objects.
+        \item Link derived objects to the correct source.
+        \item Choose valid types and object relations.
+        \item Do not silently promote contextual data to IDS indicators.
+    \end{itemize}
+    \begin{block}{Reference exercise}
+        Keep the original attribute; add a normalized \code{domain-ip}
+        object with a \code{derived-from} reference.
+    \end{block}
+    \note{Tests inspect real PyMISP output: source UUID, value/comment, references
+    and detection flags. The derived attribute is non-IDS in this exercise.
+    It is the full normalized name, not a guessed registrable domain.}
+\end{frame}
+
+\begin{frame}{Dependencies and configuration are not incidental}
+    \begin{itemize}
+        \item Use the service's actual Python environment and dependency workflow.
+        \item Add necessary dependencies without unrelated lockfile upgrades.
+        \item Metadata describing a dependency does not install it.
+        \item Distinguish request config, service defaults and module-specific
+        environment variables.
+        \item Keep credentials and private incidents out of prompts and fixtures.
+    \end{itemize}
+    \note{Do not bypass artifact or TLS verification to make setup pass.
+    Missing optional imports can skip a module; syntax errors can stop startup.
+    Neither is the same as MISP enablement or provider authorization.
+    Read family-specific configuration and action semantics before implementing.}
+\end{frame}
+
+\section{Direct the agent and test behavior}
+
+\begin{frame}{A useful brief needs an explicit contract}
+    \begin{enumerate}
+        \item Purpose, gap and unique identifier.
+        \item Family, supported inputs and expected outputs.
+        \item Official provider/schema version and configuration keys.
+        \item Side effects and permitted execution boundaries.
+        \item Acceptance tests, error cases and required evidence.
+    \end{enumerate}
+    \begin{block}{Reusable task prompt}
+        Start with \code{AGENT_BRIEF.md}.
+        It is a prompt to adapt, not an automatically installed agent policy.
+    \end{block}
+    \note{Ask for a short contract and implementation plan first.
+    Continue useful reversible work without repeatedly asking preferences.
+    Clarify genuine blockers and keep live submissions or writes within
+    the user's authorization.}
+\end{frame}
+
+\begin{frame}{Worked exercise: normalize a DNS name locally}
+    \begin{itemize}
+        \item Input: \code{domain}/\code{hostname}, value and source UUID.
+        \item Normalize case, one root dot and standard-library IDNA.
+        \item Reject malformed labels, unsupported types, IP literals and bad UUIDs.
+        \item Preserve the input; add a referenced MISP-standard object.
+        \item No DNS lookup, provider account, model call or runtime agent framework.
+    \end{itemize}
+    \begin{alertblock}{Training scope}
+        This is a contract exercise, not a proposal to add another normalizer upstream.
+        A contribution must address a real project gap.
+    \end{alertblock}
+    \note{The README defines the exact grammar and acceptance cases.
+    The exercise uses multi-label names, at most 63 bytes per ASCII label and
+    253 bytes overall after IDNA. It does not check registration, reachability,
+    public suffixes or maliciousness.}
+\end{frame}
+
+\begin{frame}[fragile]{An acceptance request the agent can test}
+    \lstinputlisting[language=json]{examples/request.json}
+    \small
+    Expected: \code{xn--bcher-kva.example} in a \code{domain-ip} object
+    linked to the original source UUID.
+    \note{The JSON escape represents uppercase U with umlaut.
+    Original input value and detection flag stay unchanged in the source Attribute.
+    The new object's domain attribute is non-IDS. Check the serialized result,
+    not just an agent's printed summary.}
+\end{frame}
+
+\begin{frame}{Ask for small, reviewable implementation steps}
+    \begin{enumerate}
+        \item Metadata and introspection.
+        \item Pure parsing/normalization and validation.
+        \item MISP result construction with references.
+        \item A thin provider boundary, if the task needs one.
+        \item Tests and documentation for the actual contract.
+    \end{enumerate}
+    \begin{block}{Inspect the diff}
+        Reject unrelated framework changes, dependency churn,
+        import-time networking and invented endpoint behavior.
+    \end{block}
+    \note{The reference is an answer key for the exercise.
+    Compare a real integration with a recent maintained sibling.
+    Reuse existing helpers/builders instead of duplicating target-format logic
+    or changing the dispatcher to accommodate one module.}
+\end{frame}
+
+\begin{frame}{If a module calls a provider, test the boundary}
+    \begin{itemize}
+        \item Mock the provider client or HTTP boundary where it is used.
+        \item Use documented fixtures: valid, empty and malformed responses.
+        \item Test authentication errors, rate limits and bounded timeouts.
+        \item Preserve references across multiple and partial results.
+        \item Verify scope and acknowledgements for operations that write.
+    \end{itemize}
+    \begin{block}{Keep output construction real}
+        Mock external I/O, not the PyMISP objects that assertions need to inspect.
+    \end{block}
+    \note{The reference has no external I/O to mock. The source audit links
+    real upstream DNS tests as an example. Tests should not need real credentials
+    by default. A transport success does not establish complete publication or
+    activation at the target.}
+\end{frame}
+
+\begin{frame}{Make tests challenge the implementation}
+    \small
+    \begin{tabular}{@{}P{3.5cm}P{6.7cm}@{}}
+        \toprule
+        Dimension & What can go wrong \\
+        \midrule
+        Input/schema & Missing fields, unsupported types, Unicode and length boundaries. \\
+        MISP semantics & Wrong relations, lost source UUIDs, changed detection flags. \\
+        State isolation & Caller or request mutates another result or shared metadata. \\
+        Errors & Exceptions hidden as empty success; errors ignored at HTTP 200. \\
+        Deployment & Service imports another package or skips the new file. \\
+        \bottomrule
+    \end{tabular}
+    \note{Ask which failure each assertion would catch. Do not weaken assertions
+    or delete fixtures just to turn a run green.
+    The invalid inputs are subtests; positive cases inspect actual MISP objects.
+    Syntax-only tests cannot demonstrate these semantics.}
+\end{frame}
+
+\begin{frame}{Report test levels honestly}
+    \begin{itemize}
+        \item \textbf{Unit}: validation, parsing, serialization and isolation.
+        \item \textbf{Service}: discovery and real \code{/query} requests.
+        \item \textbf{MISP}: family settings, user access and UI ingestion.
+        \item \textbf{Provider/target}: authorization, acknowledgements and activation.
+    \end{itemize}
+    \begin{block}{Keep evidence scoped}
+        Record commands, exit codes and counts.
+        Distinguish passed, failed, skipped and unrun checks.
+    \end{block}
+    \note{The verifier runs eight unit tests by default. Adding --url runs
+    three HTTP tests too. It says explicitly when HTTP checks were not requested.
+    Unit passes do not imply a tested service, MISP UI or provider integration.}
+\end{frame}
+
+\section{Verify and contribute}
+
+\begin{frame}[fragile]{Check what the service actually imports}
+    \begin{itemize}
+        \item Use an editable package install or explicit custom root.
+        \item Install dependencies in the service environment.
+        \item Restart the correct process.
+    \end{itemize}
+\begin{lstlisting}[language=bash]
+# From this companion deck's directory:
+misp-modules -l 127.0.0.1 -p 6666 \
+  --custom "$PWD/examples/custom"
+\end{lstlisting}
+    The root contains \code{expansion/training_domain_normalize.py}.
+    \note{Pass the root, not its expansion directory.
+    Upstream modules use the normal package family directory.
+    A duplicate custom identifier replaces an installed module, so choose names
+    deliberately and use a separate workshop service.}
+\end{frame}
+
+\begin{frame}[fragile]{Verify discovery and dispatch}
+\begin{lstlisting}[language=bash]
+curl --fail --silent --show-error \
+  http://127.0.0.1:6666/modules |
+  jq '.[] | select(.name == "training_domain_normalize")'
+
+python3 examples/verify_module.py \
+  --url http://127.0.0.1:6666 -v
+\end{lstlisting}
+    \begin{itemize}
+        \item Check family, capabilities, input format and config schema.
+        \item Verify valid results and invalid-input errors through HTTP.
+        \item Inspect \code{/openapi.json}, not just the handler.
+    \end{itemize}
+    \note{Expected: eight unit plus three service tests, all executed.
+    Discovery failures can reflect dependencies, paths, stale installation or
+    startup errors. Health alone does not prove the new module loaded.}
+\end{frame}
+
+\begin{frame}{HTTP 200 is not the acceptance criterion}
+    \begin{itemize}
+        \item Inspect \code{error}/\code{errors} and the actual output envelope.
+        \item Check references and source fields after serialization.
+        \item Decode exports and inspect the target format.
+        \item Check action outcomes appropriate to the operation.
+        \item Verify MISP enablement separately from service discovery.
+    \end{itemize}
+    \note{The wildcard example returns a module error over HTTP 200.
+    A MISP UI check also needs the relevant family configured, module enabled,
+    supported input and organisation access.
+    Do not turn a localhost API pass into a claim of production integration.}
+\end{frame}
+
+\begin{frame}{Use the project's quality and documentation workflow}
+    \begin{itemize}
+        \item Read current CI, Poetry groups, extras and native prerequisites.
+        \item Run relevant tests and formatting/lint under project configuration.
+        \item Broaden checks when changes or failures warrant it.
+        \item Supply complete metadata and user documentation.
+        \item Keep dependency/lock edits tied to the implementation.
+    \end{itemize}
+    \sources{The brief supplies command templates; substitute actual paths and family.}
+    \note{The reviewed CI installs the test group and all extras, starts a
+    service and runs pytest across its matrix. This is broader than the base
+    environment used for the reference. Documentation generation also has
+    prerequisites; a formatter pass or zero-test run is not upstream CI success.}
+\end{frame}
+
+\begin{frame}{What the pull request should explain}
+    \begin{enumerate}
+        \item Integration gap and resulting behavior.
+        \item Input/output examples and configuration, without secrets.
+        \item Provider/schema version and side effects.
+        \item Actual validation, commands, counts and limitations.
+        \item Dependencies and documentation needed by users.
+    \end{enumerate}
+    \begin{block}{Keep it focused}
+        Include the implementation, tests and documentation a maintainer needs.
+        Remove incidental edits and generated noise.
+    \end{block}
+    \note{Describe the final implementation, not an agent conversation or
+    abandoned plan. Separate mocked, local-service and live-integration checks.
+    An AI-generated assertion that code is ready is not execution evidence.}
+\end{frame}
+
+\begin{frame}{Human review is part of the workflow}
+    \begin{itemize}
+        \item Compare mappings with official API/schema documentation.
+        \item Read validation, errors, references and config behavior.
+        \item Inspect tests for missing cases, not only their exit status.
+        \item Check for unexpected target writes or runtime model calls.
+        \item Reconsider a duplicate or unnecessary upstream integration.
+    \end{itemize}
+    \note{The contributor owns the proposal and maintainers decide on merge.
+    Prepare or publish a PR within the user's authorization.
+    This exercise does not submit anything to misp-modules upstream; do not
+    propose the toy normalizer without a genuine project need.}
+\end{frame}
+
+\begin{frame}{Workshop: brief, implement, verify}
+    \begin{enumerate}
+        \item Adapt \code{AGENT_BRIEF.md} to the exercise.
+        \item Ask for a contract and acceptance plan.
+        \item Implement in a separate local directory; use the reference as an answer key.
+        \item Run unit and service checks and review source/object relationships.
+        \item Draft a PR description stating what was and was not tested.
+    \end{enumerate}
+    \note{Suggested timing: ten minutes for source reading and brief,
+    twenty to thirty for implementation/tests, ten for service checks and review.
+    Do not create an upstream PR for the toy exercise.
+    A real contribution replaces the capstone with an identified missing capability.}
+\end{frame}
+
+\begin{frame}{The logic to preserve}
+    \begin{enumerate}
+        \item Existing loader, family and dispatch contracts.
+        \item Types, object templates, source references and detection intent.
+        \item Explicit configuration, bounded I/O and useful failures.
+        \item Repeatable tests and installation/discovery evidence.
+        \item A contribution that a maintainer can review.
+    \end{enumerate}
+    \note{Use these as a final rubric. An assistant can help at each stage
+    without inventing evidence, protocols or an architecture that bypasses
+    the project's existing behavior.}
+\end{frame}
+
+\begin{frame}{Resources for the next contribution}
+    \begin{itemize}
+        \item \code{README.md}: setup, exercise specification and source audit.
+        \item \code{AGENT_BRIEF.md}: reusable task prompt.
+        \item \code{examples/}: reference, request and verifier.
+        \item \href{https://github.com/MISP/misp-modules}{MISP/misp-modules} and its current contribution guide.
+        \item \href{https://misp.github.io/misp-modules/}{Module and installation documentation}.
+        \item The companion \emph{MISP modules} introduction and local API lab.
+    \end{itemize}
+    \note{Reread the target checkout before the next integration.
+    Pinned evidence documents a reviewed snapshot, not a permanent guarantee
+    about future APIs, dependencies or CI commands.}
+\end{frame}
