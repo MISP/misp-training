@@ -1,10 +1,13 @@
+# Standard training slides
+
+Historical references are listed in the [training archive](archive/README.md) and are excluded from this collection.
+
 | Slides (PDF) | Source Code |
 | ------------ | ----------- |
 | [0-intro-shorter](https://www.misp-project.org/misp-training/0-intro-shorter.pdf) | [source](https://github.com/MISP/misp-training/tree/main/0-intro-shorter) |
 | [0-misp-introduction-to-information-sharing](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [source](https://github.com/MISP/misp-training/tree/main/0-misp-introduction-to-information-sharing) |
 | [1-misp-usage](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1-misp-usage) |
 | [1.2-misp-integration](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2-misp-integration) |
-| [1.1-misp-viper-integration](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.1-misp-viper-integration) |
 | [1.2.1-misp-integration-mail2misp](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [source](https://github.com/MISP/misp-training/tree/main/1.2.1-misp-integration-mail2misp) |
 | [2-misp-administration](https://www.misp-project.org/misp-training/2-misp-administration.pdf) | [source](https://github.com/MISP/misp-training/tree/main/2-misp-administration) |
 | [3-misp-taxonomy-tagging](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [source](https://github.com/MISP/misp-training/tree/main/3-misp-taxonomy-tagging) |
@@ -35,4 +38,5 @@
 | [a.12-misp-workflows](https://www.misp-project.org/misp-training/a.12-misp-workflows.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.12-misp-workflows) |
 | [a.12-misp-workflows-short](https://www.misp-project.org/misp-training/a.12-misp-workflows-short.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.12-misp-workflows-short) |
 | [a.13-misp-stix](https://www.misp-project.org/misp-training/a.13-misp-stix.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.13-misp-stix) |
+| [a.14-ai-assisted-misp-modules](https://www.misp-project.org/misp-training/a.14-ai-assisted-misp-modules.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.14-ai-assisted-misp-modules) |
 | [b.6-automation](https://www.misp-project.org/misp-training/b.6-automation.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.6-automation) |

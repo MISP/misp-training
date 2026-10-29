@@ -41,7 +41,6 @@ find the same material in your checkout.
 | Topic | Slides | LaTeX source |
 | --- | --- | --- |
 | Integrating MISP with other tools | [PDF](https://www.misp-project.org/misp-training/1.2-misp-integration.pdf) | [Source](1.2-misp-integration/) |
-| Viper integration | [PDF](https://www.misp-project.org/misp-training/1.1-misp-viper-integration.pdf) | [Source](1.1-misp-viper-integration/) |
 | mail2misp | [PDF](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [Source](1.2.1-misp-integration-mail2misp/) |
 | Taxonomies and tagging (MISP 2.5) | [PDF](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [Source](3-misp-taxonomy-tagging/) |
 | MISP modules | [PDF](https://www.misp-project.org/misp-training/3.1-misp-modules.pdf) | [Source](3.1-misp-modules/) |
@@ -94,6 +93,13 @@ find the same material in your checkout.
 
 More presentations are available in [events](events/), [MUG](MUG/), and
 [complementary materials](complementary/).
+
+## Archived training
+
+The [training archive](archive/README.md) preserves retired courses and supporting
+materials for historical reference. They are **outside the standard training**,
+excluded from the default build and combined PDF, and may describe obsolete
+interfaces or integrations. Start with the archived [Viper integration course](archive/slide-decks/1.1-misp-viper-integration/README.md).
 
 ## Exercises and sample data
 
