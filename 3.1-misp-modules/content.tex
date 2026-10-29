@@ -103,7 +103,7 @@
         What infrastructure is related? & \code{dns}, \code{reversedns}, \code{circl_passivedns}: different DNS evidence. \\
         Is this observable known or noisy? & \code{hygiene}, \code{hashlookup}, \code{greynoise}. \\
         What vulnerability context exists? & \code{cve}, \code{gcve_cpe}, \code{rapid7_attackerkb}. \\
-        What do other platforms know? & \code{opencti}, \code{virustotal}, sandbox query/submit integrations. \\
+        What does analysis tooling know? & \code{mwdb_query}, \code{assemblyline_query}, sandbox query/submit integrations. \\
         \bottomrule
     \end{tabular}
     \medskip
@@ -726,7 +726,8 @@ python3 examples/verify_lab.py \
         \item \href{https://github.com/MISP/misp-modules-cli}{Standalone CLI client}
         \item This deck's \code{README.md}: pinned sources, trainer notes,
         reproducible lab and validation scope.
-        \item Related training: MISP workflows, REST API and deployment decks.
+        \item Continue with \emph{Contributing MISP modules with an AI agent};
+        see the companion \code{a.14-ai-assisted-misp-modules} deck.
     \end{itemize}
     \note{The README source audit uses immutable revision links for the reviewed behavior.
     The slide links deliberately lead to current project entry points.

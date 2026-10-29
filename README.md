@@ -68,6 +68,7 @@ find the same material in your checkout.
 | MISP workflows | [PDF](https://www.misp-project.org/misp-training/a.12-misp-workflows.pdf) | [Source](a.12-misp-workflows/) |
 | MISP workflows — short version | [PDF](https://www.misp-project.org/misp-training/a.12-misp-workflows-short.pdf) | [Source](a.12-misp-workflows-short/) |
 | MISP and STIX | [PDF](https://www.misp-project.org/misp-training/a.13-misp-stix.pdf) | [Source](a.13-misp-stix/) |
+| Contributing modules with an AI agent | [PDF](https://www.misp-project.org/misp-training/a.14-ai-assisted-misp-modules.pdf) | [Source](a.14-ai-assisted-misp-modules/) |
 | Building dashboard widgets | [PDF](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [Source](a.a-widget-dev/) |
 | Command-line tools | [PDF](https://www.misp-project.org/misp-training/a.b-cli.pdf) | [Source](a.b-cli/) |
 | Deployment | [PDF](https://www.misp-project.org/misp-training/a.c-deployment.pdf) | [Source](a.c-deployment/) |

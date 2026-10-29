@@ -1,0 +1,10 @@
+{
+  "module": "training_domain_normalize",
+  "attribute": {
+    "type": "domain",
+    "value": "B\u00dcCHER.Example.",
+    "uuid": "13d8d18b-784a-42a0-9a58-a9cddbfda561",
+    "to_ids": true,
+    "comment": "Synthetic training source"
+  }
+}

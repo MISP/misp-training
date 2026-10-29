@@ -1,0 +1,41 @@
+\documentclass{beamer}
+\usetheme[numbering=progressbar]{misp}
+
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{listings}
+\usetikzlibrary{positioning,arrows.meta}
+
+\lstdefinestyle{modulecode}{
+    basicstyle=\ttfamily\scriptsize,
+    backgroundcolor=\color{mispBlue!5!white},
+    frame=single,
+    rulecolor=\color{mispBlue!30!white},
+    breaklines=true,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    numbers=none,
+    aboveskip=.6em,
+    belowskip=.6em
+}
+\lstdefinelanguage{json}{
+    morestring=[b]",
+    keywords={true,false,null},
+    sensitive=true
+}
+\lstset{style=modulecode}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\sources}[1]{\par\vfill{\tiny\color{mispTeal}#1\par}}
+
+\title{Contributing MISP modules with an AI agent}
+\subtitle{From a precise brief to a tested pull request}
+\author{\small CIRCL / MISP Project}
+\institute{\url{https://www.misp-project.org/}}
+\date{Reference snapshot: 29 October 2026}
+
+\begin{document}
+\include{content}
+\end{document}
