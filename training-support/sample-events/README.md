@@ -1,19 +1,30 @@
-# MISP events used as example for MISP trainings and workshop
+# Sample MISP events
 
-MISP events in JSON format which can be used in MISP trainings, workshop and exercises.
+**Ready-to-use JSON events for training, workshops, and exercises.**
 
-![](./sea.png)
+Choose a scenario to demonstrate MISP features or give participants material
+to investigate in a training instance.
 
-## Sample events with real cases
+[Training home](../../README.md) · [All exercises](../../exercises/) · [Training VMs](https://vm.misp-project.org/)
 
-- [ATM Vulnerabilities Allow Deposit Forgery Attacks - Galaxy for finance, eventreport](./atm-vulnerabilities-allow-deposit-forgery-attacks.json).
-- [Kobalos - Linux threat to high performance computing infrastructure - EventReport, EventGraph](./kobalos-linux-threat-to-hpc.json).
-- [Investigation Syrian Electronic Army Activities - graph, timeline usage](./syrian-electronic-army-domain-take-over.json).
-- [Targeted phishing - PDF documents / phishkit - YARA tracking - graph, tracking via YARA rules](./targeted-phishing-pdf-phishkit-yara.json).
+## Real-world case studies
 
-## Sample events with synthetic data
+| Event | Features to explore |
+| --- | --- |
+| [ATM deposit forgery vulnerabilities](atm-vulnerabilities-allow-deposit-forgery-attacks.json) | Finance-related Galaxy context and event reports |
+| [Kobalos: threats to Linux HPC infrastructure](kobalos-linux-threat-to-hpc.json) | Event reports and event graphs |
+| [Syrian Electronic Army investigation](syrian-electronic-army-domain-take-over.json) | Relationships, graphs, and timelines |
+| [Targeted phishing and PDF phishkits](targeted-phishing-pdf-phishkit-yara.json) | YARA tracking and graph analysis |
 
-- [Dirty Harry](./dirty-harry-example.json) - movie example with human relationships.
-- [Decaying example](./sample-decaying-example.json). Synthetic data to show the decaying functionality in MISP.
-- [Sample spear phishing](./sample-spear-phishing-attempt-targeting-telco.json) created from [exercise](./sample-spear-phishing-attempt-targeting-telco.text).
+![Example investigation graph for the Syrian Electronic Army case](sea.png)
 
+## Synthetic scenarios
+
+| Event | Features to explore |
+| --- | --- |
+| [Dirty Harry](dirty-harry-example.json) | Human relationships in a fictional movie scenario |
+| [Indicator decay](sample-decaying-example.json) | Decaying indicators and their changing relevance |
+| [Spear phishing against a telco](sample-spear-phishing-attempt-targeting-telco.json) | Encoding an incident from a narrative report |
+
+For the telco scenario, use the [exercise narrative](sample-spear-phishing-attempt-targeting-telco.text)
+alongside the example event to compare how the report becomes structured data.
