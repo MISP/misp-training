@@ -1,0 +1,9 @@
+{
+  "widget": "TrendingWidget",
+  "config": {
+    "dimension": "vulnerability",
+    "time_window": "P7D",
+    "threshold": 5,
+    "min_count": 1
+  }
+}

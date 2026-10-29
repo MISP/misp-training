@@ -1,186 +1,400 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
+% Included by slide.tex. Sources, exercises and screenshot provenance: README.md.
 \begin{frame}[t,plain]
-\titlepage
+    \titlepage
 \end{frame}
 
-\section{MISP ZeroMQ}
-\begin{frame}
-\frametitle{MISP ZeroMQ}
-    MISP includes a flexible publish-subscribe model to allow real-time integration of the MISP activities:
-    \begin{itemize}
-        \item Event publication
-        \item Attribute creation or removal
-        \item Sighting
-        \item User login
-    \end{itemize}
-    \begin{center}
-        $\rightarrow$ Operates at global level in MISP
-    \end{center}
+\begin{frame}{Build a view that supports a decision}
+    \begin{enumerate}
+        \item Choose widgets for the question you need to answer.
+        \item Set their filters and understand their scope.
+        \item Save a useful personal layout.
+        \item Follow interesting results back to the underlying data.
+    \end{enumerate}
+    \note{This course covers the integrated dashboard at /dashboards in the
+    reviewed MISP 2.5.50 source. It does not imply every 2.5 patch level has
+    the same interface. Screenshots are genuine browser captures of that source
+    running locally with synthetic data, not mockups or production observations.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP ZeroMQ}
-MISP ZeroMQ functionality can be used for various model of integration or to extend MISP functionalities:
-    \begin{itemize}
-        \item Real-time search of indicators into a SIEM\footnote{Security Information \& Event Management}
-        \item Dashboard activities
-        \item Logging mechanisms
-        \item Continuous indexing
-        \item Custom software or scripting
-    \end{itemize}
+\begin{frame}{Two different dashboard applications}
+    \small
+    \begin{tabular}{@{}P{3cm}P{3.6cm}P{3.6cm}@{}}
+        \toprule
+        Surface & Integrated dashboard & Standalone misp-dashboard \\
+        \midrule
+        Location & Inside MISP: \code{/dashboards} & Separate web application. \\
+        Model & Personal widgets, layouts and templates. & ZeroMQ activity stream and its own processing. \\
+        This training & Current standard course. & Historical course in the archive. \\
+        \bottomrule
+    \end{tabular}
+    \note{The former version of this deck taught the standalone Flask/Redis/
+    ZeroMQ application. Its sources, screenshots and published PDF are archived.
+    The integrated board does not require starting that application's subscriber,
+    dispatcher or Flask server. Archiving its training says nothing about the
+    standalone project's maintenance status.}
 \end{frame}
 
-\section{MISP-Dashboard: An introduction}
-\begin{frame}
-    \frametitle{MISP-Dashboard - Realtime activities and threat intelligence}
-    \vspace{-10px}
-    \begin{center}
-        \includegraphics[width=1.00\linewidth]{images/dashboard-live.png}
-    \end{center}
+\section{Build your personal view}
+
+\begin{frame}{A real MISP 2.5 dashboard}
+    \screenshot{images/misp25/dashboard-overview.png}
+    \sources{MISP 2.5.50, default theme, site-admin training account.
+    Synthetic events; top of the board.}
+    \note{The overview contains new-data metrics, an Event Card Stream and
+    Trending vulnerability identifiers. Two further tiles are below the crop.
+    Counts are from three locally created events, not a real threat landscape.
+    The standard interface retains its actual product styling in these captures.}
 \end{frame}
 
-\begin{frame}
-\frametitle{MISP-Dashboard - Features}
-    \vskip -0.5em
-    \begin{center}
-        \centering
-        \includegraphics[scale=0.08]{images/dashboard-geo.png}
-        $\;$
-        \includegraphics[scale=0.08]{images/dashboard-trendings.png}
-    \end{center}
-    \vskip -0.9em
-    \begin{itemize}
-        \item Subscribe to multiple \textbf{ZMQ} MISP instances
-        \item Provides historical geolocalised information
-        \item Present an experimental \textbf{Gamification of the platform}
-        \item Shows when and how MISP is used
-        \item Provides real time information showing current threats and activity
-    \end{itemize}
+\begin{frame}{What determines your initial layout?}
+    \begin{enumerate}
+        \item Your saved personal dashboard, if one exists.
+        \item Otherwise, an accessible default template.
+        \item Otherwise, an empty board.
+    \end{enumerate}
+    \begin{block}{An empty board can be intentional}
+        An explicitly saved empty layout is not replaced by a default on every visit.
+    \end{block}
+    \note{The controller distinguishes no saved row from an empty array.
+    Templates can be constrained by organisation, role and permission.
+    Widget availability is checked separately. Do not promise every installation
+    starts with the Analyst template: deployment state and template import matter.}
 \end{frame}
 
-\section{MISP-Dashboard: Architecture and development}
-\lstset{style=bash}
-\begin{frame}[fragile]
-\frametitle{Setting up the dashboard}
-\begin{enumerate}
-    \item Be sure to have a running redis server: e.g.
-        \begin{itemize}
-            \item \texttt{redis-server -p 6250}
-        \end{itemize}
-    \item Update your configuration in \texttt{config.cfg}
-    \item Activate your virtualenv:
-        \begin{itemize}
-            \item \texttt{. ./DASHENV/bin/activate}
-        \end{itemize}
-    \item Listen to the MISP feed by starting the zmq\_subscriber:
-        \begin{itemize}
-            \item \texttt{./zmq\_subscriber.py}
-        \end{itemize}
-    \item Start the dispatcher to process received messages:
-        \begin{itemize}
-            \item \texttt{./zmq\_dispatcher.py}
-        \end{itemize}
-    \item Start the Flask server:
-        \begin{itemize}
-            \item \texttt{./server.py}
-        \end{itemize}
-    \item Access the interface at \url{http://localhost:8001/}
-\end{enumerate}
+\begin{frame}{Layout edits and widget settings save differently}
+    \small
+    \begin{tabular}{@{}P{3cm}P{7.2cm}@{}}
+        \toprule
+        Task & Save behavior \\
+        \midrule
+        Add, move, resize or remove tiles & Enter \emph{Edit layout}; use \emph{Save changes} or \emph{Discard}. \\
+        Configure a widget & Its panel's \emph{Save} persists configuration separately. \\
+        Apply a shared filter & Updates supporting widgets' configuration. \\
+        \bottomrule
+    \end{tabular}
+    \medskip
+    Discarding layout edits is not a general undo for saved widget settings.
+    \note{The current JS stages geometry and membership in edit mode.
+    Configuration and toolbar changes use per-widget saves rather than committing
+    staged layout edits. A first unsaved board has a whole-layout fallback.
+    Test on a saved personal board; export before making disruptive changes.}
 \end{frame}
 
-\begin{frame}
-\textbf{\large MISP-Dashboard architecture}\\
-
-\begin{center}
-    \vskip -1.7em
-    \includegraphics[scale=0.195]{images/messagepassing.png}
-\end{center}
+\begin{frame}{Find a widget in the gallery}
+    \screenshot{images/misp25/widget-gallery.png}
+    \sources{Actual gallery search for Trending Tags; the catalog is role-dependent.}
+    \note{Enter Edit layout, then Add widget. Search by name or description,
+    review the card and choose a widget. The gallery exposes only the classes
+    available to this account. Its result count is an example, not a universal
+    widget count. The preview glyph identifies the renderer, not live findings.}
 \end{frame}
 
-
-\lstset{style=code,language=python}
-\lstset{basicstyle=\fontsize{7}{9}\ttfamily}
-\begin{frame}[fragile]
-    \frametitle{Writing your handler}
-    \begin{lstlisting}
-# Register your handler
-dico_action = {
-        "misp_json":                  handler_dispatcher,
-        "misp_json_event":            handler_event,
-        "misp_json_self":             handler_keepalive,
-        "misp_json_attribute":        handler_attribute,
-        "misp_json_object":           handler_object,
-        "misp_json_sighting":         YOUR_CUSTOM_SIGHTINGS_HANDLER,
-        "misp_json_organisation":     handler_log,
-        "misp_json_user":             handler_user,
-        "misp_json_conversation":     handler_conversation,
-        "misp_json_object_reference": handler_log,
-}
-    \end{lstlisting}
+\begin{frame}{Configure with typed controls and a preview}
+    \centering
+    \includegraphics[trim=0 370bp 0 0,clip,width=\textwidth,height=6.1cm,keepaspectratio]
+        {images/misp25/widget-configure.png}
+    \par
+    \sources{Alias, dimension and time window: detail of the actual configuration panel.}
+    \note{The panel includes an alias, a dimension selector, time window,
+    threshold and minimum count, with a live preview. Advanced keys remain for
+    parameters without a typed control. Save persists the widget configuration;
+    Cancel closes without applying the form. The exercise uses min-count one
+    to illustrate a tiny corpus, not as a production recommendation.
+    This slide crops the panel for readability; the full PNG also shows the
+    lower fields and Save/Cancel controls.}
 \end{frame}
 
-\begin{frame}[fragile]
-    \begin{lstlisting}
-# Implement your handler
-
-# e.g. user handler
-def handler_user(zmq_name, jsondata):
-    # json action performed by the user
-    action = jsondata['action']
-    # user json data
-    json_user = jsondata['User']
-    # organisation json data
-    json_org = jsondata['Organisation']
-    # organisation name
-    org = json_org['name']
-    # only consider user login
-    if action == 'login':
-        timestamp = time.time()
-        # users_helper is a class to interact with the DB
-        users_helper.add_user_login(timestamp, org)
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Recent changes in the misp-dashboard}
-        \begin{itemize}
-                \item MISP authentication can now be used in the misp-dashboard
-                \item Improved TLS/SSL support in the default misp-dashboard
-                \item Self-test tool to debug and test ZMQ connectivity
-        \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Future development}
-    \begin{itemize}
-        \item[] \includegraphics[width=20px]{images/icons/joystick.png} \; Optimizing contribution scoring and model to encourage sharing and contributions enrichment
-        \item[] \includegraphics[width=20px]{images/icons/globe.png} \; Increasing geolocation coverage
-        \item[] \includegraphics[width=20px]{images/icons/zoom.png} \; Global filtering capabilities
+\begin{frame}{A shared filter targets supporting widgets}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.44\textwidth}
+            \includegraphics[width=\linewidth]{images/misp25/shared-time-filter.png}
+        \end{column}
+        \begin{column}{.52\textwidth}
             \begin{itemize}
-                \item[] \quad - Geolocation: Showing wanted attribute or only on specific region
-                \item[] \quad - Trendings: Showing only specified taxonomies
+                \item Read the affected-widget count.
+                \item A mixed value means settings differ.
+                \item Apply changes only to widgets that declare that filter.
             \end{itemize}
-        \item[] \includegraphics[width=20px]{images/icons/MISP.png} \; Tighter integration with MISP
-            \begin{itemize}
-                \item[] \quad - Present in MISP by default
-                \item[] \quad - ACL enabled version
-            \end{itemize}
-    \end{itemize}
+        \end{column}
+    \end{columns}
+    \note{This five-tile board offers the time-window filter for four widgets.
+    EventStreamCards inherits EventStream, which does not declare time-window
+    in its schema here. Canonical types can have different schema keys, so the
+    toolbar uses declared types rather than guessing from names.
+    A shared time window is not a universal SQL filter over the entire page.}
 \end{frame}
 
-\begin{frame}
-   \frametitle{Conclusion}
-MISP-Dashboard can provides realtime information to support security teams, CSIRTs or SOC showing current threats and activity by providing:
+\begin{frame}{Make the scope visible to the next reader}
     \begin{itemize}
-        \item Historical geolocalised information
-        \item Geospatial information from specific regions
-        \item The most active events, categories, tags, attributes, ...
+        \item Give each widget a useful alias.
+        \item Choose the time window and result limit deliberately.
+        \item Check whether tags use exact labels or substring patterns.
+        \item Use drill-down links to inspect the contributing data.
     \end{itemize}
-
-\vskip 0.5em
-It also propose a prototype of gamification of the platform providing incentive to share and contribute to the community
+    \note{Widget contracts differ. Trending Tags uses include/exclude patterns;
+    Event Stream's tags field remains a comma-separated string with negation.
+    Do not copy one widget's configuration shape into every other widget.
+    Aliases describe a tile; they do not change what its handler counts.}
 \end{frame}
 
+\section{Interpret the numbers}
 
+\begin{frame}{Choose a widget for the question}
+    \small
+    \begin{tabular}{@{}P{3.1cm}P{7.1cm}@{}}
+        \toprule
+        Question & Useful starting point \\
+        \midrule
+        What changed recently? & New data; event cards; recent reports or analyst data. \\
+        What recurs in the data? & Trending vulnerabilities, actors, techniques or tags. \\
+        Where is data associated? & Geolocation and country-map widgets. \\
+        Is the instance operating well? & Administrator health, resources and worker widgets. \\
+        \bottomrule
+    \end{tabular}
+    \note{Availability, permissions, configuration and prerequisites vary.
+    For example, some monitoring and sighting widgets are site-admin-only in
+    the reviewed implementation. A widget name alone does not establish that
+    an analyst role can load it. Consult its description and handler.}
+\end{frame}
+
+\begin{frame}{Do not assume every metric has the same visibility}
+    \begin{block}{Detailed event views}
+        Event Stream and Trending event counts use the viewer's event access.
+    \end{block}
+    \begin{block}{Instance-scale aggregates}
+        New data includes global counts and organisation-contextual metrics.
+        Some geolocation summaries also aggregate at instance scope.
+    \end{block}
+    \note{The NewDataStats handler deliberately has global scale counts for
+    events, attributes and other data, plus separately contextual targeting and
+    own-organisation publication metrics. AttributeGeoMap also has an aggregate
+    posture. Do not claim all dashboard data is ACL-filtered like event detail.
+    Review the actual widget and intended audience before sharing a board image.}
+\end{frame}
+
+\begin{frame}{Understand what Trending counts}
+    \begin{itemize}
+        \item Count distinct events per value, not repeated attribute rows.
+        \item Compare with the immediately preceding equal-length window.
+        \item Interpret minimum-count thresholds before trusting momentum.
+        \item All-time mode has no previous window for a momentum comparison.
+    \end{itemize}
+    \begin{block}{Training example}
+        Public vulnerability identifiers appear in three synthetic events.
+        A high count is not a severity score.
+    \end{block}
+    \note{The example ranks vulnerability identifiers with counts three, two and
+    one. NEW marks a value absent in the prior window. Trending's percentage
+    momentum and the New-data widget's count deltas are different measures.
+    The window follows data timestamps; it is not necessarily the event's
+    descriptive date or when malicious activity occurred.}
+\end{frame}
+
+\begin{frame}{Refresh frequency is not data freshness}
+    \begin{itemize}
+        \item Some widgets refresh automatically; others do not.
+        \item Pause or resume automatic refresh from the header.
+        \item Per-widget overrides are available where supported.
+        \item A refresh may still return cached data.
+    \end{itemize}
+    \note{The scheduler uses the widget default or a saved refresh-delay
+    override and pauses work on hidden pages. Zero disables an override's
+    automatic refresh. WidgetCache and handler-specific caches are separate:
+    a manual refresh is not a universal cache purge.
+    The reviewed Trending cache is about twenty minutes; deployment and widget
+    contracts determine freshness. No ZeroMQ dependency is implied by a timer.}
+\end{frame}
+
+\begin{frame}{Treat maps and coverage as evidence summaries}
+    \begin{itemize}
+        \item Geolocation can be inferred from several kinds of data.
+        \item A plotted origin is not proof of the attacker's location.
+        \item An ATT\&CK tile reflects tagged information.
+        \item Tagged coverage is not proof of detection coverage.
+    \end{itemize}
+    \note{AttributeGeoMap's sources include IP, domain TLD, ASN and country/
+    actor context; their precision differs. An animated map is a visualisation,
+    not a replacement for evidential analysis. ATTACK views depend on the
+    selected galaxy and the actual tags in scope. The reserved training names
+    intentionally do not manufacture a real attack geography.}
+\end{frame}
+
+\begin{frame}{Separate an analyst view from an operator view}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{block}{Analyst}
+                Recent events, reports, trends and useful drill-downs.
+            \end{block}
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{block}{Administrator}
+                Health, resources, queues and permission-gated actions.
+            \end{block}
+        \end{column}
+    \end{columns}
+    \medskip
+    A template arranges widgets; it does not grant privileges.
+    \note{MispAdminHealth is site-admin-only and rolls up existing diagnostics.
+    Some operator widgets expose actions, such as session invalidation; a
+    dashboard is not automatically read-only merely because it displays metrics.
+    Use an appropriate role and distinguish monitoring from making changes.}
+\end{frame}
+
+\section{Reuse and verify}
+
+\begin{frame}{Choose a starting point from the template gallery}
+    \screenshot{images/misp25/template-gallery.png}
+    \sources{Actual gallery: imported Analyst, Administrator and Community templates.}
+    \note{The names and layout previews come from the shipped manifests in
+    app/files/dashboard-templates. The screenshot account is a site admin.
+    Other users may see fewer templates or denied widget classes.
+    Selecting a template is a personal layout reset, not a new data permission.
+    A template preview is a layout miniature, not a screenshot of live results.}
+\end{frame}
+
+\begin{frame}{Reuse settings without confusing them with data}
+    \begin{itemize}
+        \item Export your configuration before replacing a layout.
+        \item Import a configuration or use an accessible template.
+        \item Save a useful personal view as a template when permitted.
+        \item Review identifiers and configuration before sharing it.
+    \end{itemize}
+    \note{More contains Import configuration, Export configuration, Save as
+    template and Browse templates. Built-in templates must be imported into
+    the instance. Template restrictions affect availability; they do not expand
+    event access. The server prefers a personal saved layout over a default.
+    A saved template is not a live subscription that rewrites existing boards.}
+\end{frame}
+
+\begin{frame}{Configuration export and widget-data export differ}
+    \begin{block}{Configuration}
+        Widget classes, options and positions for reusing a view.
+    \end{block}
+    \begin{block}{Widget data}
+        The result produced by a widget, available as JSON or flattened CSV.
+    \end{block}
+    \note{The portable layout is a widget array. The raw export endpoint retains
+    a UserSetting envelope with its value; the UI normalises supported envelopes.
+    A plain REST render returns a renderer/data envelope, while exportjson returns
+    bare handler data. CSV flattens the result; it is not a universal MISP event
+    export. Neither export form is automatically safe to share without review.}
+\end{frame}
+
+\begin{frame}[fragile]{Inspect a widget through the API}
+    \small
+    \code{POST /dashboards/renderWidget}
+    \lstinputlisting[language=json]{examples/render-trending.json}
+    The JSON response identifies the widget, renderer, configuration and data.
+    \note{This read-only request was executed against the actual local MISP
+    instance using Accept: application/json. In the unchanged three-event lab,
+    the returned Trending rows have distinct-event counts three, two and one.
+    Do not embed a real API key in training material. Named exportjson:1 and
+    exportcsv:1 select the raw-data export paths instead of the render envelope.}
+\end{frame}
+
+\begin{frame}{What is stored in a dashboard layout?}
+    \small
+    \begin{tabular}{@{}P{3.5cm}P{6.7cm}@{}}
+        \toprule
+        Field & Purpose \\
+        \midrule
+        \code{instance_id} & Stable identifier for one tile. \\
+        \code{widget} & Widget class name. \\
+        \code{config} & Widget-specific settings and supported filters. \\
+        \code{position} & Grid coordinates and dimensions: \code{x}, \code{y}, \code{w}, \code{h}. \\
+        \bottomrule
+    \end{tabular}
+    \medskip
+    The supplied \code{examples/dashboard-layout.json} is a portable widget array.
+    \note{Do not wrap that sample in an invented widgets property.
+    The reviewed read-fixup normalises older position width/height keys to w/h
+    and mints missing instance identifiers. The API updateSettings form instead
+    accepts Dashboard.value; the import endpoint also accepts the array.
+    Importing replaces the user's saved layout. Back up the old one first.}
+\end{frame}
+
+\begin{frame}{The integrated data path}
+    \centering
+    \begin{tikzpicture}[
+        component/.style={draw=mispTeal,fill=mispBlue!5!white,rounded corners,
+            align=center,font=\small,text width=2cm,minimum height=1.3cm},
+        flow/.style={-{Stealth},thick,draw=mispTeal}]
+        \node[component] (ui) at (0,0) {Browser\\board};
+        \node[component] (server) at (2.8,0) {MISP\\controller};
+        \node[component] (widget) at (5.6,0) {Widget\\handler};
+        \node[component] (data) at (8.4,0) {Models\\and caches};
+        \draw[flow] (ui)--(server);
+        \draw[flow] (server)--(widget);
+        \draw[flow] (widget)--(data);
+    \end{tikzpicture}
+    \par\medskip
+    Widget-specific prerequisites still apply.
+    \note{The board calls the authenticated MISP controller; widget loading,
+    schema adaptation and cache behavior are server-side concerns.
+    Custom implementations belong in the existing Lib/Dashboard architecture.
+    This replaces the former course's standalone subscriber/dispatcher diagram;
+    it is not a claim that every widget needs no other dependency.}
+\end{frame}
+
+\begin{frame}{Diagnose the scope before rebuilding the board}
+    \small
+    \begin{tabular}{@{}P{3cm}P{7.2cm}@{}}
+        \toprule
+        Symptom & Check first \\
+        \midrule
+        Widget missing & Class availability, user role and permissions. \\
+        Empty or different counts & Widget definition, time window, filters and data access. \\
+        Results seem old & Refresh state, timestamps and the widget's cache. \\
+        Controls do not work & Browser console/network, JavaScript assets and server errors. \\
+        \bottomrule
+    \end{tabular}
+    \note{An empty result is not proof of no relevant threats.
+    A hidden admin widget is not evidence that the data was deleted.
+    Check the exact patch level and theme before comparing interface labels.
+    Do not fix a personal view by blindly broadening instance-wide access.}
+\end{frame}
+
+\begin{frame}{Workshop: build, inspect, restore}
+    \begin{enumerate}
+        \item Use a disposable training account and export its current layout.
+        \item Import synthetic events and the five-widget sample.
+        \item Change a filter; inspect the affected widgets and underlying data.
+        \item Stage a layout removal, discard it, then verify restoration.
+    \end{enumerate}
+    \begin{block}{Finish with evidence}
+        Export the configuration and explain the scope of each result.
+    \end{block}
+    \note{The README gives exact steps and sample files. The training events
+    remain unpublished, organisation-only and non-IDS. No external enrichment
+    or synchronisation is needed. Reports in the screenshots were created
+    separately with synthetic Markdown; create a report during the workshop
+    to populate that tile. Layout import changes this user's preferences.}
+\end{frame}
+
+\begin{frame}{What was verified for this course?}
+    \begin{itemize}
+        \item Real MISP 2.5.50 browser screenshots with synthetic data.
+        \item Layout import/export and widget rendering through the API.
+        \item A staged removal and Discard in the actual browser.
+        \item Slide and notes builds, examples and source references.
+    \end{itemize}
+    \note{Read the README for the exact validation record and limits.
+    This is a local training-instance check, not the complete MISP test suite,
+    an audit of every widget's permissions, or a production integration test.
+    Screenshots do not prove a control works for every role or theme.}
+\end{frame}
+
+\begin{frame}{Sources and the next practical steps}
+    \begin{itemize}
+        \item \href{https://github.com/MISP/MISP/tree/2.5}{MISP 2.5 source}
+        and its shipped dashboard templates.
+        \item This course's \code{README.md}: trainer guide, exercises and
+        immutable source evidence.
+        \item \code{images/misp25/README.md}: screenshot provenance.
+        \item The standalone ZeroMQ course remains in the training archive.
+    \end{itemize}
+    \note{Continue with taxonomy/tagging and the MISP data-model course to
+    interpret context, or inspect current widget contracts for development.
+    The current source is authoritative; older developer examples and design
+    handoff notes can describe an earlier stage of the dashboard.}
+\end{frame}
