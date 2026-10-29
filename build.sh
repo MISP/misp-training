@@ -6,21 +6,29 @@ slidedecks=("0-intro-shorter" "0-misp-introduction-to-information-sharing" "1-mi
 mkdir output
 mkdir output/handout
 
-export TEXINPUTS=::`pwd`/themes/
+# Prefer the bundled themes to system-installed versions of Focus.
+export TEXINPUTS="$(pwd)/themes:${TEXINPUTS:-}:"
 echo ${TEXINPUTS}
 for slide in ${slidedecks[@]}; do
         echo "---- Building ${slide}"
         cd ${slide}
         if test -f "slide_nl.tex"; then
                 pdflatex slide_nl.tex
+                pdflatex slide_nl.tex
+                pdflatex slide_nl.tex
         fi
         if test -f "slide_es.tex"; then
+                pdflatex slide_es.tex
+                pdflatex slide_es.tex
                 pdflatex slide_es.tex
         fi
         pdflatex slide.tex
         pdflatex slide.tex
+        # A third pass stabilizes remembered TikZ positions on fresh builds.
+        pdflatex slide.tex
         rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
         sed '12 i \\\\usepackage{pgfpages}\n\\setbeameroption{show notes on second screen=right}' slide.tex >slide_handout.tex
+        pdflatex slide_handout.tex
         pdflatex slide_handout.tex
         pdflatex slide_handout.tex
         rm *.aux *.toc *.snm *.log *.out *.nav *.vrb
