@@ -59,7 +59,7 @@ find the same material in your checkout.
 | --- | --- | --- |
 | Contributing to MISP | [PDF](https://www.misp-project.org/misp-training/a.0-contributing.pdf) | [Source](a.0-contributing/) |
 | Introduction to MISP development | [PDF](https://www.misp-project.org/misp-training/a.1-devintro.pdf) | [Source](a.1-devintro/) |
-| REST API | [PDF](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [Source](a.7-rest-API/) |
+| REST API (MISP 2.5) | [PDF](https://www.misp-project.org/misp-training/a.7-rest-API.pdf) | [Source](a.7-rest-API/) |
 | Core development — hands-on | [PDF](https://www.misp-project.org/misp-training/a.8-dev-hands-on.pdf) | [Source](a.8-dev-hands-on/) |
 | Developing a restSearch export module | [PDF](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [Source](a.9-restsearch-dev/) |
 | Galaxy 2.0 | [PDF](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [Source](a.10-galaxy-2.0/) |
