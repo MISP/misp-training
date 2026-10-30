@@ -1,24 +1,38 @@
 \documentclass{beamer}
 \usetheme[numbering=progressbar]{misp}
 
-
 \usepackage[utf8]{inputenc}
-\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{array}
 \usepackage{listings}
-\usepackage{adjustbox}
-\usetikzlibrary{positioning}
-\usetikzlibrary{shapes,arrows}
-%\usepackage[T1]{fontenc}
-%\usepackage[scaled]{beramono}
+\usetikzlibrary{positioning,arrows.meta}
+\lstdefinestyle{dashboardcode}{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{mispBlue!5!white},
+    frame=single,
+    rulecolor=\color{mispBlue!30!white},
+    breaklines=true,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    numbers=none,
+    aboveskip=.6em,
+    belowskip=.6em
+}
+\lstdefinelanguage{json}{morestring=[b]",keywords={true,false,null},sensitive=true}
+\lstset{style=dashboardcode}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\sources}[1]{\par\vfill{\tiny\color{mispTeal}#1\par}}
+\newcommand{\screenshot}[1]{%
+    \centering\includegraphics[width=\textwidth,height=5.8cm,keepaspectratio]{#1}\par}
 
-\author{\small{\input{../includes/authors.txt}}}
-
-\title{MISP Galaxy}
-\institute{\href{http://www.misp-project.org/}{http://www.misp-project.org/} \\ Twitter: \emph{\href{https://twitter.com/mispproject}{@MISPProject}}}
-\date{\input{../includes/location.txt}}
-
+\title{MISP Galaxy in 2.5}
+\subtitle{Explore the knowledge base, assess context, share carefully}
+\author{\small CIRCL / MISP Project}
+\institute{\url{https://www.misp-project.org/}}
+\date{Reference snapshot: 30 October 2026}
 
 \begin{document}
 \include{content}
 \end{document}
-
