@@ -1,0 +1,9 @@
+{
+  "category": "context",
+  "description": "Synthetic concepts for an offline Galaxy workshop.",
+  "name": "Training knowledge",
+  "namespace": "training",
+  "type": "training-knowledge",
+  "uuid": "0e942734-024f-4d87-a95e-5267ae045eb7",
+  "version": 1
+}

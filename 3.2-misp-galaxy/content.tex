@@ -1,365 +1,246 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
-\begin{frame}[t,plain]
+\begin{frame}
 \titlepage
 \end{frame}
 
-\begin{frame}
-\frametitle{MISP Galaxies}
-    \begin{itemize}
-    \item MISP started out as a platform for technical indicator sharing
-    \item The need for a way to describe threat actors, tools and other commonalities became more and more pressing
-    \item {\bf Taxonomies quickly became essential for classifying events}
-    \item The weakness of the tagging aproach is that it's not very descriptive
-    \item We needed a way to attach {\bf more complex structures to data}
-    \item Also, with the different naming conventions for the same "thing" attribution was a mess
-    \item This is where the Galaxy concept came in
-    \end{itemize}
+\begin{frame}{Find context, assess evidence, make an assertion}
+\begin{itemize}
+\item Explore the knowledge base beyond actor names.
+\item Choose the right cluster and attachment scope.
+\item Interpret relations and matrices carefully.
+\item Practise discovery, custom knowledge and contribution.
+\end{itemize}
+\note{Reference MISP 2.5.50 and misp-galaxy 285d1477, reviewed 30 October 2026. Allow 35--45 minutes plus a workshop. Counts and UI capabilities depend on revision, permissions and settings. The README pins the audited sources and supplies reproducible commands.}
 \end{frame}
 
+\section{Explore the knowledge base}
 
-\begin{frame}
-\frametitle{Solution}
-    \begin{itemize}
-    	\item Pre-crafted galaxy "clusters" via GitHub project
-        \item Attach them to an event and attribute(s)
-    	\item The main design principle was that these higher level informations are meant for human consumption
-    	\item This means flexibility - key value pairs, describe them dynamically
-    	\item Technical indicators remain strongly typed and validated, galaxies are loose key value lists
-    \end{itemize}
+\begin{frame}{A large, reusable body of knowledge}
+\begin{itemize}
+\item 136 Galaxy definitions and 136 cluster collections.
+\item 58,528 entries; 56,551 distinct cluster UUIDs.
+\item 79,372 listed directed relationship edges.
+\end{itemize}
+\note{Measured from the pinned checkout by the supplied offline explorer. These are entries and edges, not counts of distinct threat actors, verified claims or records visible to every MISP user. Collections can overlap and reuse UUIDs, including different ATT\&CK views. Pin the revision when comparing results.}
 \end{frame}
 
-
-\begin{frame}
-\frametitle{The galaxy object stack}
-    \begin{itemize}
-    	\item {\bf Galaxy}: The type of data described (Threat actor, Tool, ...)
-       	\item {\bf Cluster}: An individual instance of the galaxy (Sofacy, Turla, ...)
-       	\item {\bf Element}: Key value pairs describing the cluster (Country: RU, Synonym: APT28, Fancy Bear)
-       	\item {\bf Reference}: Referenced galaxy cluster (Such as a threat actor using a specific tool)
-    \end{itemize}
+\begin{frame}{Start with the public catalogue}
+\begin{itemize}
+\item Browse \url{https://www.misp-galaxy.org/}.
+\item Follow JSON and original-source references.
+\item Inspect collection scope, authors, version and status.
+\end{itemize}
+\note{The public knowledge-base website does not require a MISP instance. The source repository is the reproducible machine-readable reference. A local MISP installation can have a different database/import revision from the website or your checkout; distinguish those when debugging missing knowledge.}
 \end{frame}
 
-\begin{frame}
-     \frametitle{(some) Existing galaxies}
-     \begin{itemize}
-        \item {\bf Exploit-Kit}: An enumeration of known exploitation kits used by adversaries
-        \item {\bf Microsoft activity group}: Adversary groups as defined by Microsoft
-        \item {\bf Preventive measure}: Potential preventive measures against threats
-        \item {\bf Ransomware}: List of known ransomwares
-        \item {\bf TDS}: Traffic Direction System used by adversaries
-        \item {\bf Threat-Actor}: Known or estimated adversary groups
-        \item {\bf Tool}: Tools used by adversaries (from Malware to common tools)
-	\item {\bf MITRE ATT\&CK}: Adversarial Tactics, Techniques, and Common Knowledge (ATT\&CK™)
-     \end{itemize}
+\begin{frame}{Choose a family that answers the question}
+\begin{itemize}
+\item ATT\&CK: observed techniques, software and activity groups.
+\item D3FEND and preventive measures: defensive context.
+\item DISARM: information-manipulation techniques and responses.
+\item Country, sector, detection and other domain knowledge.
+\end{itemize}
+\note{The repository covers substantially more than actor and malware lists. Prefer domain-specific ATT\&CK collections when appropriate; the combined collection contains broad and historical material. The README links selected catalogue families rather than embedding an unmaintainable exhaustive list.}
 \end{frame}
 
-\begin{frame}
-\frametitle{What a cluster looks like}
-\includegraphics[scale=0.25]{screenshots/cluster.png}
+\begin{frame}{Galaxy, cluster and element}
+\begin{itemize}
+\item Galaxy: the family and its presentation metadata.
+\item Cluster: one named concept with an individual UUID.
+\item Element: metadata such as synonyms, references or external IDs.
+\end{itemize}
+\note{The repository has galaxies/name.json definitions and clusters/name.json collections. A collection contains a values array of individual cluster entries. Its UUID is not the UUID of each entry. Family and collection are associated by type; do not assume their UUID fields are interchangeable.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Attaching clusters to events}
-    \begin{itemize}
-    	\item Internally simply using a taxonomy-like tag to attach them to events
-    	\item Example: misp-galaxy:threat-actor="Sofacy"
-        \item {\bf Synchronisation works out of the box} with older instances too. They will simply see the tags until they upgrade.
-       	\item Currently, as mentioned we rely on the community's contribution of galaxies
-    \end{itemize}
+\begin{frame}{Context is different from incident data}
+\begin{itemize}
+\item Taxonomy: classification vocabulary.
+\item MISP object: grouped typed attributes.
+\item Galaxy cluster: structured knowledge attached as context.
+\end{itemize}
+\note{Attaching an actor cluster is an analytical assertion, not a technical indicator or proof of causation. Object references, value correlations and analyst-data relationships have different purposes. Use the taxonomy and object-template courses for those models.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Attaching clusters}
-	\begin{itemize}
-		\item Use a searchable synonym database to find what you're after
-	\end{itemize}
-\includegraphics[scale=0.4]{screenshots/threatactor.png}
+\begin{frame}{Three different links}
+\centering
+\begin{tikzpicture}[node distance=1.2cm, box/.style={draw=mispTeal,rounded corners,fill=mispBlue!5,text width=3.0cm,align=center,minimum height=1.1cm,font=\small}]
+\node[box] (event) {Training event};
+\node[box,right=1.5cm of event] (cluster) {Cluster A};
+\node[box,below=of cluster] (other) {Cluster B};
+\draw[-{Stealth},thick,mispTeal] (event)--node[above,font=\scriptsize]{attachment}(cluster);
+\draw[-{Stealth},thick,mispTeal] (cluster)--node[right,font=\scriptsize]{knowledge relation}(other);
+\end{tikzpicture}\par
+\medskip
+An attachment does not create a cluster-to-cluster edge.
+\note{A cluster-to-cluster edge describes knowledge independently of a particular event. An event association says the selected concept is relevant to that event. Taxonomy tags can qualify a relationship without being the relationship's identity. Source, direction and evidential scope need separate review.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Creating your own galaxy}
-    \begin{itemize}
-    	\item Creating galaxy clusters has to be straightforward to get the community to contribute
-    	\item Building on the prior success of the taxonomies and warninglists
-        \item Simple JSON format in similar fashion
-        \item Just drop the JSON in the proper directory and let MISP ingest it
-        \item We always look forward to contributions to our galaxies repository
-    \end{itemize}
+\begin{frame}{Search for identity, not just a familiar label}
+\begin{itemize}
+\item Compare values, synonyms and external identifiers.
+\item Retain cluster UUID and collection provenance.
+\item Do not merge identities solely because names overlap.
+\end{itemize}
+\note{Synonyms support discovery; they do not prove a one-to-one mapping between providers. Attribution labels can overlap or be disputed. The explorer returns candidates, not an entity-resolution decision. Use original sources, scope and uncertainty to choose among candidates.}
 \end{frame}
 
-\colorlet{punct}{red!60!black}
-\definecolor{listingbackground}{HTML}{EEEEEE}
-\definecolor{delim}{RGB}{20,105,176}
-\colorlet{numb}{magenta!60!black}
-\lstdefinelanguage{json}{
-    basicstyle=\scriptsize,
-    numbers=left,
-    numberstyle=\scriptsize,
-    stepnumber=1,
-    numbersep=5pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{listingbackground},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
+\begin{frame}{Check whether the entry is current}
+\begin{itemize}
+\item Read original references and collection version.
+\item Inspect revoked flags, deprecation metadata and historical descriptions.
+\item Check ATT\&CK domain, platform and technique/sub-technique scope.
+\end{itemize}
+\note{Historical knowledge can be valuable without representing the current preferred concept. A successful search is not proof that an entry is active. The combined ATT\&CK collection includes historical material, so the workshop uses an enterprise-specific collection and an external identifier.}
+\end{frame}
 
+\section{Apply context in MISP 2.5}
 
-\begin{frame}[fragile]
-	\frametitle{Galaxy JSON}
-    \begin{itemize}
-    	\item If you want to create a completely new galaxy instead of enriching an existing one
-    \end{itemize}
-    \begin{adjustbox}{keepaspectratio}
-        \begin{lstlisting}[language=json,firstnumber=1]
+\begin{frame}{Choose the narrowest justified attachment}
+\begin{itemize}
+\item Event scope describes the incident or report as a whole.
+\item Attribute scope can express a narrower observation.
+\item Verify the actual attachment after saving and exporting.
+\end{itemize}
+\note{Parent context can appear in attribute exports without being directly attached at attribute level. Current bulk attachment supports optional attribute-to-event mirroring when enabled; that broader scope can change the assertion. Explain why the whole event supports the concept before mirroring.}
+\end{frame}
+
+\begin{frame}{Use the installed cluster metadata}
+\begin{itemize}
+\item Search and inspect the cluster before attaching it.
+\item MISP maintains a cluster-associated tag.
+\item Prefer UUID-backed identity over manually constructed labels.
+\end{itemize}
+\note{Imported default tag names commonly look like misp-galaxy:type="value". Custom knowledge and naming conventions need not match every imported default. Use the actual metadata supplied by the instance rather than treating a guessed tag string as a complete, accessible cluster definition.}
+\end{frame}
+
+\begin{frame}{Keep visibility boundaries separate}
+\begin{itemize}
+\item Event visibility controls incident access.
+\item Custom-cluster distribution controls knowledge access.
+\item Local attachment controls the association scope.
+\item Publication and sync settings control eligible sharing.
+\end{itemize}
+\note{A local-only Galaxy also restricts non-local attachments. Attaching a private cluster does not automatically grant recipients access to its definition. The API checks both target permissions and cluster visibility. A cluster relation and an event attachment are different operations with different permissions.}
+\end{frame}
+
+\begin{frame}{Matrix highlights are observations, not coverage}
+\begin{itemize}
+\item Galaxy ordering defines matrix tabs and columns.
+\item Cluster kill-chain metadata places entries in that layout.
+\item A highlight does not establish detection or prevention efficacy.
+\end{itemize}
+\note{The galaxy kill\_chain\_order and cluster meta.kill\_chain must use matching keys/prefixes. Interpret the selected domain/platform and source revision. Separate observed technique, available detection, tested detection and effective prevention. A matrix is not an attribution-confidence or maturity score.}
+\end{frame}
+
+\begin{frame}{Read graph edges as sourced assertions}
+\begin{itemize}
+\item Inspect direction, relationship type and references.
+\item Review confidence or handling tags where supplied.
+\item Do not infer causality merely from a graph path.
+\end{itemize}
+\note{Relations may span collections and point to concepts absent from a restricted local view. An unresolved target does not establish identity equivalence. Do not copy every knowledge-base relation into the evidential claims of an incident.}
+\end{frame}
+
+\begin{frame}{Custom clusters and forks are supported}
+\begin{itemize}
+\item Create permitted custom knowledge with explicit ownership.
+\item Fork a default cluster for local analysis.
+\item Record provenance, distribution and publication intent.
+\end{itemize}
+\note{Default imported clusters are protected from normal edits. The reviewed fork workflow records extends\_uuid and extends\_version while creating separate custom identity. Forking is not automatic agreement with future upstream changes. Normal editing and publication require appropriate permissions, including Galaxy-editor privileges where applicable.}
+\end{frame}
+
+\begin{frame}{Updating files is different from updating the catalogue}
+\begin{itemize}
+\item Select and update the intended Git revision.
+\item Import/update the MISP database through the operator workflow.
+\item Review changed knowledge and custom forks before sharing.
+\end{itemize}
+\note{The model reads app/files/misp-galaxy. Admin updateGalaxies imports from disk; it does not fetch Git. Avoid force/wipe operations as a routine exercise. Custom cluster synchronisation depends on publication, permissions, sharing groups and peer settings; forwarding a tag alone is not complete knowledge distribution.}
+\end{frame}
+
+\section{Explore, validate and contribute}
+
+\begin{frame}[fragile]{Explore a pinned checkout offline}
+\begin{lstlisting}
+python3 examples/explore.py /tmp/misp-galaxy-lab --stats
+python3 examples/explore.py /tmp/misp-galaxy-lab \
+  --search T1059 \
+  --collection mitre-enterprise-attack-attack-pattern \
+  --limit 3
+\end{lstlisting}
+\note{Clone and check out the reviewed revision first; full commands are in the README. The explorer is standard-library Python, needs no API key and makes no network calls. It searches value, synonyms and external\_id, with a result bound. It prints provenance and raw metadata to support source review.}
+\end{frame}
+
+\begin{frame}[fragile]{Repository structure: family versus collection}
+\begin{lstlisting}
+galaxies/training-knowledge.json
+  type, namespace, name, uuid, version, description
+
+clusters/training-knowledge.json
+  type, name, uuid, version, source, authors, category
+  values: [individual cluster entries]
+\end{lstlisting}
+\note{This is a file-layout illustration, not an API payload. The supplied galaxy.json and clusters.json are valid standalone repository-format examples. A private MISP cluster API export can have a different envelope. Match family and collection type and preserve the distinction between family, collection and individual identities.}
+\end{frame}
+
+\begin{frame}[fragile]{An individual cluster can reference another}
+\begin{lstlisting}
 {
-   "name" : "Threat Actor",
-   "type" : "threat-actor",
-   "description": "Threat actors are characteristics of malicious actors (or adversaries) representing a cyber attack threat including presumed intent and historically observed behaviour.",
-   "version": 1,
-   "uuid": "698774c7-8022-42c4-917f-8d6e4f06ada3"
+  "value": "Training observation A",
+  "uuid": "<individual cluster UUID>",
+  "meta": {"synonyms": ["Workshop A"]},
+  "related": [{
+    "dest-uuid": "<cluster B UUID>",
+    "type": "related-to", "tags": []
+  }]
 }
 \end{lstlisting}
-    \end{adjustbox}
+\note{The angle-bracket UUIDs illustrate the structure and must not be submitted as data. The executable fixture contains real generated UUIDs. Relationships need meaningful types, correct direction and resolvable targets under an explicit policy. Schema success alone does not establish all those semantics.}
 \end{frame}
 
-\begin{frame}[fragile]
-	\frametitle{Cluster JSON}
-    \begin{itemize}
-    	\item Clusters contain the meat of the data
-    	\item Skeleton structure as follows
-    \end{itemize}
-    \begin{adjustbox}{keepaspectratio}
-        \begin{lstlisting}[language=json,firstnumber=1]
-{
-  "values": [
-    {
-      "meta": {},
-      "description": "",
-      "value": "",
-      "related_clusters": [{}],
-    }
-  ]
-}
+\begin{frame}{Validate more than JSON syntax}
+\begin{itemize}
+\item Check both repository schemas.
+\item Check identities, matching types and relationship targets.
+\item Exercise negative cases and inspect original sources.
+\end{itemize}
+\note{The verifier checks the synthetic fixture and four negative cases: mismatched type, dangling target, duplicate fixture UUID and blank label. It also performs a real ATT\&CK lookup and tests empty/unknown collection cases. Fixture references are internal; real cross-collection knowledge needs a broader target-resolution policy.}
+\end{frame}
 
+\begin{frame}{Workshop: find, assess, attach}
+\begin{itemize}
+\item Find a technique by external identifier and read its evidence.
+\item Compare a synonym search and a domain-specific collection.
+\item Attach to a disposable event; compare attribute and local scope.
+\item Inspect matrix/export results and remove training data.
+\end{itemize}
+\note{The optional live lab uses an unpublished organisation-only event and an authorised user. Fork only when permitted, keep custom knowledge restricted and compare visibility with a second ordinary user. This update validates offline exercises and audits server source; it does not claim new live-server or screenshot testing.}
+\end{frame}
+
+\begin{frame}{Contribute at the correct source}
+\begin{itemize}
+\item Manual collection: edit JSON with evidence and provenance.
+\item Generated collection: inspect the generator and upstream source.
+\item Preserve identities and update relevant versions.
+\end{itemize}
+\note{CONTRIBUTE.md distinguishes generated ATT\&CK knowledge from manually maintained collections. Prefer original references. For threat-actor data, cfr-* metadata needs CFR evidence and attribution-confidence has a specific country-of-origin meaning. Do not treat it as universal confidence in an incident attachment.}
+\end{frame}
+
+\begin{frame}[fragile]{Follow the current upstream validation workflow}
+\begin{lstlisting}
+./jq_all_the_things.sh
+# Review and commit intended normalised changes.
+./validate_all.sh
 \end{lstlisting}
-    \end{adjustbox}
+\note{Use a dedicated checkout with jq, moreutils/sponge and the current Python validation dependencies. Formatting can rewrite many files. The reviewed CI also uses PyMISPGalaxies tests and compares the generated README index. The course verifier is not a substitute for that complete pipeline.}
 \end{frame}
 
-\begin{frame}[fragile]
-	\frametitle{Cluster JSON value example}
-    \begin{adjustbox}{keepaspectratio}
-        \begin{lstlisting}[language=json,firstnumber=1]
-    {
-      "meta": {
-        "synonyms": [
-            "APT 28", "APT28", "Pawn Storm", "Fancy Bear",
-            "Sednit", "TsarTeam", "TG-4127", "Group-4127",
-            "STRONTIUM", "Grey-Cloud"
-        ],
-        "country": "RU",
-        "refs": [
-          "https://en.wikipedia.org/wiki/Sofacy_Group"
-        ]
-      },
-      "description": "The Sofacy Group (also known as APT28,
-          Pawn Storm, Fancy Bear and Sednit) is a cyber
-          espionage group believed to have ties to the
-          Russian government. Likely operating since 2007,
-          the group is known to target government, military,
-          and security organizations. It has been
-          characterized as an advanced persistent threat.",
-      "value": "Sofacy"
-    },
-
-        \end{lstlisting}
-    \end{adjustbox}
+\begin{frame}{Make knowledge reusable and reviewable}
+\begin{itemize}
+\item State source, identity, meaning and uncertainty.
+\item Keep attachment scope separate from knowledge distribution.
+\item Include reproducible examples and validation limits.
+\item Use the README for pinned references and workshop commands.
+\end{itemize}
+\note{The earlier lesson, images and published PDF remain archived outside standard training. The new course points to the large live knowledge base and pins the reviewed snapshot for reproducibility. Repository counts and schema checks do not prove the truth or completeness of every entry.}
 \end{frame}
-
-\begin{frame}[fragile]
-        \frametitle{meta best practices}
-        \begin{itemize}
-        \item Reusing existing values such as {\bf complexity, effectiveness, country, possible\_issues, colour, motive, impact, refs, synonyms, derivated\_from, status, date, encryption, extensions, ransomnotes, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, kill\_chain}.
-        \item Or adding your own meta fields.
-        \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-        \frametitle{meta best practices - a sample}
-        \begin{adjustbox}{keepaspectratio}
-          \begin{lstlisting}[language=json,firstnumber=1]
- {
-      "description": "Putter Panda were the subject of an extensive report by CrowdStrike, which stated: 'The CrowdStrike Intelligence team has been tracking this particular unit since2012, under the codename PUTTER PANDA, and has documented activity dating back to 2007. The report identifies Chen Ping, aka cpyy, and the primary location of Unit 61486.'",
-      "meta": {
-        "cfr-suspected-state-sponsor": "China",
-        "cfr-suspected-victims": [
-          "U.S. satellite and aerospace sector"
-        ],
-        "cfr-target-category": [
-          "Private sector",
-          "Government"
-        ],
-        "cfr-type-of-incident": "Espionage",
-        "country": "CN",
-        "refs": [
-          "http://cdn0.vox-cdn.com/assets/4589853/crowdstrike-intelligence-report-putter-panda.original.pdf",
-          "https://www.cfr.org/interactive/cyber-operations/putter-panda"
-        ],
-        "synonyms": [
-          "PLA Unit 61486",
-          "APT 2",
-          "Group 36",
-          "APT-2",
-          "MSUpdater",
-          "4HCrew",
-          "SULPHUR",
-          "TG-6952"
-        ]
-      }}
-          \end{lstlisting}
-          \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-        \frametitle{Galaxy JSON matrix-like}
-        \includegraphics[width=0.9\linewidth]{screenshots/galaxy-matrix.png}
-\end{frame}
-
-\begin{frame}[fragile]
-        \frametitle{Galaxy JSON matrix-like}
-        \begin{adjustbox}{keepaspectratio}
-            %\lstset{emph={kill_chain_order},emphstyle=\textbf}
-            \begin{lstlisting}[language=json,firstnumber=1,escapechar=@]
-        {
-  "description": "Universal Development and Security Guidelines as Applicable to Election Technology.",
-  "icon": "map",
-  @\textbf{\color{red}"kill\_chain\_order": \{}@             @\textbf{\color{black}\textbackslash\textbackslash Tab in the matrix}@
-      @\textbf{\color{red}"example-of-threats": [}@       @\textbf{\color{black}\textbackslash\textbackslash Column in the matrix}@
-      @\textbf{\color{red}"setup | party/candidate-registration",}@
-      @\textbf{\color{red}"setup | electoral-rolls",}@
-      @\textbf{\color{red}"campaign | campaign-IT",}@
-      @\textbf{\color{red}"all-phases | governement-IT",}@
-      @\textbf{\color{red}"voting | election-technology",}@
-      @\textbf{\color{red}"campaign/public-communication | media/press"}@
-    @\textbf{\color{red}]}@
-  @\textbf{\color{red}\},}@
-  "name": "Election guidelines",
-  "namespace": "misp",
-  "type": "guidelines",
-  "uuid": "c1dc03b2-89b3-42a5-9d41-782ef726435a",
-  "version": 1
-}
-        \end{lstlisting}
-        \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-        \frametitle{Cluster JSON matrix-like}
-        \begin{adjustbox}{keepaspectratio}
-            \begin{lstlisting}[language=json,firstnumber=1, escapechar=@]
-{
-      "description": "DoS or overload of party/campaign registration, causing them to miss the deadline",
-      "meta": {
-        "date": "March 2018.",
-         @\textbf{\color{red}"kill\_chain": [}@ @\textbf{\color{black}\textbackslash\textbackslash Define in which column the cluster should be placed}@
-           @\textbf{\color{red}  "example-of-threats:setup | party/candidate-registration"}@
-         @\textbf{\color{red}],}@
-        "refs": [
-          "https://www.ria.ee/sites/default/files/content-editors/kuberturve/cyber_security_of_election_technology.pdf"
-        ]
-      },
-      "uuid": "154c6186-a007-4460-a029-ea23163448fe",
-      "value": "DoS or overload of party/campaign registration, causing them to miss the deadline"
-}
-        \end{lstlisting}
-        \end{adjustbox}
-\end{frame}
-
-
-\begin{frame}[fragile]
-        \frametitle{Expressing relation between clusters}
-        \begin{itemize}
-                \item Cluster can be related to one or more clusters using default relationships from MISP objects and a list of tags to classify the relation.
-        \end{itemize}
-
-        \begin{lstlisting}[language=json,firstnumber=1]
-        "related": [
-        {
-          "dest-uuid": "5ce5392a-3a6c-4e07-9df3-9b6a9159ac45",
-          "tags": [
-            "estimative-language:likelihood-probability=\"likely\""
-          ],
-          "type": "similar"
-        }
-      ],
-      "uuid": "0ca45163-e223-4167-b1af-f088ed14a93d",
-      "value": "Putter Panda"
-        \end{lstlisting}
-\end{frame}
-
-
-
-\begin{frame}[fragile]
-\frametitle{PyMISPGalaxies}
-        \begin{adjustbox}{keepaspectratio}
-\begin{lstlisting}[language=Python,basicstyle=\tiny]
-from pymispgalaxies import Clusters
-c = Clusters()
-list(g.keys())
-# ['threat-actor', 'ransomware', 'exploit-kit', 'tds', 'tool', 'rat', 'mitre-attack-pattern',
-#  'mitre-tool', 'microsoft-activity-group', 'mitre-course-of-action', 'mitre-malware',
-#  'mitre-intrusion-set', 'preventive-measure']
-print(c.get("rat"))
-# misp-galaxy:rat="Brat"
-# misp-galaxy:rat="Loki RAT"
-# misp-galaxy:rat="join.me"
-# misp-galaxy:rat="Setro"
-# misp-galaxy:rat="drat"
-# misp-galaxy:rat="Plasma RAT"
-# misp-galaxy:rat="NanoCore"
-# misp-galaxy:rat="DarkTrack"
-# misp-galaxy:rat="Theef"
-# misp-galaxy:rat="Greame"
-# misp-galaxy:rat="Nuclear RAT"
-# misp-galaxy:rat="DameWare Mini Remote Control"
-# misp-galaxy:rat="ProRat"
-# misp-galaxy:rat="death"
-# misp-galaxy:rat="Dark DDoSeR"
-# ....
-print(c.get("rat").description)
-# remote administration tool or remote access tool (RAT), also called sometimes remote
-# access trojan, is a piece of software or programming that allows a remote "operator"
-# to control a system as if they have physical access to that system.
-\end{lstlisting}
-                \end{adjustbox}
-\end{frame}
-
-
-\begin{frame}
-        \frametitle{Q\&A}
-        \begin{itemize}
-                \item info@circl.lu (if you want to join the CIRCL MISP sharing community)
-                \item OpenPGP fingerprint: 3B12 DCC2 82FA 2931 2F5B 709A 09E2 CD49 44E6 CBCD
-                \item \url{https://github.com/MISP/} - \url{http://www.misp-project.org/}
-                \item We welcome any contributions to the project, be it pull requests, ideas, github issues,...
-        \end{itemize}
-\end{frame}
-
