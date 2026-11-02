@@ -1,365 +1,354 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
-\colorlet{punct}{red!60!black}
-\definecolor{listingbackground}{HTML}{EEEEEE}
-\definecolor{delim}{RGB}{20,105,176}
-\colorlet{numb}{magenta!60!black}
-
-\lstdefinelanguage{json}{
-    basicstyle=\ttfamily\footnotesize,
-    numbers=left,
-    numberstyle=\ttfamily\footnotesize,
-    stepnumber=1,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{listingbackground},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
-
-\begin{frame}[t,plain]
+\begin{frame}
 \titlepage
 \end{frame}
 
-\begin{frame}
-    \frametitle{Context}
-    \begin{itemize}
-        \item MISP is a large project
-        \item Your production environment is even more complex
-        \item 3rd party services are even worse
-        \item Querying MISP via CURL is doable, but get's painful fast
-        \item Talking to MySQL directly can be dangerous
-        \item POST a JSON blob, receive a JSON blob. You can do it manually(-ish)
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Big picture}
-    \begin{itemize}
-        \item Core goal: providing stable access to APIs, respect access control
-        \item Simplifying handling \& automation of indicators in 3rd party tools
-        \item Hiding complexity of the JSON blobs
-        \item Providing pre-cooked examples for commonly used operations
-        \item Helping integration with existing infrastructure
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Common queries: Recent changes on a timeframe}
-	There are 4 main cases here:
-    \begin{itemize}
-		\item Metadata of the events that have been modified
-		\begin{itemize}
-            \item {\bf search\_index} $\Rightarrow$ timestamp (1h, 1d, 7d, ...), returns list of all the modified events
-		\end{itemize}
-		\item Full events (metadata + attributes)
-		\begin{itemize}
-    		\item {\bf search} $\Rightarrow$ timestamp (1h, 1d, 7d, ...)
-		\end{itemize}
-		\item Modified attributes
-		\begin{itemize}
-    		\item {\bf search} $\Rightarrow$ controller = attributes and timestamp (1h, 1d, 7d, ...)
-		\end{itemize}
-		\item Other use case: get last {\bf published} events by using the last parameter in the {\bf search} method.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Common queries: Search things}
-	There are 3 main cases here:
-	\begin{itemize}
-		\item Easy, but slow: full text search with {\bf search\_all}
-		\item Faster: use the {\bf search} method and search by tag, type, enforce the warning lists, with(-out) attachments, dates interval, ...
-		\item Get malware samples (if available on the instance).
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Common queries: create things}
-	There are 3 main cases here:
-	\begin{itemize}
-		\item Add Event, edit its metadata
-		\item Add attributes or objects to event
-		\item (un)Tag event or attribute (soon object)
-		\item Edit Attributes medatada
-		\item Upload malware sample (and automatically expand it)
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Administrative tasks}
-	Assyming you have the right to do it on the instance.
-	\begin{itemize}
-		\item Managing users
-		\item Managing organisations
-		\item Managing sync servers
-	\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Other Capabilities}
-    \begin{itemize}
-        \item Upload/download samples
-        \item {\bf Proposals}: add, edit, accept, discard
-        \item {\bf Sightings}: Get, set, update
-		\item Export {\bf statistics}
-        \item Manage {\bf feeds}
-        \item Get MISP server version, recommended PyMISP version
-        \item And more, look at the api file
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{MISPEvent - Usecase}
-	\begin{adjustbox}{width=\textwidth,height=3cm,keepaspectratio}
-		\begin{lstlisting}[language=Python,firstnumber=1]
-from pymisp import MISPEvent, EncodeUpdate
-
-# Create a new event with default values
-event = MISPEvent()
-
-# Load an existing JSON dump (optional)
-event.load_file('Path/to/event.json')
-event.info = 'My cool event'  # Duh.
-
-# Add an attribute of type ip-dst
-event.add_attribute('ip-dst', '8.8.8.8')
-
-# Mark an attribute as deleted (From 2.4.60)
-event.delete_attribute('<Attribute UUID>')
-
-# Dump as json
-event_as_jsondump = json.dumps(event, cls=EncodeUpdate)
-		\end{lstlisting}
-	\end{adjustbox}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Basics}
-	\begin{itemize}
-		\item Python 3.5+ is recommended
-		\item PyMISP is always inline with current version (pip3 install pymisp)
-		\item Dev version: pip3 install git+https://github.com/MISP/PyMISP.git
-		\item Get your auth key from: \url{https://misppriv.circl.lu/events/automation}
-		\begin{itemize}
-			\item Not available: you don't have "Auth key access" role. Contact your instance admin.
-		\end{itemize}
-		\item Source available here: git clone \url{https://github.com/MISP/PyMISP.git}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Examples}
-	\begin{itemize}
-		\item {\bf PyMISP needs to be installed (duh)}
-		\item Usage:
-		\begin{itemize}
-			\item Create examples/keys.py with the following content
-			\begin{adjustbox}{width=\textwidth,height=.9cm,keepaspectratio}
-				\begin{lstlisting}[language=python,firstnumber=1]
-
-misp_url = "https://url-to-your-misp"
-misp_key = "<API_KEY>"
-misp_verifycert = True
-
-				\end{lstlisting}
-			\end{adjustbox}
-		\end{itemize}
-		\item Proxy support:
-		\begin{adjustbox}{width=\textwidth,height=.9cm,keepaspectratio}
-			\begin{lstlisting}[language=python,firstnumber=1]
-
-proxies = {
-	'http': 'http://127.0.0.1:8123',
-	'https': 'http://127.0.0.1:8123',
-}
-PyMISP(misp_url, misp_key, misp_verifycert, proxies=proxies)
-			\end{lstlisting}
-		\end{adjustbox}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Examples}
-	\begin{itemize}
-		\item Lots of ideas on how to use the API
-		\item You may also want to look at the tests directory
-		\item All the examples use argparse. Help usage is available: {\bf script.py -h}
-		\begin{itemize}
-			\item {\bf add\_file\_object.py}: Attach a file (PE/ELF/Mach-O) object to an event
-			\item {\bf upload.py}: Upload a malware sample (use advanced expansion is available on the server)
-			\item {\bf last.py}: Returns all the most recent events (on a timeframe)
-			\item {\bf add\_named\_attribute.py}: Add attribute to an event
-			\item {\bf sighting.py}: Update sightings on an attribute
-			\item {\bf stats.py}: Returns the stats of a MISP instance
-			\item {\bf \{add,edit,create\}\_user.py} : Add, Edit, Create a user on MISP
-		\end{itemize}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Usage}
-	\begin{itemize}
-		\item Basic example
-	\end{itemize}
-		\begin{adjustbox}{width=\textwidth,height=2cm,keepaspectratio}
-			\begin{lstlisting}[language=python,firstnumber=1]
-	from pymisp import PyMISP
-	api = PyMISP(url, apikey, verifycert=True, debug=False, proxies=None)
-	response = api.<function>
-	if response['error']:
-		# <something went wrong>
-	else:
-		# <do something with the output>
-			\end{lstlisting}
-		\end{adjustbox}
-\end{frame}
-
-
-\begin{frame}[fragile]
-    \frametitle{Concept behind AbstractMISP}
-    \begin{itemize}
-        \item JSON blobs are python dictionaries
-        \item ... Accessing content can be a pain
-        \item {\bf AbstractMISP inherits collections.MutableMapping}, they are all dictionaries!
-        \item ... Has helpers to load, dump, and edit JSON blobs
-        \item {\bf Important}: All the public attributes (not starting with a \_) defined in a class are dumped to JSON
-        \item {\bf Tags}: Events and Attributes have tags, soon Objects. Tag handling is defined in this class.
-        \item {\bf edited}: When pushing a full MISPEvent, only the objects without a timestamp,
-            or with a newer timestamp will be updated. This method recursively finds updated events,
-            and removes the timestamp key from the object.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{MISPEvent, MISPAttribute, MISPObject, MISPSighting...}
-    \begin{itemize}
-        \item {\bf Pythonic} representation of MISP elements
-        \item {\bf Easy manipulation}
-        \begin{itemize}
-            \item Load an existing event
-            \item Update te metadata, add attributes, objects, tags, mark an attribute as deleted, ...
-            \item Set relations between objects
-            \item Load and add attachments or malware samples as pseudo files
-        \end{itemize}
-        \item {\bf Dump} to JSON
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{MISPEvent - Main entrypoints}
-    \begin{itemize}
-        \item load\_file(event\_path)
-        \item load(json\_event)
-        \item add\_attribute(type, value, **kwargs)
-        \item add\_object(obj=None, **kwargs)
-        \item add\_attribute\_tag(tag, attribute\_identifier)
-        \item get\_attribute\_tag(attribute\_identifier)
-        \item add\_tag(tag=None, **kwargs)
-        \item objects[], attributes[], tags[]
-        \item edited, all other paramaters of the MISPEvent element (info, date, ...)
-        \item to\_json()
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{MISPObject - Main entrypoints}
-    \begin{itemize}
-        \item add\_attribute(object\_relation, **value)
-        \item add\_reference(referenced\_uuid, relationship\_type, comment=None, **kwargs)
-        \item has\_attributes\_by\_relation(list\_of\_relations)
-        \item get\_attributes\_by\_relation(object\_relation)
-        \item attributes[], relations[]
-        \item edited, all other paramaters of the MISPObject element (name, comment, ...)
-        \item to\_json()
-        \item Can be validated against their template
-        \item Can have default parameters applied to all attributes (i.e. distribution, category, ...)
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{MISPAttribute - Main entrypoints}
-    \begin{itemize}
-        \item add\_tag(tag=None, **kwargs)
-        \item delete()
-        \item malware\_binary (if relevant)
-        \item tags[]
-        \item edited, all other paramaters of the MISPObject element (value, comment, ...)
-        \item to\_json()
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{PyMISP - Tools}
-    \begin{itemize}
-        \item Libraries requiring specfic 3rd party dependencies
-        \item Callable via PyMISP for specific usecases
-        \item Curently implemented:
-        \begin{itemize}
-            \item {\bf OpenIOC} to MISP Event
-            \item MISP to {\bf Neo4J}
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{PyMISP - Default objects generators }
-    \begin{itemize}
-        \item File - PE/ELF/MachO - Sections
-        \item VirusTotal
-        \item Generic object generator
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{PyMISP - Logging / Debugging}
-    \begin{itemize}
-        \item debug=True passed to the constructor enable debug to stdout
-        \item Configurable using the standard logging module
-        \item Show everything send to the server and received by the client
-    \end{itemize}
-\begin{adjustbox}{width=\textwidth,height=3cm,keepaspectratio}
-    \begin{lstlisting}[language=Python,firstnumber=1]
-import pymisp
-import logging
-
-logger = logging.getLogger('pymisp')
-logger.setLevel(logging.DEBUG)  # enable debug to stdout
-
-logging.basicConfig(level=logging.DEBUG,   # Enable debug to file
-                    filename="debug.log",
-                    filemode='w',
-                    format=pymisp.FORMAT)
-    \end{lstlisting}
-\end{adjustbox}
-\end{frame}
-
-\begin{frame}[t,fragile] {Q\&A}
-\includegraphics[width=54.797pt]{misp-logo.pdf}
+\begin{frame}{From a notebook to a deliberate integration}
 \begin{itemize}
-        \item \url{https://github.com/MISP/PyMISP}
-        \item \url{https://github.com/MISP/}
-        \item \url{https://pymisp.readthedocs.io/}
-        \item We welcome new functionalities and pull requests.
+\item Build and inspect models without contacting a server.
+\item Map Python operations to the MISP 2.5 REST API.
+\item Query the right scope and recognise incomplete results.
+\item Create, verify and remove a synthetic training event.
 \end{itemize}
-
+\note{Allow 40--50 minutes for the slides and 30--40 minutes for the workshop. The companion notebook runs offline by default. The README links the REST API and object-template courses, pins source revisions and describes exactly which checks were executed. Notebook examples are adapted from the upstream FullOverview and Search-FullOverview tutorials and the archived Introduction to PyMISP workshop, with current API semantics and synthetic data.}
 \end{frame}
 
+\section{Client, models and API}
+
+\begin{frame}{Pin the client and identify the server}
+\begin{itemize}
+\item Reviewed: MISP 2.5.50 and PyMISP 2.5.34.4.
+\item PyMISP requires Python 3.10 or later, below 4.0.
+\item PyPI and GitHub release checked on 2 November 2026.
+\item Server and client version numbers need not match.
+\end{itemize}
+\note{The installed release is 2.5.34.4, checked against PyPI metadata and the GitHub release. Its source revision is 45c906070c287dffeed353069cb3daddceab2ea3; MISP 2.5.50 is fc99c9e3fc85beddc6ef18835359f3c8b7f44608. This course uses Python 3.12. Consult the server's getVersion response and pymisp\_recommended\_version; current package does not imply every server supports every operation. Recheck releases before refreshing the pin.}
+\end{frame}
+
+\begin{frame}{Two complementary interfaces}
+\begin{itemize}
+\item \code{PyMISP}: authenticated requests to the server.
+\item \code{MISPEvent}, \code{MISPAttribute}, \code{MISPObject}: local models.
+\item Model changes and JSON conversion do not save remotely.
+\item Use the public client methods to persist intended changes.
+\end{itemize}
+\note{The PyMISP constructor itself performs server requests for version, current-user/role/settings and attribute types. Do not put it in an offline cell. Creating a MISPEvent and adding attributes/objects are local operations. ExpandedPyMISP remains a compatibility class in this release; use PyMISP for new examples. Model helpers simplify encoding but do not bypass server validation or access control.}
+\end{frame}
+
+\begin{frame}{The Python methods still use REST routes}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+Python operation & REST route in this snapshot \\
+\midrule
+\code{search_index(...)} & \code{POST events/index} \\
+\code{search(...)} (attributes) & \code{POST attributes/restSearch} \\
+\code{get_event(uuid)} & \code{GET events/view/{uuid}} \\
+\code{add_event(event)} & \code{POST events/add} \\
+\code{update_attribute(...)} & \code{POST attributes/edit/{uuid}} \\
+\bottomrule
+\end{tabular}
+\note{The table shows the ordinary calls used here. get\_event can use POST when passing certain options. Additional methods map to objects/add, tags/attachTagToObject, sightings/add and events/delete. An HTTP POST is not necessarily a write: restSearch is a read operation. See the REST API course for raw request/response envelopes and the deployed instance's api/openapi and api/rest interfaces.}
+\end{frame}
+
+\begin{frame}{Authentication and visibility remain server decisions}
+\begin{itemize}
+\item The raw auth key goes in the Authorization header.
+\item An API-enabled role and visible data are still required.
+\item Advanced keys can restrict IPs, expiry and read-only use.
+\item Read-only keys can POST searches; they cannot create events.
+\end{itemize}
+\note{Obtain a permitted auth key through your own instance's profile/auth-key interface, rather than a hard-coded community host. Keys inherit account visibility and relevant role permissions, with additional advanced-key restrictions. A writer can get proposals instead of edits on records it does not own. Never use a site-admin result as evidence of ordinary-user visibility. The lab uses an ordinary writer and a read-only key; administrative provisioning is separate from learner exercises.}
+\end{frame}
+
+\begin{frame}[fragile]{Install the reviewed release in a virtual environment}
+\begin{lstlisting}
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r examples/requirements.txt
+python -m unittest examples.test_examples -v
+python -m examples.models
+\end{lstlisting}
+\note{Run from a.2-pymisp. requirements.txt pins pymisp==2.5.34.4. The package's dependencies are resolved by pip; this is a course-version pin, not a complete transitive lockfile. Use python -m pip install --upgrade pymisp to assess a future release in a separate environment, then rerun checks and update the pin deliberately. File-analysis extras are optional and are not required for the synthetic domain-ip exercise. Avoid sudo pip and unpinned Git main installs as the classroom baseline.}
+\end{frame}
+
+\begin{frame}[fragile]{Connect with trusted TLS and bounded request timeouts}
+\begin{lstlisting}[language=Python]
+from pymisp import PyMISP
+from examples.common import Config
+
+config = Config.from_env()
+misp = PyMISP(config.url, config.key,
+              ssl=config.verify, timeout=(5, 60),
+              debug=False)
+\end{lstlisting}
+\note{Set MISP\_URL and MISP\_API\_KEY outside committed code and notebooks. Config preserves a trailing slash, including a deployment subdirectory: this release's search uses urljoin. For a private CA, REQUESTS\_CA\_BUNDLE supplies a trusted CA bundle to ssl; otherwise verification remains True. HTTP is allowed only on loopback for an isolated disposable lab. Timeout is a connect/read tuple, not an overall workflow deadline. Requests retains normal environment proxy handling. Do not print the client or key.}
+\end{frame}
+
+\begin{frame}[fragile]{Check the response before using it}
+\begin{lstlisting}[language=Python]
+from pymisp import MISPEvent
+from examples.common import expect_model
+
+saved = expect_model(
+    misp.get_event(event_uuid, pythonify=True),
+    MISPEvent,
+)
+\end{lstlisting}
+\note{PyMISP can raise transport/server/decoding exceptions or return an errors dictionary. pythonify=True does not guarantee a typed success. Bulk attribute addition has its own attributes/errors result shape, and some denied single-attribute writes can fall back to proposals. The helpers check expected model types and action results, then the workshop refetches saved state. An empty list from a valid search is different from an error. Avoid printing full responses or verbose logs into shared notebooks.}
+\end{frame}
+
+\section{Read the right data}
+
+\begin{frame}{Choose the search scope first}
+\begin{itemize}
+\item \code{search_index}: event summaries from the index.
+\item \code{search(controller="events")}: matching events.
+\item \code{search(controller="attributes")}: matching attribute rows.
+\item \code{get_event(uuid)}: one known event and its context.
+\end{itemize}
+\note{search defaults to the events controller. This released generic search method accepts events, attributes and objects; other endpoint families have dedicated methods. metadata=True on event search omits attributes and proposals; it is not the same as a full event with no attributes. Choose the controller to match the unit being consumed. Event and attribute limits count different things.}
+\end{frame}
+
+\begin{frame}[fragile]{One typed attribute page}
+\begin{lstlisting}[language=Python]
+rows = misp.search(
+    controller="attributes", return_format="json",
+    type_attribute="domain", value="%.example",
+    include_event_uuid=True, include_event_tags=True,
+    order="Attribute.id ASC", limit=10, page=1,
+    pythonify=True,
+)
+\end{lstlisting}
+\note{Use one\_page from examples/read.py for the checked version. These are reserved synthetic .example domains. published and to\_ids are deliberately omitted so ordinary JSON includes both states in the reviewed source. Attribute results can include attributes contained in objects. The code retrieves one page, not a complete export, and prints UUIDs/types rather than arbitrary incident values.}
+\end{frame}
+
+\begin{frame}{Raw JSON, normalised JSON and typed models differ}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+Interface & Attribute-search result \\
+\midrule
+Raw HTTP JSON & \code{response.Attribute} array \\
+PyMISP JSON & Dictionary containing \code{Attribute} \\
+PyMISP with \code{pythonify=True} & List of \code{MISPAttribute} objects \\
+\bottomrule
+\end{tabular}
+\medskip
+\normalsize Do not reuse the raw-envelope parser on typed results.
+\note{PyMISP's response checker unwraps the outer response field. Event searches have a different normalised shape. The notebook sends the equivalent bounded raw query and compares UUID sets with typed output on a stable fixture. pythonify=False does not restore the raw HTTP envelope. Large pythonified results use memory; retrieve bounded pages and retain only needed fields.}
+\end{frame}
+
+\begin{frame}{Translate parameter names and states deliberately}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+REST JSON & PyMISP keyword \\
+\midrule
+\code{type} & \code{type_attribute} \\
+\code{returnFormat} & \code{return_format} \\
+\code{includeEventUuid} & \code{include_event_uuid} \\
+\code{includeEventTags} & \code{include_event_tags} \\
+\code{enforceWarninglist} & \code{enforce_warninglist} \\
+\bottomrule
+\end{tabular}
+\note{Use numeric 0/1 when restricting published or to\_ids in these search examples; avoid assuming Python False or literal JSON false consistently selects state 0 on every endpoint. This PyMISP release rejects to\_ids=[0,1], although the raw endpoint supports that array. Omit to\_ids for both states in this ordinary JSON query. Unknown kwargs are forwarded, not necessarily validated: a misspelling may silently fail to constrain a query. The released-client contract tests exercise these translations.}
+\end{frame}
+
+\begin{frame}{A matching event can contain nonmatching attributes}
+\begin{itemize}
+\item Event search selects events using the supplied filters.
+\item A full event result can include broader incident context.
+\item Attribute search selects the rows required by a consumer.
+\item Retain event UUID and inherited-tag context when needed.
+\end{itemize}
+\note{Searching events for type domain does not mean every attribute in each full returned event is a domain. The synthetic fixture contains a domain, an object domain and an IP. Compare event and attribute search results without flattening them into an assumed equivalent set. Inherited event tags are context; they do not establish a direct attachment to the attribute. A tag filter is not an access-control grant.}
+\end{frame}
+
+\begin{frame}{Traverse bounded pages without claiming false completion}
+\begin{itemize}
+\item Start at page 1 and use a stable order.
+\item A role cap can make every nonempty page short.
+\item For this ordinary JSON query, continue to an empty page.
+\item Fail on repeated UUIDs or the maximum-page bound.
+\end{itemize}
+\note{collect\_pages is deliberately restricted to the fixed ordinary JSON/SQL-filtered query in examples/read.py. It returns only after an empty page, and raises rather than returning a silently truncated result on repetition or the bound. It accumulates in memory only for this small workshop. It is not a generic exporter, streaming sync engine or database snapshot. Post-query warninglist/decay filters can create empty output pages before the end; do not add them to this loop unchanged.}
+\end{frame}
+
+\begin{frame}[fragile]{Keep polling clocks and checkpoints explicit}
+\begin{lstlisting}[language=Python]
+from time import time
+upper = int(time())
+lower = previous_checkpoint - overlap_seconds
+# Use the same bounds for every page:
+rows = misp.search(controller="attributes",
+                   timestamp=[lower, upper],
+                   limit=100, page=1, pythonify=True)
+\end{lstlisting}
+\note{This is an illustrative first page, not an executable sync client. Define previous\_checkpoint and the initial backfill policy first. Attribute timestamp is the change clock at attribute scope; event\_timestamp is the parent-event clock; publish\_timestamp/last concerns publication; first\_seen/last\_seen are observation times. The timestamp window is inclusive. Upsert by UUID, overlap deliberately and advance the checkpoint only after every page and downstream write succeeds. Deletions, access loss and event-only context changes need reconciliation; ordinary polling is not MISP server-to-server sync.}
+\end{frame}
+
+\begin{frame}{Export format is also a selection policy}
+\begin{itemize}
+\item Ordinary JSON can include unpublished contextual attributes.
+\item Detection formats can default to published and to\_ids records.
+\item Set publication, to\_ids and warninglist policy explicitly.
+\item A text export is a string, not a list of typed attributes.
+\end{itemize}
+\note{Use pythonify=True with JSON in this course. Do not assume changing only return\_format preserves the selected records. For a deliberate detection exercise use return\_format="text", type\_attribute="domain", published=1, to\_ids=1, enforce\_warninglist=True and pythonify=False, with an approved tag policy. The private unpublished fixture should not produce matching default detection output. Warninglists can remove rows after pagination. Synthetic .example output is not a production blocklist.}
+\end{frame}
+
+\section{Build, save and verify}
+
+\begin{frame}[fragile]{Build a private synthetic event offline}
+\begin{lstlisting}[language=Python]
+from pymisp import MISPEvent
+
+event = MISPEvent()
+event.info = "PyMISP 2.5 training / synthetic"
+event.distribution = 0
+event.threat_level_id = 4
+event.analysis = 0
+event.published = False
+\end{lstlisting}
+\note{Adapted from the MISPEvent cells in the upstream FullOverview and archived Introduction notebook. Explicit distribution 0 means your organisation only. Threat level 4 is Undefined; do not confuse that enumeration with analysis or distribution. Published False is a field on the new draft, not a request to publish it. examples/models.py adds a unique run token and makes no server request.}
+\end{frame}
+
+\begin{frame}[fragile]{Add a contextual attribute to the local model}
+\begin{lstlisting}[language=Python]
+attribute = event.add_attribute(
+    "domain", "observer.example", to_ids=False,
+    comment="Synthetic observation only.",
+)
+attribute.comment = "Reviewed synthetic observation."
+print(attribute.uuid, attribute.type)
+\end{lstlisting}
+\note{Use reserved .example names and documentation IPs rather than copied malware indicators from older notebooks. to\_ids=False means this is contextual data, not a deployment-ready detection assertion. event.add\_attribute changes only the local event. misp.add\_attribute sends a server request to an existing event. Preserve the distinction between a model helper and a client method. UUIDs support identity; names and values alone do not.}
+\end{frame}
+
+\begin{frame}[fragile]{Group related observations in a template-backed object}
+\begin{lstlisting}[language=Python]
+from pymisp import MISPObject
+obj = MISPObject("domain-ip", strict=True,
+                 standalone=False)
+obj.add_attribute("domain", value="host.example",
+                  to_ids=False)
+obj.add_attribute("ip", value="192.0.2.10",
+                  to_ids=False)
+event.add_object(obj)
+\end{lstlisting}
+\note{Adapted from the domain-ip example in FullOverview. The first argument to object.add\_attribute is an object relation, not an arbitrary attribute type. The installed PyMISP wheel bundles templates, which can differ from the server's template catalogue. Strict construction plus obj.to\_json(strict=True) checks local template requirements; it does not prove server acceptance or analytical truth. See the object-template course for identifiers, required/requiredOneOf fields and updates. Binary/file generators need optional extras; they are outside this workshop.}
+\end{frame}
+
+\begin{frame}[fragile]{Inspect JSON and round-trip the local model}
+\begin{lstlisting}[language=Python]
+encoded = event.to_json(indent=2)
+restored = MISPEvent()
+restored.load(encoded)
+assert restored.uuid == event.uuid
+print(len(restored.attributes), len(restored.objects))
+\end{lstlisting}
+\note{to\_json returns a JSON string; to\_dict returns a mapping whose values may still include model/date objects. Do not json.dumps a JSON string and accidentally double-encode it. PyMISP's client serialises models for API calls. Successful local round-trip preserves structure and identity but does not establish server validation, permissions or persistence. The offline tests check the actual reference target and strict object-template requirements as well.}
+\end{frame}
+
+\begin{frame}[fragile]{Persist once, then use the server response}
+\begin{lstlisting}[language=Python]
+from examples.common import expect_model
+
+created = expect_model(
+    misp.add_event(event, pythonify=True), MISPEvent)
+verified = expect_model(
+    misp.get_event(created.uuid, pythonify=True), MISPEvent)
+\end{lstlisting}
+\note{The workshop starts from a newly generated draft and only modifies its own confirmed fixture. The response supplies server identity and accepted values; refetch to verify the outcome. Local event.add\_object versus remote misp.add\_object are different operations, as are local attribute.add\_tag and remote misp.tag. Do not automatically retry an ambiguous POST: a timeout can occur after the event was created. Inspect the intended draft UUID before retrying. Publishing is a separate operation and is deliberately absent.}
+\end{frame}
+
+\begin{frame}[fragile]{Update a known attribute and verify its identity}
+\begin{lstlisting}[language=Python]
+from pymisp import MISPAttribute
+attribute = verified.attributes[0]
+attribute.comment = "Reviewed in the workshop."
+updated = expect_model(
+    misp.update_attribute(attribute, pythonify=True),
+    MISPAttribute,
+)
+assert updated.uuid == attribute.uuid
+\end{lstlisting}
+\note{Refetch before editing and make the narrowest intended change. Do not replay an old full event dump as a routine update or reuse stale timestamps as if they were optimistic-concurrency locks. The released client serialises edited model fields and handles timestamps; still verify persisted values. update\_attribute can return a proposal for a non-owned event, so require MISPAttribute rather than assuming any response means the original attribute changed. Check the refetched comment and to\_ids state.}
+\end{frame}
+
+\begin{frame}[fragile]{Reference an attribute from an object}
+\begin{lstlisting}[language=Python]
+obj.add_reference(attribute.uuid, "related-to",
+                  "Synthetic teaching relation.")
+# Add this before saving the event in the workshop.
+\end{lstlisting}
+\begin{itemize}
+\item Keep the referenced UUID and relationship meaning explicit.
+\item A local reference is not a correlation or Galaxy attachment.
+\end{itemize}
+\note{The executable fixture creates the reference before add\_event and verifies it after refetching the saved event. standalone=False retains object references when embedding the object in a full event dump. Cross-event references and references to unseen records have further server constraints and are not exercised here. Do not equate structural validity with evidence that a relationship is true.}
+\end{frame}
+
+\begin{frame}[fragile]{Tag at the intended scope}
+\begin{lstlisting}[language=Python]
+from examples.common import expect_success
+
+expect_success(misp.tag(created.uuid, "tlp:clear"))
+expect_success(misp.tag(attribute.uuid, "tlp:clear",
+                        local=True))
+\end{lstlisting}
+\note{These are remote operations. The operator must make tlp:clear available and the writer needs tagging permission. The first is an event tag; the second is a directly attached local attribute tag. Refetch and inspect the local flag rather than inferring scope from a rendered inherited tag. A handling tag is not a distribution setting or an access-control grant. This private training event remains organisation-only and unpublished regardless of its TLP tag. Tag creation permissions are separate from attachment permissions.}
+\end{frame}
+
+\begin{frame}{Sightings and proposals have distinct meanings}
+\begin{itemize}
+\item \code{MISPSighting} plus \code{add_sighting} records an observation.
+\item Target the intended attribute UUID, not a broad shared value.
+\item Proposal methods create suggested changes for review.
+\item A returned proposal does not confirm an original was edited.
+\end{itemize}
+\note{The workshop submits type 0 with the explicit source Synthetic PyMISP training sighting to its own attribute. It is a teaching record, not an external sensor observation. Type 1 denotes false positives and type 2 expiration; select deliberately. Single-attribute add/update/delete methods in this release can fall back to proposal methods for specific permission-denied responses. Bulk-add results also need per-item inspection. Other capabilities include analyst notes, event reports and feeds; consult current methods rather than assuming retired discussion/template APIs remain available.}
+\end{frame}
+
+\begin{frame}[fragile]{Run the disposable write workshop deliberately}
+\begin{lstlisting}
+python -m examples.workshop --run
+\end{lstlisting}
+\begin{itemize}
+\item Create a private event, attributes, object and reference.
+\item Edit, tag, add a sighting and refetch the result.
+\item Query bounded pages restricted to the new event UUID.
+\item Delete only that fixture and verify it is absent.
+\end{itemize}
+\note{Use an isolated lab and an ordinary permitted writer. The operator prepares tlp:clear and the domain-ip template. The script does not accept an arbitrary existing event UUID for deletion. Its finally block attempts cleanup of the confirmed new event even if verification fails. If creation or cleanup is uncertain, inspect the lab before rerunning. This is a mutating exercise, unlike the default notebook and read-only CLI. Administrative provisioning is not a learner requirement.}
+\end{frame}
+
+\begin{frame}{Handle failures and diagnostics without losing meaning}
+\begin{itemize}
+\item Separate transport failure, API error and valid empty result.
+\item Check saved state before retrying an uncertain write.
+\item Keep keys, private payloads and verbose logs out of notebooks.
+\item Record versions, query policy and validation limits.
+\end{itemize}
+\note{PyMISP uses Python logging and can include server bodies or request data in diagnostics, especially in DEBUG mode. Do not enable debug=True or dump exceptions/responses into shared artifacts on sensitive systems. A timeout is not proof that a write failed, and a boolean success-looking field alone is not proof of the intended state. Use a deliberate retry/backoff policy for read operations and endpoint-specific idempotency/reconciliation for writes. The sample CLI gives concise errors; local protected diagnostics still need review.}
+\end{frame}
+
+\begin{frame}{Use the notebook as an experiment}
+\begin{itemize}
+\item Default: create, inspect and round-trip local models.
+\item Optional live reads: compare raw and typed attribute UUIDs.
+\item Separate opt-in: execute the disposable write workshop.
+\item Clear outputs before sharing; retain source provenance.
+\end{itemize}
+\note{PyMISP-workshop.ipynb uses the executable helpers rather than duplicating a second client implementation. MISP\_LIVE=1 enables server reads; MISP\_LAB\_WRITE=1 additionally enables the disposable write cell. Neither is enabled by default. Configure credentials outside the notebook process and review every cell before opting in. The upstream notebooks provided the model/search teaching sequence; stale setup, real-world samples, automatic publication and admin examples were not carried into this exercise.}
+\end{frame}
+
+\begin{frame}{Make the integration reproducible}
+\begin{itemize}
+\item Pin tested versions and preserve UUID-based identity.
+\item Separate local construction from remote persistence.
+\item Keep scope, selection policy and completion explicit.
+\item Use the README, executable examples and REST API course.
+\end{itemize}
+\note{The README records the source audit, notebook cell provenance, validation results and limits. The earlier lesson, notes, images and published PDF are archived outside standard training. The new material does not claim a production sync engine, full PyMISP upstream CI or every MISP 2.5 patch/role combination. Consult the pinned client implementation and deployed OpenAPI for operations beyond the workshop. Contributions and issue reports are welcome in MISP/PyMISP and MISP/misp-training.}
+\end{frame}
