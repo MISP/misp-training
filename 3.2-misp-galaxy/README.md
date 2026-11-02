@@ -7,8 +7,8 @@ MISP, interpreting relationships and matrices, and contributing reusable knowled
 
 [Slides](slide.tex) · [PDF](../output/3.2-misp-galaxy.pdf) · [Presenter notes](content.tex) · [Offline explorer](examples/explore.py) · [Workshop](#workshop-find-assess-attach) · [Training home](../README.md)
 
-The deck has **28 pages**, including 24 content slides with presenter notes.
-Allow 35–45 minutes for the slides and 25–35 minutes for the workshop. Basic
+The deck has **32 pages**, including 28 content slides with presenter notes.
+Allow 40–50 minutes for the slides and 25–35 minutes for the workshop. Basic
 event/attribute and tagging knowledge is enough. The offline exercise needs no
 MISP account, API key or external provider.
 
@@ -129,6 +129,50 @@ mirroring, controlled by settings and user choices. Review the resulting scope:
 mirroring an attribute assertion to the whole event can change its meaning.
 UI labels and available actions depend on patch level, theme, role and settings.
 
+### Threat-actor walkthrough in MISP 2.5.50
+
+These are real browser captures from a disposable **MISP 2.5.50** instance on
+**1 November 2026**, using the pinned Galaxy revision above. The event, account
+and organisation are synthetic. See [capture provenance and reproduction steps](screenshots/README.md).
+
+1. Open **Galaxies → Threat Actor**, enter **Sofacy** in the filter and inspect
+   the **APT28** result. Sofacy is one of its synonyms. The UI also matches
+   descriptions: the same search returned Snake Wine and White Bear, which
+   mention Sofacy without being the same selected cluster.
+
+   ![Threat Actor collection filtered for Sofacy, showing APT28 and its synonyms](screenshots/misp-2.5-threat-actor-search.png)
+
+2. Open **APT28**. Check the parent Galaxy, individual UUID
+   `5b4ee3ea-eee3-4c8e-8323-85ae32658754`, collection version **357**, source
+   and connector tag. Below the captured identity panel, use the metadata table
+   or JSON view to read `synonyms` and `refs`, including the
+   [MITRE G0007 source](https://attack.mitre.org/groups/G0007/).
+   Numeric IDs vary between installations.
+
+   ![APT28 cluster identity, description, UUID, collection UUID, source and connector tag](screenshots/misp-2.5-threat-actor-cluster.png)
+
+3. On an unpublished, organisation-only synthetic event, use the **event
+   Galaxies** panel's **Add new cluster** control. Choose **misp → Threat Actor**,
+   search for **APT28**, select it and use the final **Submit**. The large
+   collection's picker omits contextual information, so inspect the separate
+   detail view first. **Add new local cluster** selects a different association
+   scope; attribute controls target an attribute instead.
+
+   ![Event cluster picker with misp namespace, Threat Actor family and APT28 selected before Submit](screenshots/misp-2.5-threat-actor-picker.png)
+
+4. Reload the event and verify **Threat Actor → APT28** in its Galaxies panel.
+   Use the magnifying-glass action to reopen cluster details. Inspect the saved
+   event/export for the intended UUID and attachment scope. Detach the training
+   association when finished.
+
+   ![Saved event Galaxies panel containing the APT28 threat-actor attachment](screenshots/misp-2.5-threat-actor-attached.png)
+
+The live API check confirmed the expected actor UUID and connector tag at event
+scope, a **non-local** association and no direct actor attachment on the comment
+attribute. The event stayed **unpublished and organisation-only**. Non-local
+attachment does not override event visibility. The example illustrates a
+cited-report assertion, not a real incident or independent actor attribution.
+
 ## Read matrices and graphs carefully
 
 Galaxy `kill_chain_order` describes matrix tabs/columns; cluster
@@ -225,8 +269,9 @@ checks target permissions and local scope. Do not substitute a repository UUID
 without checking that endpoint's accepted identifier. See the
 [REST API course](../a.7-rest-API/README.md) for trusted TLS and authentication.
 
-Validation in this update is offline plus a MISP source audit. It does not claim
-new live-server testing or current UI screenshots.
+The threat-actor walkthrough above was captured and checked in the disposable
+2.5.50 lab. The technique/attribute, matrix, fork, second-user and sync exercises
+remain optional; this update does not claim execution of that entire live lab.
 
 ## Contribute knowledge with provenance
 
@@ -275,5 +320,9 @@ Pinned evidence:
 Validation: both synthetic JSON definitions and all 136 Galaxy/136 cluster files
 passed the pinned schemas. The offline verifier passed its semantic negative
 cases and real ATT&CK lookup. Standard and presenter-notes PDFs were built in
-three passes and the original assets/PDF were checked byte-for-byte. These are
-source and offline checks, not the full upstream CI suite or live-server tests.
+three passes and the original assets/PDF were checked byte-for-byte. The
+1 November screenshot update additionally exercised threat-actor discovery,
+cluster inspection and event attachment in a disposable MISP 2.5.50 instance,
+with API checks of the saved identity, association scope and event visibility.
+It does not claim the full upstream CI suite, peer synchronisation, fork
+publication or cross-role visibility testing.

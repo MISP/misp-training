@@ -9,7 +9,7 @@
 \item Interpret relations and matrices carefully.
 \item Practise discovery, custom knowledge and contribution.
 \end{itemize}
-\note{Reference MISP 2.5.50 and misp-galaxy 285d1477, reviewed 30 October 2026. Allow 35--45 minutes plus a workshop. Counts and UI capabilities depend on revision, permissions and settings. The README pins the audited sources and supplies reproducible commands.}
+\note{Reference MISP 2.5.50 and misp-galaxy 285d1477, reviewed 30 October 2026. Threat-actor UI captures were made on 1 November 2026 in a disposable 2.5.50 lab using that same Galaxy revision. Allow 40--50 minutes plus a workshop. Counts and UI capabilities depend on revision, permissions and settings. The README pins the sources and supplies reproducible commands.}
 \end{frame}
 
 \section{Explore the knowledge base}
@@ -110,6 +110,41 @@ An attachment does not create a cluster-to-cluster edge.
 \item Prefer UUID-backed identity over manually constructed labels.
 \end{itemize}
 \note{Imported default tag names commonly look like misp-galaxy:type="value". Custom knowledge and naming conventions need not match every imported default. Use the actual metadata supplied by the instance rather than treating a guessed tag string as a complete, accessible cluster definition.}
+\end{frame}
+
+\begin{frame}{Threat Actor: search for Sofacy}
+\screenshot{screenshots/misp-2.5-threat-actor-search.png}
+\medskip
+\small The APT28 result lists Sofacy as a synonym. Inspect the candidate.
+\sources{MISP 2.5.50; synthetic lab, 1 November 2026.}
+\note{Open Galaxies, select Threat Actor and filter for Sofacy. This cropped live capture shows the first result. The actual UI search also returned Snake Wine and White Bear because their descriptions mention Sofacy; unlike the offline explorer, this UI search includes descriptions. A search hit is not an identity-equivalence or attribution decision. Click APT28 to inspect it. Do not use installation-specific numeric IDs as portable identities. Capture provenance and full navigation steps are in screenshots/README.md.}
+\end{frame}
+
+\begin{frame}{Inspect the cluster identity and provenance}
+\screenshot{screenshots/misp-2.5-threat-actor-cluster.png}
+\small Check the cluster UUID, collection, version and source.
+\sources{MISP 2.5.50; synthetic lab, 1 November 2026.}
+\note{This is the Threat Actor APT28 cluster, UUID 5b4ee3ea-eee3-4c8e-8323-85ae32658754, collection version 357. Distinguish its UUID from the collection UUID and from the instance-specific numeric cluster ID. The connector tag is misp-galaxy:threat-actor="APT28". Below this cropped identity panel, inspect the paginated metadata or JSON view for synonyms and original refs, including the MITRE G0007 reference. Review what those sources actually support. The country-of-origin attribution-confidence metadata is not confidence in this synthetic event attachment.}
+\end{frame}
+
+\begin{frame}{Attach the reviewed actor at event scope}
+\screenshot{screenshots/misp-2.5-threat-actor-picker.png}
+\medskip
+\small Event Galaxies: Add new cluster $\rightarrow$ misp $\rightarrow$ Threat Actor.
+\sources{MISP 2.5.50; synthetic lab, 1 November 2026.}
+\note{Use an unpublished organisation-only synthetic event. In the event Galaxies panel, choose Add new cluster, the misp namespace, Threat Actor, then search for and select APT28. The final Submit attaches the selected cluster; earlier namespace/family controls only navigate the picker. This large collection displays a warning that contextual information is omitted, so inspect the separate cluster detail view before selection. Add new local cluster is a different association-scope choice. Attribute-level controls are separate. This capture precedes the final Submit.}
+\end{frame}
+
+\begin{frame}{Verify the saved event attachment}
+\screenshot{screenshots/misp-2.5-threat-actor-attached.png}
+\medskip
+\begin{itemize}
+\item APT28 appears under the event's Threat Actor Galaxy.
+\item Confirm UUID and scope in the saved event/export.
+\item An actor attachment records an assertion requiring evidence.
+\end{itemize}
+\sources{MISP 2.5.50; synthetic lab, 1 November 2026.}
+\note{Reload the event after saving. This focused capture shows the event Galaxies panel, not an attribute-level control. The live API check confirmed the expected UUID and connector tag at event scope, a non-local association, and no direct actor attachment on the comment attribute. The event remained unpublished and organisation-only: a non-local association does not make its event public. Use the magnifying-glass action for cluster details. This lab illustrates a cited-report assertion; it is not a real incident or independent attribution. Detach the training association after the exercise. No peer sync, fork publication or cross-role visibility test is claimed.}
 \end{frame}
 
 \begin{frame}{Keep visibility boundaries separate}
@@ -214,7 +249,7 @@ clusters/training-knowledge.json
 \item Attach to a disposable event; compare attribute and local scope.
 \item Inspect matrix/export results and remove training data.
 \end{itemize}
-\note{The optional live lab uses an unpublished organisation-only event and an authorised user. Fork only when permitted, keep custom knowledge restricted and compare visibility with a second ordinary user. This update validates offline exercises and audits server source; it does not claim new live-server or screenshot testing.}
+\note{The optional live lab uses an unpublished organisation-only event and an authorised user. Follow the captured Threat Actor workflow for APT28, then compare a technique attachment. Fork only when permitted, keep custom knowledge restricted and compare visibility with a second ordinary user. The captured 2.5.50 lab verified only actor discovery, cluster inspection and event attachment with an API scope check; the other live exercises are optional and were not executed for this update.}
 \end{frame}
 
 \begin{frame}{Contribute at the correct source}
