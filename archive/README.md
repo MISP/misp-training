@@ -19,6 +19,7 @@ recommendation to install or use a particular tool.
 | Earlier Galaxy lesson | [Course and original PDF](slide-decks/3.2-misp-galaxy-v1/README.md) | Replaced by the MISP 2.5 Galaxy course |
 | Earlier object-template lesson | [Course and original PDF](slide-decks/3.3-misp-object-template-v1/README.md) | Replaced by the MISP 2.5 object/template course |
 | Earlier REST API workshops | [Lesson, notebooks and original PDF](slide-decks/a.7-rest-API-v1/README.md) | Replaced in standard training by the MISP 2.5 REST API course |
+| Earlier PyMISP deep-dive | [Lesson, notes and original PDF](slide-decks/a.2-pymisp-v1/README.md) | Replaced by the PyMISP 2.5.34.4 / MISP 2.5 course |
 | Legacy training-VM cheat sheet | [Source and VM context](supporting-material/compact-cheatsheet/README.md) | Historical companion with Viper-web details and MISP 2.4-era instructions |
 | Earlier combined training PDFs | [Publication snapshots](publications/combined-training/README.md) | Historical bundles that include the retired Viper course |
 
