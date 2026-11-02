@@ -1,0 +1,44 @@
+{
+  "authors": [
+    "MISP training"
+  ],
+  "category": "context",
+  "description": "Synthetic concepts for an offline Galaxy workshop.",
+  "name": "Training knowledge",
+  "source": "Synthetic training fixture; not operational intelligence",
+  "type": "training-knowledge",
+  "uuid": "af232ad4-7a2f-4e7f-a9f1-65680b4bf0a9",
+  "values": [
+    {
+      "description": "Synthetic observation, not an attribution claim.",
+      "meta": {
+        "refs": [
+          "https://www.misp-project.org/"
+        ],
+        "synonyms": [
+          "Workshop A"
+        ]
+      },
+      "related": [
+        {
+          "dest-uuid": "15daf908-d8e1-46b5-a9ed-ed610366df49",
+          "tags": [],
+          "type": "related-to"
+        }
+      ],
+      "uuid": "b19a792f-3134-49c1-b062-60e558facc38",
+      "value": "Training observation A"
+    },
+    {
+      "description": "Synthetic context for the reference exercise.",
+      "meta": {
+        "refs": [
+          "https://www.misp-project.org/"
+        ]
+      },
+      "uuid": "15daf908-d8e1-46b5-a9ed-ed610366df49",
+      "value": "Training context B"
+    }
+  ],
+  "version": 1
+}

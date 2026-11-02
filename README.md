@@ -44,7 +44,7 @@ find the same material in your checkout.
 | mail2misp | [PDF](https://www.misp-project.org/misp-training/1.2.1-misp-integration-mail2misp.pdf) | [Source](1.2.1-misp-integration-mail2misp/) |
 | Taxonomies and tagging (MISP 2.5) | [PDF](https://www.misp-project.org/misp-training/3-misp-taxonomy-tagging.pdf) | [Source](3-misp-taxonomy-tagging/) |
 | MISP modules | [PDF](https://www.misp-project.org/misp-training/3.1-misp-modules.pdf) | [Source](3.1-misp-modules/) |
-| MISP Galaxy | [PDF](https://www.misp-project.org/misp-training/3.2-misp-galaxy.pdf) | [Source](3.2-misp-galaxy/) |
+| MISP Galaxy (2.5) | [PDF](https://www.misp-project.org/misp-training/3.2-misp-galaxy.pdf) | [Source](3.2-misp-galaxy/) |
 | Object templates (MISP 2.5) | [PDF](https://www.misp-project.org/misp-training/3.3-misp-object-template.pdf) | [Source](3.3-misp-object-template/) |
 | Integrated dashboard (MISP 2.5) | [PDF](https://www.misp-project.org/misp-training/6.0-misp-dashboard.pdf) | [Source](6.0-misp-dashboard/) |
 | PyMISP | [PDF](https://www.misp-project.org/misp-training/a.2-pymisp.pdf) | [Source](a.2-pymisp/) |
