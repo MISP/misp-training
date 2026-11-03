@@ -30,7 +30,7 @@ find the same material in your checkout.
 | Topic | Slides | LaTeX source |
 | --- | --- | --- |
 | Sharing information with MISP — short introduction | [PDF](https://www.misp-project.org/misp-training/0-intro-shorter.pdf) | [Source, languages and editable diagrams](0-intro-shorter/README.md) |
-| Introduction to cybersecurity information sharing | [PDF](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [Source](0-misp-introduction-to-information-sharing/) |
+| Introduction to cybersecurity information sharing | [PDF](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [Source, Dutch edition and editable diagrams](0-misp-introduction-to-information-sharing/README.md) |
 | Using MISP | [PDF](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [Source](1-misp-usage/) |
 | Administration | [PDF](https://www.misp-project.org/misp-training/2-misp-administration.pdf) | [Source](2-misp-administration/) |
 | The MISP standard | [PDF](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [Source](4-misp-standard/) |

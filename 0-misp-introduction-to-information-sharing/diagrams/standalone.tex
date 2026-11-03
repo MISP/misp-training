@@ -1,0 +1,15 @@
+% Compile from this course. Shared diagrams reuse the short introduction sources.
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{FiraSans}
+\usepackage{FiraMono}
+\usepackage{tikz}
+\providecommand{\IntroLanguage}{en}
+\providecommand{\SharingDiagramName}{data-model}
+\input{diagrams/style.tex}
+\begin{document}
+\IfFileExists{diagrams/\SharingDiagramName.tikz}
+  {\input{diagrams/\SharingDiagramName.tikz}}
+  {\input{../0-intro-shorter/diagrams/\SharingDiagramName.tikz}}
+\end{document}

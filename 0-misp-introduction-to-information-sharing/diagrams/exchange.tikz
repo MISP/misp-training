@@ -1,0 +1,9 @@
+% Configured exchange paths. No arrow asserts universal visibility or trust.
+\begin{tikzpicture}
+\node[sharing small] (a) at (0,1.4) {\textbf{\IntroLabel{instance-a}}\\\IntroLabel{instance-a-body}};
+\node[sharing small] (b) at (7.9,1.4) {\textbf{\IntroLabel{instance-b}}\\\IntroLabel{instance-b-body}};
+\draw[intro arrow] (a.east) -- node[intro edge label,above,text width=3.25cm] {\IntroLabel{selected-exchange}} (b.west);
+\draw[intro arrow] (b.south) -- ++(0,-.8) -| node[pos=.25,intro edge label,below,text width=3.6cm] {\IntroLabel{return-feedback}} (a.south);
+\node[sharing small] (c) at (0,-3.0) {\textbf{\IntroLabel{isolated-instance}}\\\IntroLabel{isolated-body}};
+\node[intro edge label,text width=5.8cm] at (6.1,-3.0) {\IntroLabel{no-universal-peer}};
+\end{tikzpicture}

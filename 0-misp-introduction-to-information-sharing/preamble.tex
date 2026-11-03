@@ -1,0 +1,10 @@
+% Shared setup for the full English and Dutch introduction.
+\usetheme[numbering=progressbar]{misp}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs,array,tikz}
+\input{diagrams/style.tex}
+\newcommand{\SharingDiagram}[1]{\centering\resizebox{\textwidth}{!}{\input{diagrams/#1.tikz}}\par}
+\newcommand{\SharedIntroDiagram}[1]{\centering\resizebox{\textwidth}{!}{\input{../0-intro-shorter/diagrams/#1.tikz}}\par}
+\newcommand{\SharingCase}{\texttt{login-support.example}}
+\author{\small MISP Project / CIRCL}
+\institute{\url{https://www.misp-project.org/}}
