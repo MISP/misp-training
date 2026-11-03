@@ -1,0 +1,10 @@
+% Responsibility scopes, not a reporting hierarchy. One person can hold several.
+\begin{tikzpicture}
+\foreach \name/\x/\title in {site/0/Site administrator,org/4.8/Organisation admin,operator/9.6/Platform operator} {
+ \node[admin heading,text width=3.9cm,minimum height=.8cm] (\name-title) at (\x,1.7) {\title};
+}
+\node[admin box,text width=3.9cm,minimum height=2.5cm] at (0,-.25) {Instance-wide MISP policy\\Organisations and roles\\Sharing and diagnostics};
+\node[admin box,text width=3.9cm,minimum height=2.5cm] at (4.8,-.25) {Own organisation\\User management\\Account lifecycle\\No site settings};
+\node[admin box,text width=3.9cm,minimum height=2.5cm] at (9.6,-.25) {Services and deployment\\Database, files and secrets\\Backups and recovery};
+\node[admin label,text width=12.9cm] at (4.8,-2.3) {MISP role permissions and host access are separate. Review the actual role flags and deployment policy.};
+\end{tikzpicture}

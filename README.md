@@ -32,7 +32,7 @@ find the same material in your checkout.
 | Sharing information with MISP — short introduction | [PDF](https://www.misp-project.org/misp-training/0-intro-shorter.pdf) | [Source, languages and editable diagrams](0-intro-shorter/README.md) |
 | Introduction to cybersecurity information sharing | [PDF](https://www.misp-project.org/misp-training/0-misp-introduction-to-information-sharing.pdf) | [Source, Dutch edition and editable diagrams](0-misp-introduction-to-information-sharing/README.md) |
 | Using MISP | [PDF](https://www.misp-project.org/misp-training/1-misp-usage.pdf) | [Source, lab and MISP 2.5 screenshots](1-misp-usage/README.md) |
-| Administration | [PDF](https://www.misp-project.org/misp-training/2-misp-administration.pdf) | [Source](2-misp-administration/) |
+| Administration | [PDF](https://www.misp-project.org/misp-training/2-misp-administration.pdf) | [Source, lab and MISP 2.5 screenshots](2-misp-administration/README.md) |
 | The MISP standard | [PDF](https://www.misp-project.org/misp-training/4-misp-standard.pdf) | [Source](4-misp-standard/) |
 | MISP best practices | [PDF](https://www.misp-project.org/misp-training/a.4-best-practices.pdf) | [Source](a.4-best-practices/) |
 

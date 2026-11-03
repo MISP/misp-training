@@ -1,319 +1,220 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
-\lstdefinelanguage{json}{
-    basicstyle=\ttfamily\footnotesize,
-    numbers=left,
-    numberstyle=\ttfamily\footnotesize,
-    stepnumber=1,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{background},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
-
-\begin{frame}[t,plain]
+\begin{frame}
 \titlepage
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - VM}
-    \begin{itemize}
-    \item VM can be downloaded at \url{https://www.circl.lu/misp-training/}
-    \item Credentials
-        \begin{itemize}
-            \item MISP admin: admin@admin.test/admin
-            \item SSH: misp/Password1234
-
-        \end{itemize}
-    \item 2 network interfaces
-        \begin{itemize}
-            \item NAT
-            \item Host only adapter
-        \end{itemize}
-    \item Start the enrichment system by typing:
-        \begin{itemize}
-            \item cd /home/misp/misp-modules/bin
-            \item python3 misp-modules.py
-        \end{itemize}
-   \end{itemize}
+\begin{frame}{What you will practise}
+\begin{itemize}
+\item Delegate access without confusing account and organisation scope.
+\item Define an audience and verify it with ordinary accounts.
+\item Review knowledge bases, connections and instance defaults.
+\item Distinguish jobs, workers and scheduled tasks.
+\item Plan evidence, recovery and a controlled update.
+\end{itemize}
+\note{Allow 90--120 minutes with the checkpoints. This is an English administration course; the usage course covers analyst tasks. Screenshots are from a disposable MISP 2.5.50 instance in its default English theme. This release was the latest published MISP release checked on 3 November 2026. Patch versions, roles, settings and deployment methods can change controls.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Administration}
-    \begin{itemize}
-    \item Plan for this part of the training
-        \begin{itemize}
-            \item User and Organisaton administration
-            \item Sharing group creation
-            \item Templates
-            \item Tags and Taxonomy
-            \item Whitelisting and Regexp entries
-            \item Setting up the synchronisation
-            \item Scheduled tasks
-            \item Feeds
-            \item Settings and diagnostics
-            \item Logging
-            \item Troubleshooting and updating
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Prepare a reversible lab}
+\begin{itemize}
+\item Use a disposable instance and operator-provided accounts.
+\item Keep all example records synthetic and unpublished.
+\item Define the expected change, owner and rollback before editing.
+\item Use disabled peer/feed records with documentation-only URLs.
+\end{itemize}
+\note{The old VM defaults and repair instructions are historical. No shared password, production key, real peer, feed provider or sensitive incident is needed. This reference uses loopback-only containers, fresh credentials and .test/.example identities. Review configured consumers before the lesson. The backup/restore and production-upgrade sections are procedures to rehearse, not claims that a production restore was performed here.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Creating Users}
-        \begin{itemize}
-            \item Add new user (andras.iklody@circl.lu)
-            \item NIDS SID, Organisation, disable user
-            \item Fetch the PGP key
-            \item Roles
-            \begin{itemize}
-                \item Re-using standard roles
-                \item Creating a new custom role
-            \end{itemize}
-            \item Send out credentials
-        \end{itemize}
+\begin{frame}{Separate the responsibility scopes}
+\ShowAdminDiagram{responsibilities}
+\note{A site administrator has broad MISP privileges, including visibility that ordinary sharing rules do not give other users. An organisation administrator manages delegated responsibilities within their organisation; the role does not imply general site settings or host access. The platform operator owns deployment, services, storage and recovery. One person can hold several responsibilities, but the permissions and approval paths remain distinct.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Creating Organisations}
-        \begin{itemize}
-            \item Adding a new organisation
-            \item UUID
-            \item Local vs External organisation
-            \item Making an organisation self sustaining with Org Admins
-            \item Creating a sync user
-        \end{itemize}
+\begin{frame}{Inspect actual role flags}
+\AdminShot{misp-2.5-role-permissions.png}{Read the permission level and individual flags. A role name alone is not an access policy.}
+\note{The capture inspects the standard Org Admin role. Compare it with User, Publisher, Read Only, Sync user and the site-admin role before assigning accounts. Existing role definitions can be customised. Prefer a suitable standard role or a reviewed custom role instead of granting site administration for convenience. The lab separately checks that Org Admin cannot read site settings.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Sharing groups}
-        \begin{itemize}
-            \item The concept of a sharing group
-            \item Creating a sharing group
-            \item Adding extending rights to an organisation
-            \item Include all organisations of an instance
-            \item Not specifying an instance
-            \item Making a sharing group active
-            \item Reviewing the sharing group
-        \end{itemize}
+\begin{frame}{Create a local organisation deliberately}
+\AdminShot{misp-2.5-organisation-add.png}{For a new local organisation, choose Local organisation and a stable UUID; reuse known partner UUIDs.}
+\note{The UI example creates Practice Partner, a synthetic local organisation. Local means accounts can belong to it on this instance; an external organisation is a known identity without local accounts. Reuse an already established organisation UUID when representing the same real partner across instances. Generate a new identity only when it is actually new. An organisation name is not a unique global identity.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Templates}
-        \begin{itemize}
-            \item Why templating?
-            \item Create a basic template
-            \item Text fields
-            \item Attribute fields
-            \item Attachment fields
-            \item Automatic tagging
-        \end{itemize}
+\begin{frame}{Review organisation identity after saving}
+\AdminShot{misp-2.5-organisations.png}{Check local/external status and UUIDs before adding users or sharing-group membership.}
+\note{The reference contains only synthetic organisations: the host lab, a training partner, an outside control, an external identity and the organisation created through the UI. Do not use site-admin visibility as a test of ordinary-user visibility. Organisational ownership, a social community and an instance are different concepts. Assign an accountable organisation administrator where appropriate.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Tags and Taxonomies}
-        \begin{itemize}
-            \item git submodule init \&\& git submodule update
-            \item Loading taxonomies
-            \item Enabling taxonomies and associated tags
-            \item Tag management
-            \item Exportable tags
-        \end{itemize}
+\begin{frame}{Provision a user with the intended scope}
+\AdminShot{misp-2.5-user-add.png}{Select the correct organisation and role. Deliver access through your approved onboarding process.}
+\note{The capture shows delegate@example.test assigned Org Admin in Practice Partner before password entry. Set a fresh password or use the approved identity-provider workflow; do not copy a training default. Review notification choices, required first-login changes, MFA/SSO policy and recovery. This local example does not send credentials by email; no password or generated key is captured. A screenshot of a completed form is not a substitute for verifying the saved account.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Object Templates}
-        \begin{itemize}
-            \item git submodule init \&\& git submodule update
-            \item Enabling objects (and what about versioning)
-        \end{itemize}
+\begin{frame}{Review lifecycle and delegated administration}
+\AdminShot{misp-2.5-users.png}{Verify the saved organisation, role and account status; disable retired access under the offboarding plan.}
+\note{The synthetic retired account is disabled, and its API access is tested as denied. The newly created delegate belongs to Practice Partner, not the host organisation. Offboarding also reviews keys, active sessions, group responsibilities, scheduled jobs and integrations owned by the account. Retention and deletion follow local policy; do not delete records merely to remove a login.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Whitelisting, Regexp entries, Warninglists}
-        \begin{itemize}
-            \item Block from exports - whitelisting
-            \item Block from imports - blacklisting via regexp
-            \item Modify on import - modification via regexp
-            \item Maintaining the warninglists
-        \end{itemize}
+\begin{frame}{Issue a key for a defined client}
+\AdminShot{misp-2.5-authkey-scope.png}{Use a purpose, expiry, allowed sources and Read only where appropriate. Never capture the generated secret.}
+\note{Advanced auth keys are enabled in the reference. The form is captured before generation; the live check uses a separately prepared read-only key for the ordinary analyst. It can read an authorised private record and receives 403 for an attempted write. A read-only key still permits data retrieval and is not suitable for a sync identity. Protect the one-time secret in an approved store and plan rotation without breaking every consumer at once.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Setting up the synchronisation}
-        \begin{itemize}
-            \item Requirements - versions
-            \item Pull/Push
-            \item One way vs Two way synchronisation
-            \item Exchanging sync users
-            \item Certificates
-            \item Filtering
-            \item Connection test tool
-            \item Previewing an instance
-            \item Cherry picking and keeping the list updated
-        \end{itemize}
+\begin{frame}{Define membership before topology}
+\AdminShot{misp-2.5-sharing-group-organisations.png}{Choose explicit member organisations and review Extend rights. Membership does not require a peer connection.}
+\note{Training A and B contains the host lab and Training Partner. The outside control is not a member. Extend rights allow an organisation to broaden membership and should be reviewed deliberately. The reference group is active, non-roaming and limited to the local instance, without All orgs. Do not select an entire instance merely to make a demonstration work.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Scheduled tasks}
-        \begin{itemize}
-            \item How to schedule the next execution
-            \item Frequency, next execution
-            \item What happens if a job fails?
-        \end{itemize}
+\begin{frame}{Inspect the saved sharing group}
+\AdminShot{misp-2.5-sharing-group-review.png}{Review organisations, instance constraints, Active and Roaming together before using the group.}
+\note{A sharing group defines a permitted audience under MISP rules; it does not establish trust, ownership or a legal basis to share. The reference has no external delivery path. Review event, object and attribute distribution with membership and server constraints. Changes to groups can affect future visibility or exchange, so record the intended audience and test with representative accounts.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Setting up the synchronisation}
-        \begin{itemize}
-            \item MISP Feeds and their generation
-            \item PyMISP
-            \item Default free feeds
-            \item Enabling a feed
-            \item Previewing a feed and cherry picking
-            \item Feed filters
-            \item Auto tagging
-        \end{itemize}
+\begin{frame}{Verify visibility with ordinary identities}
+\small
+\begin{tabular}{@{}p{.33\linewidth}p{.60\linewidth}@{}}
+\toprule
+Reference check & Observed result \\
+\midrule
+Host analyst & Reads the private and group events. \\
+Partner ordinary user & Reads the group event; private event denied. \\
+Outside ordinary user & Group event denied. \\
+Org Admin & Site settings denied. \\
+\bottomrule
+\end{tabular}
+\note{All events remain unpublished. The fixture uses distribution 0 for the private control and 4 plus the group ID for the group record, with attributes inheriting the event. API checks use separate ordinary accounts; a site administrator would defeat this test because of privileged visibility. This is a scoped local check, not a complete audit of object overrides, sync paths, exports or every role.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Settings and diagnostics}
-    \begin{itemize}
-        \item Settings
-        \begin{itemize}
-            \item Settings interface
-            \item The tabs explained at a glance
-            \item Issues and their severity
-            \item Setting guidance and how to best use it
-        \end{itemize}
-     \end{itemize}
+\begin{frame}{Prepare taxonomies and tags before class}
+\AdminShot{misp-2.5-taxonomy.png}{Update the bundled catalogue through the deployment workflow, then enable the taxonomy and required tags.}
+\note{The tlp taxonomy and its tags are enabled in this lab. Select TLP 2.0 names such as tlp:clear; bundled catalogues may retain historical entries too. Loading knowledge files, enabling a taxonomy and enabling its tags are separate steps. Review exportable versus local associations. A handling tag does not enforce event visibility by itself. Record the knowledge-base version alongside the application version.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Settings and diagnostics continued}
-        \begin{itemize}
-            \item Basic instance setup
-            \item Additional features released as hotfixes
-            \item Customise the look and feel of your MISP
-            \item Default behaviour (encryption, e-mailing, default distributions)
-            \item Maintenance mode
-            \item Disabling the e-mail alerts for an initial sync
-        \end{itemize}
+\begin{frame}{Review object templates and versions}
+\AdminShot{misp-2.5-object-templates.png}{Inspect template UUID, version, requirements and active state before users create structured records.}
+\note{The reference uses domain-ip UUID 43b3b146-77eb-4931-b4cc-b66c60f28734, version 11. Numeric template IDs vary. Updating the catalogue does not mean that every existing object is silently rewritten to the latest template. Review migrations or template upgrades through the supported workflow. Event templates, object templates, taxonomies and Galaxy knowledge have different purposes; use the dedicated courses for modelling and enrichment.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Settings and diagnostics continued}
-        \begin{itemize}
-        \item Plugins
-        \begin{itemize}
-            \item Enrichment Modules
-            \item RPZ
-            \item ZeroMQ
-        \end{itemize}
-        \end{itemize}
+\begin{frame}{Treat a warninglist hit as a review signal}
+\AdminShot{misp-2.5-warninglist-check.png}{The enabled bundled list matches 192.0.2.25. A match does not itself block ingestion, export or an action.}
+\note{The demonstration enables List of RFC 5735 CIDR blocks and checks a reserved documentation address. The reference name is the actual bundled list name. The checkValue API confirms the hit. Warninglists identify potentially misleading values; they do not supply a universal false-positive verdict. A private, shared or documentation address can still be relevant context. Enforcement depends on the selected workflow and filters.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Settings and diagnostics continued}
-    \begin{itemize}
-        \item Diagnostics
-        \begin{itemize}
-            \item Updating MISP
-            \item Writeable Directories
-            \item PHP settings
-            \item Dependency diagnostics
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Distinguish review aids from input/output controls}
+\begin{itemize}
+\item Warninglists flag values for review.
+\item Allowlist/export filters can change selected outputs.
+\item Regex rules can reject or modify supported input paths.
+\item Test scope and side effects with a small fixture first.
+\end{itemize}
+\note{Do not present warninglists, allowedlists, correlation exclusions and regex replacement as interchangeable global security controls. Their effects depend on endpoint, configuration and export/query options. A broad regex can damage useful data. Use provenance, source assessment and explicit consumer policy alongside tooling, and inspect saved values after a rule change. This course does not mutate global regex rules.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Settings and diagnostics continued}
-        \begin{itemize}
-        \item Workers
-        \begin{itemize}
-            \item What do the background workers do?
-            \item Queues
-            \item Restarting workers, adding workers, removing workers
-            \item Worker diagnostics (queue size, jobs page)
-            \item Clearing worker queues
-            \item Worker and background job debugging
-        \end{itemize}
-        \end{itemize}
+\begin{frame}{Stage a peer without transferring data}
+\AdminShot{misp-2.5-disabled-peer.png}{The reference peer uses a reserved .test URL and has transfer directions disabled. No connection test is run.}
+\note{The record is synthetic and has a nonfunctional, privately stored key that is never captured. A production connection needs an agreed counterpart, a limited remote sync identity, correct organisation identity and verified TLS trust. Review event push/pull as well as sightings, clusters, analyst data and other supported scopes. A saved connection is not a successful exchange test.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Settings and diagnostics continued}
-    \begin{itemize}
-        \item Seeking help
-        \begin{itemize}
-            \item Dump your settings to a file!
-            \item Make sure to sanitise it
-            \item Send it to us together with your issue to make our lives easier
-            \item Ask Github (https://github.com/MISP/MISP)
-            \item Have a chat with us on gitter (https://gitter.im/MISP/MISP)
-            \item Ask the MISP mailing list
-            \item If this is security related, drop us a PGP encrypted email to \url{mailto:info@circl.lu}
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Validate sync policy in a controlled window}
+\begin{itemize}
+\item Agree direction, scope, filters and responsibility with the peer.
+\item Validate TLS and the remote identity; avoid bypassing verification.
+\item Use a small authorised test record and inspect both ends.
+\item Check changes, deletions, feedback and failure behaviour.
+\end{itemize}
+\note{Version compatibility, permissions, distribution, sharing groups and push/pull filters all affect results. A remote site-admin key is not a shortcut. Never use a read-only client key as a sync-user substitute. The local reference only verifies disabled configuration; it does not contact the .test endpoint or claim push/pull, peer deletion propagation or remote visibility validation. Follow the deployment and community runbooks for a real test.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Logging}
-        \begin{itemize}
-            \item Audit logs in MISP
-            \item Enable IP logging / API logging
-            \item Search the logs, the fields explained
-            \item External logs
-            \begin{itemize}
-                \item /var/www/MISP/app/tmp/logs/error.log
-                \item /var/www/MISP/app/tmp/logs/resque-worker-error.log
-                \item /var/www/MISP/app/tmp/logs/resque-scheduler-error.log
-                \item /var/www/MISP/app/tmp/logs/resque-[date].log
-                \item /var/www/MISP/app/tmp/logs/error.log
-                \item apache access logs
-            \end{itemize}
-        \end{itemize}
+\begin{frame}{Stage a feed before enabling it}
+\AdminShot{misp-2.5-disabled-feed.png}{Inspect provider, format and destination policy while Enabled and caching remain off.}
+\note{The synthetic MISP feed points to https://feeds.example.test/misp/ and is not fetched. A production feed requires review of provenance, terms, freshness, overlap and handling, then a bounded preview/import test. Fetching, caching and importing are different operations; a feed is not automatically a bidirectional community. Check defaults, event/attribute distribution and tagging before enabling scheduled processing.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Updating MISP}
-        \begin{itemize}
-            \item git pull
-            \item git submodule init \&\& git submodule update
-            \item reset the permissions if it goes wrong according to the INSTALL.txt
-            \item when MISP complains about missing fields, make sure to clear the caches
-            \begin{itemize}
-                \item in /var/www/MISP/app/tmp/cache/models remove myapp*
-                \item in /var/www/MISP/app/tmp/cache/persistent remove myapp*
-            \end{itemize}
-            \item No additional action required on hotfix level
-            \item Read the migration guide for major and minor version changes
-        \end{itemize}
+\begin{frame}{Make defaults explicit and verify their scope}
+\AdminShot{misp-2.5-default-distribution.png}{The lab sets \AdminField{MISP.default_event_distribution} to organisation-only. Existing records retain their saved scopes.}
+\note{The previous reference value was community-only. The lab changes this one non-secret setting through the supported serverSettingsEdit endpoint, checks its saved value and inspects a new event form. The two existing fixtures remain distribution 0 and 4. Defaults are not a retroactive privacy repair and API consumers may specify their own values. Review publication, attribute and object defaults separately under policy.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Administrative tools}
-        \begin{itemize}
-            \item Upgrade scripts for minor / major versions
-            \item Maintenance scripts
-        \end{itemize}
+\begin{frame}{Read diagnostics as evidence}
+\AdminShot{misp-2.5-diagnostics.png}{Review the reported version, dependencies and deployment-specific warnings; investigate the cause of each relevant issue.}
+\note{The local reference intentionally has no production mail relay or peer and is not a production-readiness certificate. Container paths, optional features and host-managed services differ across deployments. A green PHP or worker check alone does not establish backup quality or end-to-end delivery. Capture only selected non-secret diagnostics, not an unreviewed settings dump.}
 \end{frame}
 
+\begin{frame}{Workers execute jobs; queues hold pending work}
+\AdminShot{misp-2.5-workers.png}{Check queue, process, owner and status. A healthy process and an empty queue are different observations.}
+\note{This reference uses SimpleBackgroundJobs with Redis and Supervisor, including a scheduler worker. The captured UI is not the old Resque-specific log model. Inspect the queue used by the failing job, process health, permissions and its error before restarting. Avoid Kill all workers or clearing queues as a routine first response; queued work may be important or unsafe to repeat.}
+\end{frame}
+
+\begin{frame}{Follow a job through to completion}
+\AdminShot{misp-2.5-jobs.png}{Inspect job type, progress, live status and message; keep enough evidence to diagnose failures.}
+\note{A controlled bundled-taxonomy refresh is requested through the scheduled-task workflow and checked in the jobs view. The source is local knowledge files, not an external provider. Queueing successfully does not prove execution completed. Check the task/job link, worker and final state; a retry may repeat side effects. Retain relevant errors before purging job records. No queue is cleared in the lab.}
+\end{frame}
+
+\begin{frame}{A schedule is a request for future work}
+\AdminShot{misp-2.5-scheduled-tasks.png}{Review action, execution identity, interval, next run and last job before enabling or forcing a task.}
+\note{The current reference has a Scheduled Tasks view backed by a scheduler worker. Confirm the active scheduler for your deployment and avoid duplicate host/container schedulers. The lab force-runs only the existing local updateTaxonomies task after checking its action and identity. It does not force a feed, peer or notification task. Next-run times and last-job results require a time-zone-aware interpretation.}
+\end{frame}
+
+\begin{frame}{Use a narrow audit question}
+\AdminShot{misp-2.5-audit-log.png}{Filter the audit log to Organisation changes in this synthetic lab, then inspect actor, time and action.}
+\note{Audit and application/runtime logs serve different purposes. The capture excludes key/user-password changes and shows synthetic organisation activity. Logs can contain sensitive inputs, identifiers and internal addresses; apply access controls, retention and review before sharing. IP/API logging choices affect privacy and storage. Record the time zone and correlation/request identifier where useful, and preserve evidence during incident handling.}
+\end{frame}
+
+\begin{frame}{Trace the failing layer before changing it}
+\begin{itemize}
+\item Start with user-visible symptom, time and affected record/job.
+\item Check MISP audit/application logs and the relevant worker error.
+\item Then inspect web/PHP, database, Redis and service logs.
+\item Share a reviewed diagnostic excerpt through the appropriate channel.
+\end{itemize}
+\note{The pinned container uses app/tmp/logs/misp-workers.log and misp-workers-errors.log for its Supervisor workers; host/service logging may differ. Inspect the actual configuration instead of assuming old resque filenames or Apache. A settings export can contain secrets; select or sanitise fields before posting an issue. Use the published SECURITY.md route for vulnerabilities, not a public issue containing keys or sensitive incident data.}
+\end{frame}
+
+\begin{frame}{Prepare recovery before the change}
+\ShowAdminDiagram{change-cycle}
+\note{Define a recovery point objective and recovery time objective. Keep a consistent database backup, attachments/files, required configuration and cryptographic material under access and encryption policy. Document queue handling and external dependencies. Rehearse restoration in an isolated target, verify data, permissions, keys and application operations, and measure time. A job report or a VM snapshot alone is not evidence that a complete restore works. This course supplies a rehearsal checklist; it does not claim a completed restore test.}
+\end{frame}
+
+\begin{frame}{Use the update path for the deployment}
+\begin{itemize}
+\item Read release notes and migration/dependency requirements.
+\item Rehearse with a representative copy and recovery plan.
+\item Use the supported package, container or source procedure.
+\item Validate access, schema, data, background work and integrations.
+\item Monitor, document and apply the rehearsed recovery criteria.
+\end{itemize}
+\note{Hotfix releases can include schema, dependency or behavioural changes. Do not teach git pull, blanket permission resets or cache deletion as a universal update recipe. Pin image versions/digests and retain compatible configuration for container deployments; follow the actual supported guide for source/package installations. A code downgrade can be unsafe after a database migration. Knowledge-base updates are separate changes whose versions also need recording. No live production update is executed here.}
+\end{frame}
+
+\begin{frame}{Triage a failed refresh}
+\small
+\begin{tabular}{@{}p{.32\linewidth}p{.62\linewidth}@{}}
+\toprule
+Observation & Next useful check \\
+\midrule
+Task due, no job & Scheduler health, execution identity and task state. \\
+Job queued, not running & Correct queue, worker process and permissions. \\
+Job failed & Relevant error, input/source and dependency health. \\
+Job completed, wrong result & Saved data, scope, version and consumer expectations. \\
+\bottomrule
+\end{tabular}
+\note{Ask learners to preserve evidence and propose the smallest justified action. A job can complete while producing an unsuitable result. Avoid restarting everything, clearing queues or retrying a high-impact operation without checking idempotency. The exercise can use a paper failure scenario; do not deliberately break shared infrastructure just to obtain a red screenshot.}
+\end{frame}
+
+\begin{frame}{Checkpoint: delegate and verify an audience}
+\begin{itemize}
+\item Create a synthetic organisation and delegated account.
+\item Review a client key with a defined purpose and expiry.
+\item Limit a sharing group to the intended two organisations.
+\item Verify group/private access with member and outside users.
+\end{itemize}
+\note{Allow 15 minutes in a disposable lab, or use the supplied fixture and API check results as discussion evidence. Never use site-admin access as the audience test. Check saved identity, flags and record distribution rather than only the form. The lab guide lists expected outcomes and does not contain passwords, generated keys or browser sessions. Do not broaden a group to work around an unexplained failure.}
+\end{frame}
+
+\begin{frame}{Checkpoint: explain the operational handover}
+\begin{itemize}
+\item Locate a relevant setting, diagnostic, worker, task and audit entry.
+\item Explain how to verify a disabled connection before enabling it.
+\item Describe a restore rehearsal and update acceptance criteria.
+\item Record owner, evidence, monitoring and the next review date.
+\end{itemize}
+\note{Allow another ten minutes. A useful handover states what was changed, what was tested, what remains untested and who owns the follow-up. Use the lab guide, recovery checklist and linked specialist courses. Remove only disposable fixtures under the lab plan. The goal is controlled, observable administration with a tested audience and a credible recovery process, rather than a tour of every privileged button.}
+\end{frame}
