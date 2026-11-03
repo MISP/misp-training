@@ -1,0 +1,24 @@
+% Solid: containment. Dashed: links. Deliberately omits JSON details.
+\begin{tikzpicture}
+  \node[standard core,text width=2.4cm] (event) at (0,2.1)
+    {\textbf{Event}\\Context and audience};
+  \node[standard box,text width=2.4cm] (attribute) at (-3.3,.3)
+    {\textbf{Attribute}\\Typed value};
+  \node[standard box,text width=2.4cm] (object) at (0,.3)
+    {\textbf{Object}\\Structured entity};
+  \node[standard box,text width=2.4cm] (report) at (3.3,.3)
+    {\textbf{EventReport}\\Narrative};
+  \node[standard box,text width=2.4cm] (parts) at (0,-1.3)
+    {\textbf{Attributes}\\Values with roles};
+  \node[standard box,text width=2.5cm] (analyst) at (-3.3,-2.9)
+    {\textbf{Analyst data}\\Note, Opinion,\\Relationship};
+  \draw[standard arrow] (event) -- (attribute);
+  \draw[standard arrow] (event) -- (object);
+  \draw[standard arrow] (event) -- (report);
+  \draw[standard arrow] (object) -- (parts);
+  \draw[standard link] (object.west) -- (attribute.east);
+  \draw[standard link] (analyst.north) -- node[standard label,rotate=90,above]{UUID + type} (attribute.south);
+  \draw[standard link] (analyst.east) -- (parts.south west);
+  \node[standard label,align=left,anchor=west] at (.5,-2.9)
+    {Solid: contains\\Dashed: reference or analyst link};
+\end{tikzpicture}
