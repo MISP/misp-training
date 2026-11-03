@@ -1,0 +1,7 @@
+\usetheme[numbering=progressbar]{misp}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz,booktabs,array}
+\input{diagrams/style.tex}
+\newcommand{\AdminField}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\AdminShot}[2]{\centering\includegraphics[width=\linewidth,height=.58\paperheight,keepaspectratio]{screenshots/#1}\par\vspace{.35em}{\small #2\par}}
+\newcommand{\ShowAdminDiagram}[1]{\centering\resizebox{\linewidth}{!}{\input{diagrams/#1.tikz}}\par}

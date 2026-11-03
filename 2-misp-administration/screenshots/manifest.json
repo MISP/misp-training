@@ -1,0 +1,311 @@
+{
+  "captured_on": "2026-11-03",
+  "misp_version": "2.5.50",
+  "displayed_source_commit": "fc99c9e3fc85beddc6ef18835359f3c8b7f44608",
+  "version_evidence": [
+    "container app VERSION.json",
+    "diagnostics UI; public source commit verified on GitHub"
+  ],
+  "backend_image": {
+    "tag": "ghcr.io/misp/misp-docker/misp-core:v2.5.50",
+    "digest": "sha256:1bf559bf280021da2adead9e715a8c84786e378b107e34e8b834d518596fcab7"
+  },
+  "frontend_image": {
+    "tag": "ghcr.io/misp/misp-docker/misp-nginx:v2.5.50",
+    "digest": "sha256:0ddc6730db7433220b821d6aa640cb3205ec59166364daf50272090bf4d066cd"
+  },
+  "browser": {
+    "automation": "Playwright 1.62.1",
+    "engine": "Chromium",
+    "viewport_css_px": [
+      1600,
+      1100
+    ],
+    "device_scale_factor": 2,
+    "timezone": "UTC",
+    "language": "English",
+    "theme": "default MISP"
+  },
+  "local_base_url": "http://localhost:8082",
+  "actor": "operator@example.test (site administrator)",
+  "knowledge": {
+    "galaxy_commit": "285d147754492321eed5deda8af6e4196b465ad8",
+    "taxonomies": "bundled with pinned backend image; tlp v10",
+    "warninglists": "bundled with pinned backend image; RFC 5735 list enabled",
+    "object_template": {
+      "name": "domain-ip",
+      "uuid": "43b3b146-77eb-4931-b4cc-b66c60f28734",
+      "version": 11
+    }
+  },
+  "capture_method": "Direct browser PNG clips in CSS pixels; no UI reconstruction, overlays or pixel editing. IDs are installation-specific. Public commit hash is version provenance, not a credential.",
+  "scope": "Synthetic disposable local lab; no production data, generated secrets or live external peers/feeds. Access checks use separate ordinary API identities.",
+  "captures": [
+    {
+      "file": "misp-2.5-role-permissions.png",
+      "route": "/roles/view/2",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 900,
+        "height": 560
+      },
+      "visible_credential_check": "clear",
+      "width_px": 1800,
+      "height_px": 1120,
+      "sha256": "159dbe445a1b0e86e3714b8f7ab759c4f9a06ef7d37f831710f47197f19ae145"
+    },
+    {
+      "file": "misp-2.5-organisation-add.png",
+      "route": "/admin/organisations/add",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 950,
+        "height": 430
+      },
+      "visible_credential_check": "clear",
+      "width_px": 1900,
+      "height_px": 860,
+      "sha256": "292003a2e44c08a8208a2aa76dac662734383bdfa8d11a7138ee2a2f0a0da833"
+    },
+    {
+      "file": "misp-2.5-organisations.png",
+      "route": "/organisations/index/scope:all",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 440
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 880,
+      "sha256": "816b942662b5ce9047ff98bf75a5dd9a5d4c311d914bd28a1f896b277386d4a5"
+    },
+    {
+      "file": "misp-2.5-user-add.png",
+      "route": "/admin/users/add",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 850,
+        "height": 410
+      },
+      "visible_credential_check": "clear",
+      "width_px": 1700,
+      "height_px": 820,
+      "sha256": "65596d1ec0b8998605cfddc01756dc626c95890efd8561f41d8792f426db56be"
+    },
+    {
+      "file": "misp-2.5-users.png",
+      "route": "/admin/users/index",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 530
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 1060,
+      "sha256": "9837ded38895e6d3cb06f623a2c3d149b8577471c5cb7be58e6c3b875e77e951"
+    },
+    {
+      "file": "misp-2.5-authkey-scope.png",
+      "route": "/auth_keys/add/2",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1000,
+        "height": 520
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2000,
+      "height_px": 1040,
+      "sha256": "d136ae8ea2433a3fe3940896c54c5909d271b6ca5e4d194b8601211da009dbe0"
+    },
+    {
+      "file": "misp-2.5-sharing-group-organisations.png",
+      "route": "/sharing_groups/edit/1",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1000,
+        "height": 330
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2000,
+      "height_px": 660,
+      "sha256": "fd5cca9be494cf74eb73897937e81b4e6780f12d99f3da3ba209c91c597d3dce"
+    },
+    {
+      "file": "misp-2.5-sharing-group-review.png",
+      "route": "/sharing_groups/view/1",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1200,
+        "height": 650
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2400,
+      "height_px": 1300,
+      "sha256": "6a68ac5971d8da635914c3967e8017d844e9c2cae82e68a7bdfb0ec3ed5a400f"
+    },
+    {
+      "file": "misp-2.5-taxonomy.png",
+      "route": "/taxonomies/view/171",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 500
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 1000,
+      "sha256": "d6adc13ce68743d9924263c294cdaa5cbc1666684ba70a40e7cb4395602c8f10"
+    },
+    {
+      "file": "misp-2.5-object-templates.png",
+      "route": "/objectTemplates/view/94",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1100,
+        "height": 590
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2200,
+      "height_px": 1180,
+      "sha256": "6a08b52e4b5cede243f1222fbddafc5a0a4f9a8ad17b5fdbc8c55292bd6e8987"
+    },
+    {
+      "file": "misp-2.5-warninglist-check.png",
+      "route": "/warninglists/checkValue",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1100,
+        "height": 250
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2200,
+      "height_px": 500,
+      "sha256": "2900c98a89c47703d6bd0067084941b5befcaf4aaa786b7d8ce136ff9aeaba55"
+    },
+    {
+      "file": "misp-2.5-disabled-peer.png",
+      "route": "/servers/index",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 420
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 840,
+      "sha256": "441ad637a5873946dcdf632165a753af5ed5b042471021740b68259847fdf67f"
+    },
+    {
+      "file": "misp-2.5-disabled-feed.png",
+      "route": "/feeds/index/quickFilter:Admin%20lab",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 370
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 740,
+      "sha256": "139ee817e7d00b3817d62d66287f05d683c14d8151d979cce43409d927b85e34"
+    },
+    {
+      "file": "misp-2.5-workers.png",
+      "route": "/servers/serverSettings/workers",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 720
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 1440,
+      "sha256": "5ac56de970fbf10a4165d42c148451ee49176a20d3cf09ded0fe11a073c0cd93"
+    },
+    {
+      "file": "misp-2.5-default-distribution.png",
+      "route": "/servers/serverSettings/MISP",
+      "clip": {
+        "x": 200,
+        "y": 800,
+        "width": 1390,
+        "height": 240
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 480,
+      "sha256": "c00b9424ae381f4ae04482f6794bcf96bb0b119b249a1c23f27b30c558575826"
+    },
+    {
+      "file": "misp-2.5-jobs.png",
+      "route": "/jobs/index/searchall:taxonomies",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 350
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 700,
+      "sha256": "2f8a617c37708702713eb1b7fe60a4197ed0762c937616a1c749e59b7ac57760"
+    },
+    {
+      "file": "misp-2.5-scheduled-tasks.png",
+      "route": "/tasks/index/type:Admin",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 370
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 740,
+      "sha256": "6cd433b12aaa089bfd438b97521e08f3c68f306b4bcdb3a42bfdd1abf0e2f036"
+    },
+    {
+      "file": "misp-2.5-audit-log.png",
+      "route": "/admin/audit_logs/index/model:Organisation",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 540
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 1080,
+      "sha256": "2525f2cb9a6af934631c43f538f755fd85389be67c803f50367b13df7434f963"
+    },
+    {
+      "file": "misp-2.5-diagnostics.png",
+      "route": "/servers/serverSettings/diagnostics",
+      "clip": {
+        "x": 200,
+        "y": 50,
+        "width": 1390,
+        "height": 650
+      },
+      "visible_credential_check": "clear",
+      "width_px": 2780,
+      "height_px": 1300,
+      "sha256": "a5fa9e470596fe219dee461fccd0caa9ba06ba371c3ac821505edb546ac7b6b0"
+    }
+  ]
+}

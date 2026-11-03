@@ -1,0 +1,11 @@
+% A controlled-change process; arrows do not automate deployment or recovery.
+\begin{tikzpicture}
+\node[admin box,text width=2.2cm,minimum height=1.65cm] (plan) at (0,0) {\textbf{Plan}\\Scope, owner\\and criteria};
+\node[admin box,text width=2.2cm,minimum height=1.65cm] (backup) at (3.1,0) {\textbf{Prepare recovery}\\Consistent backup\\Restore rehearsal};
+\node[admin box,text width=2.2cm,minimum height=1.65cm] (apply) at (6.2,0) {\textbf{Apply}\\Deployment-specific\\procedure};
+\node[admin box,text width=2.2cm,minimum height=1.65cm] (validate) at (9.3,0) {\textbf{Validate}\\Access, data\\and jobs};
+\node[admin box,text width=2.2cm,minimum height=1.65cm] (observe) at (12.4,0) {\textbf{Observe}\\Monitor and\\hand over};
+\foreach \a/\b in {plan/backup,backup/apply,apply/validate,validate/observe} {\draw[admin arrow] (\a.east) -- (\b.west);}
+\draw[admin arrow,dashed] (validate.south) -- ++(0,-.9) -| (backup.south);
+\node[admin label,text width=7.8cm,anchor=north] at (6.2,-1.85) {If acceptance fails: stop, assess and use the rehearsed recovery plan. Database changes can make a simple code downgrade unsafe.};
+\end{tikzpicture}

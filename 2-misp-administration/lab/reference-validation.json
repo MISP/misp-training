@@ -1,0 +1,67 @@
+{
+  "default_event_distribution": 0,
+  "analyst_event_read": "allowed",
+  "partner_event_read": "allowed",
+  "outsider_event_read": "denied 404",
+  "orgadmin_event_read": "allowed",
+  "partner_private_read": "denied 404",
+  "readonly_key_read": "allowed",
+  "readonly_key_write": "denied 403",
+  "orgadmin_restricted_access": "denied 403",
+  "retired_restricted_access": "denied 403",
+  "warninglist_value": "192.0.2.25",
+  "warninglist_name": "List of RFC 5735 CIDR blocks",
+  "warninglist_match": true,
+  "feed_enabled": false,
+  "feed_caching_enabled": false,
+  "peer_push": false,
+  "peer_pull": false,
+  "existing_event_distributions_unchanged": [
+    0,
+    4
+  ],
+  "refresh_task_id": "6",
+  "ui_created_delegate": {
+    "email": "delegate@example.test",
+    "organisation": "Practice Partner",
+    "role": "Org Admin",
+    "enabled": true,
+    "event_notifications": false
+  },
+  "peer_transfer_flags": {
+    "push": false,
+    "pull": false,
+    "push_sightings": false,
+    "push_galaxy_clusters": false,
+    "pull_galaxy_clusters": false,
+    "push_analyst_data": false,
+    "pull_analyst_data": false,
+    "push_collections": false,
+    "pull_collections": false
+  },
+  "all_feeds_disabled_and_uncached": true,
+  "sharing_group": {
+    "active": true,
+    "roaming": false,
+    "organisations": [
+      "Administration Training Lab",
+      "Training Partner"
+    ],
+    "local_instance_only": true,
+    "all_orgs": false
+  },
+  "controlled_refresh": {
+    "action": "Admin/updateTaxonomies",
+    "task_id": "6",
+    "last_job_id": "10",
+    "status": "Completed",
+    "progress": 100,
+    "message": "All taxonomies are up to date already.",
+    "source": "local bundled taxonomy files"
+  },
+  "new_event_form_default": "0 (Your organisation only)",
+  "checked_on": "2026-11-03",
+  "misp_version": "2.5.50",
+  "scope": "Disposable local instance; API account checks and browser UI verification. No remote exchange, mail delivery, restore or production upgrade tested.",
+  "analyst_group_event_read": "allowed"
+}

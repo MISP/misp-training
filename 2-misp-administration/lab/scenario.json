@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "misp_reference": "2.5.50",
+  "synthetic": true,
+  "organisations": {
+    "host": "Administration Training Lab",
+    "partner": "Training Partner",
+    "outside": "Outside Training Group",
+    "external": "External Reference Partner",
+    "ui_created": "Practice Partner"
+  },
+  "accounts": [
+    {
+      "email": "operator@example.test",
+      "organisation": "host",
+      "role": "admin",
+      "disabled": false
+    },
+    {
+      "email": "analyst@example.test",
+      "organisation": "host",
+      "role": "User",
+      "disabled": false
+    },
+    {
+      "email": "orgadmin@example.test",
+      "organisation": "host",
+      "role": "Org Admin",
+      "disabled": false
+    },
+    {
+      "email": "partner@example.test",
+      "organisation": "partner",
+      "role": "User",
+      "disabled": false
+    },
+    {
+      "email": "outsider@example.test",
+      "organisation": "outside",
+      "role": "User",
+      "disabled": false
+    },
+    {
+      "email": "retired@example.test",
+      "organisation": "host",
+      "role": "User",
+      "disabled": true
+    },
+    {
+      "email": "delegate@example.test",
+      "organisation": "ui_created",
+      "role": "Org Admin",
+      "disabled": false
+    }
+  ],
+  "sharing_group": {
+    "name": "Training A and B",
+    "members": [
+      "host",
+      "partner"
+    ],
+    "partner_can_extend": false,
+    "active": true,
+    "roaming": false,
+    "local_instance_only": true,
+    "all_orgs": false
+  },
+  "events": [
+    {
+      "alias": "private",
+      "distribution": 0,
+      "published": false
+    },
+    {
+      "alias": "group",
+      "distribution": 4,
+      "sharing_group": "Training A and B",
+      "published": false
+    }
+  ],
+  "attribute": {
+    "type": "ip-dst",
+    "value": "203.0.113.42",
+    "distribution": 5,
+    "to_ids": false
+  },
+  "warninglist_check": {
+    "value": "192.0.2.25",
+    "name": "List of RFC 5735 CIDR blocks"
+  },
+  "peer": {
+    "url": "https://peer.example.test",
+    "all_transfer_flags": false,
+    "contacted": false
+  },
+  "feed": {
+    "url": "https://feeds.example.test/misp/",
+    "enabled": false,
+    "caching_enabled": false,
+    "fetched": false
+  },
+  "setting": {
+    "name": "MISP.default_event_distribution",
+    "target_value": 0,
+    "retroactive": false
+  },
+  "controlled_task": {
+    "type": "Admin",
+    "action": "updateTaxonomies",
+    "source": "local bundled files"
+  }
+}
