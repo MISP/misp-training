@@ -1,0 +1,9 @@
+% Four complementary parts of the MISP project; deliberately no hierarchy arrows.
+\begin{tikzpicture}
+\foreach \key/\x in {software/0,knowledge/3.05,standards/6.10,communities/9.15} {
+  \node[intro box,text width=2.45cm,minimum height=3.05cm] (\key) at (\x,0)
+    {\IntroLabel{\key-body}};
+  \node[intro heading,text width=2.45cm,minimum height=1.2cm] at (\x,2.2)
+    {\IntroLabel{\key}};
+}
+\end{tikzpicture}
