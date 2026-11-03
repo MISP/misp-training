@@ -1,0 +1,28 @@
+{
+  "misp_version": "2.5.50",
+  "event_id": "2",
+  "event_uuid": "29f99882-1d01-4f87-be38-aff4ee1f8ea1",
+  "values": [
+    "198.51.100.44",
+    "203.0.113.42",
+    "203.0.113.77",
+    "login-support.example",
+    "relay-service.example"
+  ],
+  "attribute_count": 5,
+  "object_count": 1,
+  "template_uuid": "43b3b146-77eb-4931-b4cc-b66c60f28734",
+  "template_version": 11,
+  "all_ids_flags": false,
+  "event_distribution": 0,
+  "object_distribution": 5,
+  "attribute_distribution": 5,
+  "published": false,
+  "tag": "tlp:clear",
+  "tag_local": false,
+  "reference_event_id": "1",
+  "sighting_count": 1,
+  "sighting_time_utc": "2026-11-03T09:00:00+00:00",
+  "separate_organisation_read": "denied",
+  "json_download": "verified"
+}

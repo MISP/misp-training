@@ -1,0 +1,10 @@
+% MISP 2.5 usage course; screenshots are actual cropped browser captures.
+\usetheme[numbering=progressbar]{misp}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs,array,tikz}
+\input{../0-intro-shorter/diagrams/style.tex}
+\newcommand{\UsageModel}{\centering\resizebox{\textwidth}{!}{\input{../0-misp-introduction-to-information-sharing/diagrams/data-model.tikz}}\par}
+\newcommand{\UsageShot}[2]{\centering\includegraphics[width=\linewidth,height=.63\paperheight,keepaspectratio]{screenshots/#1}\par\vspace{.3em}{\small #2\par}}
+\newcommand{\UsageDomain}{\texttt{login-support.example}}
+\author{\small CIRCL / Team MISP Project}
+\institute{\url{https://www.misp-project.org/}}

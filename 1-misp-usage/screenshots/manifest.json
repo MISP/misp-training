@@ -1,0 +1,197 @@
+{
+  "captured_on": "2026-11-03",
+  "misp_version": "2.5.50",
+  "backend_image": "ghcr.io/misp/misp-docker/misp-core:v2.5.50",
+  "backend_digest": "sha256:1bf559bf280021da2adead9e715a8c84786e378b107e34e8b834d518596fcab7",
+  "frontend_image": "ghcr.io/misp/misp-docker/misp-nginx:v2.5.50",
+  "frontend_digest": "sha256:0ddc6730db7433220b821d6aa640cb3205ec59166364daf50272090bf4d066cd",
+  "viewport_css_pixels": [
+    1600,
+    1100
+  ],
+  "device_scale_factor": 2,
+  "theme": "default",
+  "ui_language": "English",
+  "ordinary_role": "User",
+  "publication_capture_role": "Publisher (not site admin)",
+  "template_uuid": "43b3b146-77eb-4931-b4cc-b66c60f28734",
+  "template_version": 11,
+  "files": [
+    {
+      "file": "misp-2.5-event-index.png",
+      "route_pattern": "/events/index",
+      "shown": "Filtered event index with the two synthetic reports",
+      "role": "User",
+      "pixels": [
+        2780,
+        560
+      ],
+      "sha256": "169bdec7f0981c06ee2190fd0b98cf7ad3b9733c0454d4e264aad67081889c39"
+    },
+    {
+      "file": "misp-2.5-event-create.png",
+      "route_pattern": "/events/add",
+      "shown": "Completed event form before Submit",
+      "role": "User",
+      "pixels": [
+        1440,
+        770
+      ],
+      "sha256": "b7b4fa33b3549b53f0d07f273b904103ec329f61e98c6d95c81da85dd6f6da32"
+    },
+    {
+      "file": "misp-2.5-event-overview.png",
+      "route_pattern": "/events/view/<event>",
+      "shown": "Empty saved event, organisation-only and unpublished",
+      "role": "User",
+      "pixels": [
+        2300,
+        1280
+      ],
+      "sha256": "f02a5fd395788df710f4486573e3c9ce4cee8e48e792517aaf96fcb108839fff"
+    },
+    {
+      "file": "misp-2.5-attribute-add.png",
+      "route_pattern": "/attributes/add/<event>",
+      "shown": "Typed domain form with inherited distribution and IDS cleared",
+      "role": "User",
+      "pixels": [
+        1700,
+        1240
+      ],
+      "sha256": "43a78b675842e4bda9970486a81a03a586af0d1c0f6c78e6a606782b0fb792b0"
+    },
+    {
+      "file": "misp-2.5-attributes.png",
+      "route_pattern": "/events/view/<event>",
+      "shown": "Filtered saved attribute table with the real Related Events link",
+      "role": "User",
+      "pixels": [
+        2800,
+        248
+      ],
+      "sha256": "bf169c19c5cc17eaabb7772759c1cb98206ae8fe524b0bde5b1b199632c90492"
+    },
+    {
+      "file": "misp-2.5-freetext-review.png",
+      "route_pattern": "/events/freeTextImport/<event>",
+      "shown": "IP candidates reviewed before Submit attributes",
+      "role": "User",
+      "pixels": [
+        2780,
+        660
+      ],
+      "sha256": "9c57f94b709193313e87402db9c4d51c7c8ba62c214dd19956ad890ac2ed35cc"
+    },
+    {
+      "file": "misp-2.5-object-template.png",
+      "route_pattern": "/objects/add/<event>/<template>",
+      "shown": "domain-ip template metadata before entry",
+      "role": "User",
+      "pixels": [
+        1800,
+        510
+      ],
+      "sha256": "d0ba3504e2ac19ec631c3d21fff6d963c12df1523871a85246eb973234c1363e"
+    },
+    {
+      "file": "misp-2.5-object-add.png",
+      "route_pattern": "/objects/revise_object/add/<event>/<template>",
+      "shown": "Object pre-save review before Create new object",
+      "role": "User",
+      "pixels": [
+        2780,
+        860
+      ],
+      "sha256": "3fab77cc26a098df5bc3d989d02961b451ac4b2c9a3c45a94f685b2af5ec1a79"
+    },
+    {
+      "file": "misp-2.5-object-saved.png",
+      "route_pattern": "/events/view/<event>",
+      "shown": "Saved object and member attributes in the actual table",
+      "role": "User",
+      "pixels": [
+        2800,
+        832
+      ],
+      "sha256": "f03191b5f8bf5c898e6d2ed2319c7923c9783215c5aa45dc4657806bfb1bdb14"
+    },
+    {
+      "file": "misp-2.5-tag-picker.png",
+      "route_pattern": "/tags/selectTag/<event>/<taxonomy>/event",
+      "shown": "TLP:CLEAR selected before final Submit",
+      "role": "User",
+      "pixels": [
+        1118,
+        294
+      ],
+      "sha256": "0d3a55d5444ac587c458737dea28da45a1d99869e8fc7b8aef0fc7bf9e96ccf4"
+    },
+    {
+      "file": "misp-2.5-tagged-event.png",
+      "route_pattern": "/events/view/<event>",
+      "shown": "Saved TLP:CLEAR with unchanged event audience/publication",
+      "role": "User",
+      "pixels": [
+        1850,
+        1300
+      ],
+      "sha256": "b5bfd632030a5ef0ecdd0645dc3fd8ad0e866e62e3978cf6e3e7a9d7b3bad70f"
+    },
+    {
+      "file": "misp-2.5-correlation.png",
+      "route_pattern": "/events/view/<reference-event>",
+      "shown": "Reference report attribute table with matching domain",
+      "role": "User",
+      "pixels": [
+        2800,
+        248
+      ],
+      "sha256": "e230d602a0ba0cdc1c187bdcadde4a2e55e3ce128548d2db7d85c499b783858c"
+    },
+    {
+      "file": "misp-2.5-sighting-add.png",
+      "route_pattern": "/sightings/advanced/<attribute>/attribute",
+      "shown": "Advanced sighting input with source and time",
+      "role": "User",
+      "pixels": [
+        2000,
+        470
+      ],
+      "sha256": "f814de3f1de5c22efd87be5f93460eabb14b5a001c683df4f034b2d6c1488211"
+    },
+    {
+      "file": "misp-2.5-sighting-results.png",
+      "route_pattern": "/sightings/advanced/<attribute>/attribute",
+      "shown": "Saved sighting under My org",
+      "role": "User",
+      "pixels": [
+        2000,
+        356
+      ],
+      "sha256": "5c888a60b9de2880a1174c2c5f5e1d194b9cf4803f8bb58701a4a1fffacbb0a4"
+    },
+    {
+      "file": "misp-2.5-publication-review.png",
+      "route_pattern": "/events/alert/<event>",
+      "shown": "Publisher-only confirmation; No chosen, no publication",
+      "role": "Publisher",
+      "pixels": [
+        600,
+        268
+      ],
+      "sha256": "3dbf76022a094408f0962d27ccfcafa958f70dfaa4760a0f35b090bb858c9ee0"
+    },
+    {
+      "file": "misp-2.5-export.png",
+      "route_pattern": "/events/exportChoice/<event>",
+      "shown": "Actual format choices before the browser JSON download",
+      "role": "User",
+      "pixels": [
+        1400,
+        1134
+      ],
+      "sha256": "9025e96ee2cd1648185b099673997b1242c3bd96a8ce7ab7e93eb7e38040cf59"
+    }
+  ]
+}

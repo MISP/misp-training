@@ -13,6 +13,7 @@ recommendation to install or use a particular tool.
 
 | Material | Preserved here | Status |
 | --- | --- | --- |
+| Earlier general-usage course | [Sources, assets and links to original PDFs](slide-decks/1-misp-usage-v1/README.md) | Replaced by the MISP 2.5 usage walkthrough with real screenshots |
 | Earlier full information-sharing introduction | [English/Dutch sources and original PDFs](slide-decks/0-misp-introduction-to-information-sharing-v1/README.md) | Replaced by the aligned full introduction with editable TikZ diagrams |
 | Earlier short introduction | [English, Spanish, Dutch sources and original Spanish PDF](slide-decks/0-intro-shorter-v1/README.md) | Replaced by the aligned short introduction with editable TikZ diagrams |
 | Viper and MISP integration | [Course and original PDF](slide-decks/1.1-misp-viper-integration/README.md) | Retired from standard training on 29 October 2026 |

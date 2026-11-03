@@ -1,0 +1,20 @@
+{
+  "Event": {
+    "info": "Usage training - Team B synthetic reference",
+    "date": "2026-11-02",
+    "distribution": 0,
+    "analysis": 0,
+    "threat_level_id": 4,
+    "published": false,
+    "Attribute": [
+      {
+        "type": "domain",
+        "category": "Network activity",
+        "value": "login-support.example",
+        "to_ids": false,
+        "distribution": 5,
+        "comment": "Synthetic documentation value in a second report. A match is not attribution."
+      }
+    ]
+  }
+}
