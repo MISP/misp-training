@@ -1,0 +1,12 @@
+% Compile from 0-intro-shorter; override IntroLanguage / IntroDiagram at the CLI.
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{FiraSans}
+\usepackage{tikz}
+\providecommand{\IntroLanguage}{en}
+\providecommand{\IntroDiagram}{overview}
+\input{diagrams/style.tex}
+\begin{document}
+\input{diagrams/\IntroDiagram.tikz}
+\end{document}

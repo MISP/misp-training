@@ -1,0 +1,20 @@
+% Editable diagram styles; palette matches themes/mispidentity.sty.
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds}
+\providecolor{mispNavy}{HTML}{02394A}
+\providecolor{mispTeal}{HTML}{00708D}
+\providecolor{mispBlue}{HTML}{0091B0}
+\providecolor{mispInk}{HTML}{28191B}
+\providecommand{\IntroLanguage}{en}
+\newcommand{\IntroSetLabel}[2]{\expandafter\def\csname introLabel@#1\endcsname{#2}}
+\newcommand{\IntroLabel}[1]{\csname introLabel@#1\endcsname}
+\input{diagrams/labels-\IntroLanguage.tex}
+\tikzset{
+  intro box/.style={draw=mispTeal,line width=.7pt,rounded corners=2pt,
+    fill=mispBlue!5,text=mispInk,align=center,inner sep=6pt,
+    font=\sffamily\fontsize{9.5}{11.5}\selectfont},
+  intro arrow/.style={-{Stealth[length=2mm]},draw=mispTeal,line width=1pt},
+  intro edge label/.style={font=\sffamily\fontsize{9}{11}\selectfont,
+    text=mispTeal,align=center,fill=none,inner sep=3pt},
+  intro heading/.style={fill=mispNavy,text=white,align=center,
+    rounded corners=2pt,inner sep=5pt,font=\sffamily\bfseries\fontsize{11}{13}\selectfont}
+}

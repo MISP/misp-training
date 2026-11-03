@@ -1,0 +1,25 @@
+% Solid arrows: information flow. Dashed arrow: feedback to review.
+\begin{tikzpicture}
+\node[intro box,text width=2.3cm,minimum height=2.7cm,fill=white] (sources) at (0,0)
+  {\textbf{\IntroLabel{sources}}\par\medskip\IntroLabel{sources-body}};
+\node[intro box,text width=1.9cm,minimum height=2.7cm] (structure) at (2.75,0)
+  {\textbf{\IntroLabel{structure}}\par\medskip\IntroLabel{structure-body}};
+\node[intro box,text width=1.9cm,minimum height=2.7cm] (review) at (5.25,0)
+  {\textbf{\IntroLabel{review}}\par\medskip\IntroLabel{review-body}};
+\node[intro box,text width=1.9cm,minimum height=2.7cm] (share) at (7.75,0)
+  {\textbf{\IntroLabel{share}}\par\medskip\IntroLabel{share-body}};
+\node[intro box,text width=2.3cm,minimum height=2.7cm,fill=white] (use) at (10.5,0)
+  {\textbf{\IntroLabel{use}}\par\medskip\IntroLabel{use-body}};
+\begin{scope}[on background layer]
+  \node[draw=mispBlue,rounded corners=4pt,fill=mispBlue!3,
+    fit=(structure)(review)(share),inner xsep=5pt,inner ysep=13pt] (platform) {};
+\end{scope}
+\node[font=\sffamily\bfseries\fontsize{12}{14}\selectfont,text=mispNavy]
+  at ([yshift=8pt]platform.north) {MISP};
+\draw[intro arrow] (sources)--(structure);
+\draw[intro arrow] (structure)--(review);
+\draw[intro arrow] (review)--(share);
+\draw[intro arrow] (share)--(use);
+\draw[intro arrow,dashed] (use.south) -- ++(0,-1.1) -| (review.south);
+\node[intro edge label,anchor=north,text width=7cm] at (7.85,-2.6) {\IntroLabel{feedback}};
+\end{tikzpicture}

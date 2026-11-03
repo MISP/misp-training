@@ -1,0 +1,11 @@
+% Shared presentation setup; slide entry points retain their public filenames.
+\usetheme[numbering=progressbar]{misp}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\input{diagrams/style.tex}
+\newcommand{\IntroDiagram}[1]{\centering\resizebox{\textwidth}{!}{\input{diagrams/#1.tikz}}\par}
+\newcommand{\IntroCase}{\texttt{login-support.example}}
+\author{\small MISP Project / CIRCL}
+\institute{\url{https://www.misp-project.org/}}

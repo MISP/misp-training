@@ -1,0 +1,17 @@
+% A contribution/feedback cycle, not a formal organisational chart.
+\begin{tikzpicture}
+\node[intro box,text width=3.6cm,minimum height=2.35cm] (users) at (-3,1.75)
+  {\textbf{\IntroLabel{users}}\par\smallskip\IntroLabel{users-body}};
+\node[intro box,text width=3.6cm,minimum height=2.35cm] (contributors) at (3,1.75)
+  {\textbf{\IntroLabel{contributors}}\par\smallskip\IntroLabel{contributors-body}};
+\node[intro box,text width=3.6cm,minimum height=2.35cm] (maintainers) at (3,-1.75)
+  {\textbf{\IntroLabel{maintainers}}\par\smallskip\IntroLabel{maintainers-body}};
+\node[intro box,text width=3.6cm,minimum height=2.35cm] (improvements) at (-3,-1.75)
+  {\textbf{\IntroLabel{improvements}}\par\smallskip\IntroLabel{improvements-body}};
+\draw[intro arrow] (users.east)--node[intro edge label,above,text width=2cm]{\IntroLabel{needs}}(contributors.west);
+\draw[intro arrow] (contributors.south)--node[intro edge label,right,text width=2.4cm]{\IntroLabel{changes}}(maintainers.north);
+\draw[intro arrow] (maintainers.west)--node[intro edge label,below,text width=1.9cm]{\IntroLabel{reviewed}}(improvements.east);
+\draw[intro arrow] (improvements.north)--node[intro edge label,left,text width=2.0cm]{\IntroLabel{learn}}(users.south);
+\node[font=\sffamily\bfseries\fontsize{9.5}{11.5}\selectfont,text=mispNavy,align=center,text width=2.6cm]
+  at (0,0) {\IntroLabel{collaboration}};
+\end{tikzpicture}

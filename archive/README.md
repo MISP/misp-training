@@ -13,6 +13,7 @@ recommendation to install or use a particular tool.
 
 | Material | Preserved here | Status |
 | --- | --- | --- |
+| Earlier short introduction | [English, Spanish, Dutch sources and original Spanish PDF](slide-decks/0-intro-shorter-v1/README.md) | Replaced by the aligned short introduction with editable TikZ diagrams |
 | Viper and MISP integration | [Course and original PDF](slide-decks/1.1-misp-viper-integration/README.md) | Retired from standard training on 29 October 2026 |
 | Standalone ZeroMQ dashboard | [Course and original PDF](slide-decks/6.0-misp-dashboard-zmq/README.md) | Replaced in standard training by the integrated MISP 2.5 dashboard course |
 | Earlier widget-development model | [Lesson and original PDF](slide-decks/a.a-widget-dev-v1/README.md) | Replaced in standard training by the MISP 2.5 widget-development course |
