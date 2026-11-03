@@ -1,444 +1,309 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
+% DO NOT COMPILE THIS FILE DIRECTLY: included by slide.tex.
 
 \begin{frame}[t,plain]
 \titlepage
 \end{frame}
 
-\begin{frame}
-	\frametitle{Plan for this session}
-	\begin{itemize}
-		\item Explanation of the CSIRT use case for information sharing and what CIRCL does
-        \item Building an information sharing community and best practices\footnote{We published the complete guidelines in \url{https://www.x-isac.org/assets/images/guidelines_to_set-up_an_ISAC.pdf}}
-        \item Quick demo of MISP capabilities
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Communities operated by CIRCL}
+\begin{frame}{What you will practise}
 \begin{itemize}
-        \item As a CSIRT, CIRCL operates a wide range of communities
-        \item We use it as an {\bf internal tool} to cover various day-to-day activities
-        \item Whilst being the main driving force behind the development, we're also one of the largest consumers
-	\item Different communities have different needs and restrictions
+\item Build a community around a shared operational need.
+\item Choose an audience and check the actual sharing path.
+\item Encode context that people and tools can use.
+\item Turn feedback into corrections and better exports.
 \end{itemize}
+\note{Audience: CSIRTs, ISAC coordinators and analysts with basic MISP knowledge. Suggested format: 45 minutes of discussion and a 15-minute demonstration. This course focuses on community operation; use the usage and administration courses for interface and deployment details. All examples are fictional.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Communities operated by CIRCL}
+\begin{frame}{Start with a decision, then choose the data}
 \begin{itemize}
-    \item Private sector community (fall-back community)
-	\begin{itemize}
-		\item Our largest sharing community
-		\item Over {\bf +1500 organisations}
-		\item {\bf +4000 users}
-		\item Functions as a central hub for a lot of sharing communities
-		\item Private organisations, Researchers, Various SoCs, some CSIRTs, etc
-	\end{itemize}
-	\item CSIRT community
-	\begin{itemize}
-		\item Tighter community
-		\item National CSIRTs, connections to international organisations, etc
-	\end{itemize}
+\item \textbf{Incident response:} find related activity and coordinate help.
+\item \textbf{Proactive work:} compare research, sensors and public reports.
+\item \textbf{Advanced services:} support forensics and coordinated vulnerability handling.
+\item \textbf{Community services:} connect members facing similar threats.
 \end{itemize}
+\note{Retain the original CSIRT use cases, but treat these as examples, not a formal or exhaustive service taxonomy. Ask participants which decision they cannot make today, who needs to make it and how quickly information must arrive. Raw sensor streams may belong in a log platform; share selected findings with provenance in MISP.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Communities operated by CIRCL}
+\begin{frame}{CIRCL's experience: different communities, different needs}
 \begin{itemize}
-	\item Financial sector community
-	\begin{itemize}
-		\item Banks, payment processors, etc.
-		\item Sharing of {\bf mule accounts} and {\bf non-cyber threat information}
-	\end{itemize}
-    \item X-ISAC\footnote{\url{https://www.x-isac.org/}}
-	\begin{itemize}
-		\item {\bf Bridging the gap} between the various sectorial and geographical ISACs
-		\item Goal is to {\bf bootstrap the cross-sectorial sharing} along with building the infrastructure to enable sharing when needed
-        \item Provide a basic set of threat intelligence for new ISACs 
-	\end{itemize}
+\item Private-sector and CSIRT communities connect varied capabilities.
+\item Sector communities need specialised context and vocabularies.
+\item Cross-sector initiatives such as X-ISAC help bridge those groups.
+\item Exercise communities provide a place to rehearse collaboration.
 \end{itemize}
+\note{These are examples drawn from CIRCL's experience in the original course, not a current membership directory. Avoid undated organisation counts or participation percentages. A telecom incident, a bank fraud case and a national CSIRT investigation need different handling, expertise and response times. X-ISAC: https://www.x-isac.org/ .}
 \end{frame}
 
-\begin{frame}
-\frametitle{Communities operated by CIRCL}
+\begin{frame}{Cross-sector sharing needs a purpose}
 \begin{itemize}
-        \item The ATT\&CK EU community\footnote{\url{https://www.attack-community.org/}}
-	\begin{itemize}
-		\item Work on attacker modelling
-		\item With the assistance of MITRE themselves
-		\item Unique opportunity to {\bf standardise on TTPs}
-        \item Increasing the use of TTPs\footnote{Tactics, Techniques and Procedures} especially in sharing community like MITRE ATT\&CK
-        \item Major increase of MITRE ATT\&CK context in sharing communities
-	\end{itemize}
+\item Reused infrastructure or techniques can affect several sectors.
+\item Another community may already have analysis or a mitigation.
+\item Agree what can cross the boundary before an incident.
+\item Share the useful finding with its source and restrictions.
 \end{itemize}
+\note{A common value or ATT\&CK technique is a lead to investigate, not proof of a common actor. Bridging communities does not imply merging their membership or forwarding all data. Ask who may approve onward sharing and how a recipient can request clarification.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Communities supported by CIRCL}
+\begin{frame}{Write a small community charter}
 \begin{itemize}
-        \item ISAC / specialised community MISPs
-        \begin{itemize}
-            \item Topical or community specific instances hosted or co-managed by CIRCL
-            \item Examples, GSMA, FIRST.org, CSIRTs network, etc
-            \item Often come with their {\bf own taxonomies and domain specific object definitions}
-        \end{itemize}
-	\item FIRST.org's MISP community
-	\item Telecom and Mobile operators' such as GSMA T-ISAC community
-	\item Various ad-hoc communities for cyber security exercises 
-	\begin{itemize}
-        \item The ENISA exercise (Cyber Europe) 
-        \item NATO Locked Shields exercise
-	\end{itemize}
+\item \textbf{Purpose:} priority questions, members and expected benefit.
+\item \textbf{People:} coordinators, contributors and escalation contacts.
+\item \textbf{Rules:} joining, leaving, handling and permitted use.
+\item \textbf{Service:} onboarding, feedback and incident support.
+\item \textbf{Review:} agree when to revisit scope and membership.
 \end{itemize}
+\note{Start with a small trusted group and a concrete use case. Decide who operates the platform, who triages contributions and who resolves a handling mistake. Membership changes require both account and sharing-group review. Source: the MISP community-setup guidelines linked in the reading slide and README.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Sharing Scenarios in MISP}
+\begin{frame}{Three ways for members to participate}
+\centering
+\input{diagrams/community-models.tikz}
+\par\medskip
+\raggedright
+Choose according to capacity, ownership and handling needs.
+\note{The arrows show possible exchange paths, not automatic bidirectional synchronisation or unrestricted forwarding. A hosted account is access to one instance; the other two models involve separately operated instances. Configure and test each direction, identity, filter and feedback route. A sector hub can reduce operational burden but adds coordination responsibilities.}
+\end{frame}
+
+\begin{frame}{Lead by example and lower the first barrier}
 \begin{itemize}
-	\item Sharing can happen for {\bf many different reasons}. Let's see what we believe are the typical CSIRT scenarios
-        \item We can generally split these activities into 4 main groups when we're talking about traditional CSIRT tasks:
-	\begin{itemize}
-		\item Core services
-		\item Proactive services
-		\item Advanced services
-		\item Sharing communities managed by CSIRTs for various tasks
-	\end{itemize}
+\item Publish a small, well-explained example for members to copy.
+\item Offer templates, pairing sessions and a named contact.
+\item Accept useful partial findings with uncertainty made explicit.
+\item Give credit and show how a contribution helped someone.
 \end{itemize}
+\note{A minimum contribution can be a correction, a question or a sighting. Do not make perfect attribution or a complete incident report a prerequisite for asking for help. Improve quality through review while applying the agreed handling rules from the start.}
 \end{frame}
 
-\begin{frame}
-\frametitle{CSIRT core services}
+\begin{frame}{Participation is more than publishing events}
 \begin{itemize}
-	\item Incident response
-	\begin{itemize}
-		\item {\bf Internal storage} of incident response data
-		\item Sharing of indicators {\bf derived from incident response}
-		\item {\bf Correlating data} derived and using the built in analysis tools
-		\item {\bf Enrichment} services
-		\item {\bf Collaboration} with affected parties via MISP during IR
-		\item {\bf Co-ordination} and collaboration
-		\item {\bf Takedown} requests
-	\end{itemize}
-	\item Alerting of information leaks (integration with {\bf AIL}\footnote{\url{https://www.ail-project.org/}})
+\item Analysis, enrichment and requests for assistance all add value.
+\item Sightings and false-positive reports improve existing work.
+\item Help consumers become confident contributors over time.
+\item Avoid volume quotas that reward duplicated or weak data.
 \end{itemize}
+\note{Replace the old undated 30-percent participation claim and fixed growth timeline with locally measured evidence. Ask what prevents contribution: time, tools, skills, trust or an unresolved handling question. Regular workshops can reveal these barriers. Do not call passive members leeches; consumption can still protect the community.}
 \end{frame}
 
-\begin{frame}
-\frametitle{CSIRT proactive services}
+\begin{frame}{Agree handling and privacy before sharing}
 \begin{itemize}
-	\item {\bf Contextualising} both internal and external data
-	\item {\bf Collection} and {\bf dissimination} of data from various sources (including OSINT)
-	\item Storing, correlating and sharing own manual research ({\bf reversing, behavioural analysis})
-	\item Aggregating automated collection ({\bf sandboxing, honeypots, spamtraps, sensors})
-	\begin{itemize}
-		\item MISP allows for the creation of {\bf internal MISP "clouds"}
-		\item Store {\bf large specialised datasets} (for example honeypot data)
-		\item MISP has {\bf interactions with} a large set of such {\bf tools} (Cuckoo, Mail2MISP, etc)
-	\end{itemize}
-	\item {\bf Situational awareness} tools to monitor trends and adversary TTPs within my sector/geographical region (MISP-dashboard, built in statistics)
+\item Identify the purpose, recipients and permission to disclose.
+\item Minimise personal, victim and unrelated operational details.
+\item Agree retention, correction and incident escalation processes.
+\item Resolve legal and contractual questions with the responsible advisers.
 \end{itemize}
+\note{MISP provides controls, not automatic legal compliance. Applicable GDPR, NIS2, DORA or other obligations depend on the organisation and activity; this course is not a legal determination. Pseudonymisation or delegation does not guarantee anonymity: reports, attachments, times and infrastructure may identify a victim. Compliance references: https://github.com/MISP/misp-compliance .}
 \end{frame}
 
-%\begin{frame}
-%\frametitle{CSIRT proactive services - MISP dashboard}
-%\includegraphics[scale=0.18]{screenshots/dashboard-live.png}
-%\end{frame}
+\begin{frame}{Use current TLP 2.0 markings}
+\small
+\begin{description}
+\item[TLP:CLEAR] No TLP limit on onward sharing; other obligations still apply.
+\item[TLP:GREEN] Share within the relevant community, away from public channels.
+\item[TLP:AMBER] Need-to-know sharing within the recipient organisation and its clients.
+\item[TLP:AMBER+STRICT] Need-to-know sharing within the recipient organisation only.
+\item[TLP:RED] Individual recipients only; no further disclosure.
+\end{description}
+\medskip
+\textbf{TLP communicates boundaries; configure access separately.}
+\note{TLP:CLEAR supersedes TLP:WHITE. The AMBER+STRICT qualifier limits disclosure to the organisation. Use FIRST's full definitions and any additional source restrictions; seek the source's permission before wider disclosure. An ordinary organisation-level MISP audience does not implement a named-person TLP:RED audience. Source: https://www.first.org/tlp/ .}
+\end{frame}
 
-%\begin{frame}
-%\frametitle{CSIRT proactive services - MISP dashboard}
-%\includegraphics[scale=0.18]{screenshots/dashboard-trendings.png}
-%\end{frame}
+\begin{frame}{Align the policy, the audience and the path}
+\centering
+\input{diagrams/sharing-checks.tikz}
+\par\medskip
+\raggedright
+A marking alone does not configure a MISP access rule.
+\note{This diagram is a review process, not a representation of a built-in TLP enforcement engine. Tags can drive configured filters or workflows, but those must be reviewed and tested. Access checks combine event and finer-grained distribution, sharing groups and the user's permissions. Administrators and privileged integrations require separate consideration. Source: MISP Book, Synchronization and Sharing.}
+\end{frame}
 
-\begin{frame}
-\frametitle{CSIRT advanced services}
+\begin{frame}{Select distribution deliberately}
 \begin{itemize}
-	\item Supporting {\bf forensic analysts}
-	\item Collaboration with {\bf law enforcement}
-	\item {\bf Vulnerability} information sharing
-	\begin{itemize}
-		\item {\bf Notifications} to the constituency about relevant vulnerabilities
-		\item {\bf Co-ordinating} with vendors for notifications (*)
-		\item Internal / closed community sharing of pentest results
-	\end{itemize}
+\item Start sensitive drafts with \textbf{Your organisation only}.
+\item Use a \textbf{sharing group} for an explicitly defined set of organisations.
+\item Review event, object and attribute distribution together.
+\item An attribute cannot widen its event's permitted audience.
+\item Test access with both an intended and an excluded recipient.
 \end{itemize}
+\note{Do not equate a community distribution level with a TLP colour. Attributes can inherit event distribution or be more restrictive; object-level settings also matter. Sharing groups can span instances: inspect organisations, server scope and who may extend membership. Organisation-only is not a defence against privileged local access or an integration acting as that organisation. Consult the sharing documentation for push, pull and internal-instance behaviour rather than assuming a simple hop count.}
 \end{frame}
 
-
-\begin{frame}
-\frametitle{CSIRTs' management of sharing communities for constituent actions:}
+\begin{frame}{Sub-communities need maintained boundaries}
 \begin{itemize}
-	\item {\bf Reporting} non-identifying information about incidents (such as outlined in NISD)
-	\item {\bf Seeking} and engaging in {\bf collaboration} with CSIRT or other parties during an incident
-	\item Pre-sharing information to {\bf request for help} / additional information from the community
-	\item {\bf Pseudo-anonymised sharing} through 3rd parties to {\bf avoid attribution} of a potential target
-	\item Building processes for {\bf other types of sharing} to get the community engaged and acquainted with the methodologies of sharing (mule account information, disinformation campaigns, border control, etc)
+\item Use sharing groups where members can share one platform.
+\item Consider separate instances when governance or operations differ.
+\item Name an owner for membership and periodic access reviews.
+\item Review manual exports, feeds and disconnected transfers too.
 \end{itemize}
+\note{Separation reduces some mistakes but adds accounts, patching, backups and transfer processes. A feed or air gap does not validate the content or grant disclosure permission. Define what may leave a restricted group and who approves it. Departures require revoking accounts, API keys and memberships; changing access cannot recall copies already received.}
 \end{frame}
 
-\begin{frame}
-\frametitle{A quick note on legal compliance...}
+\begin{frame}{Publication is not a privacy switch}
 \begin{itemize}
-	\item Collaboration with legal advisors as part of a CEF project for creating compliance documents
-	\begin{itemize}
-		\item Information sharing and cooperation {\bf such as GDPR}
-		\item How MISP enables stakeholders identified by the {\bf NISD} to perform key activities
-		\item {\bf AIL} and MISP
-	\end{itemize}
-\item For more information: \url{https://github.com/CIRCL/compliance} about DORA, GDPR, ISO 27010 and MISP compliance
+\item Saving a draft and publishing it are separate actions.
+\item Unpublished data can still be visible to authorised users and API clients.
+\item Publication can trigger notifications and configured exchange.
+\item Preview the destinations, then verify delivery and visibility.
 \end{itemize}
+\note{Use distribution for confidentiality throughout drafting. Check API consumers and real-time integrations as well as push/pull synchronisation. A successful publish job does not prove every recipient received the update. Unpublishing or tightening distribution cannot guarantee deletion of earlier exports or remote copies. Source: MISP Book, Using the System and Synchronization and Sharing.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Bringing different sharing communities together}
+\begin{frame}{Build a record another analyst can understand}
 \begin{itemize}
-	\item We generally all {\bf end up sharing with peers that face similar threats}
-	\item Division is either {\bf sectorial or geographical}
-	\item So why even bother with trying to bridge these communities?
+\item \textbf{Provenance:} source, collection method and original reference.
+\item \textbf{Meaning:} what happened, why it matters and what is uncertain.
+\item \textbf{Time:} observation window, time zone and review date.
+\item \textbf{Action:} suggested use, owner and feedback contact.
 \end{itemize}
+\note{Keep observations separate from interpretations. first\_seen and last\_seen are observation times, not the event creation or edit timestamp. Leave unknown times unknown. Correlations provide leads; a matching value does not establish common attribution. Use an event report to explain the narrative rather than putting all context into the event title.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Advantages of cross sectorial sharing}
+\begin{frame}{Use the data model to preserve relationships}
 \begin{itemize}
-	\item {\bf Reuse of TTPs} across sectors
-	\item Being hit by something that {\bf another sector has faced before}
-	\item {\bf Hybrid threats} - how seemingly unrelated things may be interesting to correlate
-	\item Prepare other communities for the capability and {\bf culture of sharing} for when the need arises for them to reach out to CSIRT
-	\item Generally our field is ahead of several other sectors when it comes to information sharing, might as well {\bf spread the love}
+\item Group related findings in an event with a meaningful scope.
+\item Use typed attributes for individual values.
+\item Use object templates for related fields such as an email or file.
+\item Link objects and cite the evidence behind the relationship.
 \end{itemize}
-\includegraphics[scale=0.3]{screenshots/sharing.jpeg}
+\note{Avoid one event per isolated value if the values describe one coherent investigation; avoid an ever-growing event containing unrelated investigations. Validate types after importing free text. Keep source UUIDs when exchanging native MISP data where appropriate so updates and corrections can be tracked. The data-model and object-template courses provide worked examples.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Getting started with building your own sharing community}
+\begin{frame}{Choose a small, shared vocabulary}
 \begin{itemize}
-	\item Starting a sharing community is {\bf both easy and difficult} at the same time
-    \item Many moving parts and most importantly, you'll be dealing with a {\bf diverse group of people}
-	\item Understanding and working with your constituents to help them face their challenges is key
+\item Agree taxonomies for handling, confidence and analysis state.
+\item Define which tags apply to a whole event or individual attributes.
+\item Use galaxy clusters for evidence-backed malware, actors or techniques.
+\item Document local conventions; reuse upstream vocabularies first.
 \end{itemize}
+\note{Confidence, source reliability, severity and handling answer different questions. Avoid contradictory overlapping tags and unsupported actor labels. Local-only tags should not carry handling instructions that a remote recipient needs. If an upstream taxonomy, object template or galaxy needs improvement, contribute the change when permitted; maintain private vocabularies through an approved channel when necessary.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Getting started with building your own sharing community}
+\begin{frame}{Enrichment has an outbound data flow}
 \begin{itemize}
-	\item When you are starting out - you are in a unique position to drive the community and set best practices...
+\item Check what a module sends and which service receives it.
+\item Review source terms and handling before submitting a value or sample.
+\item Preserve the enrichment source, time and uncertainty.
+\item Review results before saving or propagating new claims.
 \end{itemize}
-\includegraphics[scale=0.3]{screenshots/power-responsibility.png}
+\note{A lookup can reveal that an organisation is investigating a domain; a sample can expose victim information. Self-hosted and external modules have different data flows. Do not assume all enrichment is local or that several services repeating one report are independent confirmation. Keep API credentials scoped to the integration and review its permissions.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Running a sharing community using MISP - How to get going?}
+\begin{frame}{One dataset, different decisions}
+\centering
+\input{diagrams/consumer-filters.tikz}
+\par\medskip
+\raggedright
+Keep useful context; select action data for each consumer.
+\note{All branches must respect permitted use and audience. This is a suggested consumer design, not an automatic MISP pipeline. An investigation can need old or contextual values; detection and blocking have different false-positive costs. Store only information allowed by the retention policy. Source: Best Practices in Threat Intelligence, improving analysis and automated consumers.}
+\end{frame}
+
+\begin{frame}{Treat \texttt{to\_ids} as an input to export policy}
 \begin{itemize}
-	\item Different models for constituents
-	\begin{itemize}
-        \item {\bf Connecting to} a MISP instance hosted by a CSIRT
-        \item {\bf Hosting} their own instance and connecting to CSIRT's MISP
-        \item {\bf Becoming member} of a sectorial MISP community that is connected to CSIRT's community
-	\end{itemize}
-	\item Planning ahead for future growth
-	\begin{itemize}
-		\item Estimating requirements
-		\item Deciding early on common vocabularies
-		\item Offering expansion,analysis and intelligence services through MISP
-	\end{itemize}
+\item Enable it for attributes intended for detection use.
+\item Leave it off for contextual values such as a report's author.
+\item It does not grant access or establish maliciousness.
+\item Make export filters explicit; inspect what the consumer receives.
 \end{itemize}
+\note{Detection exports commonly use the IDS flag; general API queries can return contextual attributes too. A flag alone does not create a blocking decision. Verify the exact export format and query on the deployed version. Typical selection criteria include published state, to\_ids, relevant tags and types, warninglist enforcement and observation age. Source: MISP Book, Using the System and Automation/API.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Rely on our instincts to immitate over expecting adherence to rules}
+\begin{frame}{Handle false positives without losing the explanation}
 \begin{itemize}
-    \item {\bf Lead by example} - the power of immitation
-    \item Encourage {\bf improving by doing} instead of blocking sharing with unrealistic quality controls
-	\begin{itemize}
-		\item What should the information look like?
-		\item How should it be contextualise
-		\item What do you consider as useful information?
-		\item What tools did you use to get your conclusions?
-	\end{itemize}
-\item Side effect is that you will end up {\bf raising the capabilities of your constituents}
+\item A warninglist match prompts review of the value's role.
+\item Shared hosting or a resolver may be relevant context.
+\item Exclude unsuitable values from action exports and explain why.
+\item Report the problem to the owner; agree who corrects it.
 \end{itemize}
+\note{A warninglist hit is not a universal benign verdict, and no hit is not proof of safety. Enable and maintain relevant warninglists; verify that the chosen export enforces them, for example with the supported restSearch enforceWarninglist option. Retaining useful historical context does not mean retaining everything indefinitely. Follow the agreed retention policy. Source: MISP Book, Warning Lists.}
 \end{frame}
 
-\begin{frame}
-\frametitle{What counts as valuable data?}
+\begin{frame}{Age changes operational usefulness}
 \begin{itemize}
-	\item Sharing comes in many shapes and sizes
-	\begin{itemize}
-        \item Sharing {\bf results} / reports is the classical example
-        \item Sharing {\bf enhancements} to existing data/intelligence
-        \item Validating data / flagging false positives ({\bf sighting})
-        \item Asking for {\bf support and collaboration} from the community
-	\end{itemize}
-\item {\bf Embrace all of them}. Even the ones that don't make sense right now, you never know when they come handy...
+\item Record when the activity was observed, not just imported.
+\item Set review intervals appropriate to the data and the action.
+\item Use sightings and decay models to support reassessment.
+\item Remove stale action data from downstream tools as well.
 \end{itemize}
+\note{An IP address can change tenant; an old file hash can still help an investigation. Decay scores are model outputs, not truth or automatic deletion. An update timestamp is not a new sighting. Consumers need a reconciliation or removal process; an incremental import that only adds values can leave obsolete blocks in place. See the decaying-indicators course for model configuration.}
 \end{frame}
 
-\begin{frame}
-\frametitle{How to deal with organisations that only "leech"?}
+\begin{frame}{Make feedback easy to act on}
 \begin{itemize}
-    \item From our own communities, only about {\bf 30\%} of the organisations {\bf actively share data}
-	\item We have come across some communities with sharing requirements
-	\item In our experience, this sets you up for failure because:
-	\begin{itemize}
-		\item Organisations losing access are the ones who would possibily benefit the most from it
-		\item Organisations that want to stay above the thresholds will start sharing junk / fake data
-		\item You lose organisations that might turn into valuable contributors in the future
-	\end{itemize}
+\item \textbf{Sightings:} report an observation, false positive or expiration.
+\item \textbf{Proposals:} suggest attribute changes for the owner to review.
+\item \textbf{Extended events:} add separately owned analysis and context.
+\item \textbf{Analyst data:} record notes, opinions and relationships.
 \end{itemize}
+\note{Sighting types are 0 (sighting), 1 (false positive) and 2 (expiration), not confidence levels. Include observation time and source where appropriate. Review sighting visibility and identity settings: feedback can reveal sensitive activity. Extended events and analyst data have their own distribution considerations. Confirm the configured return path and who triages incoming feedback. Source: MISP Book, Sightings and Analyst Data.}
 \end{frame}
 
-\begin{frame}
-\frametitle{So how does one convert the passive organisations into actively sharing ones?}
+\begin{frame}{Close the loop after a correction}
+\centering
+\input{diagrams/feedback-cycle.tikz}
+\par\medskip
+\raggedright
+Assign an owner and a response expectation for each step.
+\note{The loop is a process to operate, not a promise that every step is automatic. Correct the source record, republish as appropriate, verify propagation and reconcile downstream exports. A false-positive sighting does not automatically remove a firewall rule. For an urgent mistake, notify affected recipients using the agreed escalation route and track acknowledgement.}
+\end{frame}
+
+\begin{frame}{Measure benefit and operational health}
 \begin{itemize}
-    \item Rely on {\bf organic growth} and it takes time (+2 years is common)
-    \item {\bf Help} them increase their capabilities
-	\item As mentioned before, lead by example
-	\item Rely on the inherent value to one's self when sharing information (validation, enrichments, correlations)
-    \item {\bf Give credit} where credit is due, never steal the contributions of your community (that is incredibly demotivating)
+\item How quickly do useful findings and corrections reach members?
+\item Which contributions led to a decision or a useful investigation?
+\item Are sync jobs, workers and consumer updates completing?
+\item Are false positives, stale exports and access issues resolved?
 \end{itemize}
+\note{Choose a baseline and review period with the community. Counts of events and indicators alone measure volume. Track onboarding success, feedback response and examples of useful collaboration while minimising sensitive member-level reporting. Review patching, backups, scoped API credentials and membership with the platform operator; this is not a replacement for the administration course.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Dispelling the myths around blockers when it comes to information sharing}
-        \begin{itemize}
-                \item Sharing difficulties are not really technical issues but often it's a matter of {\bf social interactions} (e.g. {\bf trust}).
-		\begin{itemize}
-			\item You can play a role here: organise regular workshops, conferences, have face to face meetings
-		\end{itemize}
-                \item Legal restrictions
-                        \begin{itemize}
-                                \item "Our legal framework doesn't allow us to share information."
-                                \item "Risk of information leak is too high and it's too risky for our organization or partners."
-                        \end{itemize}
-                \item Practical restrictions
-                        \begin{itemize}
-                                \item "We don't have information to share."
-                                \item "We don't have time to process or contribute indicators."
-                                \item "Our model of classification doesn't fit your model."
-                                \item "Tools for sharing information are tied to a specific format, we use a different one."
-                        \end{itemize}
-        \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contextualising the information}
+\begin{frame}{Demonstration: review a small phishing report}
 \begin{itemize}
-    \item Sharing {\bf technical information} is a {\bf great start}
-	\item However, to truly create valueable information for your community, always consider the context:
-	\begin{itemize}
-		\item Your IDS might not care why it should alert on a rule
-		\item But your analysts will be interested in the threat landscape and the "big picture"
-	\end{itemize}
-    \item Classify data to make sure your partners understand why it is {\bf important for you}, so they can see why it could be {\bf useful to them}
-    \item Massively important once an organisation has the maturity to filter the most critical {\bf subsets of information for their own defense}
+\item Work in a lab, with organisation-only distribution initially.
+\item Create a fictional report containing \texttt{login.example.org}.
+\item Add provenance, observation time and a contextual email object.
+\item Inspect warninglist hits and decide which fields are detection candidates.
 \end{itemize}
+\note{Use disposable training data and accounts; do not query or browse the example domain. example.org is reserved for documentation and may match a warninglist: that is deliberate. Do not enable live enrichment, synchronisation or action exports for this exercise. The point is to review structure and intent, not to create a production indicator. Keep contact details and attachments fictional too.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Choice of vocabularies}
+\begin{frame}{Exercise: check the audience and the consumer}
+\begin{enumerate}
+\item Choose a lab sharing group and a compatible handling marking.
+\item Check visibility with an included and an excluded lab account.
+\item Preview a detection export; explain any missing values.
+\item Submit a correction and verify the resulting lab export.
+\end{enumerate}
+\note{Use a disposable lab without production sync or consumers. Use three organisations: the author, an included recipient and an excluded recipient, with non-administrator test accounts. Expected discussion: the marking alone changes no ACL; an unpublished event is not necessarily invisible; contextual fields should not become blocking inputs; the reserved domain may be excluded by warninglists. Preview the configured published/to\_ids and warninglist behaviour explicitly. Publication, if demonstrated, stays in the isolated lab. Finish by clearing the lab export and checking removal, not just addition.}
+\end{frame}
+
+\begin{frame}{Before the next community contribution}
+\begin{enumerate}
+\item Is the finding useful, sourced and clear about uncertainty?
+\item Are the audience, handling and outbound paths appropriate?
+\item Are contextual and actionable values distinguished?
+\item Can recipients report a problem and receive the correction?
+\end{enumerate}
+\note{Use this as a lightweight review prompt and improve it with the community. Avoid turning it into a contribution quota or a requirement for perfect intelligence. Invite a participant to explain how their organisation would handle the same finding differently for investigation, detection and blocking.}
+\end{frame}
+
+\begin{frame}{References for the operator and trainer}
+\small
 \begin{itemize}
-    \item MISP has a verify {\bf versatile system} (taxonomies) for classifying and marking data
-	\item However, this includes different vocabularies with obvious overlaps
-    \item MISP allows you to {\bf pick and choose vocabularies} to use and enforce in a community
-	\item Good idea to start with this process early
-	\item If you don't find what you're looking for:
-	\begin{itemize}
-		\item Create your own (JSON format, no coding skills required)
-		\item If it makes sense, share it with us via a pull request for redistribution
-	\end{itemize}
+\item \href{https://github.com/MISP/misp-compliance/blob/master/setting-up-ISACs/guidelines_to_set-up_an_ISAC.md}{Guidelines for setting up an information-sharing community}
+\item \href{https://www.misp-project.org/best-practices-in-threat-intelligence.html}{Best Practices in Threat Intelligence}
+\item \href{https://www.circl.lu/doc/misp/}{MISP Book: usage, sharing, sightings and warninglists}
+\item \href{https://www.first.org/tlp/}{FIRST: TLP 2.0 definitions and usage guidance}
+\item \href{https://github.com/MISP/misp-compliance}{MISP compliance resources}
 \end{itemize}
+\note{Reference review: 3 November 2026. Behaviour depends on the MISP version, permissions, export format and configuration. The course README links individual chapters and records the review decisions. Recheck operational guidance before a live workshop.}
 \end{frame}
 
-
-\begin{frame}
-\frametitle{Shared libraries of meta-information (Galaxies)}
+\begin{frame}{Keep the community conversation going}
 \begin{itemize}
-    \item The MISPProject in co-operation with partners provides a {\bf curated list of galaxy information}
-	\item Can include information packages of different types, for example:
-	\begin{itemize}
-        \item Threat actor information (event different models or approaches)
-		\item Specialised information such as Ransomware, Exploit kits, etc
-		\item Methodology information such as preventative actions
-		\item Classification systems for methodologies used by adversaries - ATT\&CK
-	\end{itemize}
-	\item Consider improving the default libraries or contributing your own (simple JSON format)
-    \item If there is something you cannot share, run your own galaxies and {\bf share it out of bound} with partners
-	\item Pull requests are always welcome
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{False-positive handling}
-\begin{itemize}
-	\item You might often fall into the trap of discarding seemingly "junk" data
-	\item Besides volume limitations (which are absolutely valid, fear of false-positives is the most common reason why people discard data) - Our recommendation:
-	\begin{itemize}
-		\item Be lenient when considering what to keep
-		\item Be strict when you are feeding tools
-	\end{itemize}
-\item MISP allows you to {\bf filter out the relevant data on demand} when feeding protective tools
-\item What may seem like {\bf junk to you may} be absolutely {\bf critical to other users}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Many objectives from different user-groups}
-        \begin{itemize}
-                \item Sharing indicators for a {\bf detection} matter.
-                        \begin{itemize}
-                                \item 'Do I have infected systems in my infrastructure or the ones I operate?'
-                        \end{itemize}
-                \item Sharing indicators to {\bf block}.
-                        \begin{itemize}
-                                \item 'I use these attributes to block, sinkhole or divert traffic.'
-                        \end{itemize}
-                \item Sharing indicators to {\bf perform intelligence}.
-                        \begin{itemize}
-                                \item 'Gathering information about campaigns and attacks. Are they related? Who is targeting me? Who are the adversaries?'
-                        \end{itemize}
-                \item $\rightarrow$ These objectives can be conflicting (e.g. False-positives have different impacts)
-        \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{False-positive handling}
-\begin{itemize}
-    \item {\bf Analysts} will often be interested in the {\bf modus operandi} of threat actors over {\bf long periods of time}
-	\item Even cleaned up infected hosts might become interesting again (embedded in code, recurring reuse)
-	\item Use the tools provided to eliminate obvious false positives instead and limit your data-set to the most relevant sets
-\end{itemize}
-\includegraphics[scale=0.8]{screenshots/false-positive.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Managing sub-communities}
-\begin{itemize}
-    \item Often within a community {\bf smaller bubbles of information sharing will form}
-	\item For example: Within a national private sector sharing community, specific community for financial institutions
-	\item Sharing groups serve this purpose mainly
-	\item As a CSIRT running a national community, consider bootstraping these sharing communities
-	\item Organisations can of course self-organise, but you are the ones with the know-how to get them started
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Managing sub-communities}
-\begin{itemize}
-	\item Consider compartmentalisation - does it make sense to move a secret squirrel club to their own sharing hub to avoid accidental leaks?
-    \item Use your {\bf best judgement} to decide which communities should be separated from one another
-    \item Create sharing hubs with {\bf manual data transfer} if needed
-	\item Some organisations will even have their data air-gapped - Feed system
-    \item {\bf Create guidance} on what should be shared outside of their bubbles - organisations often lack the insight / experience to decide how to get going. Take the initiative!
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Get in touch if you need some help to get started}
-\begin{itemize}
-\item Getting started with building a new community can be daunting. Feel free to get in touch with us if you have any questions!
-\item Contact: info@circl.lu
-\item \url{https://www.circl.lu/} \url{https://www.misp-project.org/}
-\item \url{https://github.com/MISP}  \url{https://gitter.im/MISP/MISP}  \url{https://twitter.com/MISPProject}
+\item Share a small useful finding and ask for specific feedback.
+\item Bring one handling or integration question to the next meeting.
+\item CIRCL: \href{mailto:info@circl.lu}{info@circl.lu} --- \url{https://www.circl.lu/}
+\item MISP: \url{https://www.misp-project.org/}
+\item Contributions: \url{https://github.com/MISP}
 \end{itemize}
 \end{frame}

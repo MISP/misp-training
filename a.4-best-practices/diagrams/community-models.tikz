@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+\node[bp box,text width=4.0cm] (hub) at (0,0) {Community MISP\\hosted by a coordinator};
+\node[bp box] (account) at (-3.75,-3.0) {Hosted member\\user account};
+\node[bp box] (own) at (0,-3.0) {Member's own\\MISP instance};
+\node[bp box] (sector) at (3.75,-3.0) {Sector hub\\MISP instance};
+\draw[bp arrow] (account.north) -- node[bp label,sloped,above] {Web / API access} (hub.south west);
+\draw[bp arrow] (own.north) -- node[bp label,right,text width=1.8cm] {Selected exchange} (hub.south);
+\draw[bp arrow] (sector.north) -- node[bp label,sloped,above] {Selected exchange} (hub.south east);
+\end{tikzpicture}

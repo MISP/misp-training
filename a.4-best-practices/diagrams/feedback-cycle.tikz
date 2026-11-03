@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+\node[bp wide] (prepare) at (0,0) {Prepare and review\\source, context, audience};
+\node[bp wide] (use) at (5.8,0) {Share and use\\verify the consumer's payload};
+\node[bp wide] (feedback) at (5.8,-2.75) {Return feedback\\sightings, proposals, analysis};
+\node[bp wide] (correct) at (0,-2.75) {Correct and refresh\\republish, reconcile exports};
+\draw[bp arrow] (prepare) -- (use);
+\draw[bp arrow] (use) -- (feedback);
+\draw[bp arrow] (feedback) -- (correct);
+\draw[bp arrow] (correct) -- (prepare);
+\end{tikzpicture}

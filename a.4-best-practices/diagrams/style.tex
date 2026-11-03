@@ -1,0 +1,15 @@
+% Editable course diagrams; palette from the shared MISP visual identity.
+\usetikzlibrary{arrows.meta,positioning}
+\definecolor{bpNavy}{HTML}{02394A}
+\definecolor{bpTeal}{HTML}{00708D}
+\definecolor{bpBlue}{HTML}{0091B0}
+\tikzset{
+  bp box/.style={draw=bpTeal,fill=bpBlue!7,rounded corners=3pt,
+    text=bpNavy,align=center,font=\sffamily\small,
+    execute at begin node={\hyphenpenalty=10000\relax},
+    text width=2.7cm,minimum height=1.15cm,inner sep=5pt},
+  bp wide/.style={bp box,text width=3.65cm},
+  bp arrow/.style={-{Stealth[length=2.2mm]},draw=bpTeal,thick},
+  bp label/.style={font=\sffamily\scriptsize,text=bpNavy,align=center,
+    fill=white,inner sep=3pt}
+}
