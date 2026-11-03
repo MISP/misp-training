@@ -1,0 +1,12 @@
+% A review process, not a formula that proves information true.
+\begin{tikzpicture}
+\node[intro box,text width=3.3cm,minimum height=1.6cm] (collect) at (0,2.1) {\textbf{\IntroLabel{quality-capture}}\\\IntroLabel{quality-capture-body}};
+\node[intro box,text width=3.3cm,minimum height=1.6cm] (review) at (7,2.1) {\textbf{\IntroLabel{quality-review}}\\\IntroLabel{quality-review-body}};
+\node[intro box,text width=3.3cm,minimum height=1.6cm] (use) at (7,-1.7) {\textbf{\IntroLabel{quality-use}}\\\IntroLabel{quality-use-body}};
+\node[intro box,text width=3.3cm,minimum height=1.6cm] (feedback) at (0,-1.7) {\textbf{\IntroLabel{quality-feedback}}\\\IntroLabel{quality-feedback-body}};
+\draw[intro arrow] (collect.east) -- (review.west);
+\draw[intro arrow] (review.south) -- (use.north);
+\draw[intro arrow] (use.west) -- (feedback.east);
+\draw[intro arrow] (feedback.north) -- (collect.south);
+\node[intro edge label,text width=2.65cm] at (3.5,.2) {\IntroLabel{quality-centre}};
+\end{tikzpicture}

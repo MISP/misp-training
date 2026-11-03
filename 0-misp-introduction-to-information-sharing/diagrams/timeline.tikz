@@ -1,0 +1,12 @@
+% Separate observation time from record-maintenance time; dates are fictional.
+\begin{tikzpicture}
+\draw[intro arrow] (0,0) -- (12,0);
+\draw[draw=mispBlue,line width=4pt] (1,0) -- (5.4,0);
+\foreach \x in {1,5.4,8.2,11} {\draw[draw=mispTeal,line width=1pt] (\x,-.12) -- (\x,.12);}
+\node[intro box,text width=2.5cm] at (1,1.55) {\texttt{first\_seen}\\\IntroLabel{time-first}};
+\node[intro box,text width=2.5cm] at (5.4,1.55) {\texttt{last\_seen}\\\IntroLabel{time-last}};
+\node[intro edge label,text width=3.5cm] at (3.2,-.7) {\IntroLabel{time-observed}};
+\node[intro box,text width=2.45cm] at (8.2,-1.8) {\IntroLabel{time-created}};
+\node[intro box,text width=2.45cm] at (11,1.55) {\IntroLabel{time-updated}};
+\node[intro edge label,text width=10.7cm] at (5.6,-3.2) {\IntroLabel{time-caution}};
+\end{tikzpicture}

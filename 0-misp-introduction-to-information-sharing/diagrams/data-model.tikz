@@ -1,0 +1,11 @@
+% Containment, not a complete entity-relationship schema.
+\begin{tikzpicture}
+\node[intro heading,text width=11.8cm] (event) at (0,2.9) {\IntroLabel{model-event}};
+\node[intro box,text width=4.4cm,minimum height=1.7cm] (attribute) at (-3.3,.75)
+  {\textbf{\IntroLabel{model-attribute}}\\\texttt{domain:}\\\texttt{login-support.example}};
+\node[intro box,text width=5.4cm,minimum height=1.7cm] (object) at (2.65,.75)
+  {\textbf{\IntroLabel{model-object}}\\\texttt{domain-ip}\\\texttt{domain + ip: 192.0.2.25}};
+\draw[intro arrow] (event.south -| attribute.north) -- (attribute.north);
+\draw[intro arrow] (event.south -| object.north) -- (object.north);
+\node[intro box,text width=11.8cm] at (0,-1.35) {\IntroLabel{model-context}};
+\end{tikzpicture}

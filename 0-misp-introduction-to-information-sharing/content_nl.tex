@@ -1,314 +1,276 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
-\begin{frame}[t,plain]
+% Full introduction; compile the corresponding slide entry point.
+\begin{frame}
 \titlepage
 \end{frame}
 
-\begin{frame}{Agenda}
-    \input{../includes/agenda.txt}
-\end{frame}
-
-\begin{frame}
- \frametitle{MISP, bekeken vanuit een praktisch voorbeeld}
- \begin{itemize}
-         \item In 2012 werd tijdens een werkgroep voor malware analyse duidelijk dat we werkten aan de analyse van dezelfde malware.
-         \item We wilden onze informatie op een eenvoudige en geautomatiseerde manier met elkaar delen {\bf om dubbel werk te voorkomen}.
-         \item Christophe Vandeplas (toen werkzaam bij het CERT voor de Belgische Defensie) toonde ons zijn werk aan een platform dat uiteindelijk MISP werd.
-         \item De eerste versie van het MISP-platform werd gebruikt door de MALWG en met hulp van {\bf de toenemende feedback van gebruikers} konden we een verbeterd platform bouwen.
-         \item MISP is nu uitgegroeid tot een platform waar de {\bf ontwikkeling gestuurd wordt vanuit de gemeenschap}.
- \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{over CIRCL}
-Het Computer Incident Response Centre Luxembourg (CIRCL) is een overheids initiatief om een antwoord te bieden op computerbeveiligingsbedreigingen en -incidenten. \break \newline
-CIRCL is het CERT voor de particuliere sector, gemeenten en niet-gouvernementele entiteiten in Luxemburg en wordt beheerd door securitymadein.lu g.i.e.
-\end{frame}
-
-\begin{frame}
-\frametitle{MISP en CIRCL}
+\begin{frame}{Wat u na deze inleiding kunt}
 \begin{itemize}
-\item CIRCL is gemandateerd door het ministerie van Economische Zaken en treedt op als het Luxemburgse nationale CERT voor de particuliere sector.
-\item CIRCL leidt de ontwikkeling van het Open Source MISP-platform voor het delen van dreigingsinformatie. Dit platform is wereldwijd gebruikt door veel militaire en inlichtingengemeenschappen, privébedrijven, de financiële sector, nationale CERT's en LEA's.
-\item {\bf CIRCL beheert meerdere grote MISP-gemeenschappen die dagelijkse actief zijn in het delen van dreigingsinformatie}.
+\item Uitleggen hoe waarnemingen bruikbare gedeelde context worden.
+\item Gegevens, interpretatie en operationele actie onderscheiden.
+\item Bewust ontvangers en een uitwisselingsmethode kiezen.
+\item Beschrijven hoe feedback informatie bruikbaar houdt.
 \end{itemize}
-        \includegraphics{en_cef.png}
+\note{Reken op 35--40 minuten en een besprekingsoefening van tien minuten. Dit is de volledige inleiding; de korte variant duurt 15--20 minuten. Een account of API-sleutel is niet nodig. Volg één fictieve casus door het gegevensmodel, de toegangsinstellingen, de uitwisseling en de beoordeling. Praktische configuratie hoort in de vervolgcursussen.}
 \end{frame}
 
-
-\begin{frame}
-\frametitle{Ontwikkeling gebaseerd op praktische feedback van de gebruikers}
+\begin{frame}{Eén casus, twee teams}
 \begin{itemize}
-\item Er zijn veel verschillende soorten gebruikers van een informatie-uitwisselingsplatform zoals MISP:
-        \begin{itemize}
-                \item {\bf Malware-analysten} die bereid zijn om de indicatoren van hun analyse met collega's te delen.
-                \item {\bf Beveiligingsanalisten} die voor operationele beveiliging zoeken naar indicatoren, deze valideren en gebruiken.
-                \item {\bf Informatie-analysten} die informatie verzamelen over specifieke vijandige groepen.
-                \item De {\bf politie} die vertrouwt op indicatoren om digitale onderzoeken te ondersteunen of op te starten.
-                \item {\bf Risico analyse teams} die meer willen weten over nieuwe dreigingen, de waarschijnlijkheid van deze dreigingen en of deze dreigingen werden vastgesteld.
-                \item {\bf Fraude analysten} die bereid zijn om indicatoren te delen om financiële fraude op te sporen.
-        \end{itemize}
+\item Team A onderzoekt een verdacht aanmeldbericht.
+\item Het registreert \SharingCase{} en \texttt{192.0.2.25}.
+\item Team B zag hetzelfde domein in een ander rapport.
+\item Wat kunnen ze hergebruiken? Wat moeten ze nog vaststellen?
 \end{itemize}
+\note{Alle gegevens in deze casus zijn fictief. Het .example-domein en het bereik 192.0.2.0/24 zijn gereserveerd voor documentatie en zijn geen kwaadaardige indicatoren. Vraag wat Team B nodig heeft: bron, waarnemingstijd, onderbouwing en onzekerheid. Alleen een gedeeld domein bewijst geen gemeenschappelijke actor of campagne. Houd dit onderscheid tijdens de les vast.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Het beheermodel van MISP}
-\includegraphics[scale=0.4]{governance.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Verschillende objectieven}
-        \begin{itemize}
-                \item Delen van indicatoren voor {\bf detectie} doeleinden.
-                        \begin{itemize}
-                                \item 'Heb ik geïnfecteerde systemen in mijn infrastructuur of onder mijn beheer?'
-                        \end{itemize}
-                \item Delen van  indicatoren om te {\bf blokkeren}.
-                        \begin{itemize}
-                                \item 'Ik gebruik deze attributen om verkeer te blokkeren of om verkeer om te leiden.'
-                        \end{itemize}
-                \item Delen van  indicatoren om {\bf informatie te verzamelen}.
-                        \begin{itemize}
-                                \item 'Informatie verzamelen over campagnes en aanvallen. Zijn deze campagnes met elkaar verbonden? Zijn ze gericht op mij? Wie zijn de tegenstanders?'
-                        \end{itemize}
-                \item $\rightarrow$ Deze doelstellingen kunnen soms tegenstrijdig zijn
-        \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Moeilijkheden bij het delen}
-        \begin{itemize}
-                \item De problemen met het delen van informatie zijn vaak niet zozeer van technische aard maar eerder een kwestie van {\bf sociale interacties} (b.v. {\bf vertrouwen}).
-                \item Juridische restricties\footnote{\url{https://www.misp-project.org/compliance/}}
-                        \begin{itemize}
-                                \item "Ons wettelijk kader staat ons niet toe om informatie te delen."
-                                \item "Het risico op een informatielek is te hoog en het is te riskant voor onze organisatie of partners."
-                        \end{itemize}
-                \item Praktische beperkingen
-                        \begin{itemize}
-                                \item "We hebben geen informatie om te delen."
-                                \item "We hebben geen tijd om indicatoren te verwerken of om er te delen."
-                                \item "Ons classificatie model past niet in uw model."
-                                \item "De middelen voor het delen van informatie zijn gebonden aan een specifiek formaat en we gebruiken een ander formaat."
-                        \end{itemize}
-        \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-        \frametitle{MISP Project Overzicht}
-        \includegraphics[scale=0.35]{misp-overview-simplified.pdf}
-\end{frame}
-
-%\begin{frame}
-%        \frametitle{MISP Project Overview}
-%        \begin{columns}[t]
-%        \column{5.0cm}
-%        \begin{figure}
-%        \includegraphics[scale=0.20]{misp-overview.pdf}\\
-%        \end{figure}
-%        \column{7cm}
-%        \begin{itemize}
-%                \item The {\bf core project}\footnote{\url{http://github.com/MISP/}} (PHP/Python3) supports the backend, API \& UI.
-%                \item Modules (Python3) expand MISP functionalities.
-%                \item Taxonomies (JSON) to add categories \& global tagging.
-%                \item Warning-lists (JSON) help analysts to detect potential false-positives.
-%                \item Galaxy (JSON) to add threat-actors, tools or "intelligence".
-%                \item Objects (JSON) to allow for templated composition of security related atomic points of information.
-%        \end{itemize}
-%        \end{columns}
-%\end{frame}
-
-\begin{frame}
- \frametitle{MISP functies}
- \begin{itemize}
-         \item MISP\footnote{\url{https://github.com/MISP/MISP}} is open source software voor het delen van dreigings-informatie.
-         \item MISP heeft {\bf een groot aantal functionaliteiten} die gebruikers ondersteunen bij het maken, samen werken aan en het delen van bedreigingsinformatie - bijv. flexibele groepen voor het delen van informatie, {\bf automatische correlatie van gegevens}, importhulp, event distributie en voorstelling voor verbetering van attributen.
-         \item Er is ondersteuning voor diverse formaten van IDS / IPS systemen (b.v. Suricata, Bro, Snort), SIEMs (b.v. CEF), host scanners (b.v. OpenIOC, STIX, CSV, yara), analyse tools (b.v. Maltego) of om DNS policies te implementeren (b.v. RPZ).
-         \item Er is een breed aanbod aan MISP modules\footnote{\url{https://www.github.com/MISP/misp-modules}} voor uitbreiding, import en export functionaliteiten.
- \end{itemize}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Correlaties : een hulpmiddel voor analysten}
-        \includegraphics[scale=0.18]{screenshots/campaign.png}
-        \begin{itemize}
-                \item Voor het {\bf  bevestigen van een bevinding} (b.v. is dit dezelfde campagne?), {\bf of een analyse} (b.v. hebben andere analysten dezelfde hypothesis?), {\bf bevestigen van een specifiek aspect} (b.v. werden deze sinkhole IP adressen gebruikt voor een campagne?) of het simpelweg uitzoeken of een {\bf dreiging nieuw of onbekend is in je omgeving}.
-        \end{itemize}
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Groepen die MISP gebruiken}
- \begin{itemize}
-	 \item In het algemeen gaan gebruikers informatie delen met een groep met dezelfde objectieven of waarden.
-	 \item CIRCL beheert meerdere MISP-instanties met een aanzienlijke gebruikersbasis (meer dan 950 organisaties met meer dan 2400 gebruikers).
-     \item {\bf Vertrouwde} (gesloten) groepen die MISP gebruiken in een soort "eiland" modus (als een geïsoleerd systeem) of als een deels geconnecteerd systeem.
-	 \item De {\bf financiële sector} (banken, ISACs, organisaties die betalingen verwerken) gebruikt MISP als een mechanisme voor het delen van informatie.
-	 \item {\bf Militaire en internationale organisaties} (NATO, militaire CSIRTs, n/g CERTs,...).
-	 \item {\bf Security bedrijven} die hun eigen gemeenschap starten (b.v. Fidelis) of een koppeling hebben met een MISP gemeenschap (b.v. OTX).
- \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{MISP basisfuncties voor gedistribueerd delen}
+\begin{frame}{MISP ondersteunt mensen en hulpmiddelen}
 \begin{itemize}
-\item De kernfunctionaliteit van MISP is het delen van informatie waarbij iedereen zowel een consument als een producent (bijdrager) kan zijn.
-\item Dit heeft als voordeel dat iedereen snel kan deelnemen, zonder de directe verplichting om zelf bij te dragen.
-\item Er is een lage drempel om het systeem te leren kennen.
+\item Een opensourceplatform voor gestructureerde informatie-uitwisseling.
+\item Waarnemingen verzamelen van analisten, tools en partners.
+\item Gegevens verbinden en beoordelen met behoud van context.
+\item Bruikbare invoer voor onderzoek, detectie en respons leveren.
 \end{itemize}
-\includegraphics[scale=0.9]{misp-distributed.pdf}
+\note{MISP ondersteunt informatie over incidenten, dreigingen, fraude en andere veiligheidsvragen. Gemeenschappen gebruiken verschillende delen van het model. Normalisatie, correlatie en verrijking helpen bij de analyse; ze valideren niet elke bewering. Het platform creëert geen vertrouwen en bepaalt niet voor iedere ontvanger de juiste reactie. Leg eerst het doel uit en daarna de functienamen.}
 \end{frame}
 
-
-\begin{frame}
-        \frametitle{Events, Objecten en Attributen in MISP}
-         \begin{itemize}
-                \item Een MISP event is een verzameling van contextueel verbonden informatie.
-                \item Attributen\footnote{attributen kunnen alles zijn zolang ze bijdragen aan het beschrijven van de intentie van het event, b.v. indicatoren, kwetsbaarheden ... } starten initieel met een standaard groep van "cyber security" indicatoren.
-                \item Attributen zijn puur {\bf gebaseerd op gebruik}. De verbetering gebeuren voornamelijk op basis van praktische noden ({\bf financiële indicatoren} in versie 2.4).
-                \item Objecten zijn samengestelde attributen die verschillende datapunten beschrijven, opgebouwd uit templates van de gemeenschap en de gebruikers.
-                \item Galaxies zorgen voor een granulaire context, classificatie en categorisatie van de gegevens gebaseerd op {\bf dreigings actoren}, {\bf preventie  maatregelen} en de hulpmiddelen gebruikt door tegenstanders.
-        \end{itemize}
+\begin{frame}{Van waarnemingen naar gedeelde context}
+\SharedIntroDiagram{sharing-flow}
+\note{Volg de doorgetrokken pijlen via structuur, beoordeling en deelinstellingen naar gebruik. De stippellijn brengt feedback terug. Dit is een conceptueel proces en geen automatische uitvoeringsketen. Feeds en modules vragen configuratie en bronbeoordeling; niet elke invoer is vertrouwd en niet elke uitvoer wordt gepubliceerd. Rechten en ingestelde uitwisselingspaden begrenzen het delen.}
 \end{frame}
 
-\begin{frame}
-        \frametitle{Delen van Technieken van Aanvallers}
-        \begin{itemize}
-                \item MISP heeft integratie op zowel event als attribuut niveau voor MITRE's Adversarial Tactics, Techniques, and Common Knowledge (ATT\&CK).
-        \end{itemize}
-        \includegraphics[scale=0.2]{screenshots/attack-screenshot.png}
+\begin{frame}{Een klein model voor een bruikbaar record}
+\SharingDiagram{data-model}
+\note{Een event groepeert informatie die inhoudelijk samenhangt. Losse attributen en attributen in objecten zijn alternatieve representaties; dupliceer geen waarden alleen om elk vak te vullen. Een domain-ip-object kan een onderbouwde relatie tussen domein en IP groeperen. Objectreferenties kunnen objecten of attributen verbinden. Dit vereenvoudigde diagram is geen volledig databaseschema en legt geen exacte nesting van tags of sightings vast.}
 \end{frame}
 
-\begin{frame}
-        \frametitle{Ondersteuning voor een specifiek datamodel}
-        \includegraphics[scale=0.24]{screenshots/bankaccount.png}
-        \includegraphics[scale=0.18]{screenshots/bankview.png}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Terminilogie van indicatoren}
-        \begin{itemize}
-                \item Indicatoren\footnote{IoC (Indicator of Compromise) zijn een onderdeel van de indicatoren}
-                        \begin{itemize}
-                                \item Indicatoren beschrijven een patroon dat kan gebruikt worden om verdachte of kwaadaardige traffiek te detecteren.
-                        \end{itemize}
-                \item Attributen in MISP kunnen netwerk indicatoren (b.v. IP adressen), systeem indicatoren (b.v. tekst in het geheugen) of zelfs bank gegevens zijn.
-                \begin{itemize}
-                        \item Een {\bf type} (b.v. MD5, url) is hoe een attribuut is beschreven.
-                \end{itemize}
-                \begin{itemize}
-                \item Een attribuut behoort altijd tot een categorie (b.v. Payload delivery). Deze categorie plaatst het attribuut in een bepaalde context.
-                        \begin{itemize}
-                                \item {\bf Een categorie bepaalt de context } van een attribuut.
-                        \end{itemize}
-                \item De IDS instelling op een attribuut bepaald of {\bf dit attribuut automatisch} zal gebruikt worden voor {\bf detectie} doeleinden.
-                \end{itemize}
-        \end{itemize}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Ondersteuning voor het werken met MISP}
-        \begin{itemize}
-            \item Gebruikers kunnen events of attributen bijvoegen via zowel de web interface, de API als via een vrije tekst veld.
-                \begin{itemize}
-                        \item Met PyMISP kunt u MISP via Python en scripts gebruiken om gegevens op te vragen, toe te voegen en te verwerken.
-                \end{itemize}
-        \item Een bijdrage kan gebeuren door rechtstreeks een event aan te maken maar gebruikers kunnen ook de eigenaar van een event een {\bf update voorstellen voor attributen}.
-            \item Gebruikers zijn {\bf niet gedwongen om één interface te gebruiken om gegevens aan MISP bij te voegen}.
-        \end{itemize}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Voorbeeld: Vrije tekst import in MISP}
-        \includegraphics[scale=0.3]{screenshots/freetext1.PNG}\\
-        \includegraphics[scale=0.3]{screenshots/freetxt2.PNG}\\
-        \includegraphics[scale=0.3]{screenshots/freetxt3.PNG}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Ondersteuning voor classificaties}
-        \begin{itemize}
-          \item Het gebruik van tags is een simpele manier om een classificatie toe te voegen aan een event of attribuut.
-          \item Een {\bf classificatie moet globaal} in gebruik zijn om ook efficient te zijn.
-          \item Gebruikers kunnen via een flexibel tagging systeem kiezen uit de meer dan 42 bestaande taxonomieën of ze kunnen hun eigen taxonomie bijvoegen.
-        \end{itemize}
-        \includegraphics[scale=0.20]{tags-2-4-70.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ondersteuning voor het delen in MISP}
+\begin{frame}{Beschrijf de waarneming vóór u handelt}
 \begin{itemize}
-        \item Delegeren van de publicatie van events naar andere organisaties (sinds MISP 2.4.18).
-        \begin{itemize}
-                \item Deze andere organisatie kan dan eigenaar worden van het event en op deze manier zorgen voor de {\bf pseudo-anonimiteit van de oorspronkelijke organisatie}.
-        \end{itemize}
-        \item Definiëren van groepen om specifieke informatie mee te delen (vanaf 2.4).
-        \begin{itemize}
-                \item De gemeenschappen om mee te delen kunnen lokaal of tussen verschillende MISP instanties gebruikt worden.
-                \item Het delen kan gebeuren op zowel {\bf event} als {\bf attribuut} niveau (b.v. financiële indicatoren met de financiële groepen en cyber security indicatoren met de CSIRT gemeenschap).
-        \end{itemize}
+\item Type: de vorm van een waarde, zoals \texttt{domain} of \texttt{ip-dst}.
+\item Categorie: een brede indeling naar context.
+\item Commentaar, bron en tijd: wat onderbouwt de waarneming?
+\item \texttt{to\_ids}: selectie voor uitvoer, geen bewijs.
 \end{itemize}
+\note{Een attribuut kan context bieden zonder geschikt te zijn voor operationele detectie. Het type beschrijft de representatie; de categorie geeft een breed doel en vervangt de onderbouwing niet. De to-IDS-instelling wordt gebruikt door relevante exports en filters; sommige API-query's halen ook andere attributen op. Een ingeschakelde vlag maakt blokkeren niet veilig. Behandel geïmporteerde attributen niet automatisch als bevestigd.}
 \end{frame}
 
-\begin{frame}
-        \frametitle{Ondersteuning voor waarnemingen}
-        \begin{columns}[t]
-        \column{5.0cm}
-        \begin{figure}
-        \includegraphics[scale=0.3]{screenshots/sighting-n.png}\\
-        \includegraphics[scale=0.34]{screenshots/Sightings2.PNG}
-        \end{figure}
-        \column{7cm}
-        \begin{itemize}
-                \item Gebruikers kunnen via {\bf waarnemingen} de gemeenschap op de hoogte stellen van activiteit gerelateerd aan een indicator.
-                \item Het is mogelijk om negatieve waarnemingen (false positives) en waarnemingen met een vervaldatum in te geven.
-                \item Waarnemingen kunnen gebeuren via de web interface, de API of door STIX waarnemings-documenten te importeren.
-                \item Er zijn verschillende toepassingen om indicatoren te rangschikken op basis van waarnemingen.
-        \end{itemize}
-        \end{columns}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Verbeteringen voor het delen van informatie in MISP}
+\begin{frame}{Voeg classificatie en herbruikbare kennis toe}
 \begin{itemize}
-        \item Valse positiven (false-positive) blijven een terugkerende uitdaging bij het delen van informatie.
-        \item Vanaf MISP 2.4.39 hebben we het concept van misp-warninglists\footnote{\url{https://github.com/MISP/misp-warninglists}} geïntroduceerd om de analysten te ondersteunen bij hun dagtaak.
-        \item Dit zijn voorgedefinieerde lijsten van indicatoren die vaak een valse positieve zijn, zoals bijvoorbeeld RFC1918 netwerken of publieke DNS servers.
+\item Taxonomietags geven gedeelde classificatietermen.
+\item Galaxy-clusters voegen kennis en relaties toe.
+\item ATT\&CK-technieken beschrijven onderbouwd gedrag.
+\item Houd waarneming, beoordeling en onzekerheid uit elkaar.
 \end{itemize}
+\note{Tags kunnen aan events of attributen worden gekoppeld; lokale koppelingen hebben een andere deelreikwijdte. Galaxy-clusters bieden herbruikbare context over bijvoorbeeld actoren, malware en technieken, met relaties tussen clusters. Een actor- of ATT\&CK-label is een analytische bewering, geen door MISP gemaakt bewijs. Vermeld passende bronnen en zekerheid. De Galaxy-cursus toont de actuele interface.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Ondersteuninng voor het delen binnen en buiten een organisatie}
+\begin{frame}{Een correlatie stelt een vraag}
+\SharingDiagram{correlation}
+\note{Twee rapporten bevatten dezelfde domeinnaam. Werkelijke correlatie hangt af van configuratie, typen, ingeschakelde correlatie en zichtbare gegevens. Vergelijk waarnemingstijden, bronnen en gerelateerde feiten. Gedeelde hosting, hergebruikte infrastructuur, normale diensten of fouten kunnen overeenkomsten verklaren. Een overeenkomst is een onderzoeksspoor en bevestigt geen actor of campagne.}
+\end{frame}
+
+\begin{frame}{Eén record kan verschillende acties ondersteunen}
 \begin{itemize}
-        \item Zelfs binnen één en dezelfde omgeving kunnen er verschillende use cases zijn voor het gebruik van MISP (b.v. groepen die MISP gebruiken voor dynamische malware analyse en correlatie, andere groepen die het dan weer gebruiken voor het versturen van meldingen).
-        \item Vanaf MISP 2.4.51, is er de optie om {\bf lokale MISP} servers met elkaar te verbinden. Zo kan je verschillende niveaus van delen voorkomen en kan je van een gemengde synchronisatie gebruik maken, zowel binnen als buiten de organisatie.
-        \item Er is ondersteuning voor feeds voor synchronisatie tussen vertrouwde en niet vertrouwde netwerken.
+\item Onderzoeken: rapporten vergelijken en een hypothese toetsen.
+\item Detecteren of hunten: relevante waarnemingen zoeken.
+\item Blokkeren: beleid toepassen en de gevolgen beoordelen.
+\item Beslissing vastleggen en aangeven hoe die wordt herzien.
 \end{itemize}
+\note{Fout-positieven en verouderde informatie hebben andere kosten bij retrospectief zoeken dan bij automatisch blokkeren. Beoordeel bron, context, actualiteit, onzekerheid en bestemming vóór gebruik. Een gedeeld record kan nuttig zijn zonder geschikt te zijn voor blokkering. Vraag welke actie Team B nu kan onderbouwen en welk aanvullend bewijs die keuze verandert.}
 \end{frame}
 
-\begin{frame}
-        \frametitle{Starten met MISP en indicatoren}
-        \begin{itemize}
-                \item We onderhouden de standaard CIRCL OSINT-feeds (TLP:WHITE geselecteerd uit onze gemeenschappen) zodat gebruikers snel aan de slag kunnen gaan met MISP.
-                \item Het formaat van de OSINT-feed is gebaseerd op standaard MISP JSON-uitvoer van een externe TLS / HTTP-server.
-                \item Aanvullende contentproviders kunnen hun eigen MISP-feeds leveren. (\url{https://botvrij.eu/}).
-                \item Dit laat gebruikers toe om hun MISP-installaties te {\bf testen en te synchroniseren met een echte gegevensset}.
-                \item Dit kan bijdragen aan andere bronnen van dreigings informatie en helpt ook bij de analyze naar overlappende data\footnote{Een steeds terugkerende uitdaging bij het delen van informatie}.
-        \end{itemize}
+\begin{frame}{Kies ontvangers met de MISP-instellingen}
+\small
+\begin{tabular}{@{}p{.37\textwidth}p{.58\textwidth}@{}}
+\toprule
+Distributiekeuze & Beoogde reikwijdte \\
+\midrule
+Alleen uw organisatie & De organisatie die eigenaar is. \\
+Alleen deze gemeenschap & De lokale MISP-gemeenschap. \\
+Verbonden / alle gemeenschappen & Breder delen volgens uitwisselingsregels. \\
+Sharing group & Een expliciet bepaalde groep ontvangers. \\
+\bottomrule
+\end{tabular}
+\note{Dit zijn distributiekeuzes, geen adresboek en geen garantie dat gegevens worden verzonden. Beoordeel event, object en attribuut samen; attributen kunnen de eventdistributie erven. Neem niet aan dat beperktere gegevens automatisch een breder publiek krijgen. Zichtbaarheid hangt ook af van rollen, groepslidmaatschap en synchronisatie en filters. Beheerders kunnen bijzondere toegang hebben; organisatie-only betekent niet onzichtbaar voor de beheerder.}
 \end{frame}
 
+\begin{frame}{Omgangslabels en toegang hebben elk een taak}
+\begin{itemize}
+\item TLP 2.0 communiceert verwachtingen over verdere verspreiding.
+\item Distributie en sharing groups regelen zichtbaarheid in MISP.
+\item Beoordeel gevoelige details, doel en ontvangerverplichtingen.
+\item Een label alleen dwingt geen toegestane doelgroep af.
+\end{itemize}
+\note{Gebruik actuele TLP 2.0-namen, waaronder TLP:CLEAR voor onbeperkt delen volgens TLP. TLP:AMBER en TLP:AMBER+STRICT hebben andere verwachtingen over verdere verspreiding; raadpleeg FIRST voor de regels. Leid geen juridische toestemming af uit een tag. Een publieke bron maakt niet elk verrijkt of gecombineerd record publiek. Stem het beleid af met de verantwoordelijke personen.}
+\end{frame}
 
-\begin{frame}
-        \frametitle{Conclusie}
-        \begin{itemize}
-                \item {\bf De manier van informatie delen onstaat voornamelijk uit het gebruik} en het volgen van bestaande voorbeelden.
-                \item MISP is uiteindelijk slechts een hulpmiddel, het belangrijkste is nog altijd de manier hoe je de informatie deelt. De tool moet u daarbij zo transparant mogelijk ondersteunen tijdens uw werk.
-                \item Gebruikers moeten MISP kunnen aanpassen zodat zij een oplossing hebben voor de noden van hun gemeenschap.
-                \item Het MISP project combineert open source software, open standaarden, best practices en gemeenschappen om informatie deling te realiseren.
-        \end{itemize}
+\begin{frame}{Publiceren is een bewuste stap}
+\begin{enumerate}
+\item Beoordeel het record, de bron en het beoogde gebruik.
+\item Controleer distributie en tags op de relevante niveaus.
+\item Bevestig de ingestelde sync-, feed- of exportbestemming.
+\item Publiceer of wissel uit volgens het afgesproken beleid.
+\end{enumerate}
+\note{Opslaan, publiceren en extern uitwisselen zijn verschillende handelingen. Publicatie kan ingestelde acties activeren; paden hebben eigen rechten en filters. Ongepubliceerd betekent niet geheim: bevoegde gebruikers kunnen een record nog zien of via de API ophalen. Begin in de les met fictieve, tijdelijke gegevens, organisatie-only en ongepubliceerd. Controleer ingestelde afnemers vóór een demonstratie op een live-instantie.}
+\end{frame}
+
+\begin{frame}{Instanties wisselen geselecteerde informatie uit}
+\SharingDiagram{exchange}
+\note{Pijlen geven ingestelde, door beleid beperkte paden weer en geen universeel vertrouwen of verplichte centrale hub. De terugweg wordt afzonderlijk ingesteld en toegestaan. Instantie C is in dit voorbeeld losgekoppeld; goedgekeurde handmatige overdracht kan na controle wel plaatsvinden. Elke instantie kan meerdere organisaties bevatten. Beoordeel distributie, sharing groups, filters en lokaal beleid aan beide kanten. De topologie bewijst niet dat de doelgroep klopt.}
+\end{frame}
+
+\begin{frame}{Kies de uitwisselingsmethode bij het doel}
+\begin{itemize}
+\item Synchronisatie: gerichte uitwisseling tussen MISP-instanties.
+\item Feeds: gegevens ophalen bij een ingestelde leverancier.
+\item API en exports: een specifieke afnemer verbinden.
+\item Handmatige overdracht: bestand en bestemming beoordelen.
+\end{itemize}
+\note{Een opgehaalde feed is niet automatisch een tweerichtingsgemeenschap en de leverancier ontvangt mogelijk geen correcties. Beoordeel herkomst, voorwaarden, actualiteit, dekking en overlap vóór grote imports. Native MISP JSON-feeds en andere ondersteunde feeds hebben verschillende mogelijkheden. Gebruik de feed- en synchronisatiecursussen voor details. Een losgekoppeld systeem vraagt een eigen goedgekeurd overdrachtsproces; transport maakt gegevens niet vanzelf betrouwbaar.}
+\end{frame}
+
+\begin{frame}{Werk samen met duidelijke verantwoordelijkheid}
+\begin{itemize}
+\item Eigenaarschap geeft aan wie het event onderhoudt.
+\item Proposals laten anderen attribuutwijzigingen voorstellen.
+\item Extended events voegen context van een andere organisatie toe.
+\item Spreek af wie correcties ontvangt en opvolgt.
+\end{itemize}
+\note{Dit zijn samenwerkingsopties en geen uitwisselbare rechten. Voorstellen vragen beoordeling; extended events behouden eigen eigenaarschap en zichtbaarheid. Delegatie draagt eigenaarschap over via een afgesproken proces en garandeert geen anonimiteit. Sightings zijn een ander feedbackkanaal. Leg vast wie correcties behandelt, wijzigingen communiceert en meningsverschillen afhandelt.}
+\end{frame}
+
+\begin{frame}{Kwaliteit vraagt een terugkerende beoordeling}
+\SharingDiagram{quality-cycle}
+\note{Leg herkomst, waarnemingstijd en onzekerheid vast; beoordeel context en omgang; gebruik passend beleid; herbeoordeel daarna op basis van feedback. Een correctie kan de interpretatie veranderen zonder de waargenomen waarde te wijzigen. Geen score bewijst dat een record waar is. Kwaliteit en doelgroep blijven ook na publicatie aandacht vragen. De pijlen beschrijven een proces met passende automatisering en verantwoordelijkheid.}
+\end{frame}
+
+\begin{frame}{Gebruik hulpmiddelen met eigen beoordeling}
+\begin{itemize}
+\item Warninglists signaleren mogelijk misleidende waarden.
+\item Verrijking voegt context uit gekozen bronnen toe.
+\item Vergelijk herkomst en houd onzekerheid zichtbaar.
+\item Controleer wat een externe module naar de leverancier stuurt.
+\end{itemize}
+\note{Een warninglist-hit is geen universeel oordeel dat iets fout-positief is: publieke DNS of gedeelde infrastructuur kan relevant zijn. Verrijking kan nuttige feiten toevoegen of een onbevestigde claim herhalen. Beoordeel resultaten vóór opslaan, vooral uitspraken over actoren en campagnes. Sommige modules benaderen externe diensten; controleer verzonden waarden, sleutels en beleid vóór gebruik met gevoelige gegevens. Gedrag hangt af van de configuratie.}
+\end{frame}
+
+\begin{frame}{Sightings geven verschillende soorten feedback}
+\begin{itemize}
+\item Sighting: een waarneming van het datapunt.
+\item False positive: feedback over een ongeschikte interpretatie.
+\item Expiration: feedback dat de relevantie is geëindigd.
+\item Voeg bron en tijd toe; spreek af hoe feedback wordt gebruikt.
+\end{itemize}
+\note{MISP onderscheidt type 0 voor sighting, type 1 voor false-positive en type 2 voor expiration. Dit zijn geen drie betrouwbaarheidsscores. Een nieuwe sighting bewijst niet dat een domein kwaadaardig is of dat elk gekoppeld rapport klopt. Geen sightings bewijst geen afwezigheid van activiteit. Zichtbaarheid en terugwegen vragen configuratie en afspraken. Beloof geen automatische verwijdering, publicatie of blokkadewijziging door een sighting.}
+\end{frame}
+
+\begin{frame}{Waarnemingstijd verschilt van recordtijd}
+\SharingDiagram{timeline}
+\note{De fictieve datums illustreren alleen het onderscheid. first\_seen en last\_seen beschrijven, als ze bekend zijn, een waarnemingsperiode; aanmaak- en wijzigingstijden beschrijven onderhoud. Een rapport kan later worden ingevoerd dan de beschreven activiteit. Vermeld tijdzone en bron en laat onbekende tijden onbekend. Een gewijzigde attribuuttimestamp bewijst geen nieuwe waarneming. Sightingdatums zijn een andere expliciete waarnemingsregistratie.}
+\end{frame}
+
+\begin{frame}{Ouderdom en decay helpen bij herbeoordeling}
+\begin{itemize}
+\item Waarnemingen hebben verschillende nuttige levensduren.
+\item Een decaymodel geeft een beoordelings- of filtersignaal.
+\item Beoordeel het model, sightings en het beleid van de afnemer.
+\item Bewaar historische context na operationeel verval.
+\end{itemize}
+\note{Decay is geen universele kans op malware en geen opdracht om oude gegevens te verwijderen. Effecten op exports of acties hangen af van modellen, instellingen, filters en integraties. Verlopen operationele relevantie kan samengaan met historische onderzoekswaarde. Gebruik de decaycursussen voor configuratie en simulatie in plaats van hier oude knoplocaties te onderwijzen.}
+\end{frame}
+
+\begin{frame}{Automatiseer een beoordeelde beslissing}
+\begin{itemize}
+\item Gebruik de REST API en PyMISP voor afgebakende processen.
+\item Filter voor de afnemer, het doel en de doelgroep.
+\item Test met fictieve gegevens en inspecteer de uitvoer.
+\item Breng feedback terug en behandel fouten expliciet.
+\end{itemize}
+\note{Een integratie moet vastleggen wie wat mag lezen of wijzigen, welke gegevens nodig zijn, welke filters gelden en wat er bij herhaling of fouten gebeurt. Gebruik een beperkt serviceaccount en bescherm de API-sleutel. Deze inleiding laat versiegevoelige payloads en methodesignaturen bewust weg; de vernieuwde REST API- en PyMISP-cursussen behandelen die. Bewaar herkomst en toegangsbeleid in de automatisering.}
+\end{frame}
+
+\begin{frame}{Een gemeenschap heeft werkafspraken nodig}
+\begin{itemize}
+\item Spreek doel, deelnemers en bijdragen af.
+\item Bepaal omgang, correctie en escalatie.
+\item Begin met een kleine vertrouwde groep en nuttige records.
+\item Herzie afspraken als mensen en toepassingen veranderen.
+\end{itemize}
+\note{Een gemeenschap kan een intern team, sectorgroep, CSIRT-netwerk, fraudepartnerschap of thematische samenwerking zijn. Een instantie is een implementatie; een sharing group is een doelgroep; beide verschillen van de sociale gemeenschap. Vertrouwen groeit uit relaties en werkwijzen. Software ondersteunt de afspraken maar levert niet hun juridische basis, motivatie of verantwoording.}
+\end{frame}
+
+\begin{frame}{Maak van een obstakel een eerste bijdrage}
+\small
+\begin{tabular}{@{}p{.28\textwidth}p{.68\textwidth}@{}}
+\toprule
+Obstakel & Een nuttige eerste stap \\
+\midrule
+Weinig tijd & Deel een kleine waarneming met een bron. \\
+Onzekerheid & Benoem wat bekend en corrigeerbaar is. \\
+Andere tools & Spreek termen en ondersteunde formaten af. \\
+Verplichtingen & Beoordeel doel en ontvangers met verantwoordelijken. \\
+\bottomrule
+\end{tabular}
+\note{Doe technische, organisatorische of juridische beperkingen niet af als denkbeeldig. Werk met de verantwoordelijke mensen. Een bronnotitie, correctie of contextuele link kan nuttiger zijn dan nog een grote indicatorenlijst. Goede voorbeelden en eenvoudige feedback helpen deelname. Vraag om één haalbare bijdrage onder het eigen beleid, zonder gevoelige gegevens in de klas op te vragen.}
+\end{frame}
+
+\begin{frame}{Het project begon met een praktische behoefte}
+\begin{itemize}
+\item In 2012 wilden malwareanalisten dubbel werk voorkomen.
+\item Het vroege platform van Christophe Vandeplas werd MISP.
+\item CIRCL en een bredere gemeenschap verbeteren het project.
+\item Bijdragen omvatten code, gedeelde kennis en opleiding.
+\end{itemize}
+\note{Behoud de oorsprong uit het eerdere lesmateriaal: een malwarewerkgroep ontdekte dubbel werk en gebruikersfeedback vormde het platform. CIRCL speelt al lang een rol in ontwikkeling en gemeenschap. Verwijs naar actuele CIRCL-informatie in plaats van ministeriële mandaten of organisatiestructuren vast te zetten. Vermijd ongedateerde gebruikersaantallen en beperk de huidige gemeenschappen niet tot de eerste malwaretoepassing.}
+\end{frame}
+
+\begin{frame}{Het MISP-project heeft vier aanvullende delen}
+\SharedIntroDiagram{overview}
+\note{Software, kennis, standaarden en gemeenschappen behouden het bruikbare vierdelige idee uit het oorspronkelijke diagram. Categorieën overlappen en vormen geen hiërarchie. MISP, PyMISP en optionele modules ondersteunen gebruik; taxonomieën, Galaxies en warninglists bieden kennis; formaten, begrippen en sjablonen helpen uitwisseling; mensen leveren werkwijzen en feedback. Niet elk onderdeel hoeft geïnstalleerd te worden.}
+\end{frame}
+
+\begin{frame}{De gemeenschap verbetert het project}
+\SharedIntroDiagram{community}
+\note{Dit vervangt het oude governanceplaatje door een bewerkbare conceptuele bijdragecyclus. Gebruikers brengen behoeften; bijdragers stellen code, gegevens, documentatie en opleiding voor; beheerders beoordelen en nemen releasebeslissingen; verbeteringen keren terug naar gebruikers. Mensen kunnen meerdere rollen hebben. Het is geen formeel juridisch of organisatorisch gezagsschema. Volg de echte bijdrageprocedure van de betreffende repository.}
+\end{frame}
+
+\begin{frame}{Oefening: maak de casus bruikbaar voor Team B}
+\begin{enumerate}
+\item Ontwerp een event met het fictieve domein en IP-adres.
+\item Leg bron, tijd, relatie en onzekerheid uit.
+\item Kies beperkte ontvangers en een onderbouwde vervolgactie.
+\item Beschrijf hoe een correctie Team B bereikt.
+\end{enumerate}
+\note{Geef tien minuten in tweetallen of als groepsgesprek. Papier is voldoende. Gebruik in een toegestaan lab alleen tijdelijke fictieve gegevens, houd het event organisatie-only en ongepubliceerd en controleer ingestelde afnemers. Publiceer of blokkeer de documentatiewaarden niet. Vraag onderscheid tussen waarneming en beoordeling en een uitleg van de gekozen ontvangers.}
+\end{frame}
+
+\begin{frame}{Nabespreking: leg de beslissingen uit}
+\begin{itemize}
+\item Het gedeelde domein is een spoor, geen attributie.
+\item Een object groepeert een door de bron onderbouwde relatie.
+\item Omgangslabels en zichtbaarheid vragen beide controle.
+\item Een zoekactie kan eerder verantwoord zijn dan blokkeren.
+\item Een correctie heeft een eigenaar en een terugweg nodig.
+\end{itemize}
+\note{Zonder gemeenschapsbeleid en bewijs is er geen unieke juiste sharing group of blokkeerbeslissing. Een goed antwoord bewaart herkomst, benoemt ontbrekende feiten en beperkt ontvangers bewust. Vraag wat verandert als het IP gedeelde infrastructuur is, de bron haar claim intrekt of de activiteit maanden oud is. Bespreek besliskwaliteit in plaats van een actor te raden.}
+\end{frame}
+
+\begin{frame}{Ga verder met de taak die u nodig hebt}
+\begin{itemize}
+\item Dagelijkse analyse: gebruik, tags en objecten.
+\item Context en kwaliteit: Galaxies en indicatorverval.
+\item Integratie: REST API, PyMISP en feeds.
+\item Gemeenschapsbeheer: administratie en deelpraktijken.
+\end{itemize}
+\note{De README verwijst direct naar actuele cursussen en bronnen. Kies vervolgcursussen op basis van de rol van de deelnemers in plaats van elke productfunctie te doorlopen. De volledige inleiding geeft een gedeelde woordenschat en redeneerproces. Trainers kunnen TikZ-diagrammen eenmaal aanpassen voor beide talen of als losse vectorbestanden exporteren.}
+\end{frame}
+
+\begin{frame}{Deel context, kies bewust en blijf verbeteren}
+\begin{itemize}
+\item Structureer waarnemingen met behoud van betekenis.
+\item Kies ontvangers en acties volgens afgesproken beleid.
+\item Gebruik feedback voor correctie en herbeoordeling.
+\item Draag ook werkwijzen en kennis bij.
+\end{itemize}
+\note{Vraag de deelnemers de casus in één minuut samen te vatten: wat is waargenomen, wat ondersteunt dat, wie mag het ontvangen, welke actie volgt en hoe kan het worden gecorrigeerd? Het doel is nuttige informatie-uitwisseling met MISP en geen functiecatalogus. Een kleine, goed uitgelegde bijdrage kan een ander team dubbel werk of een slechte beslissing besparen.}
 \end{frame}
 

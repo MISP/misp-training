@@ -1,0 +1,10 @@
+% A value match is an analytical lead, not an attribution edge.
+\begin{tikzpicture}
+\node[sharing small,text width=3.15cm] (a) at (0,1.65) {\textbf{\IntroLabel{report-a}}\\\IntroLabel{report-a-body}};
+\node[sharing small,text width=3.15cm] (b) at (8.1,1.65) {\textbf{\IntroLabel{report-b}}\\\IntroLabel{report-b-body}};
+\node[intro box,text width=4.25cm,minimum height=1.4cm] (value) at (4.05,-.6)
+  {\textbf{\IntroLabel{shared-value}}\\\texttt{login-support.example}};
+\draw[intro arrow] (a.south) -- (value.north west);
+\draw[intro arrow] (b.south) -- (value.north east);
+\node[intro edge label,text width=10.5cm] at (4.05,-2.15) {\IntroLabel{match-question}};
+\end{tikzpicture}

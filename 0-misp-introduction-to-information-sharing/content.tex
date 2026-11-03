@@ -1,302 +1,276 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
-\begin{frame}[t,plain]
+% Full introduction; compile the corresponding slide entry point.
+\begin{frame}
 \titlepage
 \end{frame}
 
-\begin{frame}{Agenda}
-    \input{../includes/agenda.txt}
-\end{frame}
-
-\begin{frame}
- \frametitle{MISP and starting from a practical use-case}
- \begin{itemize}
-         \item During a malware analysis workgroup in 2012, we discovered that we worked on the analysis of the same malware.
-         \item We wanted to share information in an easy and automated way {\bf to avoid duplication of work}.
-         \item Christophe Vandeplas (then working at the CERT for the Belgian MoD) showed us his work on a platform that later became MISP.
-         \item A first version of the MISP Platform was used by the MALWG and {\bf the increasing feedback of users} helped us to build an improved platform.
-         \item MISP is now {\bf a community-driven development}.
- \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{about CIRCL}
-	The Computer Incident Response Center Luxembourg (CIRCL) is a government-driven initiative designed to provide a systematic response facility to computer security threats and incidents. CIRCL is a CERT with national responsibilities for the private sector, communes and non-governmental entities in Luxembourg and is operated by LHC (Luxembourg House of Cybersecurity).
-\end{frame}
-
-\begin{frame}
-\frametitle{MISP and CIRCL}
+\begin{frame}{What you will be able to do}
 \begin{itemize}
-\item CIRCL is mandated by the Ministry of Economy and acting as the Luxembourg National CERT for private sector.
-\item CIRCL leads the development of the Open Source MISP threat intelligence platform which is used by many military or intelligence communities, private companies, financial sector, National CERTs and LEAs globally.
-\item {\bf CIRCL runs multiple large MISP communities performing active daily threat-intelligence sharing}.
+\item Explain how observations become useful shared context.
+\item Distinguish data, interpretation and operational action.
+\item Choose an audience and an exchange method deliberately.
+\item Describe how feedback keeps information useful.
 \end{itemize}
-        \includegraphics{en_cef.png}
+\note{Allow 35--40 minutes plus a ten-minute discussion exercise. This is the full introductory course; the short introduction is a separate 15--20 minute option. No account or API key is needed. Follow one fictional case through data modelling, sharing controls, exchange and review. Practical configuration belongs in the linked follow-on courses.}
 \end{frame}
 
-\begin{frame}
-\frametitle{What is MISP?}
+\begin{frame}{One case, two teams}
 \begin{itemize}
-       \item MISP is a {\bf threat information sharing} platform that is free \& open source software
-       \item A tool that {\bf collects} information from partners, your analysts, your tools, feeds
-       \item Normalises, {\bf correlates}, {\bf enriches} the data
-       \item Allows teams and communities to {\bf collaborate}
-       \item {\bf Feeds} automated protective tools and analyst tools with the output
+\item Team A investigates a suspicious sign-in message.
+\item It records \SharingCase{} and \texttt{192.0.2.25}.
+\item Team B has seen the same domain in another report.
+\item What can they reuse? What must they still establish?
 \end{itemize}
+\note{All case data is synthetic. The .example domain and 192.0.2.0/24 range are reserved for documentation, not malicious indicators. Ask learners what Team B needs: a source, observation time, supporting evidence and uncertainty. Matching a domain alone does not establish a common actor or campaign. Keep this distinction throughout the lesson.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Development based on practical user feedback}
+\begin{frame}{MISP supports people and tools}
 \begin{itemize}
-\item There are many different types of users of an information sharing platform like MISP:
-        \begin{itemize}
-                \item {\bf Malware reversers} willing to share indicators of analysis with respective colleagues.
-                \item {\bf Security analysts} searching, validating and using indicators in operational security.
-                \item {\bf Intelligence analysts} gathering information about specific adversary groups.
-                \item {\bf Law-enforcement} relying on indicators to support or bootstrap their DFIR cases.
-                \item {\bf Risk analysis teams} willing to know about the new threats, likelyhood and occurences.
-                \item {\bf Fraud analysts} willing to share financial indicators to detect financial frauds.
-        \end{itemize}
+\item An open source platform for structured information sharing.
+\item Collect observations from analysts, tools and partners.
+\item Connect and review records without losing their context.
+\item Provide useful inputs for investigation, detection and response.
 \end{itemize}
+\note{MISP supports incident, threat, fraud and other security-related information. Different communities use different parts of the model. Normalisation, correlation and enrichment assist analysis; they do not validate every assertion. The platform does not create trust or decide the right response for every recipient. Explain the purpose before introducing feature names.}
 \end{frame}
 
-\begin{frame}
-\frametitle{MISP model of governance}
-\includegraphics[scale=0.4]{governance.png}
+\begin{frame}{From observations to shared context}
+\SharedIntroDiagram{sharing-flow}
+\note{Follow solid arrows from sources through structure, review and sharing controls to use. Dashed arrows return feedback. This is a conceptual workflow rather than an automatic execution pipeline. Feeds and modules require configuration and source assessment; not every input is trusted and not every output is published. Configured permissions and exchange paths constrain sharing.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Many objectives from different user-groups}
-        \begin{itemize}
-                \item Sharing indicators for a {\bf detection} matter.
-                        \begin{itemize}
-                                \item 'Do I have infected systems in my infrastructure or the ones I operate?'
-                        \end{itemize}
-                \item Sharing indicators to {\bf block}.
-                        \begin{itemize}
-                                \item 'I use these attributes to block, sinkhole or divert traffic.'
-                        \end{itemize}
-                \item Sharing indicators to {\bf perform intelligence}.
-                        \begin{itemize}
-                                \item 'Gathering information about campaigns and attacks. Are they related? Who is targeting me? Who are the adversaries?'
-                        \end{itemize}
-                \item $\rightarrow$ These objectives can be conflicting (e.g. False-positives have different impacts)
-        \end{itemize}
+\begin{frame}{A small model for a useful record}
+\SharingDiagram{data-model}
+\note{An event groups contextually related information. Standalone attributes and object-contained attributes are alternative ways to represent observations; do not duplicate a value just to populate every box. A domain-ip object can group a supported domain/IP relationship. Object references can link objects or attributes. The diagram simplifies the complete schema and does not imply that tags or sightings are nested exactly as drawn.}
 \end{frame}
 
-\begin{frame}
- \frametitle{Communities using MISP}
- \begin{itemize}
-	 \item Communities are groups of users sharing within a set of common objectives/values.
-	 \item CIRCL operates multiple MISP instances with a significant user base (more than 1200 organizations with more than 4000 users).
-         \item {\bf Trusted groups} running MISP communities in island mode (air gapped system) or partially connected mode.
-	 \item {\bf Financial sector} (banks, ISACs, payment processing organizations) use MISP as a sharing mechanism.
-	 \item {\bf Military and international organizations} (NATO, military CSIRTs, n/g CERTs,...).
-	 \item {\bf Security vendors} running their own communities (e.g. Fidelis) or interfacing with MISP communities (e.g. OTX).
-         \item {\bf Topical communities} set up to tackle individual specific issues (COVID-19 MISP)
- \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Sharing Difficulties}
-        \begin{itemize}
-                \item Sharing difficulties are not really technical issues but often it's a matter of {\bf social interactions} (e.g. {\bf trust}).
-                \item Legal restriction\footnote{\url{https://www.misp-project.org/compliance/}}
-                        \begin{itemize}
-                                \item "Our legal framework doesn't allow us to share information."
-                                \item "Risk of information-leak is too high and it's too risky for our organization or partners."
-                        \end{itemize}
-                \item Practical restriction
-                        \begin{itemize}
-                                \item "We don't have information to share."
-                                \item "We don't have time to process or contribute indicators."
-                                \item "Our model of classification doesn't fit your model."
-                                \item "Tools for sharing information are tied to a specific format, we use a different one."
-                        \end{itemize}
-        \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-        \frametitle{MISP Project Overview}
-        \includegraphics[scale=0.35]{misp-overview-simplified.pdf}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Getting some naming conventions out of the way...}
-         \begin{itemize}
-                \item Data layer
-                \begin{itemize}
-                    \item {\bf Events} are encapsulations for contextually linked information
-                    \item {\bf Attributes} are individual data points, which can be indicators or supporting data
-                    \item {\bf Objects} are custom templated Attribute compositions
-                    \item {\bf Object references} are the relationships between other building blocks
-                    \item {\bf Sightings} are time-specific occurances of a given data-point detected
-                \end{itemize}
-                \item Context layer
-                \begin{itemize}
-                    \item {\bf Tags} are labels attached to events/attributes and can come from {\bf Taxonomies}
-                    \item {\bf Galaxy-clusters} are knowledge base items used to label events/attributes and come from {\bf Galaxies}
-                    \item {\bf Cluster relationships} denote pre-defined relationships between clusters
-                \end{itemize}
-        \end{itemize}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Terminology about Indicators}
-        \begin{itemize}
-                \item Indicators\footnote{IoC (Indicator of Compromise) is a subset of indicators}
-                        \begin{itemize}
-                                \item Indicators contain a pattern that can be used to detect suspicious or malicious cyber activity.
-                        \end{itemize}
-                \item Attributes in MISP can be network indicators (e.g. IP address), system indicators (e.g. a string in memory) or even bank account details.
-                \begin{itemize}
-                        \item {\bf A type (e.g. MD5, url) is how an attribute is described}.
-                \end{itemize}
-                \begin{itemize}
-                \item An attribute is always in a category (e.g. Payload delivery) which puts it in a context.
-                        \begin{itemize}
-                                \item {\bf A category is what describes} an attribute.
-                        \end{itemize}
-                \item An IDS flag on an attribute allows to determine if {\bf an attribute can be automatically used for detection}.
-                \end{itemize}
-        \end{itemize}
-\end{frame}
-
-\begin{frame}
-        \frametitle{A rich data-model: telling stories via relationships}
-        \includegraphics[scale=0.24]{screenshots/bankaccount.png}
-        \includegraphics[scale=0.18]{screenshots/bankview.png}
-\end{frame}
-
-\begin{frame}
-        \frametitle{Contextualisation and aggregation}
-        \begin{itemize}
-                \item MISP integrates at the event and the attribute levels MITRE's Adversarial Tactics, Techniques, and Common Knowledge (ATT\&CK).
-        \end{itemize}
-        \includegraphics[scale=0.2]{screenshots/attack-screenshot.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Sharing in MISP}
-    \begin{itemize}
-        \item Sharing via distribution lists - {\bf Sharing groups}
-        \item {\bf Delegation} for pseudo-anonymised information sharing
-        \item {\bf Proposals} and {\bf Extended events} for collaborated information sharing
-        \item Synchronisation, Feed system, air-gapped sharing
-        \item User defined {\bf filtered sharing} for all the above mentioned methods
-        \item Cross-instance information {\bf caching} for quick lookups of large data-sets
-        \item Support for multi-MISP internal enclaves
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{MISP core distributed sharing functionality}
+\begin{frame}{Describe the observation before acting on it}
 \begin{itemize}
-\item MISPs' core functionality is sharing where everyone can be a consumer and/or a contributor/producer."
-\item Quick benefit without the obligation to contribute.
-\item Low barrier access to get acquainted to the system.
+\item Type: the form of a value, such as \texttt{domain} or \texttt{ip-dst}.
+\item Category: a broad contextual classification.
+\item Comment, source and time: what supports this observation?
+\item \texttt{to\_ids}: eligibility under an export policy, not proof.
 \end{itemize}
-\includegraphics[scale=0.9]{misp-distributed.pdf}
+\note{An attribute can support context without being a deployable indicator. The type defines how a value is represented; the category provides a broad purpose, not a full evidential account. A to-IDS flag is used by relevant exports and filters; some API queries include attributes regardless of it. A true flag does not make blocking safe. Avoid treating every imported attribute as verified.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Information quality management}
-    \begin{itemize}
-        \item Correlating data
-        \item Feedback loop from detections via {\bf Sightings}
-        \item {\bf False positive management} via the warninglist system
-        \item {\bf Enrichment system} via MISP-modules
-        \item {\bf Integrations} with a plethora of tools and formats
-        \item Flexible {\bf API} and support {\bf libraries} such as PyMISP to ease integration
-        \item {\bf Timelines} and giving information a temporal context
-        \item Full chain for {\bf indicator life-cycle management}
-    \end{itemize}
+\begin{frame}{Add classification and reusable knowledge}
+\begin{itemize}
+\item Taxonomy tags provide shared classification terms.
+\item Galaxy clusters add structured knowledge and relationships.
+\item ATT\&CK techniques can describe supported behaviour.
+\item Keep observation, assessment and uncertainty distinct.
+\end{itemize}
+\note{Tags can be attached at event or attribute level; local associations have a different sharing scope. Galaxy clusters provide reusable context such as actors, malware and techniques, with relationships between clusters. Selecting an actor or ATT\&CK label is an analytical assertion, not evidence generated by MISP. Use a source and confidence appropriate to that assertion. The Galaxy course demonstrates the current interface.}
 \end{frame}
 
-\begin{frame}
-        \frametitle{Correlation features: a tool for analysts}
-        \includegraphics[scale=0.18]{screenshots/campaign.png}
-        \begin{itemize}
-                \item To {\bf corroborate a finding} (e.g. is this the same campaign?), {\bf reinforce an analysis} (e.g. do other analysts have the same hypothesis?), {\bf confirm a specific aspect} (e.g. are the sinkhole IP addresses used for one campaign?) or just find if this {\bf threat is new or unknown in your community}.
-        \end{itemize}
+\begin{frame}{A correlation asks a question}
+\SharingDiagram{correlation}
+\note{The diagram shows two reports containing a matching domain. Actual correlation depends on configuration, types, enabled correlation and the data visible to the user. Compare observation times, sources and related facts. Shared hosting, reused infrastructure, benign services and mistakes can explain matches. A match is a lead, not a confirmation of attribution or campaign membership.}
 \end{frame}
 
-\begin{frame}
-        \frametitle{Sightings support}
-        \begin{columns}[t]
-        \column{5.0cm}
-        \begin{figure}
-        \includegraphics[scale=0.3]{screenshots/sighting-n.png}\\
-        \includegraphics[scale=0.34]{screenshots/Sightings2.PNG}
-        \end{figure}
-        \column{7cm}
-        \begin{itemize}
-                \item Has a data-point been {\bf sighted} by me or the community before?
-                \item Additionally, the sighting system supports negative sigthings (FP) and expiration sightings.
-                \item Sightings can be performed via the API or the UI.
-                \item Many use-cases for {\bf scoring indicators} based on users sighting.
-                \item For large quantities of data, {\bf SightingDB} by Devo
-        \end{itemize}
-        \end{columns}
+\begin{frame}{The same record can support different actions}
+\begin{itemize}
+\item Investigate: compare reports and test a hypothesis.
+\item Detect or hunt: search for relevant observations.
+\item Block: use a reviewed policy and assess the impact.
+\item Record the decision and how it can be reconsidered.
+\end{itemize}
+\note{False positives and stale information have different costs for a retrospective search and an automatic block. Review the source, context, recency, uncertainty and destination before use. A shared record can be useful even when unsuitable for blocking. Ask which action Team B can justify now, and what extra evidence would change that choice.}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Timelines and giving information a temporal context}
-  \begin{itemize}
-    \item Recently introduced {\bf \texttt{first\_seen}} and {\bf \texttt{last\_seen}} data points
-    \item All data-points can be placed in time
-    \item Enables the {\bf visualisation} and {\bf adjustment} of indicators timeframes 
-  \end{itemize}
-  \begin{center}
-    \includegraphics[width=1.0\linewidth]{timeline-misp-overview.png}
-  \end{center}
+\begin{frame}{Choose recipients using MISP controls}
+\small
+\begin{tabular}{@{}p{.37\textwidth}p{.58\textwidth}@{}}
+\toprule
+Distribution choice & Intended scope \\
+\midrule
+Your organisation only & The owning organisation. \\
+This community only & The local instance community. \\
+Connected / all communities & Wider sharing subject to exchange rules. \\
+Sharing group & An explicitly defined permitted audience. \\
+\bottomrule
+\end{tabular}
+\note{These are distribution choices, not an address book or a promise that records will be sent. Event, object and attribute scope must be reviewed together; attributes can inherit event distribution. More restrictive data should not be assumed to inherit a broader audience. Effective visibility also depends on roles, sharing-group membership and sync/filter configuration. Administrators can have privileged access; organisation-only does not mean invisible to the instance operator.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Life-cycle management via decaying of indicators}
-    \includegraphics[width=1.00\linewidth]{decaying-event.png}
-    \begin{itemize}
-        \item \texttt{Decay score} toggle button
-        \begin{itemize}
-            \item Shows Score for each \textit{Models} associated to the \textit{Attribute} type
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Handling labels and access controls do different jobs}
+\begin{itemize}
+\item TLP 2.0 communicates handling expectations.
+\item Distribution and sharing groups control MISP visibility.
+\item Review sensitive details, purpose and recipient obligations.
+\item A label alone does not enforce the permitted audience.
+\end{itemize}
+\note{Use current TLP 2.0 names, including TLP:CLEAR for unrestricted sharing under TLP. TLP:AMBER and TLP:AMBER+STRICT have different permitted onward-sharing expectations; consult FIRST rather than reconstructing all rules from memory. Do not infer legal permission from a tag. A public source does not automatically make every enriched or combined record public. Agree policy with the responsible people.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Decaying of indicators: Fine tuning tool}
-    \includegraphics[width=1.00\linewidth]{decaying-tool.png}
-    Create, modify, visualise, perform mapping
+\begin{frame}{Publication is a deliberate step}
+\begin{enumerate}
+\item Review the record, source and intended use.
+\item Check event and finer-grained distribution and tags.
+\item Confirm the configured sync, feed or export destination.
+\item Publish or exchange only under the agreed policy.
+\end{enumerate}
+\note{Saving, publication and remote exchange are different operations. Publication can trigger configured actions; paths also have permissions and filters. Unpublished does not mean secret: authorised users may still view a record or retrieve it through the API. Start training work organisation-only and unpublished, with disposable data. Review all configured consumers before using a live instance for demonstrations.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Decaying of indicators: simulation tool}
-    \includegraphics[width=1.00\linewidth]{decaying-simulation.png}
-    Simulate \textit{Attributes} with different \textit{Models}
+\begin{frame}{Instances exchange selected information}
+\SharingDiagram{exchange}
+\note{Arrows indicate configured, policy-limited paths, not universal trust or a mandatory hub. The return path is separately configured and permitted. Instance C is disconnected in this example; approved manual transfers can still occur after review. Each instance can host several organisations. Distribution, sharing groups, filtering and local policy must be considered at both ends. No topology alone proves an audience is correct.}
 \end{frame}
 
-
-\begin{frame}
-        \frametitle{Bootstrapping your MISP with data}
-        \begin{itemize}
-                \item We maintain the default CIRCL OSINT feeds (TLP:WHITE selected from our communities) in MISP to allow users to ease their bootstrapping.
-                \item The format of the OSINT feed is based on standard MISP JSON output pulled from a remote TLS/HTTP server.
-                \item Additional content providers can provide their own MISP feeds. (\url{https://botvrij.eu/})
-                \item Allows users to {\bf test their MISP installations and synchronisation with a real dataset}.
-                \item Opening contribution to other threat intel feeds but also allowing the analysis of overlapping data\footnote{A recurring challenge in information sharing}.
-        \end{itemize}
+\begin{frame}{Choose the exchange method for the need}
+\begin{itemize}
+\item Synchronisation: selected exchange between MISP instances.
+\item Feeds: fetch data from a configured provider.
+\item API and exports: integrate with a specific consumer.
+\item Manual transfer: review the file and destination too.
+\end{itemize}
+\note{A fetched feed is not automatically a bidirectional community and its provider may not receive corrections. Assess provenance, terms, freshness, coverage and overlap before enabling large imports. Native MISP JSON feeds and other supported feeds have different capabilities. Check the relevant feed/sync course for details. A disconnected system needs its own approved import/export process; no transport makes information trustworthy by itself.}
 \end{frame}
 
-\begin{frame}
-        \frametitle{Conclusion}
-        \begin{itemize}
-                \item {\bf Information sharing practices come from usage} and by example (e.g. learning by imitation from the shared information).
-                \item MISP is just a tool. What matters is your sharing practices. The tool should be as transparent as possible to support you.
-                \item Enable users to customize MISP to meet their community's use-cases.
-                \item MISP project combines open source software, open standards, best practices and communities to make information sharing a reality.
-        \end{itemize}
+\begin{frame}{Collaborate while keeping responsibility clear}
+\begin{itemize}
+\item Event ownership identifies who maintains the record.
+\item Proposals let others suggest attribute changes.
+\item Extended events can add another organisation's context.
+\item Agree how corrections reach the responsible people.
+\end{itemize}
+\note{Explain these as collaboration options rather than interchangeable permissions. Proposals require review; extended events retain separate ownership and visibility rules. Delegation transfers ownership under an agreed workflow and should not be described as guaranteed anonymity. Sightings are another feedback channel. A contribution process should say who triages corrections, communicates changes and handles disagreements.}
 \end{frame}
 
+\begin{frame}{Quality is a cycle, not a checkbox}
+\SharingDiagram{quality-cycle}
+\note{Capture provenance, observation time and uncertainty; review context and handling; use a suitable policy; then reassess based on feedback. A correction can change the interpretation without changing the observed value. No score proves a record true. Quality review and audience review continue after initial publication. The arrows describe a process people can implement with appropriate automation and responsibility.}
+\end{frame}
+
+\begin{frame}{Use review aids without outsourcing judgment}
+\begin{itemize}
+\item Warninglists flag potentially misleading values.
+\item Enrichment adds context from selected sources.
+\item Compare provenance and keep uncertainty visible.
+\item Check what an external module sends to its provider.
+\end{itemize}
+\note{A warninglist hit is not a universal false-positive verdict: public DNS or shared infrastructure can be relevant to an investigation. Enrichment can add useful facts or repeat an unverified claim. Review results before saving, especially claims about actors or campaigns. Some modules contact external services; check transmitted values, credentials and provider policy before using sensitive data. Module behaviour depends on configuration.}
+\end{frame}
+
+\begin{frame}{Sightings communicate different kinds of feedback}
+\begin{itemize}
+\item Sighting: an observation of the data point.
+\item False positive: feedback about an unsuitable interpretation.
+\item Expiration: feedback that relevance has ended.
+\item Include the source and time; agree how feedback is used.
+\end{itemize}
+\note{MISP distinguishes sighting type 0, false-positive type 1 and expiration type 2. These types are not three confidence scores. A new sighting does not establish that a domain is malicious or that every linked report is correct. Missing sightings do not prove no activity occurred. Feedback visibility and return paths require configuration and agreement. Avoid promising automatic deletion, publication or blocking changes from a sighting.}
+\end{frame}
+
+\begin{frame}{Observation time is different from record time}
+\SharingDiagram{timeline}
+\note{The dates are fictional and ordered only to illustrate the distinction. first\_seen and last\_seen describe an observed interval when supplied; record creation or edit times describe maintenance. A report may be entered later than the activity it describes. Record the time zone and source, and leave unknown times unknown. An updated attribute timestamp does not establish a new observation. Sighting dates are another explicit observation record.}
+\end{frame}
+
+\begin{frame}{Age and decay support reassessment}
+\begin{itemize}
+\item Different observations have different useful lifetimes.
+\item A decay model provides a review or filtering signal.
+\item Review the model, sightings and consumer policy.
+\item Keep historical context when an operational use expires.
+\end{itemize}
+\note{Decay is not a universal malware probability or an instruction to delete old data. Its effect on exports or actions depends on models, settings, query filters and integrations. Expired operational relevance can coexist with historical investigative value. Use the dedicated decaying-indicators courses for model configuration and simulation instead of teaching legacy button locations here.}
+\end{frame}
+
+\begin{frame}{Automate a reviewed decision}
+\begin{itemize}
+\item Use the REST API and PyMISP for defined workflows.
+\item Filter for the consumer, purpose and audience.
+\item Test with synthetic data and inspect the output.
+\item Return feedback and handle failures explicitly.
+\end{itemize}
+\note{An integration should define who can read or change what, how much data is needed, which filters apply and what happens on retry or failure. Use a limited service account and protect its API key. This introduction deliberately omits payloads and version-sensitive method signatures; the refreshed REST API and PyMISP courses provide those details. An automation must preserve provenance and access policy rather than turn every attribute into a block.}
+\end{frame}
+
+\begin{frame}{A community needs a working agreement}
+\begin{itemize}
+\item Agree purpose, participants and expected contributions.
+\item Define handling, correction and escalation practices.
+\item Start with a small trusted group and useful records.
+\item Revisit the agreement as people and use cases change.
+\end{itemize}
+\note{A community may be an internal team, a sector group, a CSIRT network, a fraud partnership or a topical collaboration. An instance is a deployment; a sharing group is an audience; neither is identical to the social community. Trust comes from practices and relationships. Software supports a working agreement but cannot supply its legal basis, incentives or accountability.}
+\end{frame}
+
+\begin{frame}{Turn obstacles into a first contribution}
+\small
+\begin{tabular}{@{}p{.28\textwidth}p{.68\textwidth}@{}}
+\toprule
+Obstacle & A useful first step \\
+\midrule
+Limited time & Share a small observation with a source. \\
+Uncertainty & State what is known and open to correction. \\
+Different tools & Agree vocabulary and supported formats. \\
+Handling obligations & Review purpose and recipients with responsible people. \\
+\bottomrule
+\end{tabular}
+\note{Do not dismiss technical, organisational or legal constraints as imaginary. Work with the people responsible for them. A source note, correction or contextual link can be more useful than another bulk indicator list. Good examples and low-friction feedback make participation easier. Ask learners to identify one achievable contribution under their own policy, without asking for real sensitive details in class.}
+\end{frame}
+
+\begin{frame}{The project grew from a practical need}
+\begin{itemize}
+\item In 2012, malware analysts wanted to avoid duplicate work.
+\item Christophe Vandeplas's early platform work became MISP.
+\item CIRCL and a wider community develop and improve it.
+\item Contributions include code, shared knowledge and training.
+\end{itemize}
+\note{Preserve the origin described in the earlier training: a malware-analysis workgroup discovered duplicated work, and user feedback shaped the platform. CIRCL has a long-standing development and community role. Link to current CIRCL information instead of freezing ministry mandates or organisational structures into slides. Avoid undated user counts or claims that the early malware use case defines every current community.}
+\end{frame}
+
+\begin{frame}{The MISP project has four complementary parts}
+\SharedIntroDiagram{overview}
+\note{Software, knowledge, standards and communities retain the useful four-part idea from the original artwork. Categories overlap and are not a hierarchy. Core MISP, PyMISP and optional modules support use; taxonomies, Galaxies and warninglists provide knowledge; formats, vocabularies and templates support exchange; people supply practices and feedback. This does not imply all components must be installed.}
+\end{frame}
+
+\begin{frame}{The community improves the project}
+\SharedIntroDiagram{community}
+\note{This replaces the old governance image with an editable conceptual contribution cycle. Users and operators bring needs; contributors propose code, data, documentation and training; maintainers review and make release decisions; improvements return to users. People can occupy several roles. It is not a formal legal or organisational authority chart. Follow each repository's actual contribution guidance.}
+\end{frame}
+
+\begin{frame}{Exercise: make the case useful to Team B}
+\begin{enumerate}
+\item Draft an event with the synthetic domain and IP.
+\item Explain the source, time, relationship and uncertainty.
+\item Choose a limited audience and a justified next action.
+\item Describe how a correction would reach Team B.
+\end{enumerate}
+\note{Allow ten minutes in pairs or as a group. Paper discussion is sufficient. If using an authorised lab, use only disposable synthetic data, keep the event organisation-only and unpublished, and inspect any configured consumers. Do not publish or block the documentation values. Challenge the pair to distinguish a direct observation from an assessment and to explain the recipient choice.}
+\end{frame}
+
+\begin{frame}{Debrief: explain the decisions}
+\begin{itemize}
+\item The matching domain is a lead, not attribution.
+\item An object groups a relationship that the source supports.
+\item Handling labels and visibility settings both need review.
+\item A hunt may be justified before any blocking decision.
+\item A correction needs an owner and a return path.
+\end{itemize}
+\note{There is no single correct sharing group or block decision without a stated community policy and evidence. A strong answer preserves provenance, states missing facts and limits recipients deliberately. Ask how the answer changes if the IP is shared infrastructure, the source retracts its claim, or the activity happened months ago. Keep discussion about decision quality rather than guessing a malicious actor.}
+\end{frame}
+
+\begin{frame}{Continue with the task you need}
+\begin{itemize}
+\item Everyday analysis: MISP usage, tagging and objects.
+\item Context and quality: Galaxies and indicator decay.
+\item Integration: REST API, PyMISP and feeds.
+\item Community operation: administration and sharing practices.
+\end{itemize}
+\note{The README links directly to current courses and references. Choose follow-on modules based on the learners' role instead of walking through every product feature. The full introduction gives a shared vocabulary and reasoning process. Trainers can edit the TikZ diagrams once for both languages or export standalone vectors for other course material.}
+\end{frame}
+
+\begin{frame}{Share context, choose deliberately, keep improving}
+\begin{itemize}
+\item Structure observations without losing their meaning.
+\item Choose recipients and action under an agreed policy.
+\item Use feedback to correct and reassess information.
+\item Contribute practices and knowledge as well as software.
+\end{itemize}
+\note{Ask learners to summarise the case in one minute: what was observed, what it supports, who may receive it, what action follows and how it can be corrected. The aim is useful information sharing supported by MISP, not a feature checklist. A small, well-explained contribution can help another team avoid duplicated work or a poor decision.}
+\end{frame}
 
