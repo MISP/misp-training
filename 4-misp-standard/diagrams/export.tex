@@ -1,0 +1,15 @@
+% Run from 4-misp-standard; override \diagram to select a diagram.
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{FiraSans}
+\renewcommand{\familydefault}{\sfdefault}
+\usetikzlibrary{positioning,arrows.meta}
+\definecolor{mispNavy}{HTML}{02394A}
+\definecolor{mispTeal}{HTML}{00708D}
+\definecolor{mispBlue}{HTML}{0091B0}
+\definecolor{mispInk}{HTML}{28191B}
+\input{diagrams/styles.tex}
+\providecommand{\diagram}{standards-family}
+\begin{document}
+\input{diagrams/\diagram.tikz}
+\end{document}

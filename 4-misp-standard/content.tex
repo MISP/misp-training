@@ -1,58 +1,194 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
+% DO NOT COMPILE THIS FILE DIRECTLY: included by slide.tex.
+% Revision evidence and maintenance notes are in README.md.
 
 \begin{frame}[t,plain]
 \titlepage
 \end{frame}
 
-\begin{frame}[fragile]
-        \frametitle{MISP Standard}
+\begin{frame}{Why a family of MISP standards?}
 \begin{itemize}
-        \item Following the grow of organisations relying on MISP, the {\bf JSON format used by MISP are standardised under the misp-standard.org umbrella}
-\item The goal is to provide a flexible set of standards to support information exchange and data modeling in the following field:
-        \begin{itemize}
-                \item Cybersecurity intelligence
-                \item Threat intelligence
-                \item Financial fraud
-                \item Vulnerability information
-                \item Border control information
-                \item Digital Forensic and Incident Response
-                \item and intelligence at large
-        \end{itemize}
+  \item Exchange intelligence with a shared structure and meaning across MISP instances, other platforms and security tools.
+  \item Reuse JSON formats and public vocabularies for CTI, fraud, vulnerability information, DFIR and other intelligence domains.
+  \item Separate the \textbf{exchange format}, the \textbf{templates and vocabularies}, and the \textbf{software implementing them}.
 \end{itemize}
+\begin{block}{After this lesson}
+Choose the right specification, explain how its parts fit together, and check the revision and implementation before integrating.
+\end{block}
+\standardsource{https://www.misp-standard.org/standards/}{MISP published standards and specification links}
+\note{Allow about 20 minutes. Ask learners whether a template, a JSON event and a platform release have the same version. They do not. A format specification explains structure and semantics; a public library supplies reusable content; software implements particular capabilities.}
 \end{frame}
 
-\begin{frame}[fragile]
-        \frametitle{Standard - MISP core format}
-        This standard describes the {\bf MISP core format} used to exchange indicators and threat information between MISP instances. The {\bf JSON format includes the overall structure along with the semantics associated for each respective key}. The format is described to support other implementations, aiming to reuse the format and ensuring the interoperability with the existing MISP software and other Threat Intelligence Platforms.
+\begin{frame}{How the published standards fit together}
+\centering
+\input{diagrams/standards-family.tikz}
+\par\smallskip
+{\small Arrows describe roles, not a mandatory processing pipeline.}
+\standardsource{https://www.misp-standard.org/standards/}{Six entries in the MISP published standards catalog}
+\note{The core is the exchange envelope. Templates describe how to construct objects; taxonomies classify; galaxy clusters add reusable knowledge. Naming is guidance rather than another JSON event format. SightingDB is a separate connector/query format. Supporting repository formats appear later and are not presented as additional catalog entries.}
 \end{frame}
 
-\begin{frame}[fragile]
-        \frametitle{MISP object template format}
-        This standard describes the {\bf MISP object} template format which describes a simple JSON format to represent the various templates used to construct MISP objects. A {\bf public directory of common MISP object templates and relationships} is available and relies on the MISP object reference format.
-\end{frame}
-
-\begin{frame}[fragile]
-       \frametitle{MISP galaxy format}
-        This standard describes the {\bf MISP galaxy format which describes a simple JSON format to represent galaxies and clusters} that can be attached to MISP events or attributes. A public directory of MISP galaxies is available and relies on the MISP galaxy format. MISP galaxies are used to attach additional information structures such as MISP events or attributes. {\bf MISP galaxy is a public repository of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing}.
-\end{frame}
-
-\begin{frame}[fragile]
-        \frametitle{SightingDB format}
-        This standard describes the format used by SightingDB to give automated context to a given Attribute by {\bf counting occurrences and tracking times of observability}. SightingDB was designed to provide to MISP and other tools an interoperable, scalable and fast way to store and retrieve attributes sightings.
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{Internet-Draft - IETF for MISP formats and MISP standard}
+\begin{frame}{Revision snapshot: 3 November 2026}
+\small
+\begin{tabular}{@{}p{3.1cm}p{2.1cm}p{4.5cm}@{}}
+\toprule
+\textbf{Specification} & \textbf{MISP site} & \textbf{Latest IETF submission} \\
+\midrule
+Core & draft-20 & \href{https://datatracker.ietf.org/doc/draft-dulaunoy-misp-core-format/}{-20; expired} \\
+Object template & draft-06 & \href{https://datatracker.ietf.org/doc/draft-dulaunoy-misp-object-template-format/}{-06; expired} \\
+Taxonomy & draft-11 & \href{https://datatracker.ietf.org/doc/draft-dulaunoy-misp-taxonomy-format/}{-12; expired} \\
+Galaxy & draft-08 & \href{https://datatracker.ietf.org/doc/draft-dulaunoy-misp-galaxy-format/}{-08; expired} \\
+\bottomrule
+\end{tabular}
+\medskip
 \begin{itemize}
-\item If you want to contribute to our IETF Internet-Draft for the MISP standard, misp-rfc\footnote{\url{https://github.com/MISP/misp-rfc}} is the repository where to contribute.
-\item {\bf Update only the markdown file}, the XML and ASCII for the IETF I-D are automatically generated.
-\item If a major release or updates happen in the format, we will publish the I-D to the IETF\footnote{\url{https://datatracker.ietf.org/doc/search/?name=misp&activedrafts=on&rfcs=on}}.
-\item The process is always MISP implementation $\rightarrow$ IETF I-D updates.
-\item Then published standards in misp-standard.org.
+  \item Naming guidance: site labels \textbf{draft-00}, dated 6 August 2026. SightingDB: site text dated \textbf{13 April 2020}.
+  \item Draft revisions, library versions and MISP software releases are separate version sequences.
+  \item Internet-Drafts are work in progress; submission does not establish IETF endorsement or RFC status.
 \end{itemize}
-
+\standardsource{https://www.misp-standard.org/standards/}{Published documents; IETF revisions above link to Datatracker}
+\note{The taxonomy mismatch is intentional: source metadata and published MISP HTML say draft-11, while Datatracker and the submitted text say -12. Use -12 when citing the latest submitted taxonomy draft. The four linked IETF records were expired at review time. Expiration concerns the draft process, not whether deployed software still uses the format. Naming and SightingDB dates come from the MISP-hosted documents; do not infer a verified IETF submission from their boilerplate.}
 \end{frame}
 
+\begin{frame}{Core format: more than a list of indicators}
+\begin{itemize}
+  \item \textbf{Event}: context, organisations, publication state and distribution, with attributes and objects.
+  \item \textbf{Attribute}: a typed value and its context. \textbf{Object}: related attributes describing one entity; references connect entities.
+  \item \textbf{EventReport}, tags, galaxies and sightings add narrative, classification, knowledge and observations.
+  \item \textbf{Analyst data}: Note, Opinion and Relationship add analysis linked to identified data, including events, objects and attributes.
+\end{itemize}
+\standardsource{https://www.misp-standard.org/rfc/misp-standard-core.html}{Core draft-20: format sections 2.2--2.11}
+\note{The previous deck described core only at a high level. Highlight EventReport and analyst data so integration authors do not silently flatten away analysis. Analyst data may also be exchanged separately; the next diagram is conceptual and does not prescribe the exact JSON nesting for every response.}
+\end{frame}
 
+\begin{frame}{Reading the core data model}
+\centering
+\input{diagrams/core-model.tikz}
+\par\smallskip
+{\small Simplified relationships; not a JSON schema.}
+\standardsource{https://www.misp-standard.org/rfc/misp-standard-core.html}{Core format: containment, object references and analyst data}
+\note{Solid arrows denote containment in this simplified view. Dashed arrows describe links. An object contains attributes with object\_relation values. ObjectReference can link an object to another object or an attribute; the diagram shows the latter. Analyst data links by object\_uuid and object\_type. Tags and galaxies can apply at event or attribute level; their omission here keeps the model readable.}
+\end{frame}
+
+\begin{frame}{Object templates: reusable blueprints}
+\begin{itemize}
+  \item A template defines the meaning and expected attributes of an object, such as a file, domain--IP association or account.
+  \item Its \textbf{UUID and version} identify the blueprint. An object instance carries \texttt{template\_uuid} and \texttt{template\_version}.
+  \item Elements define attribute types and roles; \texttt{required}, \texttt{requiredOneOf} and \texttt{multiple} express constraints.
+  \item Object references use relationship vocabulary to link an object to another object or an attribute.
+\end{itemize}
+\begin{block}{Template versus instance}
+A template describes the fields; an object holds the observed values.
+\end{block}
+\standardsource{https://www.misp-standard.org/rfc/misp-standard-object-template-format.html}{Object template draft-06}
+\standardsource{https://github.com/MISP/misp-objects}{Public template and relationship library: MISP/misp-objects}
+\note{Keep the object UUID distinct from the template UUID. Consumers should retain the template identity and version so they can interpret the object consistently. Library content changes independently of the document revision.}
+\end{frame}
+
+\begin{frame}[fragile]{Taxonomies: shared classification}
+\begin{itemize}
+  \item JSON vocabularies define a \textbf{namespace}, \textbf{predicates} and optional \textbf{values}, with descriptions and version metadata.
+  \item Machine tags use \texttt{namespace:predicate="value"}; tags without a value also exist.
+  \item UUIDs identify the taxonomy, predicates and values; preserve identity across updates.
+\end{itemize}
+\begin{block}{A machine tag expresses an assessment}
+\texttt{estimative-language:likelihood-probability=}\\
+\texttt{"very-likely"}
+\end{block}
+\small A classification tag supplies meaning. Distribution and sharing groups control MISP visibility.
+\standardsource{https://www.ietf.org/archive/id/draft-dulaunoy-misp-taxonomy-format-12.txt}{Latest submitted taxonomy draft: -12}
+\standardsource{https://github.com/MISP/misp-taxonomies}{Public vocabulary library: MISP/misp-taxonomies}
+\note{Read the example as one continuous tag; the line break is for display only. The UUID requirements are in section 2.4 of taxonomy -12. A TLP tag conveys handling expectations but does not itself configure MISP access controls. Avoid treating a taxonomy's content version as the Internet-Draft revision.}
+\end{frame}
+
+\begin{frame}{Galaxies: reusable knowledge and relationships}
+\begin{itemize}
+  \item A \textbf{galaxy} describes a collection; its \textbf{clusters} represent concepts such as threat actors, malware, tools or techniques.
+  \item Cluster values have stable UUIDs, descriptions and metadata such as references, synonyms and external identifiers.
+  \item \texttt{related} links clusters using \texttt{dest-uuid}, a relationship \texttt{type} and optional classification tags.
+  \item Attach this knowledge to events or attributes while retaining references and uncertainty.
+\end{itemize}
+\begin{block}{Two complementary roles}
+Taxonomy: classify the assessment. Galaxy cluster: identify and describe a reusable concept.
+\end{block}
+\standardsource{https://www.misp-standard.org/rfc/misp-standard-galaxy-format.html}{Galaxy draft-08}
+\standardsource{https://github.com/MISP/misp-galaxy}{Public galaxy and cluster library: MISP/misp-galaxy}
+\note{A shared cluster is useful for linking analysis, but applying it is still an analytical judgment. Cluster related relationships and core ObjectReference relationships are distinct structures, even when they reuse a relationship vocabulary.}
+\end{frame}
+
+\begin{frame}[fragile]{Threat actor naming: identity and provenance}
+\small
+\begin{itemize}
+  \item Search existing definitions; reuse matching UUIDs and retain supported aliases and historical relationships.
+  \item Prefer unique, searchable ASCII names; keep actor names distinct from malware, tools and techniques.
+  \item Record who allocated a vendor name. In cluster metadata, \texttt{name-attribution} entries use \texttt{name:producer-cluster-uuid}.
+  \item Shared tooling or infrastructure alone does not establish that two actor definitions are equivalent.
+\end{itemize}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,breaklines=true,columns=fullflexible]
+"meta": {
+  "name-attribution": [
+    "TA511:cae79680-67a6-4411-903c-f824dbcc813f"
+  ]
+}
+\end{lstlisting}
+\standardsource{https://www.misp-standard.org/rfc/threat-actor-naming.html}{Naming draft-00: recommendations and vendor name attribution}
+\note{The JSON is a metadata fragment from the naming specification, not a complete cluster. The UUID after the colon identifies the producer, not the threat actor. Naming guidance is not an attribution algorithm. Preserve the producer's spelling and evidence; represent uncertain equivalence separately rather than silently promoting it to an alias.}
+\end{frame}
+
+\begin{frame}{Sightings and SightingDB serve different roles}
+\begin{block}{Core Sighting}
+Attribute observations distinguish a sighting, a false-positive report and an expiration indication.
+\end{block}
+\begin{block}{SightingDB query format}
+A separate format for a compatible connector: counts and observation times for a value in a namespace, plus tags, TTL and a consensus counter.
+\end{block}
+\begin{itemize}
+  \item SightingDB includes \texttt{first\_seen}, \texttt{last\_seen} and \texttt{count}; it also defines bulk requests.
+  \item Its \texttt{consensus} counts namespaces containing a value. It is not a probability that the value is malicious.
+\end{itemize}
+\standardsource{https://www.misp-standard.org/rfc/misp-standard-core.html}{Core format: Sighting}
+\standardsource{https://www.misp-standard.org/rfc/sightingdb-format.txt}{SightingDB specification: 13 April 2020}
+\note{Do not replace a core Sighting object with a SightingDB response: these are different interfaces and structures. SightingDB's published document is older but remains in the catalog. Its presence there does not establish that every MISP deployment runs a compatible connector. Check deployed capabilities.}
+\end{frame}
+
+\begin{frame}{Supporting formats in the repository}
+\small
+\begin{itemize}
+  \item \textbf{Warninglists}: JSON lists of values that can flag potential false positives, such as common services or reserved addresses. A match calls for review.
+  \item \textbf{Noticelists}: JSON notices about legal, privacy, policy or technical implications of using or sharing particular data.
+  \item \textbf{Query format}: JSON search criteria and output selection for the REST interface. Check the deployed API documentation for supported parameters.
+\end{itemize}
+\begin{block}{Scope and maturity}
+These are additional documents in \texttt{MISP/misp-rfc}. They are separate from the six entries in the published standards catalog; they are not all submitted IETF drafts.
+\end{block}
+\standardsource{https://github.com/MISP/misp-rfc}{MISP/misp-rfc: warninglist, noticelist and query format sources}
+\note{Warninglist matches are not proof that data is benign. Notices provide guidance rather than legal or policy enforcement. The query-format source is not a complete current endpoint reference: implementations and API documentation evolve. These distinctions prevent confusing source documents with a single uniform maturity or publication status.}
+\end{frame}
+
+\begin{frame}{Interoperability: preserve meaning as well as JSON}
+\begin{enumerate}
+  \item \textbf{Identify}: preserve UUIDs; keep instance-local numeric IDs separate from portable identity.
+  \item \textbf{Interpret}: retain types, object roles, template versions, relationships, timestamps and source context.
+  \item \textbf{Control sharing}: honour distribution and sharing-group constraints, including on attached analysis.
+  \item \textbf{Validate}: use relevant schemas and real round trips through the target implementation; inspect unsupported fields and conversion losses.
+\end{enumerate}
+\begin{block}{A useful integration question}
+Can the receiver reconstruct the context, identity and sharing intent of the intelligence it received?
+\end{block}
+\standardsource{https://www.misp-standard.org/rfc/misp-standard-core.html}{Core semantics and JSON Schema; verify against deployed software}
+\note{This is an integration checklist, not a new conformance profile. Schema validation alone does not prove equivalent semantics or access control. Exercise the endpoints and software versions that will actually exchange the records, including analyst data and object references. Keep unknown-field handling explicit so integrations do not silently discard analysis.}
+\end{frame}
+
+\begin{frame}{Contribute and keep the standards current}
+\begin{itemize}
+  \item Propose specification fixes in \href{https://github.com/MISP/misp-rfc}{MISP/misp-rfc}, editing the relevant \texttt{raw.md} source and providing examples.
+  \item Regenerate derived XML, text and HTML using the document's build instructions; review the output.
+  \item Contribute reusable content to the object, taxonomy or galaxy library that owns it.
+  \item Check the published document \emph{and} Datatracker before citing a latest revision or submission status.
+\end{itemize}
+\begin{block}{Keep three references together}
+Specification revision, library revision and deployed software/API version.
+\end{block}
+\standardsource{https://github.com/MISP/misp-rfc}{Specification sources and build instructions}
+\standardsource{https://www.misp-standard.org/standards/}{Published catalog; full review evidence in this deck's README}
+\note{An implementation and specification inform each other, but an edit or generated HTML does not automatically create an IETF submission. Maintainers handle publication and submission. The README pins the source commit used in this review and records mismatches. Ask learners which document they would use to add a new object blueprint, classify uncertainty, or retain a vendor's actor naming provenance.}
+\end{frame}

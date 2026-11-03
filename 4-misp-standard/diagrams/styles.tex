@@ -1,0 +1,9 @@
+% Shared styles; colours come from the MISP theme or export.tex.
+\tikzset{
+  standard box/.style={draw=mispTeal,fill=mispBlue!6,rounded corners=3pt,
+    align=center,font=\footnotesize,text=mispInk,inner sep=6pt,line width=.7pt},
+  standard core/.style={standard box,fill=mispNavy,text=white,draw=mispNavy},
+  standard arrow/.style={-{Latex[length=2mm]},draw=mispTeal,line width=.8pt},
+  standard link/.style={standard arrow,dashed},
+  standard label/.style={font=\scriptsize,fill=white,inner sep=2pt,text=mispInk}
+}

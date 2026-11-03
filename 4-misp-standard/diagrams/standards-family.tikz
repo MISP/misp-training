@@ -1,0 +1,20 @@
+% Conceptual roles, not JSON nesting or a compulsory processing pipeline.
+\begin{tikzpicture}
+  \node[standard core,text width=3.1cm,minimum height=1cm] (core) at (0,0)
+    {\textbf{Core format}\\JSON exchange};
+  \node[standard box,text width=2.9cm,minimum height=1cm] (objects) at (-3.25,1.5)
+    {\textbf{Object templates}\\Structure entities};
+  \node[standard box,text width=2.9cm,minimum height=1cm] (taxonomy) at (3.25,1.5)
+    {\textbf{Taxonomies}\\Classify data};
+  \node[standard box,text width=2.9cm,minimum height=1cm] (galaxy) at (-3.25,-1.5)
+    {\textbf{Galaxies}\\Shared knowledge};
+  \node[standard box,text width=2.9cm,minimum height=1cm] (sighting) at (3.25,-1.5)
+    {\textbf{SightingDB}\\Observation counts};
+  \node[standard box,text width=3.2cm,minimum height=1cm] (naming) at (0,-3.05)
+    {\textbf{Threat actor naming}\\Names and identity};
+  \draw[standard arrow] (objects.south) -- (core.north west);
+  \draw[standard arrow] (taxonomy.south) -- (core.north east);
+  \draw[standard arrow] (galaxy.north) -- (core.south west);
+  \draw[standard arrow] (sighting.north) -- (core.south east);
+  \draw[standard link] (naming.north west) -- (galaxy.south east);
+\end{tikzpicture}

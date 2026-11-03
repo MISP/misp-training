@@ -1,22 +1,20 @@
 \documentclass{beamer}
 \usetheme[numbering=progressbar]{misp}
 
-
-
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
 \usepackage{listings}
-\usetikzlibrary{positioning}
-\usetikzlibrary{shapes,arrows}
-%\usepackage[T1]{fontenc}
-%\usepackage[scaled]{beramono}
+\usepackage{booktabs}
+\usetikzlibrary{positioning,arrows.meta}
+\input{diagrams/styles.tex}
+\newcommand{\standardsource}[2]{\par\medskip{\scriptsize\href{#1}{#2}\par}}
 
-\author{\small{\input{../includes/authors.txt}}}
+\author[Team MISP Project]{\texorpdfstring{\small{\input{../includes/authors.txt}}}{CIRCL / Team MISP Project}}
 
 \title{MISP Standard}
-\subtitle{The collaborative intelligence standard powering intelligence and information exchange, sharing and modeling.}
-\institute{\href{http://www.misp-standard-org/}{http://www.misp-standard.org/} \\ Twitter: \emph{\href{https://twitter.com/mispproject}{@MISPProject}}}
-\date{\input{../includes/location.txt}}
+\subtitle{Formats, shared vocabularies and interoperable intelligence}
+\institute{\href{https://www.misp-standard.org/}{www.misp-standard.org}}
+\date{Standards reviewed: 3 November 2026}
 
 \begin{document}
 \include{content}
