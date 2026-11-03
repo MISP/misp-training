@@ -1,0 +1,36 @@
+{
+  "info": "Usage training - synthetic sign-in report",
+  "event_distribution": 0,
+  "published": false,
+  "tag": "tlp:clear",
+  "standalone_attributes": [
+    {
+      "type": "domain",
+      "value": "login-support.example"
+    },
+    {
+      "type": "ip-dst",
+      "value": "198.51.100.44"
+    },
+    {
+      "type": "ip-dst",
+      "value": "203.0.113.77"
+    }
+  ],
+  "object": {
+    "name": "domain-ip",
+    "template_uuid": "43b3b146-77eb-4931-b4cc-b66c60f28734",
+    "template_version_reference": 11,
+    "domain": "relay-service.example",
+    "ip": "203.0.113.42"
+  },
+  "all_attribute_to_ids": false,
+  "all_attribute_distribution": 5,
+  "object_distribution": 5,
+  "sighting": {
+    "attribute_value": "login-support.example",
+    "type": 0,
+    "source": "Synthetic sensor - UTC",
+    "time_utc": "2026-11-03T09:00:00Z"
+  }
+}

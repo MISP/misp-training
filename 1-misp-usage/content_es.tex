@@ -1,244 +1,198 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
-%\colorlet{punct}{red!60!black}
-%\definecolor{background}{HTML}{EEEEEE}
-%\definecolor{delim}{RGB}{20,105,176}
-%\colorlet{numb}{magenta!60!black}
-
-\lstdefinelanguage{json}{
-    basicstyle=\ttfamily\footnotesize,
-    numbers=left,
-    numberstyle=\ttfamily\footnotesize,
-    stepnumber=1,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{background},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
-
-\begin{frame}[t,plain]
+\begin{frame}
 \titlepage
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - VM}
-    \begin{itemize}
-    \item Credenciales
-        \begin{itemize}
-            \item MISP admin: admin@admin.test/admin
-            \item SSH: misp/Password1234
-        \end{itemize}
-    \item Disponible para descargar aquí (VirtualBox and VMWare):
-        \begin{itemize}
-                \item \url{https://www.circl.lu/misp-images/latest/}
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Qué va a practicar}
+\begin{itemize}
+\item Buscar e interpretar un registro existente.
+\item Crear un evento, atributos y un objeto estructurado.
+\item Revisar contexto, destinatarios y la opción IDS.
+\item Examinar una correlación, aportar feedback y exportar.
+\end{itemize}
+\note{Reserve 60--75 minutos con las prácticas. Use primero una introducción si faltan conceptos. Las capturas muestran una cuenta User normal en MISP 2.5.50, con la interfaz en inglés. Los permisos, la configuración y la versión pueden cambiar los controles. La guía del laboratorio incluye pasos y resultados esperados.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Uso Básico}
-    Plan para esta parte de la capacitación
-        \begin{itemize}
-            \item Modelo de datos
-            \item Visualizando datos
-            \item Alta de datos
-            \item Cooperación
-            \item Distribución
-            \item Exportando datos
-        \end{itemize}
+\begin{frame}{Empiece en un laboratorio autorizado}
+\begin{itemize}
+\item Use la cuenta y URL proporcionadas por el formador.
+\item Use solo los valores sintéticos de documentación.
+\item Mantenga los eventos sin publicar y solo para su organización.
+\item No active feeds, sincronización ni enriquecimiento externo.
+\end{itemize}
+\note{Las contraseñas y reparaciones de la antigua VM están archivadas. No suponga credenciales públicas ni instale dependencias durante la clase. El formador prepara una instancia desechable, una cuenta normal con permisos de creación, edición, etiquetas y sightings, y la plantilla domain-ip. Revise los consumidores configurados. No hacen falta malware real, datos personales ni bloqueos operativos.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Eventos (El componente fundamental de MISP)}
-    \includegraphics[scale=0.45]{screenshots/datamodel1.png}
+\begin{frame}{Siga un informe sintético}
+\begin{itemize}
+\item El equipo A registra \UsageDomain{} en un mensaje.
+\item El equipo B tiene otro informe con el mismo dominio.
+\item Otro ejemplo aporta una relación entre dominio e IP.
+\item Conserve fuente, incertidumbre y propósito con los datos.
+\end{itemize}
+\note{Las observaciones son ficticias. Los dominios .example y las redes IP de documentación están reservados para ejemplos; no son indicadores maliciosos. El informe del equipo B es una semilla opcional del formador y debe ser visible para generar la correlación ilustrada. Los identificadores numéricos y UUID de las capturas no son respuestas que deban copiarse.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Eventos (Atributos, dando significado a los eventos)}
-    \includegraphics[scale=0.45]{screenshots/datamodel2.png}
+\begin{frame}{Conserve el significado con el modelo de datos}
+\UsageModel
+\note{Un evento agrupa el contexto de un informe. Un atributo contiene un valor tipado y un objeto agrupa atributos relacionados según una plantilla. Son representaciones alternativas, no una obligación de duplicar valores. El 192.0.2.25 del diagrama es conceptual; el laboratorio usa relay-service.example y 203.0.113.42. Las etiquetas y clusters Galaxy aportan contexto; los sightings son feedback. La geometría es TikZ editable compartido y las etiquetas están traducidas.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Eventos (Correlaciones entre atributos similares)}
-    \includegraphics[scale=0.45]{screenshots/datamodel3.png}
+\begin{frame}{Busque antes de crear}
+\UsageShot{misp-2.5-event-index.png}{Use Event info y Filter para localizar los informes; compruebe organización, fecha y distribución.}
+\note{Abra Event Actions / List Events. El filtro rápido tiene un selector de alcance: elija Event info para el título del ejercicio. Buscar títulos no equivale a buscar valores en todos los atributos. Use Search Attributes para un observable. Revise registros existentes para evitar duplicados y comprender la fuente y la propiedad. Solo aparecen registros autorizados.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Eventos (Propuestas)}
-    \includegraphics[scale=0.45]{screenshots/datamodel4.png}
+\begin{frame}{Cree un evento con alcance limitado}
+\UsageShot{misp-2.5-event-create.png}{Add Event: seleccione Your organisation only, una descripción clara y la fecha; después Submit.}
+\note{Use el título Usage training - synthetic sign-in report. Seleccione explícitamente Your organisation only. Threat Level Undefined y Analysis Initial corresponden al caso ficticio. La fecha del evento describe el informe, no todas las horas de observación. Deje Extends Event vacío. Guardar no es solicitar la publicación.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Eventos (Etiquetas)}
-    \includegraphics[scale=0.45]{screenshots/datamodel5.png}
+\begin{frame}{Revise el evento guardado}
+\UsageShot{misp-2.5-event-overview.png}{Compruebe la organización, la distribución y Published: No. Al principio se esperan avisos de evento vacío.}
+\note{Compruebe el registro guardado y no solo el formulario. Los ID son locales; los UUID identifican registros entre intercambios. La captura muestra el evento vacío recién creado. Los avisos deben motivar datos útiles, no etiquetas arbitrarias ni atribución a actores. El alcance de organización no impide el acceso privilegiado de administradores.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Eventos (Discusiones)}
-    \includegraphics[scale=0.45]{screenshots/datamodel6.png}
+\begin{frame}{Añada una observación tipada}
+\UsageShot{misp-2.5-attribute-add.png}{Add Attribute: elija domain, Inherit event y un comentario; desmarque For Intrusion Detection System.}
+\note{Seleccione Network activity y domain, e introduzca login-support.example. Mantenga la correlación activada para comparar el informe visible. Inherit event es el alcance previsto. Desmarque IDS porque el valor documental no es un indicador operativo. Revise fuente, comentario y tiempos conocidos antes de guardar.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Eventos (Taxonomías y propuestas de correlaciones)}
-    \includegraphics[scale=0.35]{screenshots/datamodel7.png}
+\begin{frame}{Inspeccione los atributos guardados}
+\UsageShot{misp-2.5-attributes.png}{Revise Type, Value, Comment, IDS, Distribution y Related Events después de guardar.}
+\note{La tabla permite verificar el resultado. Compruebe tipo, valor e IDS desmarcado. Related Events depende de la visibilidad y de la correlación. Abra el enlace para comparar evidencias; compartir un dominio no prueba una campaña o actor común. Es una captura de la tabla real, no un gráfico simulado.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Eventos (El estado del arte del modelo de datos de MISP)}
-    \includegraphics[scale=0.25]{screenshots/datamodel8.png}
+\begin{frame}{Tipo, categoría e IDS tienen funciones distintas}
+\begin{itemize}
+\item El tipo define la representación del valor.
+\item La categoría proporciona una clasificación contextual amplia.
+\item Comentario y tiempo explican la observación.
+\item IDS influye en filtros y exports; no demuestra seguridad.
+\end{itemize}
+\note{Un atributo puede aportar contexto sin ser apto para detección. Algunas consultas API devuelven atributos independientemente de to\_ids, así que desmarcarlo no controla el acceso. También importan antigüedad, confianza en la fuente y política del consumidor. No envíe los valores documentales a herramientas operativas.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Visualizando el listado de Eventos}
-    \begin{itemize}
-    \item Listar Eventos
-        \begin{itemize}
-            \item Contexto del Evento
-            \item Etiquetas
-            \item Distribución
-            \item Correlaciones
-        \end{itemize}
-    \item Filtros
-    \end{itemize}
+\begin{frame}{Revise la extracción de texto antes de guardar}
+\UsageShot{misp-2.5-freetext-review.png}{Populate from… / Freetext import: revise tipos propuestos, selección e IDS antes de importar.}
+\note{Use lab/freetext.txt. La extracción propone candidatos sin validar la fuente ni su carácter malicioso. Revise 198.51.100.44 y 203.0.113.77, quite valores no deseados y desmarque IDS. Verifique distribución y resultado guardado. Los valores difieren del primer atributo para distinguir las etapas.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Visualizando un Evento}
-    \begin{itemize}
-     \item Ver Evento
-        \begin{itemize}
-            \item Contexto del Evento
-            \item Atributos
-            \begin{itemize}
-                \item Categoría/tipo, IDS, Correlaciones
-            \end{itemize}
-            \item Objetos
-            \item Galáxias
-            \item Propuestas
-            \item Discusiones
-        \end{itemize}
-    \item Herramientas para encontrar lo que buscas
-    \item Grafos de correlaciones
-    \end{itemize}
+\begin{frame}{Elija la plantilla para la relación}
+\UsageShot{misp-2.5-object-template.png}{Revise versión, descripción y requisitos de domain-ip antes de introducir valores.}
+\note{El operador debe instalar o actualizar las plantillas antes de clase. La referencia usa domain-ip con UUID 43b3b146-77eb-4931-b4cc-b66c60f28734 y versión 11. El ID numérico varía. No seleccione una plantilla solo por el nombre: revise campos y restricciones.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Alta y carga de eventos en diferentes formas (demo)}
-    \begin{itemize}
-    \item Las principales formas de cargar eventos
-        \begin{itemize}
-            \item Añadir atributos / Añadir en lotes
-            \item Añadir objetos y cómo funcionan las plantillas de objetos
-            \item Importar texto libre
-            \item Importar
-            \item Plantillas
-            \item Añadir archivos adjuntos / capturas de pantalla
-            \item API
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Introduzca una relación respaldada por la fuente}
+\UsageShot{misp-2.5-object-add.png}{Revise valores, Inherit event y To IDS: No antes de Create new object.}
+\note{El escenario ficticio relaciona relay-service.example y 203.0.113.42; no se realiza una consulta DNS real. Complete las relaciones domain e ip, añada un comentario de fuente y desmarque IDS. Revise distribución del objeto y sus atributos. Siga la revisión y confirmación del formulario.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Diferentes funcionalidades para añadir información}
-    \begin{itemize}
-        \item ¿Qué sucede automáticamente cuando agregamos información? 
-        \begin{itemize}
-            \item Correlación automática
-            \item Modificación de la carga vía validación y filtros (regex)
-            \item Etiquetado / Cúmulos de galaxias
-        \end{itemize}
-        \item Diferentes formas de publicar información
-        \begin{itemize}
-            \item Publicar con/sin enviar un e-mail
-            \item Publicar vía la API
-            \item Delegación
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Verifique el objeto guardado}
+\UsageShot{misp-2.5-object-saved.png}{Compruebe el nombre del objeto, las relaciones de sus atributos y sus valores tras guardar.}
+\note{El objeto estructura la relación y no la confirma por sí mismo. Revise ambos atributos, IDS, distribución y fuente. Los UUID e ID locales difieren entre laboratorios. Evite duplicar el objeto si repite un envío o una importación.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Utilizando la información}
-    \begin{itemize}
-        \item Grafos de correlaciones
-        \item Descargando la información en diferentes formatos
-        \item API (más detalles luego)
-        \item Colaborando con usuarios (propuestas, discusiones, emails)
-    \end{itemize}
+\begin{frame}{Seleccione una etiqueta de manejo}
+\UsageShot{misp-2.5-tag-picker.png}{Abra el selector Tags del evento y elija la etiqueta TLP 2.0 del ejercicio.}
+\note{El formador habilitó la taxonomía tlp incluida y sus etiquetas. La referencia usa tlp:clear sobre valores documentales sintéticos. La etiqueta aporta clasificación y manejo, no acceso. Si falta una etiqueta, pida al operador prepararla en vez de inventar otra similar. Revise opciones locales o compartibles cuando existan.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Sincronización en detalle}
-    \begin{itemize}
-        \item Conexiones de sincronización
-        \item Modelo pull/push
-        \item Previsualización de instancias
-        \item Filtrado de la sincronización
-        \item Herramienta de prueba de conexión
-        \item Modo de selección manual
-    \end{itemize}
+\begin{frame}{Separe la etiqueta de la visibilidad}
+\UsageShot{misp-2.5-tagged-event.png}{La etiqueta guardada aparece, pero el evento sigue limitado a la organización y sin publicar.}
+\note{TLP:CLEAR permite difusión sin restricción según TLP, pero no obliga a MISP a publicar. Una etiqueta más restrictiva tampoco impone el acceso por sí sola. Revise estado y destinatarios. El ejercicio no publica información ni trata una etiqueta como permiso jurídico.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Fuentes (feeds) en detalle}
-    \begin{itemize}
-        \item Tipos de fuentes (MISP, texto libre, CSV)
-        \item Alta/edición de fuentes
-        \item Previzualización de fuentes
-        \item Fuentes Locales vs. Remotas
-    \end{itemize}
+\begin{frame}{Use Galaxies para contexto respaldado}
+\begin{itemize}
+\item Las etiquetas de taxonomías clasifican el registro.
+\item Los clusters Galaxy añaden conocimiento estructurado.
+\item Asocie técnicas, malware o actores solo con fuentes.
+\item Consulte la guía Galaxy para el selector actual.
+\end{itemize}
+\note{No deduzca un actor del dominio compartido. Las asociaciones Galaxy pueden ser locales o compartibles y su alcance importa. El curso Galaxy actualizado incluye capturas MISP 2.5 de actores y un ejercicio de verificación por UUID. Este laboratorio no requiere asociar ningún actor.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Distribuciones en detalle}
-    \begin{itemize}
-        \item Solo Mi Organización
-        \item Solo Esta Comunidad
-        \item Comunidades Conectadas
-        \item Todas las Comunidades
-        \item Grupo de Intercambio
-    \end{itemize}
+\begin{frame}{Compare el informe correlacionado}
+\UsageShot{misp-2.5-correlation.png}{Abra el informe relacionado y compare fuente, fecha y contexto antes de concluir.}
+\note{El segundo informe es una semilla ficticia, no inteligencia independiente real. La correlación requiere valores correlacionables y acceso a ambos registros. No ver coincidencias no prueba unicidad. Considere infraestructura compartida, valores reutilizados y observaciones antiguas. El siguiente paso puede ser buscar o pedir contexto.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Distribución y Topología}
-    \includegraphics[scale=0.45]{screenshots/sync.png}
+\begin{frame}{Añada un sighting explícito}
+\UsageShot{misp-2.5-sighting-add.png}{Elija tipo, fuente y hora de observación para el atributo seleccionado.}
+\note{Registre una observación ficticia. MISP distingue sighting tipo 0, false-positive tipo 1 y expiration tipo 2; no son tres puntuaciones de confianza. Use la fuente y hora del ejercicio, con zona horaria explícita. No confunda una edición del registro con una observación.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Exportar y API}
-    \begin{itemize}
-        \item Descargar un evento
-        \item Un vistazo a las APIs
-        \item Descargar resultados de una búsqueda
-        \item API REST y generador de consultas
-    \end{itemize}
+\begin{frame}{Inspeccione el feedback registrado}
+\UsageShot{misp-2.5-sighting-results.png}{Compruebe la entrada guardada en My org; un contador no prueba malicia.}
+\note{El laboratorio verifica un sighting guardado en el atributo domain. La referencia limita la visibilidad de sightings a la organización propietaria; otras instalaciones pueden variar. Un sighting no confirma todas las interpretaciones y su ausencia no prueba ausencia de actividad. Acuerde cómo llega el feedback al responsable.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Tareas administrativas}
-    \begin{itemize}
-        \item Configuración
-        \item Resolución de problemas
-        \item Trabajadores (workers)
-        \item Registros (logs)
-    \end{itemize}
+\begin{frame}{Revise la audiencia en cada nivel}
+\begin{itemize}
+\item La distribución del evento establece el contexto exterior.
+\item Objetos y atributos pueden heredar o limitar el alcance.
+\item Sharing groups definen destinatarios explícitos.
+\item También importan permisos, pertenencia y rutas de intercambio.
+\end{itemize}
+\note{El evento mantiene distribución 0; se verifican objeto y atributos tras guardar. Usuarios autorizados pueden ver o consultar registros sin publicar. La comprobación de otra organización solo cubre la cuenta normal ensayada y no audita sincronización, exports o roles privilegiados. Consulte al operador antes de cambiar la audiencia.}
+\end{frame}
+
+\begin{frame}{Revise la publicación sin publicar el ejercicio}
+\UsageShot{misp-2.5-publication-review.png}{Se requiere permiso Publisher. Elija No y compruebe de nuevo Published: No.}
+\note{Esta captura usa una cuenta Publisher separada sin administración; User no puede publicar. Publicar puede activar sincronización o notificaciones configuradas. Inspeccione la confirmación real y cancele. Guardar, publicar y exportar son acciones distintas. La referencia no tiene peers ni relay de correo configurados; no se demuestra entrega ni notificación. No amplíe la audiencia solo para mostrar un botón.}
+\end{frame}
+
+\begin{frame}{Colabore con responsabilidad clara}
+\begin{itemize}
+\item Use proposals para sugerir cambios a otro propietario.
+\item Use discusiones o contacto según la política del grupo.
+\item Revise y acepte correcciones explícitamente.
+\item Use extended events cuando interese propiedad separada.
+\end{itemize}
+\note{Son funciones con reglas diferentes de permiso y visibilidad. Una propuesta no modifica automáticamente el registro ajeno. La delegación transfiere propiedad y no garantiza anonimato. Este laboratorio cubre trabajo normal con eventos y feedback; no afirma probar propuestas entre organizaciones, delegación ni intercambio de extended events.}
+\end{frame}
+
+\begin{frame}{Exporte para un consumidor definido}
+\UsageShot{misp-2.5-export.png}{Download as…: seleccione el formato y revise los datos antes de utilizarlos.}
+\note{La referencia verifica una descarga JSON autenticada con evento, valores, etiquetas, distribución e IDS desmarcado. Formatos y filtros difieren: algunos omiten contexto o seleccionan solo atributos IDS. Exportar un archivo es una acción de difusión con destinatarios propios. Descargar correctamente no significa que sea seguro desplegarlo.}
+\end{frame}
+
+\begin{frame}{Use búsquedas y API para el siguiente paso}
+\begin{itemize}
+\item Search Attributes busca valores; los filtros de eventos, contexto.
+\item La REST API permite consultas e integraciones precisas.
+\item PyMISP facilita procesos definidos en Python.
+\item Mantenga credenciales fuera de capturas y ejemplos.
+\end{itemize}
+\note{Las cargas JSON, autenticación y firmas de métodos se explican en los cursos API y PyMISP actualizados. Use una cuenta de servicio limitada y trate fallos y reintentos. No copie una clave del formador a las diapositivas. Revise campos de salida y audiencia en vez de equiparar éxito de consulta con permiso de redistribución.}
+\end{frame}
+
+\begin{frame}{Práctica: cree y explique el registro}
+\begin{itemize}
+\item Cree el evento con las observaciones sintéticas.
+\item Añada el objeto domain-ip y la etiqueta de manejo.
+\item Explique la coincidencia y una acción justificada.
+\item Verifique distribución, publicación y todos los IDS.
+\end{itemize}
+\note{Dedique diez minutos a la práctica o a una explicación en papel. Revise el estado guardado. Una buena respuesta distingue investigación de atribución y explica por qué un evento limitado a la organización puede llevar tlp:clear. La guía incluye valores y puntos de comprobación.}
+\end{frame}
+
+\begin{frame}{Práctica: corrija, exporte y entregue}
+\begin{itemize}
+\item Registre un sighting sintético con fuente y hora.
+\item Inspeccione un export JSON sin publicar.
+\item Explique cómo llega una corrección al responsable.
+\item Retire los datos desechables según la política del laboratorio.
+\end{itemize}
+\note{Dedique otros cinco a diez minutos. El formador puede comprobar UUID, objeto, etiqueta, sighting y audiencia. No use ID numéricos de las capturas como respuestas esperadas. Elimine solo los datos propios tras recoger resultados y conserve los de otros participantes y la semilla según el plan.}
+\end{frame}
+
+\begin{frame}{Continúe con el taller adecuado}
+\begin{itemize}
+\item Objetos y Galaxies: contexto con fuentes.
+\item Taxonomías y decay: clasificación y calidad.
+\item REST API y PyMISP: automatización revisada.
+\item Administración y feeds: operación del intercambio.
+\end{itemize}
+\note{La README enlaza cursos mantenidos. La configuración de feeds, sync, workers y sistema corresponde a operadores autorizados, no a una visita improvisada de administración durante esta clase. El objetivo es buscar, crear, verificar y explicar un registro útil con audiencia y feedback claros.}
 \end{frame}

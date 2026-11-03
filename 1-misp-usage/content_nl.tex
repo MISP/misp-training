@@ -1,262 +1,198 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
-
-%\colorlet{punct}{red!60!black}
-%\definecolor{background}{HTML}{EEEEEE}
-%\definecolor{delim}{RGB}{20,105,176}
-%\colorlet{numb}{magenta!60!black}
-
-\lstdefinelanguage{json}{
-    basicstyle=\ttfamily\footnotesize,
-    numbers=left,
-    numberstyle=\ttfamily\footnotesize,
-    stepnumber=1,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{background},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
-
-\begin{frame}[t,plain]
+\begin{frame}
 \titlepage
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - VM}
-    \begin{itemize}
-    \item Aanmeldgegevens
-        \begin{itemize}
-            \item MISP admin: admin@admin.test/admin
-            \item SSH: misp/Password1234
-        \end{itemize}
-    \item Beschikbaar op deze locatie (zowel VirtualBox als VMWare):
-        \begin{itemize}
-                \item \url{https://www.circl.lu/misp-images/latest/}
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Wat u gaat oefenen}
+\begin{itemize}
+\item Een bestaand record vinden en interpreteren.
+\item Een event, attributen en een gestructureerd object maken.
+\item Context, ontvangers en de IDS-instelling beoordelen.
+\item Een correlatie bekijken, feedback geven en bewust exporteren.
+\end{itemize}
+\note{Reken op 60--75 minuten inclusief oefeningen. Gebruik eerst een introductie als de begrippen nieuw zijn. De screenshots tonen een gewone User-account in MISP 2.5.50 met de Engelse interface. Rollen, instellingen en patchversies kunnen knoppen veranderen. De labgids bevat stappen en verwachte resultaten.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - VM}
-    \begin{itemize}
-    \item Je moet zelf wel nog enkele aanpassingen doen
-        \begin{itemize}
-            \item sudo -s
-            \item cd /var/www/MISP/
-            \item sudo pear install INSTALL/dependencies/Console\_CommandLine/package.xml
-            \item sudo pear install INSTALL/dependencies/Crypt\_GPG/package.xml
-            \item cd /usr/local/src/misp-modules
-            \item pip3 install -r REQUIREMENTS
-            \item pip3 install .
-            \item reboot
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Begin op een toegestane trainingsinstantie}
+\begin{itemize}
+\item Gebruik het account en de URL van de trainer.
+\item Gebruik alleen de fictieve documentatiewaarden.
+\item Houd oefenevents ongepubliceerd en organisatie-only.
+\item Schakel geen feeds, sync of externe verrijking in.
+\end{itemize}
+\note{De oude VM-wachtwoorden en reparatiecommando's zijn gearchiveerd. Ga niet uit van publieke standaardaccounts en installeer geen afhankelijkheden tijdens de les. De trainer bereidt een tijdelijke instantie, een gewoon account met passende schrijf-, tag- en sightingrechten en het domain-ip-sjabloon voor. Controleer ingestelde afnemers. Echte malware of persoonsgegevens zijn niet nodig.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Algemeen gebruik}
-    De planning voor deze training
-        \begin{itemize}
-            \item Het data model
-            \item Bekijken van gegevens
-            \item Aanmaken van gegevens
-            \item Verschillende vormen van samenwerking
-            \item Verdelen van informatie
-            \item Exporteren van gegevens
-        \end{itemize}
+\begin{frame}{Volg één fictief rapport}
+\begin{itemize}
+\item Team A registreert \UsageDomain{} in een bericht.
+\item Team B heeft een apart rapport met hetzelfde domein.
+\item Een tweede voorbeeld geeft een domein/IP-relatie.
+\item Bewaar bron, onzekerheid en doel bij elk record.
+\end{itemize}
+\note{De waarnemingen zijn fictief. .example-domeinen en de documentatie-IP-reeksen zijn voor voorbeelden gereserveerd en zijn geen kwaadaardige indicatoren. Het referentie-event van Team B is optioneel voorbereid door de trainer en moet zichtbaar zijn om de getoonde correlatie te krijgen. Kopieer geen lokale ID's of UUID's uit de screenshots.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Event \newline (de basis bouwsteen van MISP)}
-    \includegraphics[scale=0.45]{screenshots/datamodel1.png}
+\begin{frame}{Bewaar betekenis met het gegevensmodel}
+\UsageModel
+\note{Een event groepeert rapportcontext. Een attribuut bevat één getypeerde waarde; een object groepeert verwante attributen volgens een sjabloon. Het diagram toont alternatieven en vraagt geen duplicatie. De 192.0.2.25 is een conceptueel voorbeeld; het lab gebruikt relay-service.example en 203.0.113.42. Tags en Galaxy-clusters voegen context toe; sightings zijn feedback. De geometrie is gedeelde bewerkbare TikZ met lokale vertaalde labels.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Event \newline (Attributen, geven een betekenis aan events)}
-    \includegraphics[scale=0.45]{screenshots/datamodel2.png}
+\begin{frame}{Zoek voordat u iets aanmaakt}
+\UsageShot{misp-2.5-event-index.png}{Gebruik Event info en Filter voor de fictieve rapporten; controleer organisatie, datum en distributie.}
+\note{Open Event Actions / List Events. Kies Event info in de snelle filter voor de oefentitel. Een titelzoekactie zoekt niet automatisch in alle attribuutwaarden. Gebruik Search Attributes voor een specifieke waarneming. Bekijk bestaande records om onnodige duplicaten te vermijden en bron en eigenaar te begrijpen. Alleen toegestane records verschijnen.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Event \newline (Correlaties op gelijkaardige attributen)}
-    \includegraphics[scale=0.45]{screenshots/datamodel3.png}
+\begin{frame}{Maak een event met beperkte ontvangers}
+\UsageShot{misp-2.5-event-create.png}{Add Event: kies Your organisation only, duidelijke Event Info en een rapportdatum; daarna Submit.}
+\note{Gebruik Usage training - synthetic sign-in report als titel. Kies expliciet Your organisation only. Threat Level Undefined en Analysis Initial passen bij deze fictieve casus. De eventdatum beschrijft het rapport, niet alle waarnemingstijden. Laat Extends Event leeg. Opslaan vraagt niet om publicatie.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Event \newline (Voorstellen voor Attributen)}
-    \includegraphics[scale=0.45]{screenshots/datamodel4.png}
+\begin{frame}{Lees het opgeslagen event}
+\UsageShot{misp-2.5-event-overview.png}{Controleer eigenaar, distributie en Published: No. Een leeg event geeft in deze fase verwachte waarschuwingen.}
+\note{Controleer opgeslagen gegevens en niet alleen het formulier. ID's zijn lokaal; UUID's ondersteunen identiteit over uitwisseling heen. Het screenshot toont het zojuist gemaakte lege event. Waarschuwingen vragen nuttige context en geen willekeurige tags of actorclaims. Organisatie-only sluit bijzondere toegang van beheerders niet uit.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Event (Tags)}
-    \includegraphics[scale=0.45]{screenshots/datamodel5.png}
+\begin{frame}{Voeg een getypeerde waarneming toe}
+\UsageShot{misp-2.5-attribute-add.png}{Add Attribute: kies domain, Inherit event en context; vink For Intrusion Detection System uit.}
+\note{Kies Network activity en domain en vul login-support.example in. Houd correlatie ingeschakeld voor het zichtbare referentierapport. Inherit event is hier de bedoelde distributie. Vink IDS uit omdat de documentatiewaarde geen operationele indicator is. Beoordeel bron, commentaar en bekende waarnemingstijden vóór opslaan.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Event (Discussies)}
-    \includegraphics[scale=0.45]{screenshots/datamodel6.png}
+\begin{frame}{Inspecteer de opgeslagen attributen}
+\UsageShot{misp-2.5-attributes.png}{Controleer Type, Value, Comment, IDS, Distribution en Related Events na het opslaan.}
+\note{De tabel is het controlepunt. Controleer type, waarde en uitgeschakelde IDS. Related Events hangt af van zichtbaarheid en correlatie-instellingen. Open een link om bewijs te vergelijken; één domein bewijst geen gedeelde actor of campagne. Dit is de echte tabel en geen nagemaakt diagram.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Event \newline (Taxonomieën en correlaties tussen voorstellen)}
-    \includegraphics[scale=0.35]{screenshots/datamodel7.png}
+\begin{frame}{Type, categorie en IDS hebben verschillende taken}
+\begin{itemize}
+\item Het type bepaalt de representatie van de waarde.
+\item De categorie geeft een brede contextuele indeling.
+\item Commentaar en tijd verklaren de waarneming.
+\item IDS beïnvloedt filters en exports; het bewijst geen veiligheid.
+\end{itemize}
+\note{Een attribuut kan context bieden zonder geschikt te zijn voor detectie. Sommige API-query's geven attributen terug ongeacht to\_ids, dus uitvinken is geen toegangscontrole. Ook ouderdom, bronvertrouwen en beleid van de afnemer tellen. Stuur de documentatiewaarden niet naar operationele detectie- of blokkeersystemen.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Event \newline (Het allernieuwste MISP datamodel)}
-    \includegraphics[scale=0.25]{screenshots/datamodel8.png}
+\begin{frame}{Beoordeel vrije-tekstextractie vóór opslaan}
+\UsageShot{misp-2.5-freetext-review.png}{Populate from… / Freetext import: controleer typen, selectie en IDS vóór importeren.}
+\note{Gebruik lab/freetext.txt. Extractie stelt kandidaten voor en valideert bron of kwaadaardigheid niet. Controleer 198.51.100.44 en 203.0.113.77, verwijder ongewenste waarden en vink IDS uit. Controleer distributie en het opgeslagen resultaat. De waarden verschillen van het eerste attribuut om de stappen herkenbaar te maken.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - De lijst van Events Bekijken}
-    \begin{itemize}
-    \item Lijst van Events
-        \begin{itemize}
-            \item De context van het event
-            \item Tags
-            \item Verdelingen
-            \item Correlaties
-        \end{itemize}
-    \item Filters
-    \end{itemize}
+\begin{frame}{Kies het sjabloon bij de relatie}
+\UsageShot{misp-2.5-object-template.png}{Bekijk versie, beschrijving en voorwaarden van domain-ip vóór het invoeren.}
+\note{De beheerder installeert of actualiseert objectsjablonen vóór de les. De referentie gebruikt domain-ip met UUID 43b3b146-77eb-4931-b4cc-b66c60f28734, versie 11. De lokale numerieke ID varieert. Kies niet alleen op naam; bekijk velden en voorwaarden.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Een Event Bekijken}
-    \begin{itemize}
-     \item Event scherm
-        \begin{itemize}
-            \item Context van het event
-            \item Attributen
-            \begin{itemize}
-                \item Verschillende categorieën/types, IDS, Correlaties
-            \end{itemize}
-            \item Objecten
-            \item Galaxies
-            \item Voorstellen voor attributen
-            \item Discussies
-        \end{itemize}
-    \item Hulpmiddelen als ondersteuning om te vinden wat je zoekt
-    \item Grafieken voor correlatie
-    \end{itemize}
+\begin{frame}{Vul een onderbouwde relatie in}
+\UsageShot{misp-2.5-object-add.png}{Controleer waarden, Inherit event en To IDS: No vóór Create new object.}
+\note{De fictieve casus verbindt relay-service.example met 203.0.113.42; dit is geen echte DNS-query. Vul domain en ip in, geef broncontext en vink IDS uit. Controleer distributie op object- en attribuutniveau. Volg de beoordelings- en bevestigingsstap van het formulier.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Verschillende manieren om een event aan te maken en aan te vullen (demo)}
-    \begin{itemize}
-    \item De belangrijkste hulpmiddelen om een event aan te vullen
-        \begin{itemize}
-            \item Bijvoegen van attributen / in groep bijvullen van attributen
-            \item Bijvoegen van objecten en hoe de templates voor objecten werken
-            \item Invoeren via vrije tekst
-            \item Importeren
-            \item Templates
-            \item Bijvoegen van bijlagen / schermafbeeldingen
-            \item API
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Controleer het opgeslagen object}
+\UsageShot{misp-2.5-object-saved.png}{Controleer objectnaam, attribuutrelaties en waarden na de definitieve opslag.}
+\note{Het object structureert de relatie maar bevestigt haar niet zelfstandig. Controleer beide attributen, IDS, distributie en bron. UUID's en lokale rij-ID's verschillen per lab. Voeg het object niet nogmaals toe als een formulier of import wordt herhaald.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Functies beschikbaar tijdens het bijvoegen van gegevens}
-    \begin{itemize}
-        \item Wat gebeurt er automatisch tijdens het toevoegen van gegevens?
-        \begin{itemize}
-            \item Automatische correlatie
-            \item Aanpassingen van de invoer via validatie en filters (regex)
-            \item Tagging / Clusters van Galaxies
-        \end{itemize}
-        \item De verschillende manieren om gegevens te publiceren
-        \begin{itemize}
-            \item Publiceren met of zonder e-mail
-            \item Publiceren via de API
-            \item Publiceren door middel van delegatie
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Kies bewust een omgangstag}
+\UsageShot{misp-2.5-tag-picker.png}{Open de Tags-selector van het event en kies de TLP 2.0-tag voor de oefening.}
+\note{De trainer heeft de meegeleverde tlp-taxonomie en tags ingeschakeld. De referentie gebruikt tlp:clear bij fictieve documentatiewaarden. Een tag geeft classificatie en omgang, geen toegang. Vraag de beheerder ontbrekende tags voor te bereiden in plaats van een gelijkende tag te verzinnen. Bekijk lokale of deelbare koppelingsopties waar beschikbaar.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Manieren om de gegevens te gebruiken}
-    \begin{itemize}
-        \item Grafieken voor correlatie
-        \item Downloaden van gegevens in verschillende formaten
-        \item Voorgemaakte exports
-        \item API (later besproken)
-        \item Samenwerking met gebruikers (voorstellen, discussies, emails)
-    \end{itemize}
+\begin{frame}{Controleer tag en zichtbaarheid afzonderlijk}
+\UsageShot{misp-2.5-tagged-event.png}{De opgeslagen tag is zichtbaar; het event blijft organisatie-only en ongepubliceerd.}
+\note{TLP:CLEAR staat volgens TLP onbeperkte verdere verspreiding toe, maar dwingt MISP niet om publiek te delen. Een beperktere tag dwingt evenmin alleen de toegang af. Controleer opgeslagen toestand en ontvangers. Deze oefening publiceert niet en behandelt een tag niet als juridische toestemming.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Synchronisatie uitgelegd (voor de 'niet-admin' training)}
-    \begin{itemize}
-        \item Het synchronizeren van connecties
-        \item Trekken (Pull) of Duwen (Push) model
-        \item Vooraf bekijken van een instantie
-        \item Filters voor de synchronisatie
-        \item De connectie eerst testen
-        \item Selectieve keuzes voor synchronisatie
-    \end{itemize}
+\begin{frame}{Gebruik Galaxies voor onderbouwde context}
+\begin{itemize}
+\item Taxonomietags classificeren het record.
+\item Galaxy-clusters voegen herbruikbare kennis toe.
+\item Koppel technieken, malware of actoren met bronnen.
+\item Gebruik de Galaxy-cursus voor de actuele selector.
+\end{itemize}
+\note{Leid geen actor af uit het gedeelde domein. Galaxy-koppelingen kunnen lokaal of deelbaar zijn en hun reikwijdte telt. De vernieuwde Galaxy-training bevat MISP 2.5-screenshots van actoren en een UUID-controleoefening. Deze gebruiksoefening vereist geen actorkoppeling.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Feeds uitgeled (voor de 'niet-admin' training)}
-    \begin{itemize}
-        \item Types van feeds (MISP, vrije tekst, CSV)
-        \item Bijvoegen of aanpassen van feeds
-        \item Vooraf bekijken van feeds
-        \item Lokale feeds ten opzichte van netwerk feeds
-    \end{itemize}
+\begin{frame}{Vergelijk het gecorreleerde rapport}
+\UsageShot{misp-2.5-correlation.png}{Open het verwante rapport en vergelijk bron, datum en context vóór een conclusie.}
+\note{Het tweede rapport is fictief voorbereid materiaal en geen onafhankelijke echte intelligence. Correlatie vraagt geschikte waarden en toegang tot beide records. Geen overeenkomst bewijst geen uniciteit. Denk aan gedeelde infrastructuur, hergebruikte waarden en oude waarnemingen. Een vervolgstap kan zoeken of context opvragen zijn.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Verdeling van informatie uitgelegd}
-    \begin{itemize}
-        \item Enkel jouw organnisatie
-        \item Enkel deze gemeenschap
-        \item Aangesloten gemeenschappen
-        \item Alle gemeenschappen
-        \item Groepen voor delen
-    \end{itemize}
+\begin{frame}{Voeg een expliciete sighting toe}
+\UsageShot{misp-2.5-sighting-add.png}{Kies het bedoelde type, de bron en de waarnemingstijd voor het geselecteerde attribuut.}
+\note{Gebruik één fictieve waarneming. MISP onderscheidt sighting type 0, false-positive type 1 en expiration type 2; dit zijn geen drie betrouwbaarheidsscores. Gebruik bron en tijd uit de oefening met een expliciete tijdzone. Een bewerkingstijd is geen waarnemingstijd.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Verdeling en Topologie}
-    \includegraphics[scale=0.45]{screenshots/sync.png}
+\begin{frame}{Bekijk de opgeslagen feedback}
+\UsageShot{misp-2.5-sighting-results.png}{Controleer de opgeslagen sighting onder My org; een teller bewijst geen kwaadaardigheid.}
+\note{Het lab controleert één opgeslagen sighting op het domain-attribuut. De referentie beperkt sightings tot de eigen organisatie; andere instanties kunnen verschillen. Een nieuwe sighting bevestigt niet alle gekoppelde beoordelingen en geen sightings bewijst geen afwezigheid. Spreek af hoe feedback de verantwoordelijke bereikt.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Exporteren en API}
-    \begin{itemize}
-        \item Downloaden van een event
-        \item Een snelle introductie tot de APIs
-        \item Downloaden van zoekresultaten
-        \item Voorgemaakte exports
-    \end{itemize}
+\begin{frame}{Beoordeel de doelgroep op elk niveau}
+\begin{itemize}
+\item Eventdistributie geeft de buitenste deelcontext.
+\item Objecten en attributen kunnen erven of beperken.
+\item Sharing groups bepalen expliciete ontvangers.
+\item Ook rollen, lidmaatschap en uitwisselingspaden tellen.
+\end{itemize}
+\note{Het event blijft distributie 0; objecten en attributen worden na opslaan gecontroleerd. Bevoegde gebruikers kunnen ongepubliceerde records zien of via de API ophalen. De andere-organisatiecontrole geldt alleen voor de geteste gewone account en is geen volledige audit van sync, exports of beheerdersrollen. Vraag hulp vóór het verruimen van ontvangers.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{MISP - Eenvoudige intro tot admin (voor de 'niet-admin' training)}
-    \begin{itemize}
-        \item Instellingen
-        \item Het oplossen van problemen
-        \item Ondersteuners (workers)
-        \item Logbestanden
-    \end{itemize}
+\begin{frame}{Beoordeel publicatie zonder te publiceren}
+\UsageShot{misp-2.5-publication-review.png}{Publisher-rechten zijn nodig. Kies No en controleer daarna Published: No.}
+\note{Dit screenshot gebruikt een apart Publisher-account zonder beheerdersrechten; User kan niet publiceren. Publicatie kan ingestelde synchronisatie of meldingen activeren. Bekijk de echte bevestiging en annuleer. Opslaan, publiceren en exporteren zijn andere acties. Het lab heeft geen peers of mailrelay; er wordt geen aflevering of melding aangetoond. Verruim geen doelgroep alleen om een geslaagde knop te demonstreren.}
+\end{frame}
+
+\begin{frame}{Werk samen met duidelijke verantwoordelijkheid}
+\begin{itemize}
+\item Stel wijzigingen aan andermans attributen voor via proposals.
+\item Gebruik discussie of contact volgens gemeenschapsbeleid.
+\item Beoordeel en accepteer correcties expliciet.
+\item Gebruik extended events voor gescheiden eigenaarschap.
+\end{itemize}
+\note{Deze functies hebben eigen rechten en zichtbaarheid. Een voorstel is geen automatische wijziging van een record van een ander. Delegatie draagt eigenaarschap over en garandeert geen anonimiteit. Het lab toont gewone eventtaken en feedback, maar claimt geen geteste voorstellen tussen organisaties, delegatie of extended-eventuitwisseling.}
+\end{frame}
+
+\begin{frame}{Exporteer voor een bepaalde afnemer}
+\UsageShot{misp-2.5-export.png}{Download as…: kies het formaat en inspecteer de gegevens vóór gebruik.}
+\note{De referentie controleert een geauthenticeerde JSON-download met event, waarden, tags, distributie en uitgeschakelde IDS. Formaten en filters verschillen; sommige laten context weg of selecteren alleen IDS-attributen. Een bestand exporteren is verdere verspreiding met eigen ontvangers. Een geslaagde download maakt operationeel gebruik niet automatisch passend.}
+\end{frame}
+
+\begin{frame}{Gebruik zoeken en API voor de volgende taak}
+\begin{itemize}
+\item Search Attributes zoekt waarden; eventfilters zoeken context.
+\item De REST API ondersteunt precieze queries en integraties.
+\item PyMISP helpt afgebakende Python-processen automatiseren.
+\item Houd sleutels buiten slides, screenshots en voorbeelden.
+\end{itemize}
+\note{Payloads, authenticatie en versiegevoelige methoden staan in de vernieuwde API- en PyMISP-cursussen. Gebruik een beperkt serviceaccount en behandel fouten en herhalingen. Kopieer geen trainerssleutel naar lesmateriaal. Beoordeel uitvoervelden en doelgroep in plaats van queriesucces gelijk te stellen aan toestemming voor verdere verspreiding.}
+\end{frame}
+
+\begin{frame}{Controlepunt: maak en verklaar het record}
+\begin{itemize}
+\item Maak het event met de fictieve waarnemingen.
+\item Voeg het domain-ip-object en de omgangstag toe.
+\item Verklaar de overeenkomst en een onderbouwde actie.
+\item Controleer distributie, publicatie en alle IDS-instellingen.
+\end{itemize}
+\note{Geef tien minuten praktijk of een bespreking op papier. Controleer opgeslagen toestand. Een goed antwoord onderscheidt een onderzoeksspoor van attributie en verklaart waarom organisatie-only met tlp:clear kan samengaan. De labgids bevat de waarden en controlepunten.}
+\end{frame}
+
+\begin{frame}{Controlepunt: corrigeer, exporteer en draag over}
+\begin{itemize}
+\item Leg één fictieve sighting met bron en tijd vast.
+\item Inspecteer een JSON-export zonder te publiceren.
+\item Beschrijf hoe een correctie de verantwoordelijke bereikt.
+\item Verwijder tijdelijke oefengegevens volgens het labbeleid.
+\end{itemize}
+\note{Geef nog vijf tot tien minuten. De trainer kan event-UUID, object, tag, sighting en doelgroep controleren. Screenshot-ID's zijn geen verwachte antwoorden. Verwijder alleen eigen tijdelijke gegevens na beoordeling en behoud andere deelnemersrecords en de referentie volgens het labplan.}
+\end{frame}
+
+\begin{frame}{Ga verder met de passende workshop}
+\begin{itemize}
+\item Objecten en Galaxies: rijkere context met bronnen.
+\item Taxonomieën en decay: classificatie en kwaliteit.
+\item REST API en PyMISP: beoordeelde automatisering.
+\item Administratie en feeds: de uitwisseling beheren.
+\end{itemize}
+\note{De README verwijst naar actuele cursussen. Sync, feeds, workers en systeeminstellingen horen bij bevoegde beheerders en niet bij een geïmproviseerde beheerderstoer tijdens deze gebruikersles. Het doel is een bruikbaar record kunnen vinden, maken, controleren en verklaren met duidelijke ontvangers en feedback.}
 \end{frame}
