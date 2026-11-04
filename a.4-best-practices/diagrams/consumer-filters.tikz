@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+\node[bp box,text width=2.55cm] (record) at (0,0) {MISP record\\evidence and context};
+\node[bp box,text width=3.6cm] (investigate) at (6.45,1.9) {Investigation\\context, history, relationships};
+\node[bp box,text width=3.6cm] (detect) at (6.45,0) {Detection\\selected, relevant indicators};
+\node[bp box,text width=3.6cm] (block) at (6.45,-1.9) {Blocking\\stricter review and removal};
+\draw[bp arrow] (record.north east) -- node[bp label,sloped,above] {Audience and purpose} (investigate.west);
+\draw[bp arrow] (record.east) -- node[bp label,above] {Export policy} (detect.west);
+\draw[bp arrow] (record.south east) -- node[bp label,sloped,below] {Impact and freshness} (block.west);
+\end{tikzpicture}

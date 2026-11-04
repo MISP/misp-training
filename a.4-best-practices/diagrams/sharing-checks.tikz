@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+\node[bp wide] (policy) at (-2.5,0) {Handling policy\\source terms, TLP, purpose};
+\node[bp wide] (access) at (2.5,0) {MISP access settings\\distribution, groups, permissions};
+\node[bp box,text width=6.0cm] (path) at (0,-2.15) {Review the actual outbound path\\sync, API, feed, file or external service};
+\node[bp box,text width=6.0cm] (test) at (0,-4.05) {Test the intended audience and payload\\then exchange and verify};
+\draw[bp arrow] (policy.south) -- (path.north west);
+\draw[bp arrow] (access.south) -- (path.north east);
+\draw[bp arrow] (path) -- (test);
+\end{tikzpicture}
