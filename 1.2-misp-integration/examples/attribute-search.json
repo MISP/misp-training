@@ -1,0 +1,12 @@
+{
+  "returnFormat": "json",
+  "type": "domain",
+  "value": "%.example",
+  "published": true,
+  "to_ids": true,
+  "enforceWarninglist": true,
+  "includeEventUuid": true,
+  "includeEventTags": true,
+  "limit": 100,
+  "page": 1
+}

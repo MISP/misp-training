@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+\node[int box] (misp) at (0,.9) {MISP / client};
+\node[int box] (service) at (3.8,.9) {Module service};
+\node[int box] (provider) at (7.6,.9) {Optional provider};
+\foreach \x in {0,3.8,7.6} {\draw[dashed,draw=intTeal!55] (\x,.3) -- (\x,-2.45);}
+\draw[int arrow] (0,0) -- node[int label,above] {1. Selected input} (3.8,0);
+\draw[int arrow] (3.8,-.7) -- node[int label,above] {2. Lookup if needed} (7.6,-.7);
+\draw[int return] (7.6,-1.4) -- node[int label,above] {3. Provider result} (3.8,-1.4);
+\draw[int return] (3.8,-2.1) -- node[int label,above] {4. Module result} (0,-2.1);
+\node[int wide,text width=7.3cm] (review) at (3.8,-3.3) {5. Review or explicitly persist\\structured results, references and provenance};
+\draw[int arrow] (0,-2.45) -- (review.north west);
+\end{tikzpicture}

@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+\node[int box] (report) at (0,0) {Source report\\and observations};
+\node[int box] (event) at (3.8,0) {MISP event\\objects, attributes,\\tags and references};
+\node[int box] (export) at (7.6,0) {Selected payload\\for a consumer};
+\draw[int arrow] (report) -- (event);
+\draw[int arrow] (event) -- (export);
+\node[int wide,text width=8cm] (identity) at (3.8,-2.3) {Preserve a traceable link\\source UUIDs, provenance, observation time and policy version};
+\draw[int return] (report.south) -- (identity.north west);
+\draw[int return] (event.south) -- (identity.north);
+\draw[int return] (export.south) -- (identity.north east);
+\end{tikzpicture}

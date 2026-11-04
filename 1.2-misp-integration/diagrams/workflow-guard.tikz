@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+\node[int box] (trigger) at (0,0) {Event Publish\\blocking trigger};
+\node[int box] (condition) at (4.1,0) {Ready for this\\publication policy?};
+\node[int box] (pass) at (8.1,0) {Continue original\\publication};
+\node[int box] (stop) at (4.1,-2.4) {Stop execution\\explain the reason};
+\draw[int arrow] (trigger) -- (condition);
+\draw[int arrow] (condition) -- node[int label,above] {Yes} (pass);
+\draw[int arrow] (condition) -- node[int label,right] {No} (stop);
+\end{tikzpicture}
