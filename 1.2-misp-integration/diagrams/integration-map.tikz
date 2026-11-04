@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+\node[int box] (sources) at (0,0) {Reports, feeds\\and sensors};
+\node[int box] (misp) at (3.7,0) {MISP\\records and context};
+\node[int box] (tools) at (7.4,0) {SIEM, detection\\and response};
+\node[int box] (modules) at (1.8,2.5) {misp-modules\\transform / enrich};
+\node[int box] (workflow) at (5.9,2.5) {Workflows\\react / orchestrate};
+\draw[int arrow] (sources) -- node[int label,below=6mm] {Ingest} (misp);
+\draw[int arrow] (misp) -- node[int label,below=6mm] {API / connector} (tools);
+\draw[int arrow,<->] (misp.north west) -- (modules.south east);
+\draw[int arrow] (misp.north east) -- (workflow.south west);
+\draw[int arrow] (workflow.east) -| (tools.north);
+\draw[int return] (tools.south) -- ++(0,-1.1) -| node[int label,pos=.25] {Sightings and corrections} (misp.south);
+\end{tikzpicture}

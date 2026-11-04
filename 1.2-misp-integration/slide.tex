@@ -3,17 +3,23 @@
 
 
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{tikz}
 \usepackage{listings}
 \usepackage{adjustbox}
-\usetikzlibrary{positioning}
-\usetikzlibrary{shapes,arrows}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\input{diagrams/style.tex}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,
+    showstringspaces=false,columns=fullflexible,keepspaces=true,
+    frame=single,rulecolor=\color{mispBlue},backgroundcolor=\color{mispBlue!4}}
 
-\author{\small{\input{../includes/authors.txt}}}
+\author{\texorpdfstring{\small{\input{../includes/authors.txt}}}{MISP Project and CIRCL}}
 
-\title{MISP Training: MISP Deployment and Integration}
-\institute{\href{http://www.misp-project.org/}{http://www.misp-project.org/} \\ Twitter: \emph{\href{https://twitter.com/mispproject}{@MISPProject}}}
-\date{\input{../includes/location.txt}}
+\title{Integrating MISP}
+\subtitle{APIs, modules, workflows and operational feedback}
+\institute{\url{https://www.misp-project.org/}}
+\date{Reference: 4 November 2026}
 
 \begin{document}
 \include{content}

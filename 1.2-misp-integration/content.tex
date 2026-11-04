@@ -1,121 +1,385 @@
-% DO NOT COMPILE THIS FILE DIRECTLY!
-% This is included by the other .tex files.
+% DO NOT COMPILE DIRECTLY: included by slide.tex.
 
 \begin{frame}[t,plain]
 \titlepage
 \end{frame}
 
-\begin{frame}
-\frametitle{A Common Integration}
-        \includegraphics[scale=0.8]{misp-integration-overview.pdf}
-\end{frame}
-
-\begin{frame}
-\frametitle{Recommended MISP Setup}
-    \begin{itemize}
-            \item Provisioning your MISP infrastructure depends heavily on the {\bf number of attributes/events} (whether your dataset is below or above ~50 million attributes).
-            \item Number of MISP instances and the overall design depends on the following factors:
-                    \begin{itemize}
-                            \item Is your community private? Are you gathering MISP events from other communities? Are you {\bf publishing events to external} (trusted/untrusted) communities.
-                            \item Do you plan to have {\bf automatic tools} (e.g. sandbox analysis or low-value information needing correlation or an analyst workbench) feeding MISP?
-                    \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Vendors and Formats}
+\begin{frame}{Follow a finding all the way to its consumer}
 \begin{itemize}
-        \item There is {\bf a jungle of formats} with some vendors having little to no interest in keeping their users autonomous.
-        \item Attacks and threats require a {\bf dynamic format} to be efficiently shared (e.g. from financial indicators to personal information).
-        \item {\bf Review your current list of formats/vendors} to ensure a limited loss of information, especially when exporting from MISP to other formats (e.g. STIX not supporting financial indicators or taxonomies/galaxies).
+\item Bring a report, sensor finding or feed into MISP.
+\item Add structure and context through modules and analysts.
+\item Select an audience and an automation path.
+\item Deliver useful data, then return feedback and corrections.
 \end{itemize}
+\note{For analysts, SOC engineers and operators with basic MISP knowledge. Suggested route: 60 minutes of explanation and 20 minutes of exercises. The running example is a fictional phishing investigation. Review the deployed versions and configuration before a live demonstration; no diagram implies that a connector is installed by default.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Use case: Normalizing OSINT and Private Feeds}
+\begin{frame}{An integration is several connected data flows}
+\centering
+\input{diagrams/integration-map.tikz}
+\par\medskip\raggedright
+Give every arrow an owner, a payload and a failure policy.
+\note{Separate the intelligence store, transformation/orchestration and the consuming tools. Feeds and sync are ingestion or exchange paths; modules add capabilities; workflows react to MISP actions; an external connector implements a tool's contract. The return arrow is deliberately present: a successful export is only one part of the integration.}
+\end{frame}
+
+\begin{frame}{Choose the interface for the job}
+\small
+\begin{tabular}{@{}L{3.1cm}L{7cm}@{}}
+\textbf{Need} & \textbf{Start with} \\ \hline
+Peer exchange & Synchronisation with reviewed organisations and rules \\[.6em]
+Dataset intake & A configured feed; evaluate provenance and overlap \\[.6em]
+Search or edit & REST API, directly or through PyMISP \\[.6em]
+Enrich or convert & A compatible misp-modules capability \\[.6em]
+React to an action & A workflow trigger, conditions and actions \\[.6em]
+Update a tool & Its connector or API, with a defined delivery process
+\end{tabular}
+\note{These mechanisms compose. A workflow can call a module; a connector can poll the API; a feed can bring data into an analyst's workflow. A feed is not automatically a bidirectional collaboration channel. There is no universal connector contract shared by every SIEM, EDR or SOAR product.}
+\end{frame}
+
+\begin{frame}{Write the integration contract first}
 \begin{itemize}
-        \item Normalizing external input and feed into MISP (e.g. feed importer).
-        \item Comparing feeds before import (how many similarities? false-positives?).
-        \item Evaluating quality of information before import (warning-list lookup at feed evaluation).
+\item \textbf{Meaning:} which question or action does this data support?
+\item \textbf{Identity:} which UUIDs and source references survive conversion?
+\item \textbf{Audience:} which organisations and external services may receive it?
+\item \textbf{Lifecycle:} how do updates, expiration and removals arrive?
+\item \textbf{Operations:} who handles retries, limits and failures?
 \end{itemize}
+\note{Size the deployment using measured ingest rate, search latency, concurrent users, worker backlog, retention and recovery needs. The old fixed attribute-count threshold is not a sizing rule. Separate staging, analysis and operational consumption when their governance or workload warrants it. Test those boundaries rather than assuming multiple instances provide isolation by themselves.}
 \end{frame}
 
+\begin{frame}{Ingest deliberately and preserve context}
+\centering
+\input{diagrams/data-contract.tikz}
+\par\medskip\raggedright
+A flat list can serve a tool; keep the explanation traceable.
+\note{Use objects and references for related fields; retain the source report and observation times. Native MISP JSON generally carries richer MISP context than a consumer-specific list. Evaluate each mapping: a matching value is a correlation lead, not proof of common attribution. Agree which fields a connector may overwrite and how duplicate records are identified.}
+\end{frame}
 
-\begin{frame}
-\frametitle{Connecting Devices and Tools to MISP}
+\begin{frame}{Feeds and sync solve different ingestion problems}
 \begin{itemize}
-        \item One of the main goals of MISP is to feed protective or detection tools with data
-        \begin{itemize}
-            \item IDSes / IPSes (e.g. Suricata, Bro, Snort format as included in Cisco products)
-            \item SIEMs (e.g. CEF, CSV or real-time ZMQ pub-sub or Sigma)
-            \item Host scanners (e.g. OpenIOC, STIX, yara rule-set, CSV)
-            \item Various analysis tools (e.g. Maltego)
-            \item DNS policies (e.g. RPZ)
-        \end{itemize}
-        \item Various ways of exporting this data (downloads of the selected data, full exports, APIs)
-        \item The idea was to leave the selection process of the subset of data to be pushed to these up to the user using APIs.
+\item Compare feed coverage, freshness and overlap before importing.
+\item Review sync identities, distribution and push/pull filters.
+\item Keep upstream UUIDs when maintaining the same native records.
+\item Give synthetic or unreviewed imports a controlled staging path.
 \end{itemize}
+\note{Feed caching, fetching and importing are different operations. Sync supports richer MISP collaboration, but its actual directions and feedback settings must be configured. Do not equate TLP markings with distribution. Organisation-only drafts can still be accessible to privileged users or integrations acting as that organisation. The feed, usage and best-practices courses cover these details.}
 \end{frame}
 
-
-\begin{frame}
-\frametitle{SIEM and MISP Integration}
+\begin{frame}{API authentication is also a data-access decision}
 \begin{itemize}
-        \item SIEMs and MISP can be integrated with different techniques depending on the processes at your SOC or IR:
-        \begin{itemize}
-                \item Pulling events (via the API) or indicator lists at {\bf regular intervals} in a given time frame to perform lookups.
-                \item Subscribing to the MISP ZMQ {\bf pub-sub channel} to directly get the published events and use these in a lookup process.
-                \item {\bf Lookup expansion module} in MISP towards the SIEM to have a direct view of the attributes matched against the SIEM.
-        \end{itemize}
-        \item The above options can be combined, depending on your organisation or requirements to increase coverage and detection.
+\item Use a dedicated integration account and an appropriately scoped key.
+\item Send the raw key in the \texttt{Authorization} header.
+\item Keep TLS verification, timeouts and secrets outside source files.
+\item A read-only key can POST a search; it cannot perform writes.
 \end{itemize}
+\note{MISP advanced auth keys can constrain expiry, addresses and read-only access while retaining the account's visibility and role limits; the account needs API permission. A MISP key is not a provider API key or a universal module-service credential. Use a trusted CA bundle for private certificates. Do not assume site-admin access is necessary for an ordinary consumer.}
 \end{frame}
 
-\begin{frame}
-\frametitle{ZMQ integration: misp-dashboard}
-        \begin{itemize}
-        \item A dashboard showing live data and statistics from the ZMQ pub-sub of one or more MISP instances.
-        \item Building {\bf low-latency software} by consuming pub-sub channel provides significant advantages over standard API use.
-        \item Process information in {\bf real-time} when it's updated, created, published or gathered in MISP.
-        \item Demo!
-        \end{itemize}
-
+\begin{frame}{Prepare a request in MISP's REST client}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.69\textwidth}
+\includegraphics[width=\linewidth,height=5.9cm,keepaspectratio]{../a.7-rest-API/images/rest-client.png}
+\end{column}
+\begin{column}{.28\textwidth}
+\small
+Choose a method, path and JSON body.\par\medskip
+Inspect the deployed \texttt{/api/openapi} and \texttt{/api/rest}.\par\medskip
+This capture contains a placeholder key.
+\end{column}
+\end{columns}
+\note{Genuine, unchanged MISP 2.5.50 training capture from 29 October 2026; the prepared request was not submitted in the screenshot. Reused from the API course, which records full provenance. Point out the POST method and attributes/restSearch endpoint. Use the next slide's readable JSON for discussion rather than asking the audience to read every field in the screenshot.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{New integrations: IR and threat hunting using MISP}
-    \begin{itemize}
-        \item Close co-operation with {\bf the Hive project} for IR
-        \begin{itemize}
-            \item Interact with MISP directly from the Hive
-            \item Use both the MISP modules and the {\bf Cortex} analysers in MISP or the Hive directly
-        \end{itemize}
-        \item Using MISP to support your threat hunting via {\bf McAfee OpenDXL}
-        \item (\url{https://securingtomorrow.mcafee.com/business/optimize-operations/expanding-automated-threat-hunting-response-open-dxl})
-    \end{itemize}
+\begin{frame}[fragile]{A detection-oriented attribute query: one page}
+\lstinputlisting{examples/attribute-search.json}
+\small
+POST this body to \texttt{/attributes/restSearch}.\par
+The reserved \texttt{.example} filter keeps the exercise synthetic.
+\note{This is one query page, not a complete production exporter. published and to\_ids express intent; they do not prove a value is malicious. Warninglist enforcement is a separate selection aid. Empty results can mean that no synthetic values exist or that a filter removed them. Before production use, replace the lab value filter with an approved policy and validate the actual response.}
 \end{frame}
 
-\begin{frame}
-    \frametitle{The Hive integration}
-    \includegraphics[scale=0.25]{screenshots/cortex.jpg}
-\end{frame}
-
-\begin{frame}
-\frametitle{Reporting Back from your Devices, Tools or Processes}
-As {\bf Sightings} can be positive, negative or even based on expiration, different use cases are possible:
+\begin{frame}{Check the response contract, not only HTTP status}
 \begin{itemize}
-\item {\bf Sightings} allow users to notify a MISP instance about the activities related to an indicator.
-\item Activities can be from a SIEM (e.g. Splunk lookup validation or {\bf false-positive feedback}), a NIDS or honeypot devices\footnote{\url{https://www.github.com/MISP/misp-sighting-tools}}.
-\item Sighting can affect the API to limit the NIDS exports and improve the NIDS rule-set directly.
+\item Attribute JSON search returns \texttt{response.Attribute}.
+\item Event JSON search has a different, event-oriented envelope.
+\item Validate the content type, errors and required UUID fields.
+\item Distinguish empty results, denied access and incomplete retrieval.
 \end{itemize}
+\note{HTML from a login page or proxy is not an empty JSON result. Check API and SDK error dictionaries as well as exceptions. Native event exports are appropriate when object references or broader context are needed. Authentication, visibility and role caps can explain missing rows. The API course has a bounded client and verified response examples.}
 \end{frame}
 
-\begin{frame}
-        \frametitle{Q\&A}
-        \begin{itemize}
-                \item info@circl.lu (if you want to join the CIRCL MISP sharing community)
-                \item \url{https://github.com/MISP/} - \url{http://www.misp-project.org/}
-                \item We welcome any contributions to the project, be it pull requests, ideas, github issues,...
-        \end{itemize}
+\begin{frame}{Pagination and checkpoints need a completion rule}
+\begin{itemize}
+\item Bound page size, runtime and the number of requests.
+\item Use stable ordering and deduplicate by UUID.
+\item Role caps and post-query filters can produce sparse pages.
+\item Advance a checkpoint only after the whole run succeeds.
+\end{itemize}
+\note{A short page does not necessarily mean completion. Warninglist or other post-query filtering may even produce an empty output page while later candidates exist; do not copy a generic stop-on-empty loop into every export. Use the tested retrieval strategy for the endpoint and format. Overlap incremental windows and reconcile periodically: an attribute-change poll alone can miss parent tags, access changes or removals. Stable ordering does not create a database snapshot.}
 \end{frame}
 
+\begin{frame}[fragile]{PyMISP makes API objects easier to work with}
+\begin{lstlisting}[language=Python]
+rows = misp.search(
+    controller="attributes", return_format="json",
+    type_attribute="domain", value="%.example",
+    published=True, to_ids=True,
+    include_event_uuid=True,
+    limit=100, page=1, pythonify=True,
+)
+\end{lstlisting}
+\begin{itemize}
+\item Reuse the authenticated client setup from the PyMISP/API course.
+\item Check for error dictionaries; this is still only one page.
+\end{itemize}
+\note{This excerpt assumes misp is an authenticated PyMISP client, with trusted TLS, a timeout and an appropriate account. The README supplies links to runnable client examples rather than another partial client implementation. Parameter names are PyMISP names, not necessarily raw JSON names: type\_attribute maps to type. Typed results are convenient, not a substitute for pagination or consumer policy. Checked against the pinned PyMISP search signature.}
+\end{frame}
+
+\begin{frame}{Plan additions, changes and removals}
+\centering
+\input{diagrams/snapshot-plan.tikz}
+\par\medskip\raggedright
+An incomplete run must not become an empty desired state.
+\note{The supplied offline lab compares two complete consumer manifests under the same policy. A missing UUID then means removal from this consumer's selected set, not deletion of the source MISP record. Partial retrieval, changed permissions or a policy change need investigation before replacement. Snapshot completeness is an exporter responsibility; a boolean in the fixture is not evidence that a live export completed.}
+\end{frame}
+
+\begin{frame}{misp-modules adds capabilities around MISP}
+\small
+\begin{tabular}{@{}L{2.5cm}L{7.6cm}@{}}
+\textbf{Family} & \textbf{Typical role} \\ \hline
+Enrichment & Hover or expansion: look up or derive context \\[.6em]
+Import & Convert an external payload to MISP data \\[.6em]
+Export & Produce a consumer-oriented artefact \\[.6em]
+Action & Perform a configured workflow operation
+\end{tabular}
+\medskip\normalsize
+Discover what the running service actually loaded.
+\note{Module availability depends on installed dependencies, credentials and provider access, not repository counts. Core PHP workflow nodes and Python misp-modules are different extension systems. Cortex and newer AI services have their own configuration and contracts too; do not treat all services as interchangeable query endpoints. Pin versions and use the modules course for installation and development.}
+\end{frame}
+
+\begin{frame}{A module query is not a database write}
+\centering
+\input{diagrams/module-roundtrip.tikz}
+\par\medskip\raggedright
+Review or explicitly persist the returned data in MISP.
+\note{Some expansion modules call external providers, others parse locally. Import/export modules can transform data and action modules can have side effects; inspect the specific contract. Calling the service directly does not automatically create MISP objects. A native MISP enrichment flow can include review or persistence steps; a workflow can deliberately invoke persistence. HTTP 200 may still carry a module error envelope.}
+\end{frame}
+
+\begin{frame}{Connect the service from the right network context}
+\begin{itemize}
+\item Check \texttt{/healthcheck}, \texttt{/version} and \texttt{/modules}.
+\item Inspect \texttt{/openapi.json} on the deployed module service.
+\item Configure the MISP module family, URL, enablement and timeouts.
+\item Test reachability from the MISP worker as well as the web process.
+\end{itemize}
+\note{For example, Plugin.Enrichment\_services\_enable enables enrichment; Action services have separate settings. On split hosts or containers, localhost points to the calling environment, not automatically the module server. The reviewed service routes do not enforce MISP user ACLs: keep the service behind a controlled network/proxy boundary. A healthy service is not proof that a particular provider credential works. MISP may impose a shorter timeout than the module service.}
+\end{frame}
+
+\begin{frame}[fragile]{A local parsing example without a provider lookup}
+\lstinputlisting{examples/module-query.json}
+\small
+POST to the lab module service's \texttt{/query}.\par
+Inspect \texttt{results.Object} and references to the input UUID.
+\note{extract\_url\_components parses the supplied URL locally in the reviewed source. Do not browse the fictional URL. This request does not create an event or save results. Inspect results, error and errors; not every module uses the same output shape. The README gives the curl command and links the companion modules course's local lab.}
+\end{frame}
+
+\begin{frame}{The modules website is a separate client}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.53\textwidth}
+\includegraphics[width=\linewidth,height=5.9cm,keepaspectratio]{../3.1-misp-modules/screenshots/current/results.png}
+\end{column}
+\begin{column}{.44\textwidth}
+\begin{itemize}
+\item Inspect structured objects and source values.
+\item Reuse results in a selected analysis path.
+\item Distinguish the website, module API and MISP UI.
+\end{itemize}
+\end{column}
+\end{columns}
+\note{Unchanged upstream browser-fixture capture reused from the modules course, not evidence of a live provider lookup or a MISP write. It shows local URL components. The website has its own configuration, history and access controls; its presence does not mean a MISP instance is connected. Attribution and the pinned screenshot source are in the README.}
+\end{frame}
+
+\begin{frame}{Choose how enrichment becomes part of the record}
+\begin{itemize}
+\item An analyst can review proposed enrichment before saving.
+\item \textbf{Attach enrichment} adds results to workflow roaming data.
+\item \textbf{Enrich Event} invokes event enrichment and can persist changes.
+\item Track source, observation time, uncertainty and resulting writes.
+\end{itemize}
+\note{These are distinct built-in workflow actions checked in the pinned source. Attach enrichment does not itself save its appended enrichment fields as new event attributes; a later action may use them. Enrich Event calls Event.enrichment and reloads workflow data. Test module-specific results and failure handling; neither node's name proves a write or a useful new result occurred. Guard write-triggered workflows against repeating the same enrichment.}
+\end{frame}
+
+\begin{frame}{Treat an external lookup as disclosure}
+\begin{itemize}
+\item Review the provider, submitted fields and permitted purpose.
+\item Avoid exposing victim information through values or samples.
+\item Apply handling policy before the request leaves the environment.
+\item Keep provider keys and debug logs out of shared examples.
+\end{itemize}
+\note{A hash or domain query can reveal investigative interest. TLP describes sharing boundaries; PAP describes permitted actions and is not a replacement for access controls. The module service has optional PAP-related safeguards in the reviewed source, but availability, configuration and the actual module data path must be checked. A direct call to the module service bypasses MISP's enrichment-before-query workflow hook.}
+\end{frame}
+
+\begin{frame}{Workflows connect triggers, conditions and actions}
+\centering
+\input{diagrams/workflow-guard.tikz}
+\par\medskip\raggedright
+Illustrative publication gate; implement and test the policy.
+\note{event-publish is a blocking trigger called before publication begins. A condition such as a tag check can route an unready record to Stop execution. The pass branch permits the original operation to continue. This conceptual diagram is not an importable workflow blueprint or a promise that a particular policy is installed. Branch configuration and disabled-node behaviour need testing.}
+\end{frame}
+
+\begin{frame}{Blocking and background work serve different purposes}
+\begin{itemize}
+\item Use a blocking path for checks that must precede the action.
+\item Move slow callbacks to an appropriate non-blocking path.
+\item A non-blocking failure cannot undo the originating operation.
+\item Review workers, timeouts and every action's error behaviour.
+\end{itemize}
+\note{Not every trigger can block. Non-blocking triggers can be queued when background jobs are enabled; a concurrent-task node can split work into another path. Workers must actually be healthy. A pre-publication webhook or file write is an external side effect: later failure does not roll it back. An HTTP acknowledgement is not confirmation that a detection tool loaded anything. Avoid transactional guarantees that the workflow engine and external service do not provide.}
+\end{frame}
+
+\begin{frame}{Workflow execution has its own trust boundary}
+\begin{itemize}
+\item UI and API actions can both trigger workflows.
+\item Workflow processing uses a privileged system context.
+\item Select and minimise data before sending a webhook or module request.
+\item Prevent loops when workflow writes trigger more workflow activity.
+\end{itemize}
+\note{Workflow editing is site-admin managed in the reviewed version. getUserForWorkflow builds a SYSTEM identity for the host organisation with all permissions, or selects an enabled site-admin fallback. Do not assume the initiating user's API visibility limits the outgoing workflow payload. Test allowed and excluded recipients, re-entry conditions and idempotency. Workflow logic is operational code and deserves controlled changes and observability.}
+\end{frame}
+
+\begin{frame}{Use the right trigger for the decision}
+\begin{itemize}
+\item \texttt{event-publish}: check a publication prerequisite.
+\item \texttt{enrichment-before-query}: guard MISP's enrichment path.
+\item After-save triggers: process the relevant saved data.
+\item Inspect the payload available to each installed trigger.
+\end{itemize}
+\note{Do not teach a fixed trigger count: it changes. A guard in MISP is not a network firewall and does not intercept independent module-service callers. Enable Plugin.Workflow\_enable and the selected trigger/workflow, and use debug/logging features with sanitised data. The workflow course covers the editor and execution paths in depth.}
+\end{frame}
+
+\begin{frame}{A webhook needs a deliberate payload contract}
+\begin{itemize}
+\item Agree the destination, authentication and expected body.
+\item An empty webhook payload can send the full roaming data.
+\item Review \texttt{Security.workflow\_enable\_arbitrary\_urls}.
+\item Send a minimal reference when the receiver can fetch authorised data.
+\end{itemize}
+\note{The built-in Webhook action is gated by the arbitrary-URL setting in the reviewed source. It is not a per-destination allowlist by itself. Review destination restrictions and TLS rather than enabling it casually. The action's empty payload uses roaming data; this can disclose far more than an event UUID. The receiver still needs replay handling, authentication and its own retrieval permissions.}
+\end{frame}
+
+\begin{frame}{Module actions can produce an artefact, not activation}
+\begin{itemize}
+\item Example: \texttt{osquery\_pack\_publish} can plan a query pack.
+\item Start with \texttt{dry\_run=true}; inspect the planned content.
+\item Real publication writes on the module server.
+\item Distribution, configuration reload and endpoint checks are separate.
+\end{itemize}
+\note{The README supplies a synthetic dry-run request. In the pinned module contract, the action does not execute queries or implement a Fleet/Kolide API. Overwrite replaces the whole named pack, not just one event's portion; use a complete intended snapshot or separate names. Expiration/removal needs a separate lifecycle. This is why a successful module action cannot be presented as a deployed detection.}
+\end{frame}
+
+\begin{frame}{Three complementary SIEM integration patterns}
+\small
+\begin{tabular}{@{}L{2.35cm}L{4.2cm}L{3.3cm}@{}}
+\textbf{Pattern} & \textbf{Useful for} & \textbf{Check} \\ \hline
+Scheduled API pull & A selected lookup dataset & Freshness, completion and removals \\[.8em]
+Event notification & Prompt processing after a change & Missed messages and authorised retrieval \\[.8em]
+MISP-to-SIEM lookup & An analyst asking whether a value was seen & Query scope, permissions and response meaning
+\end{tabular}
+\note{Combine patterns if they solve different needs. A module querying a SIEM is a reverse lookup, not a replacement for publishing selected intelligence into the SIEM. Connector availability and supported versions vary by product. Avoid implying that a native export format is a maintained product integration.}
+\end{frame}
+
+\begin{frame}{Use notifications for speed and reconciliation for repair}
+\centering
+\input{diagrams/delivery-loop.tikz}
+\par\medskip\raggedright
+Prove what the receiver loaded, not only what MISP sent.
+\note{Possible notification mechanisms include configured ZMQ, Kafka or workflow callbacks, with different topic, access and retention properties. ZMQ pub/sub is not a durable replay log; Kafka retention does not automatically give every connector exactly-once processing. A minimal notification plus an API fetch under the connector's identity can reduce disclosure. Existing full-payload publishers must be reviewed separately; they do not automatically become permission-filtered API responses.}
+\end{frame}
+
+\begin{frame}{Select detection data for the consuming tool}
+\begin{itemize}
+\item Use published state, types, \texttt{to\_ids}, context and freshness.
+\item Review warninglist matches and the false-positive impact.
+\item Inspect Suricata rules, Zeek intel or osquery packs before delivery.
+\item Apply a stricter policy for blocking than for investigation.
+\end{itemize}
+\note{to\_ids is selection intent, not proof of maliciousness or permission to disclose. Export settings are endpoint- and format-specific; JSON queries may include contextual data. Verify actual rule syntax, reloads and observations on the target tool. A successful file write or accepted API call does not prove activation. Replace the old Bro name with Zeek where referring to the current project.}
+\end{frame}
+
+\begin{frame}{Test format conversion with a representative record}
+\begin{itemize}
+\item Include objects, references, tags, times and source UUIDs.
+\item Inspect native MISP JSON and the consumer's chosen format.
+\item Check STIX/TAXII mapping, version and extensions explicitly.
+\item Record what is preserved, transformed or omitted.
+\end{itemize}
+\note{Do not repeat blanket claims that STIX cannot represent a category of information. Mappings depend on STIX version, exporter/importer, extensions and consumer support. TAXII is an exchange protocol, not a substitute for checking the STIX content. Use the MISP/STIX course for interoperability details; use native MISP exchange when maintaining native MISP collaboration is the goal.}
+\end{frame}
+
+\begin{frame}[fragile]{Return feedback against the right attribute}
+\lstinputlisting{examples/sighting.json}
+\small
+POST to \texttt{/sightings/add/\{attribute-uuid\}} in the lab.
+\begin{itemize}
+\item Types: 0 observation, 1 false positive, 2 expiration.
+\item Record the source and actual observation time.
+\end{itemize}
+\note{This fixture's time and source are fictional. Use a real lab attribute UUID for a deliberate test; do not bulk-submit the same feedback repeatedly on retries. Sightings can reveal investigative activity: review visibility and anonymisation settings. A sighting is not a general endorsement of all event analysis and does not automatically remove a block rule. Corrections still need an owner, propagation and consumer reconciliation.}
+\end{frame}
+
+\begin{frame}{Diagnose the failing boundary}
+\small
+\begin{tabular}{@{}L{3.35cm}L{6.8cm}@{}}
+\textbf{Symptom} & \textbf{Next check} \\ \hline
+API query has no useful rows & Key, role, distribution, query and completion \\[.5em]
+Module absent or unavailable & Runtime discovery, dependencies, family settings and network \\[.5em]
+Workflow did not run & Enabled trigger, workflow, workers and diagnostics \\[.5em]
+Callback succeeded, tool unchanged & Receiver contract, load/reload and activation evidence \\[.5em]
+Old indicator is still active & Reconciliation, removal policy and last successful refresh
+\end{tabular}
+\note{Log identifiers, timings, counts, versions and failure classes; redact credentials and sensitive payloads. Retry safe reads with bounded backoff. Writes and external actions need explicit idempotency or deduplication; a timed-out caller may not know whether a side effect completed. Preserve the last verified consumer state instead of silently treating a failed run as an empty export.}
+\end{frame}
+
+\begin{frame}{Offline lab: inspect a consumer update plan}
+\begin{enumerate}
+\item Run the supplied snapshot planner on the two fictional manifests.
+\item Explain the one addition, one removal and one retained item.
+\item Change a retained UUID's value and observe an update.
+\item Set \texttt{complete=false}; confirm the planner refuses the input.
+\end{enumerate}
+\note{The Python-standard-library example prints a plan and never connects to MISP or changes a tool. Its manifests are a teaching contract, not a MISP API envelope. A complete selected snapshot and consistent policy are preconditions. Use the supplied checks to see policy mismatch, duplicate UUID and incomplete-input failures. A production connector needs its own identity model, atomic apply and rollback strategy.}
+\end{frame}
+
+\begin{frame}{Optional lab: connect the three integration surfaces}
+\begin{enumerate}
+\item API: preview the supplied first-page query in an isolated MISP.
+\item Modules: parse the fictional URL and inspect structured output.
+\item Workflow: build a lab publication gate and test both branches.
+\item Consumer: confirm a correction or removal reaches the lab output.
+\end{enumerate}
+\note{Use a disposable instance and synthetic data. The local module query is not a write to MISP. The publication-gate drawing is a design exercise: use the actual installed editor and trigger diagnostics rather than an invented import file. Test the excluded recipient as well as the intended one. Keep provider lookups, production sync, callbacks and action consumers disabled during the lab. Prerequisites, commands and expected outcomes are in the README.}
+\end{frame}
+
+\begin{frame}{Roll out with evidence at every boundary}
+\begin{itemize}
+\item Start with previews and a small, representative dataset.
+\item Test errors, retries, access exclusions and schema changes.
+\item Verify consumer activation, corrections and removals.
+\item Monitor freshness and failures; assign an operational owner.
+\end{itemize}
+\note{Check web and worker versions, scoped credentials, service boundaries and recovery procedures. Keep a versioned policy and mappings. A connector update may change selection or normalisation; compare before enabling it. Use the specialist courses for deployment, modules, API and workflow internals.}
+\end{frame}
+
+\begin{frame}{Continue with the specialist courses}
+\small
+\begin{itemize}
+\item \href{https://www.circl.lu/doc/misp/automation/}{MISP Book: automation and API}
+\item \href{https://misp.github.io/misp-modules/}{misp-modules: capabilities and service documentation}
+\item \href{https://www.circl.lu/doc/misp/workflows/}{MISP Book: workflows}
+\item Training sources: \texttt{a.7-rest-API}, \texttt{a.2-pymisp},\newline
+\texttt{3.1-misp-modules}, \texttt{a.12-misp-workflows}, \texttt{a.13-misp-stix}
+\end{itemize}
+\medskip
+\url{https://www.misp-project.org/} --- \url{https://github.com/MISP}
+\note{The course README records the exact MISP, misp-modules and PyMISP revisions checked on 4 November 2026, screenshot provenance and validation scope. Capabilities on development branches may postdate packaged releases. Verify the deployed contract rather than relying on the slide date or a fixed list of integrations.}
+\end{frame}

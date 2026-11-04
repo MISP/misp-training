@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+\node[int wide] (old) at (0,0) {Current consumer state\\keep.example + old.example};
+\node[int wide] (new) at (5.7,0) {Complete selected snapshot\\keep.example + new.example};
+\node[int wide,text width=6cm] (plan) at (2.85,-2.3) {Compare UUIDs under the same policy\\retain keep; add new; remove old};
+\node[int wide,text width=6cm] (apply) at (2.85,-4.1) {Apply deliberately, then verify the tool\\advance state only after success};
+\draw[int arrow] (old) -- (plan.north west);
+\draw[int arrow] (new) -- (plan.north east);
+\draw[int arrow] (plan) -- (apply);
+\end{tikzpicture}

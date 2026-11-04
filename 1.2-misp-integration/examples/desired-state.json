@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "policy": "training-domain-detection-v1",
+  "indicators": [
+    {
+      "uuid": "11111111-1111-4111-8111-111111111111",
+      "event_uuid": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "type": "domain",
+      "value": "keep.example"
+    },
+    {
+      "uuid": "33333333-3333-4333-8333-333333333333",
+      "event_uuid": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "type": "domain",
+      "value": "new.example"
+    }
+  ]
+}

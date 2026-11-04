@@ -1,0 +1,16 @@
+% MISP integration diagrams. Colours follow the shared MISP identity.
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\definecolor{intNavy}{HTML}{02394A}
+\definecolor{intTeal}{HTML}{00708D}
+\definecolor{intBlue}{HTML}{0091B0}
+\tikzset{
+ int box/.style={draw=intTeal,fill=intBlue!7,text=intNavy,
+   rounded corners=3pt,align=center,font=\sffamily\small,
+   execute at begin node={\hyphenpenalty=10000\relax},
+   text width=2.6cm,minimum height=1.1cm,inner sep=5pt},
+ int wide/.style={int box,text width=3.9cm},
+ int arrow/.style={-{Stealth[length=2mm]},draw=intTeal,thick},
+ int return/.style={int arrow,dashed},
+ int label/.style={font=\sffamily\scriptsize,text=intNavy,
+   align=center,fill=white,inner sep=3pt}
+}

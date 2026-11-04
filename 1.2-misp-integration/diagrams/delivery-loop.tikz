@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+\node[int box] (misp) at (0,0) {MISP};
+\node[int box] (connector) at (3.8,0) {Connector};
+\node[int box] (tool) at (7.6,0) {Consumer tool};
+\draw[int arrow] ([yshift=.2cm]misp.east) -- node[int label,above=5mm] {Notification} ([yshift=.2cm]connector.west);
+\draw[int arrow] ([yshift=-.2cm]connector.west) -- node[int label,below=6mm] {Authorised API fetch} ([yshift=-.2cm]misp.east);
+\draw[int arrow] (connector) -- node[int label,above=7mm] {Apply and verify} (tool);
+\draw[int return] (misp.north) -- ++(0,1.5) -| node[int label,pos=.25] {Periodic reconciliation} (connector.north);
+\draw[int return] (tool.south) -- ++(0,-1.8) -| node[int label,pos=.25] {Feedback and corrections} (misp.south);
+\end{tikzpicture}
