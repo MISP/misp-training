@@ -29,6 +29,7 @@ Historical references are listed in the [training archive](archive/README.md) an
 | [a.9-restsearch-dev](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.9-restsearch-dev) |
 | [a.10-galaxy-2.0](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.10-galaxy-2.0) |
 | [a.11-misp-data-model](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.11-misp-data-model) |
+| [a.11.a-misp-data-model-overview](https://www.misp-project.org/misp-training/a.11.a-misp-data-model-overview.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.11.a-misp-data-model-overview) |
 | [a.a-widget-dev](https://www.misp-project.org/misp-training/a.a-widget-dev.pdf) | [source](https://github.com/MISP/misp-training/tree/main/a.a-widget-dev) |
 | [b.2-turning-data-into-actionable-intelligence](https://www.misp-project.org/misp-training/b.2-turning-data-into-actionable-intelligence.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.2-turning-data-into-actionable-intelligence) |
 | [b.5-turning-data-into-actionable-intelligence-training](https://www.misp-project.org/misp-training/b.5-turning-data-into-actionable-intelligence-training.pdf) | [source](https://github.com/MISP/misp-training/tree/main/b.5-turning-data-into-actionable-intelligence-training) |

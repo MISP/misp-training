@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+  \node[dm title,text width=2.35cm] (data) at (0,0) {Structure};
+  \node[dm box,text width=8.9cm,right=5mm of data] {Event, Attribute, Object, Event Report};
+  \node[dm title,text width=2.35cm] (context) at (0,-1.35) {Context};
+  \node[dm box,text width=8.9cm,right=5mm of context] {Tags, taxonomies, galaxies and clusters};
+  \node[dm title,text width=2.35cm] (feedback) at (0,-2.7) {Analysis / feedback};
+  \node[dm box,text width=8.9cm,right=5mm of feedback] {Analyst data, sightings and proposals};
+  \node[dm title,text width=2.35cm] (sharing) at (0,-4.05) {Sharing};
+  \node[dm box,text width=8.9cm,right=5mm of sharing] {Organisations, distribution and sharing groups};
+\end{tikzpicture}

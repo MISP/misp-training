@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+  \node[dm title,text width=3.5cm] (target) at (0,0)
+    {A supported element\\Event, Attribute, Object,\\Event Report, cluster, \ldots};
+  \node[dm box,text width=5.8cm] (note) at (7.2,1.5)
+    {Note --- explanation and source reasoning};
+  \node[dm box,text width=5.8cm] (opinion) at (7.2,0)
+    {Opinion --- assessment score and comment};
+  \node[dm box,text width=5.8cm] (relationship) at (7.2,-1.5)
+    {Relationship --- typed link to another\\supported element, using UUIDs};
+  \draw[dm arrow] (note.west) -- (target.north east);
+  \draw[dm arrow] (opinion.west) -- (target.east);
+  \draw[dm arrow] (relationship.west) -- (target.south east);
+  \node[dm label] at (3.8,-2.65) {Analyst data has its own authorship, UUID and distribution. Arrows indicate attachment.};
+\end{tikzpicture}

@@ -1,0 +1,18 @@
+% Shared MISP identity palette; usable in Beamer and standalone diagrams.
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+\definecolor{dmNavy}{HTML}{02394A}
+\definecolor{dmTeal}{HTML}{00708D}
+\definecolor{dmBlue}{HTML}{0091B0}
+\tikzset{
+  dm box/.style={draw=dmTeal,fill=dmBlue!6,rounded corners=3pt,
+    text=dmNavy,font=\sffamily\small,align=center,inner sep=7pt,
+    text width=3.35cm,minimum height=1cm,
+    execute at begin node={\hyphenpenalty=10000\relax}},
+  dm title/.style={dm box,fill=dmNavy,text=white,font=\sffamily\small\bfseries},
+  dm label/.style={font=\sffamily\scriptsize,text=dmNavy,align=center,
+    fill=white,inner sep=3pt},
+  dm arrow/.style={-{Stealth[length=2.2mm]},thick,draw=dmTeal},
+  dm match/.style={{Stealth[length=2mm]}-{Stealth[length=2mm]},
+    thick,dashed,draw=dmTeal},
+  dm group/.style={draw=dmTeal,rounded corners=5pt,fill=dmBlue!3,inner sep=12pt}
+}

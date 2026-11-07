@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+  \node[dm title,text width=4.6cm] (template) at (0,0)
+    {Object template\\\texttt{domain-ip}\\Template UUID + version\\Relations, types and constraints};
+  \node[dm box,text width=5.8cm] (instance) at (7.5,0)
+    {Object instance: its own UUID\\\texttt{domain}: \texttt{login.example}\\\texttt{ip}: \texttt{192.0.2.10}};
+  \draw[dm arrow,dashed] (template) -- node[dm label,above,text width=1.8cm] {describes} (instance);
+  \node[dm box,text width=11.9cm] at (3.75,-2.3)
+    {Each field is an Attribute with a UUID.\\\texttt{object\_relation=ip} names the field; \texttt{type=ip-dst} describes its value.};
+\end{tikzpicture}
