@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+  \node[dm title,text width=4.8cm] (a) at (0,0) {Event A\\Phishing investigation};
+  \node[dm title,text width=4.8cm] (b) at (7.6,0) {Event B\\Separate investigation};
+  \node[dm box,text width=4.8cm,below=5mm of a] (aa)
+    {Attribute UUID X\\\texttt{domain: login.example}};
+  \node[dm box,text width=4.8cm,below=5mm of b] (bb)
+    {Attribute UUID Y\\\texttt{domain: login.example}};
+  \draw[dm match] (aa) -- node[dm label,above] {matching value} (bb);
+  \node[dm box,text width=12.3cm] at (3.8,-3.6)
+    {Matching values are a pivot for investigation.\\Shared infrastructure or noise can also explain a match.\\Assess the evidence before attributing activity.};
+\end{tikzpicture}

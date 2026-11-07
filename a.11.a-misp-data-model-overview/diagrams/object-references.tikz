@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+  \node[dm title] (email) at (0,0) {Object: email\\Instance UUID A};
+  \node[dm title] (file) at (6.6,0) {Object: file\\Instance UUID B};
+  \node[dm box] (ip) at (6.6,-2.1) {Attribute: \texttt{ip-dst}\\\texttt{192.0.2.10} --- UUID C};
+  \draw[dm arrow] (email) -- node[dm label,above] {\texttt{includes}} (file);
+  \draw[dm arrow] (file) -- node[dm label,right] {\texttt{connects-to}} (ip);
+  \node[dm label,text width=3.4cm] at (0,-2.1)
+    {Explicit, directed links\\between instances\\in the same event};
+\end{tikzpicture}

@@ -64,6 +64,7 @@ find the same material in your checkout.
 | Developing a restSearch export module | [PDF](https://www.misp-project.org/misp-training/a.9-restsearch-dev.pdf) | [Source](a.9-restsearch-dev/) |
 | Galaxy 2.0 | [PDF](https://www.misp-project.org/misp-training/a.10-galaxy-2.0.pdf) | [Source](a.10-galaxy-2.0/) |
 | The MISP data model | [PDF](https://www.misp-project.org/misp-training/a.11-misp-data-model.pdf) | [Source](a.11-misp-data-model/) |
+| MISP data model — short overview | [PDF](complementary/other-slides/a.11.a-misp-data-model-overview.pdf) | [Source, TikZ diagrams and review](a.11.a-misp-data-model-overview/README.md) |
 | MISP workflows | [PDF](https://www.misp-project.org/misp-training/a.12-misp-workflows.pdf) | [Source](a.12-misp-workflows/) |
 | MISP workflows — short version | [PDF](https://www.misp-project.org/misp-training/a.12-misp-workflows-short.pdf) | [Source](a.12-misp-workflows-short/) |
 | MISP and STIX | [PDF](https://www.misp-project.org/misp-training/a.13-misp-stix.pdf) | [Source](a.13-misp-stix/) |
@@ -88,7 +89,7 @@ find the same material in your checkout.
 | Complete training collection | [PDF](https://www.misp-project.org/misp-training/misp-training.pdf) | [Build script](build.sh) |
 | Training cheat sheet | [PDF](https://www.misp-project.org/misp-training/cheatsheet.pdf) | [LaTeX](cheatsheets/) |
 | Trainer feature checklist | [PDF](https://www.misp-project.org/misp-training/usage.pdf) | [LaTeX](training-support/checklist/) |
-| Data model overview | [PDF](complementary/other-slides/a.11.a-misp-data-model-overview.pdf) | — |
+| Data model overview | [PDF](complementary/other-slides/a.11.a-misp-data-model-overview.pdf) | [LaTeX and TikZ](a.11.a-misp-data-model-overview/README.md) |
 | MISP Ten Pillars | [PDF](<complementary/other-slides/MISP 10 Pillars.pdf>) | — |
 
 More presentations are available in [events](events/), [MUG](MUG/), and

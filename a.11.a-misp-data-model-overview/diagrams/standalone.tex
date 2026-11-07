@@ -1,0 +1,11 @@
+% Compile from the course directory; select with \def\DataModelDiagram{...}.
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{FiraSans}
+\usepackage{FiraMono}
+\providecommand{\DataModelDiagram}{event-anatomy}
+\input{diagrams/style.tex}
+\begin{document}
+\input{diagrams/\DataModelDiagram.tikz}
+\end{document}

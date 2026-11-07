@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+  \node[dm title,text width=2.6cm] (free) at (0,0) {Free tag};
+  \node[dm box,text width=3.5cm] (freetag) at (4.35,0) {Locally chosen label};
+  \node[dm box,text width=3.7cm] (freeexample) at (9.1,0) {\texttt{case-demo}};
+  \draw[dm arrow] (free) -- (freetag); \draw[dm arrow] (freetag) -- (freeexample);
+  \node[dm title,text width=2.6cm] (tax) at (0,-1.55) {Taxonomy};
+  \node[dm box,text width=3.5cm] (taxtag) at (4.35,-1.55) {Defined vocabulary\\Machine tag};
+  \node[dm box,text width=3.7cm] (taxexample) at (9.1,-1.55) {\texttt{tlp:amber}};
+  \draw[dm arrow] (tax) -- (taxtag); \draw[dm arrow] (taxtag) -- (taxexample);
+  \node[dm title,text width=2.6cm] (galaxy) at (0,-3.1) {Galaxy};
+  \node[dm box,text width=3.5cm] (cluster) at (4.35,-3.1) {Clusters with UUIDs,\\metadata and relations};
+  \node[dm box,text width=3.7cm] (attached) at (9.1,-3.1) {Attach a cluster\\through its tag};
+  \draw[dm arrow] (galaxy) -- (cluster); \draw[dm arrow] (cluster) -- (attached);
+\end{tikzpicture}

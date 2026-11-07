@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+  \node[dm title,text width=11.9cm] (event) at (0,0)
+    {Event --- one coherent investigation, incident or body of knowledge};
+  \node[dm box,text width=3.45cm] (attr) at (-4.2,-1.65)
+    {Standalone Attribute\\\texttt{url}\\\texttt{https://}\\\texttt{login.example/}};
+  \node[dm box,text width=3.45cm] (object) at (0,-1.65)
+    {Object: \texttt{domain-ip}\\Attribute: \texttt{domain}\\Attribute: \texttt{ip}};
+  \node[dm box,text width=3.45cm] (report) at (4.2,-1.65)
+    {Event Report\\Markdown narrative\\References to event data};
+  \draw[dm arrow] (event.south -| attr.north) -- (attr.north);
+  \draw[dm arrow] (event.south) -- (object.north);
+  \draw[dm arrow] (event.south -| report.north) -- (report.north);
+  \node[dm label] at (0,-3.0) {Containment: object attributes also belong to this event. All three branches are optional.};
+\end{tikzpicture}
